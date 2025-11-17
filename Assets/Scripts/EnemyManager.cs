@@ -44,11 +44,11 @@ public class EnemyMovment : MonoBehaviour
     private void Atack()
     {
         
-        if(player.transform.position <= rangeAtk)
-        {
+        //if(player.transform.position <= rangeAtk)
+        //{
 
-            Debug.Log("Estoy atacando al Player");
-        }
+        //    Debug.Log("Estoy atacando al Player");
+        //}
         
     }
 
