@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 7635902508965768792}
   - component: {fileID: 5901345720148975749}
   - component: {fileID: -544864168070232589}
-  - component: {fileID: 2457619682887501189}
+  - component: {fileID: 5399444753672176301}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -239,28 +239,29 @@ MonoBehaviour:
   jumpHeight: 2
   rotationSpeed: 300
   gravityMultiplier: 1
---- !u!95 &2457619682887501189
-Animator:
-  serializedVersion: 7
+--- !u!136 &5399444753672176301
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4780836473755533148}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 372237272f3bdbe41a119de092bd65d8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &6010280663439367941
 GameObject:
   m_ObjectHideFlags: 0

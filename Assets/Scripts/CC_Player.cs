@@ -4,10 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class CC_Player : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 5.0f;
-    [SerializeField] private float jumpHeight = 1.5f;
-    [SerializeField] private float rotationSpeed = 300;
-    [SerializeField] private float gravityMultiplier = 1;
+    [SerializeField] private float playerSpeed = 5.0f; //Velocidad del jugador
+    [SerializeField] private float jumpHeight = 1.5f; //Altura de salto(!)
+    [SerializeField] private float rotationSpeed = 300; //Velocidad en la que rota
+    [SerializeField] private float gravityMultiplier = 1; //Cantidad de gravedad que le afecta(!)
 
     private CharacterController cc;
     private Vector3 playerVerticalVelocity;
@@ -16,14 +16,13 @@ public class CC_Player : MonoBehaviour
 
     private void Awake()
     {
-        // gravityValue = Physics.gravity.y * gravityMultiplier;
         cc = gameObject.GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        gravityValue = Physics.gravity.y * gravityMultiplier;
-        groundedPlayer = cc.isGrounded;
+        gravityValue = Physics.gravity.y * gravityMultiplier; //Calcular gravedad
+        groundedPlayer = cc.isGrounded; //Revisar si player esta en el suelo
         if (groundedPlayer && playerVerticalVelocity.y < 0)
         {
             playerVerticalVelocity.y = -0.5f;
