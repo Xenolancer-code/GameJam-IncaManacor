@@ -23,6 +23,7 @@ public class InputReceiver : MonoBehaviour
         playerControls.Player_CC.Move.canceled += Move;
         playerControls.Player_CC.Jump.performed += Jump;
         playerControls.Player_CC.BasicAtk.performed += BasicAtk;
+        playerControls.Player_CC.AoEAtk.performed += AoEAtk;
     }
 
     private void Jump(InputAction.CallbackContext ctx)
@@ -42,6 +43,12 @@ public class InputReceiver : MonoBehaviour
     {
         if(playerAtk == null) return;
         playerAtk.LeftClickPressed();
+    }
+
+    private void AoEAtk(InputAction.CallbackContext ctx)
+    {
+        if (playerAtk == null) return;
+        playerAtk.RightClickPressed();
     }
 
     private void OnDisable()

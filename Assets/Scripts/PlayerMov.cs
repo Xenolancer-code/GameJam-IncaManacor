@@ -1,5 +1,6 @@
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.Audio;
 [RequireComponent(typeof(NavMeshModifier))]
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMov : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private float rotationSpeed = 300; //Velocidad en la que rota
     [SerializeField] private float gravityMultiplier = 1; //Cantidad de gravedad que le afecta(!)
 
+   
     private CharacterController cc;
     private Vector3 playerVerticalVelocity;
     private bool groundedPlayer;
@@ -20,6 +22,10 @@ public class PlayerMov : MonoBehaviour
     private void Awake()
     {
         cc = gameObject.GetComponent<CharacterController>();
+    }
+    private void Start()
+    {
+       
     }
 
     void Update()

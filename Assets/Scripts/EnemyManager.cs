@@ -21,6 +21,9 @@ public class EnemyManager : MonoBehaviour
     private bool isAttacking = false;
 
 
+    private bool isKnockback = false; // <<--- NUEVO
+
+    private float knockbackDuration = 0.2f; // <<--- velocidad del knockback
     private void Awake()
     {
         enemyAgent = GetComponent<NavMeshAgent>();
@@ -34,6 +37,8 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
+        // Si hay knockback → no hacer nada
+        if (isKnockback) return;
         // Si está atacando -> no rotar ni moverse
         if (isAttacking) return;
 
@@ -78,6 +83,43 @@ public class EnemyManager : MonoBehaviour
         enemyAgent.isStopped = false;
         isAttacking = false;
     }
+
+    // ================================
+    //        KNOCKBACK (NUEVO)
+    // ================================
+    public void ApplyKnockback(Vector3 direction, float distance)
+    {
+        if (!isKnockback) StartCoroutine(KnockbackRoutine(direction, distance));
+    }
+
+    private IEnumerator KnockbackRoutine(Vector3 direction, float distance)
+    {
+        isKnockback = true;
+
+        // Desactivar el NavMeshAgent para moverlo manualmente
+        enemyAgent.enabled = false;
+
+        Vector3 startPos = transform.position;
+        Vector3 targetPos = startPos + direction.normalized * distance;
+
+        float elapsed = 0;
+
+        while (elapsed < knockbackDuration)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPos, elapsed / knockbackDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPos;
+
+        // Reactivar NavMeshAgent
+        enemyAgent.enabled = true;
+
+        isKnockback = false;
+    }
+
+
 
     private void OnTriggerEnter(Collider detect)
     {
