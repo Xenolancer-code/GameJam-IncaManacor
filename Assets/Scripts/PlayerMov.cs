@@ -2,8 +2,9 @@ using Unity.AI.Navigation;
 using UnityEngine;
 [RequireComponent(typeof(NavMeshModifier))]
 [RequireComponent(typeof(CharacterController))]
-public class CC_Player : MonoBehaviour
+public class PlayerMov : MonoBehaviour
 {
+    [Header("Basic movment")]
     [SerializeField] private float playerSpeed = 5.0f; //Velocidad del jugador
     [SerializeField] private float jumpHeight = 1.5f; //Altura de salto(!)
     [SerializeField] private float rotationSpeed = 300; //Velocidad en la que rota
@@ -13,6 +14,8 @@ public class CC_Player : MonoBehaviour
     private Vector3 playerVerticalVelocity;
     private bool groundedPlayer;
     private float gravityValue;
+
+    private Vector3 movmentVector = Vector3.zero;
 
     private void Awake()
     {
@@ -28,29 +31,17 @@ public class CC_Player : MonoBehaviour
             playerVerticalVelocity.y = -0.5f;
         }
 
-        // Read input
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveZ = Input.GetAxisRaw("Vertical");
-        Vector3 move = new Vector3(moveX, 0, moveZ);
-        move = Vector3.ClampMagnitude(move, 1f);
+ 
 
-        if (move != Vector3.zero)
+        if (movmentVector != Vector3.zero)
         {
-            Rotate(move);
+            Rotate(movmentVector);
         }
-
-        bool jumpAction = Input.GetButtonDown("Jump");
-        // Jump
-        if (jumpAction && groundedPlayer)
-        {
-            playerVerticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-        }
-
         // Apply gravity
         playerVerticalVelocity.y += gravityValue * Time.deltaTime;
 
         // Combine horizontal and vertical movement
-        Vector3 finalMove = (move * playerSpeed) + (playerVerticalVelocity.y * Vector3.up);
+        Vector3 finalMove = (movmentVector * playerSpeed) + (playerVerticalVelocity.y * Vector3.up);
         cc.Move(finalMove * Time.deltaTime);
     }
 
@@ -62,5 +53,18 @@ public class CC_Player : MonoBehaviour
         // Interpolem la rotació des de la rotació actual del transform cap a la rotació objectiu
         // uns quants graus cada frame. La velocitat de rotació dependrà de 'rotationSpeed'
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    public void SetMovmentVector(Vector2 inputVector)
+    {
+        movmentVector = new Vector3(inputVector.x, 0, inputVector.y);
+    }
+
+    public void TrytoJump()
+    {
+        if (groundedPlayer)
+        {
+            playerVerticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+        }
     }
 }

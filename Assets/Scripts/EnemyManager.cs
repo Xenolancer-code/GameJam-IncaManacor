@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,12 +12,13 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float rotaX = 180; // Rotacion para mirar al player
     [SerializeField] private float attackCooldown = 1f;  // Tiempo entre ataques
     private float lastAttackTime = 0f;
+
     private Transform player;
     private NavMeshAgent enemyAgent;
-    private bool playerInsideAttackRange = false;
-    private GameObject body;
-    
+    private Animator animator;
 
+    private bool playerInsideAttackRange = false;
+    private bool isAttacking = false;
 
 
     private void Awake()
@@ -25,17 +27,23 @@ public class EnemyManager : MonoBehaviour
     }
     void Start()
     {
-   
-        player = GameObject.FindWithTag("Player").transform;
-       
+        player = GameObject.FindWithTag("Player").transform;   
+        animator = GetComponent<Animator>();
     }
 
 
     void Update()
     {
+        // Si está atacando -> no rotar ni moverse
+        if (isAttacking) return;
+
+        //Rotar para mirar player
         float rotationValue = rotaX * Time.deltaTime;
         transform.Rotate(rotationValue, 0, 0);
+
+        //Perseguir al player
         enemyAgent.SetDestination(player.transform.position);
+        //Intento de ataque
         if (playerInsideAttackRange)
         {
             TryAttack();
@@ -44,36 +52,50 @@ public class EnemyManager : MonoBehaviour
 
     private void TryAttack()
     {
-        // Control de cooldown
         if (Time.time - lastAttackTime < attackCooldown) return;
 
         lastAttackTime = Time.time;
 
-        Debug.Log("Ataque al player via Trigger");
+        Debug.Log("ATACANDO AL PLAYER");
 
-        // Aquí puedes añadir daño o animación
-        // rightArm.GetComponent<Animator>().SetTrigger("Attack");
-        
+        StartCoroutine(AttackSequence());
     }
 
-    // Detecta cuando el player entra en el rango
+    private IEnumerator AttackSequence()
+    {
+        animator.SetTrigger("Hit");
+        isAttacking = true;
+
+        // Detener movimiento por completo
+        enemyAgent.isStopped = true;
+
+        // Aquí puedes activar la animación
+        // anim.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(2f);  // Duración del ataque (2 segundos)
+
+        // Después del ataque
+        enemyAgent.isStopped = false;
+        isAttacking = false;
+    }
+
     private void OnTriggerEnter(Collider detect)
     {
-        if (detect.tag.Equals("Player"))
+        if (detect.CompareTag("Player"))
         {
             playerInsideAttackRange = true;
         }
     }
 
-    // Detecta cuando el player sale del rango
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider detect)
     {
-        if (other.tag.Equals("Player"))
+        if (detect.CompareTag("Player"))
         {
             playerInsideAttackRange = false;
         }
     }
 }
+
 
 
 

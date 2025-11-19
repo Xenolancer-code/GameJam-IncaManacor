@@ -89,7 +89,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""StandarControls"",
+            ""name"": ""Player_CC"",
             ""id"": ""b2539aa6-c0f8-4b69-b436-6a9716e16c29"",
             ""actions"": [
                 {
@@ -309,18 +309,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // StandarControls
-        m_StandarControls = asset.FindActionMap("StandarControls", throwIfNotFound: true);
-        m_StandarControls_Move = m_StandarControls.FindAction("Move", throwIfNotFound: true);
-        m_StandarControls_Jump = m_StandarControls.FindAction("Jump", throwIfNotFound: true);
-        m_StandarControls_Dash = m_StandarControls.FindAction("Dash", throwIfNotFound: true);
-        m_StandarControls_BasicAtk = m_StandarControls.FindAction("BasicAtk", throwIfNotFound: true);
-        m_StandarControls_AoEAtk = m_StandarControls.FindAction("AoEAtk", throwIfNotFound: true);
+        // Player_CC
+        m_Player_CC = asset.FindActionMap("Player_CC", throwIfNotFound: true);
+        m_Player_CC_Move = m_Player_CC.FindAction("Move", throwIfNotFound: true);
+        m_Player_CC_Jump = m_Player_CC.FindAction("Jump", throwIfNotFound: true);
+        m_Player_CC_Dash = m_Player_CC.FindAction("Dash", throwIfNotFound: true);
+        m_Player_CC_BasicAtk = m_Player_CC.FindAction("BasicAtk", throwIfNotFound: true);
+        m_Player_CC_AoEAtk = m_Player_CC.FindAction("AoEAtk", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
-        UnityEngine.Debug.Assert(!m_StandarControls.enabled, "This will cause a leak and performance issues, PlayerControls.StandarControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player_CC.enabled, "This will cause a leak and performance issues, PlayerControls.Player_CC.Disable() has not been called.");
     }
 
     /// <summary>
@@ -393,49 +393,49 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // StandarControls
-    private readonly InputActionMap m_StandarControls;
-    private List<IStandarControlsActions> m_StandarControlsActionsCallbackInterfaces = new List<IStandarControlsActions>();
-    private readonly InputAction m_StandarControls_Move;
-    private readonly InputAction m_StandarControls_Jump;
-    private readonly InputAction m_StandarControls_Dash;
-    private readonly InputAction m_StandarControls_BasicAtk;
-    private readonly InputAction m_StandarControls_AoEAtk;
+    // Player_CC
+    private readonly InputActionMap m_Player_CC;
+    private List<IPlayer_CCActions> m_Player_CCActionsCallbackInterfaces = new List<IPlayer_CCActions>();
+    private readonly InputAction m_Player_CC_Move;
+    private readonly InputAction m_Player_CC_Jump;
+    private readonly InputAction m_Player_CC_Dash;
+    private readonly InputAction m_Player_CC_BasicAtk;
+    private readonly InputAction m_Player_CC_AoEAtk;
     /// <summary>
-    /// Provides access to input actions defined in input action map "StandarControls".
+    /// Provides access to input actions defined in input action map "Player_CC".
     /// </summary>
-    public struct StandarControlsActions
+    public struct Player_CCActions
     {
         private @PlayerControls m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public StandarControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public Player_CCActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "StandarControls/Move".
+        /// Provides access to the underlying input action "Player_CC/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_StandarControls_Move;
+        public InputAction @Move => m_Wrapper.m_Player_CC_Move;
         /// <summary>
-        /// Provides access to the underlying input action "StandarControls/Jump".
+        /// Provides access to the underlying input action "Player_CC/Jump".
         /// </summary>
-        public InputAction @Jump => m_Wrapper.m_StandarControls_Jump;
+        public InputAction @Jump => m_Wrapper.m_Player_CC_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "StandarControls/Dash".
+        /// Provides access to the underlying input action "Player_CC/Dash".
         /// </summary>
-        public InputAction @Dash => m_Wrapper.m_StandarControls_Dash;
+        public InputAction @Dash => m_Wrapper.m_Player_CC_Dash;
         /// <summary>
-        /// Provides access to the underlying input action "StandarControls/BasicAtk".
+        /// Provides access to the underlying input action "Player_CC/BasicAtk".
         /// </summary>
-        public InputAction @BasicAtk => m_Wrapper.m_StandarControls_BasicAtk;
+        public InputAction @BasicAtk => m_Wrapper.m_Player_CC_BasicAtk;
         /// <summary>
-        /// Provides access to the underlying input action "StandarControls/AoEAtk".
+        /// Provides access to the underlying input action "Player_CC/AoEAtk".
         /// </summary>
-        public InputAction @AoEAtk => m_Wrapper.m_StandarControls_AoEAtk;
+        public InputAction @AoEAtk => m_Wrapper.m_Player_CC_AoEAtk;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_StandarControls; }
+        public InputActionMap Get() { return m_Wrapper.m_Player_CC; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -443,9 +443,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="StandarControlsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="Player_CCActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(StandarControlsActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(Player_CCActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -453,11 +453,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="StandarControlsActions" />
-        public void AddCallbacks(IStandarControlsActions instance)
+        /// <seealso cref="Player_CCActions" />
+        public void AddCallbacks(IPlayer_CCActions instance)
         {
-            if (instance == null || m_Wrapper.m_StandarControlsActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_StandarControlsActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_Player_CCActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Player_CCActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -481,8 +481,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="StandarControlsActions" />
-        private void UnregisterCallbacks(IStandarControlsActions instance)
+        /// <seealso cref="Player_CCActions" />
+        private void UnregisterCallbacks(IPlayer_CCActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -502,12 +502,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="StandarControlsActions.UnregisterCallbacks(IStandarControlsActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="Player_CCActions.UnregisterCallbacks(IPlayer_CCActions)" />.
         /// </summary>
-        /// <seealso cref="StandarControlsActions.UnregisterCallbacks(IStandarControlsActions)" />
-        public void RemoveCallbacks(IStandarControlsActions instance)
+        /// <seealso cref="Player_CCActions.UnregisterCallbacks(IPlayer_CCActions)" />
+        public void RemoveCallbacks(IPlayer_CCActions instance)
         {
-            if (m_Wrapper.m_StandarControlsActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_Player_CCActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -517,27 +517,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="StandarControlsActions.AddCallbacks(IStandarControlsActions)" />
-        /// <seealso cref="StandarControlsActions.RemoveCallbacks(IStandarControlsActions)" />
-        /// <seealso cref="StandarControlsActions.UnregisterCallbacks(IStandarControlsActions)" />
-        public void SetCallbacks(IStandarControlsActions instance)
+        /// <seealso cref="Player_CCActions.AddCallbacks(IPlayer_CCActions)" />
+        /// <seealso cref="Player_CCActions.RemoveCallbacks(IPlayer_CCActions)" />
+        /// <seealso cref="Player_CCActions.UnregisterCallbacks(IPlayer_CCActions)" />
+        public void SetCallbacks(IPlayer_CCActions instance)
         {
-            foreach (var item in m_Wrapper.m_StandarControlsActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_Player_CCActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_StandarControlsActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_Player_CCActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="StandarControlsActions" /> instance referencing this action map.
+    /// Provides a new <see cref="Player_CCActions" /> instance referencing this action map.
     /// </summary>
-    public StandarControlsActions @StandarControls => new StandarControlsActions(this);
+    public Player_CCActions @Player_CC => new Player_CCActions(this);
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "StandarControls" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player_CC" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="StandarControlsActions.AddCallbacks(IStandarControlsActions)" />
-    /// <seealso cref="StandarControlsActions.RemoveCallbacks(IStandarControlsActions)" />
-    public interface IStandarControlsActions
+    /// <seealso cref="Player_CCActions.AddCallbacks(IPlayer_CCActions)" />
+    /// <seealso cref="Player_CCActions.RemoveCallbacks(IPlayer_CCActions)" />
+    public interface IPlayer_CCActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.

@@ -3,7 +3,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "StandarControls",
+            "name": "Player_CC",
             "id": "b2539aa6-c0f8-4b69-b436-6a9716e16c29",
             "actions": [
                 {
