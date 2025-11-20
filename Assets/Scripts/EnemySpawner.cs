@@ -6,11 +6,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawner Settings")]
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform player;
-    [SerializeField] private int maxEnemies = 5;            // numero máximo de enemigos
-    [SerializeField] private float spawnRadius = 20f;      // radio máximo para spawn
-    [SerializeField] private float minDistanceToPlayer = 5f; // distancia mínima al player
-    [SerializeField] private float spawnDelay = 2f;        // tiempo entre cada intento de spawn
-    [SerializeField] private float initialDelay = 5f;      // delay antes del primer spawn
+    [SerializeField] private int maxEnemies = 5;            
+    [SerializeField] private float spawnRadius = 20f;      
+    [SerializeField] private float minDistanceToPlayer = 5f; 
+    [SerializeField] private float spawnDelay = 0.5f;        
+    [SerializeField] private float initialDelay = 5f;     
 
     private List<GameObject> enemiesAlive = new List<GameObject>();
     private float timer = 0f;

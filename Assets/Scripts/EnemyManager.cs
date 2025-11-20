@@ -68,14 +68,13 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator AttackSequence()
     {
-        animator.SetTrigger("Hit");
         isAttacking = true;
 
         // Detener movimiento por completo
         enemyAgent.isStopped = true;
 
         // Aquí puedes activar la animación
-        // anim.SetTrigger("Attack");
+        animator.SetTrigger("Hit");
 
         yield return new WaitForSeconds(2f);  // Duración del ataque (2 segundos)
 
@@ -84,9 +83,9 @@ public class EnemyManager : MonoBehaviour
         isAttacking = false;
     }
 
-    // ================================
-    //        KNOCKBACK (NUEVO)
-    // ================================
+    // ========================================================
+    //        KNOCKBACK ((REVISAR FUNCIONALIDAD PARA APRENDER)
+    // ========================================================
     public void ApplyKnockback(Vector3 direction, float distance)
     {
         if (!isKnockback) StartCoroutine(KnockbackRoutine(direction, distance));

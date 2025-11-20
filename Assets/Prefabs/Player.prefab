@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9cbfb08d897a44bb81e558009a6f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAtk
+  damageAmount: 100
   aoeRadius: 4
   knockbackDistance: 3
 --- !u!1 &6010280663439367941
