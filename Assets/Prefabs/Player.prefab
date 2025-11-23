@@ -339,6 +339,8 @@ MonoBehaviour:
   jumpHeight: 2
   rotationSpeed: 300
   gravityMultiplier: 1
+  dashSpeed: 80
+  dashDuration: 0.2
 --- !u!114 &3056296761980748449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +539,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: ab76d244c6999c946a6ceb86f11ba88d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.495
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -581,7 +583,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -1,6 +1,8 @@
+using System.Collections;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UIElements.Experimental;
 [RequireComponent(typeof(NavMeshModifier))]
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMov : MonoBehaviour
@@ -11,12 +13,16 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private float rotationSpeed = 300; //Velocidad en la que rota
     [SerializeField] private float gravityMultiplier = 1; //Cantidad de gravedad que le afecta(!)
 
-   
+    [Header("Dash")]
+    [SerializeField] private float dashSpeed = 10;
+    [SerializeField] private float dashDuration = 1;
+
+
     private CharacterController cc;
     private Vector3 playerVerticalVelocity;
     private bool groundedPlayer;
     private float gravityValue;
-
+    private bool dashing = false;
     private Vector3 movmentVector = Vector3.zero;
 
     private void Awake()
@@ -72,5 +78,31 @@ public class PlayerMov : MonoBehaviour
         {
             playerVerticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
         }
+    }
+
+    public void TryToDash()
+    {
+        if (dashing) return;
+        StartCoroutine(Dash());
+    }
+
+    private IEnumerator Dash()
+    {
+        dashing = true;
+        float originalSpeed = playerSpeed;
+        playerSpeed = dashSpeed;
+        float timer = 0;
+
+        while (timer <= dashDuration)
+        {
+            timer += Time.deltaTime;
+            float interpolator = timer / dashDuration;
+            playerSpeed = Mathf.Lerp(dashSpeed, originalSpeed, interpolator);
+            yield return null;
+        }
+
+        playerSpeed = originalSpeed;
+
+        dashing = false;
     }
 }
