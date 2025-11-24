@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2827722844456131782}
   - component: {fileID: 4627198817373151771}
   - component: {fileID: 2448950633772692981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6740115136960425747}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pivotR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 650044116913496075}
   - component: {fileID: 5383161930755764749}
   - component: {fileID: 3116336793427943652}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: TextHealth
   m_TagString: Health
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2632836951749145204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 3212481741654788729}
   - component: {fileID: 7297263550709114755}
   - component: {fileID: 7513544518318110557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,10 +407,9 @@ GameObject:
   - component: {fileID: -6809925506852544156}
   - component: {fileID: 4656455976289175703}
   - component: {fileID: 6694397977305406628}
-  - component: {fileID: 2004163857622954062}
   - component: {fileID: 1813394391888736269}
   - component: {fileID: 6482753445881317620}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -518,33 +517,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &2004163857622954062
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4843334104173152981}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!95 &1813394391888736269
 Animator:
   serializedVersion: 7
@@ -592,7 +564,7 @@ GameObject:
   - component: {fileID: 8788658838030521839}
   - component: {fileID: 3908190453363160006}
   - component: {fileID: 202467573127996916}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +654,7 @@ GameObject:
   - component: {fileID: 466624587279782509}
   - component: {fileID: 5480197049769065651}
   - component: {fileID: 4239504631097612045}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,7 +755,7 @@ GameObject:
   - component: {fileID: 4475240518995018387}
   - component: {fileID: 8322634946495545247}
   - component: {fileID: 1882215305207564179}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +844,7 @@ GameObject:
   - component: {fileID: 8875885191634105785}
   - component: {fileID: 8604392727092446759}
   - component: {fileID: 8549285006594533370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}

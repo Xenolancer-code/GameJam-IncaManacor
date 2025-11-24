@@ -3,6 +3,10 @@ using UnityEngine;
 public class PlayerAtk : MonoBehaviour
 {
     //private CharacterController cc;
+    [Header("Attack Controller")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private LayerMask enemyLayer;
     [Header("Damage Amount Controller")]
     [SerializeField] private float damageAmount = 100f;
     [Header("Knockback Controller")]
@@ -10,44 +14,36 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] public float knockbackDistance = 3f;
     private Animator animator;
     private HealthEnemyController hc;
-    private GameObject target;
+
     private void Awake()
     {
         //cc = gameObject.GetComponent<CharacterController>();
     }
     void Start()
-    {   
+    {
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void LeftClickPressed()
+    public void BasicAtk()
     {
         animator.SetTrigger("LeftClick");
         Debug.Log("Estoy atacando al enemigo");
-        if(target != null)
-        {
-            target.GetComponent<HealthEnemyController>().GetDamage(damageAmount);
+        var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
+        if (collidedEnemies == null) return;
+        if (TryGetComponent(out HealthEnemyController healthcontroller) != null) {
+
+            healthcontroller.GetDamage(damageAmount);
         }
     }
+       
+
    
-    public void RightClickPressed()
+    public void AoEAtk()
     {
         animator.SetTrigger("RightClick");
         Debug.Log("Estoy golpeando en area");
     }
 
-    private void OnTriggerEnter(Collider coll)
-    {
-        if(coll.tag == "Enemy")
-        {
-            Debug.Log("Colision amb enemic");
-            target = coll.transform.gameObject;
-        }
-    }
-    private void OnTriggerExit(Collider coll)
-    {
-        target=null;
-    }
 
     public void DoAoEKnockback()
     {
@@ -66,5 +62,11 @@ public class PlayerAtk : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }

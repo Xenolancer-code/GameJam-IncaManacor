@@ -43,13 +43,13 @@ public class InputReceiver : MonoBehaviour
     private void BasicAtk(InputAction.CallbackContext ctx)
     {
         if(playerAtk == null) return;
-        playerAtk.LeftClickPressed();
+        playerAtk.BasicAtk();
     }
 
     private void AoEAtk(InputAction.CallbackContext ctx)
     {
         if (playerAtk == null) return;
-        playerAtk.RightClickPressed();
+        playerAtk.AoEAtk();
     }
 
     private void Dash(InputAction.CallbackContext ctx)
