@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour
     }
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;   
+        player = GameObject.FindWithTag("Player").transform.GetChild(0).transform;   
         animator = GetComponent<Animator>();
     }
 

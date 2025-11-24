@@ -9,7 +9,7 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] public float aoeRadius = 4f;
     [SerializeField] public float knockbackDistance = 3f;
     private Animator animator;
-    private HealthController hc;
+    private HealthEnemyController hc;
     private GameObject target;
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class PlayerAtk : MonoBehaviour
         Debug.Log("Estoy atacando al enemigo");
         if(target != null)
         {
-            target.GetComponent<HealthController>().GetDamage(damageAmount);
+            target.GetComponent<HealthEnemyController>().GetDamage(damageAmount);
         }
     }
    

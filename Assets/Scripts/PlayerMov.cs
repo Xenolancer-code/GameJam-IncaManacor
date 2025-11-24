@@ -18,11 +18,13 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private float dashDuration = 1;
 
 
+
     private CharacterController cc;
     private Vector3 playerVerticalVelocity;
     private bool groundedPlayer;
     private float gravityValue;
     private bool dashing = false;
+    private PlayerManager playerManager;
     private Vector3 movmentVector = Vector3.zero;
 
     private void Awake()
@@ -31,7 +33,7 @@ public class PlayerMov : MonoBehaviour
     }
     private void Start()
     {
-       
+       playerManager = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
     }
 
     void Update()
@@ -83,6 +85,7 @@ public class PlayerMov : MonoBehaviour
     public void TryToDash()
     {
         if (dashing) return;
+        if (playerManager.isDashing == false) return;
         StartCoroutine(Dash());
     }
 
@@ -92,7 +95,7 @@ public class PlayerMov : MonoBehaviour
         float originalSpeed = playerSpeed;
         playerSpeed = dashSpeed;
         float timer = 0;
-
+        
         while (timer <= dashDuration)
         {
             timer += Time.deltaTime;
@@ -100,9 +103,8 @@ public class PlayerMov : MonoBehaviour
             playerSpeed = Mathf.Lerp(dashSpeed, originalSpeed, interpolator);
             yield return null;
         }
-
         playerSpeed = originalSpeed;
-
+        playerManager.initDashCooldown();
         dashing = false;
     }
 }

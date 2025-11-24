@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486e19fddbd8b314ab5258ce624d0800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnTimer
-  enemy: {fileID: 4843334104173152981, guid: 274e038ec8b9ee445a6cea6e34c44064, type: 3}
-  spawnTime: 2
-  timeForDestroy: 5
+  enemyPrefab: {fileID: 4843334104173152981, guid: 274e038ec8b9ee445a6cea6e34c44064, type: 3}
+  player: {fileID: 7071136148639998380, guid: 50ae93ab78f0e99489428ec5e9a7657e, type: 3}
+  maxEnemies: 5
+  spawnRadius: 70
+  minDistanceToPlayer: 15
+  spawnDelay: 0.5
+  initialDelay: 5

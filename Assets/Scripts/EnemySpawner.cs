@@ -11,12 +11,17 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minDistanceToPlayer = 5f; 
     [SerializeField] private float spawnDelay = 0.5f;        
     [SerializeField] private float initialDelay = 5f;     
+    private GameManager gameManager;
 
     private List<GameObject> enemiesAlive = new List<GameObject>();
     private float timer = 0f;
-
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     void Update()
     {
+        if (gameManager.isRunningTime == true) { 
         timer += Time.deltaTime;
 
         if (timer < initialDelay)
@@ -30,8 +35,10 @@ public class EnemySpawner : MonoBehaviour
         }
 
         // Limpiar lista de enemigos que han sido destruidos
-        enemiesAlive.RemoveAll(e => e == null);
+     
+            enemiesAlive.RemoveAll(e => e == null);
     }
+}
 
     void SpawnEnemy()
     {
