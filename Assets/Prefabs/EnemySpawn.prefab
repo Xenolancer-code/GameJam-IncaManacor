@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnTimer
   enemyPrefab: {fileID: 4843334104173152981, guid: 274e038ec8b9ee445a6cea6e34c44064, type: 3}
-  player: {fileID: 7071136148639998380, guid: 50ae93ab78f0e99489428ec5e9a7657e, type: 3}
+  player: {fileID: 941215746220822036, guid: d4a80607bf12ded4a8303df3166120ae, type: 3}
   maxEnemies: 5
   spawnRadius: 70
   minDistanceToPlayer: 15

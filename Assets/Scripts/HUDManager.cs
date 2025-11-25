@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
+    private GameManager gameManager;
+    [SerializeField] private PlayerManager playerManager;
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI textTimer;
     [SerializeField] private TextMeshProUGUI textPoints;
@@ -11,13 +13,14 @@ public class HUDManager : MonoBehaviour
     [Header("Icons")]
     [SerializeField] private Image iconDash;
     [SerializeField] private Image iconDashCooldown;
-    private GameManager gameManager;
-    private PlayerManager playerManager;
+    [SerializeField] private Image fillPowerBar;
+    
 
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playerManager = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
+
+        //playerManager = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
     }
 
     
@@ -48,7 +51,13 @@ public class HUDManager : MonoBehaviour
         }
 
         textPoints.text = gameManager.enemyCounter.ToString();
-
        
+    }
+    public void ReSizePowerBar()
+    {
+        float y = fillPowerBar.GetComponent<RectTransform>().sizeDelta.y;
+        float x = fillPowerBar.GetComponent<RectTransform>().sizeDelta.x;
+        RectTransform rt = fillPowerBar.GetComponent<RectTransform>();
+        rt.sizeDelta= new Vector2(x+(10), y);
     }
 }

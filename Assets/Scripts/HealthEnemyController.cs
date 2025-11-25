@@ -7,6 +7,7 @@ public class HealthEnemyController : MonoBehaviour
     private float currentHealth;
     [SerializeField] private TextMeshProUGUI textHealth;
     private GameManager gameManager;
+    private HUDManager hudManager;
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -14,6 +15,7 @@ public class HealthEnemyController : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        hudManager = GameObject.Find("HUD").GetComponent<HUDManager>();
     }
     public void GetDamage(float damageAmount)
     {
@@ -29,6 +31,7 @@ public class HealthEnemyController : MonoBehaviour
     {
         //TODO Logica de morirse(particulas,sonido animacion etc)
         gameManager.enemyCounter += 1;
+        hudManager.ReSizePowerBar();
         Destroy(gameObject);
     }
 }

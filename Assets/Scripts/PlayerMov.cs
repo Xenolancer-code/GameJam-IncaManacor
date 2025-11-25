@@ -33,7 +33,7 @@ public class PlayerMov : MonoBehaviour
     }
     private void Start()
     {
-       playerManager = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
+       playerManager = GetComponent<PlayerManager>();
     }
 
     void Update()
