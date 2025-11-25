@@ -521,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CC_Player
   playerSpeed: 6
   jumpHeight: 2
-  rotationSpeed: 320
+  rotationSpeed: 500
   gravityMultiplier: 1
   dashSpeed: 100
   dashDuration: 0.2
@@ -542,6 +542,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  maxSimultaneousHits: 2
   damageAmount: 20
   aoeRadius: 4
   knockbackDistance: 10

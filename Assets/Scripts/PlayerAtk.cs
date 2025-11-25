@@ -10,7 +10,7 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private float maxSimultaneousHits =2f;
+    [SerializeField] private int maxSimultaneousHits =2;
     [Header("Damage Amount Controller")]
     [SerializeField] private float damageAmount;
     [Header("Knockback Controller")]
@@ -29,19 +29,10 @@ public class PlayerAtk : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    private class EnemyDistance:Comparer<EnemyDistance>
+    public class EnemyDistance
     {
         public GameObject target;
         public float distance;
-
-        public override int Compare(EnemyDistance x, EnemyDistance y)
-        {
-            if (x.distance < y.distance)
-                return -1;
-            else if (x.distance > y.distance)
-                return 1;
-            else return 0;
-        }
     }
 
     public void BasicAtk()
@@ -52,34 +43,37 @@ public class PlayerAtk : MonoBehaviour
         if (collidedEnemies == null) return;
         List<EnemyDistance> closeEnemies = new List<EnemyDistance>();
 
-        foreach (Collider collEnemy in collidedEnemies){
+        foreach (Collider collEnemy in collidedEnemies)
+        {
             var go = collEnemy.gameObject;
 
             EnemyDistance enemyDistance = new EnemyDistance();
             enemyDistance.target = go;
             enemyDistance.distance = Vector3.Distance(attackPoint.position, go.transform.position);
-
             closeEnemies.Add(enemyDistance);
 
             //comprovar distancia go sigui mes petita que closer distance
             // si es mes petita closerdistance = nova distancia
             // closerEnemy és aquest enemy   
+
+            //if (go.TryGetComponent(out HealthEnemyController healtcontroller))
+            //{
+            //    healtcontroller.GetDamage(damageAmount);
+            //}
         }
 
-        // Aquí tenim la llista de impactes ordenada
-        closeEnemies.Sort();
+    // Aquí tenim la llista de impactes ordenada
+    closeEnemies.Sort((a, b) => a.distance.CompareTo(b.distance));
         int hitIndex = 0;
-        for(int i = 0; i < closeEnemies.Count; i++)
+        for(int i = 0; i<closeEnemies.Count && hitIndex < maxSimultaneousHits; i++)
         {
-            if (hitIndex < maxSimultaneousHits){
-                var enemy = closeEnemies[i].target;
-                if (enemy.TryGetComponent(out HealthEnemyController healthcontroller))
-                {
-                    //Hacer maxSimultaneousHits  a los que esten mas cerca del punto [list]
-                    healthcontroller.GetDamage(damageAmount);
-                    hitIndex++;
-                }
+            var enemy = closeEnemies[i].target;
+            if (enemy.TryGetComponent(out HealthEnemyController healthcontroller))
+            {
+                healthcontroller.GetDamage(damageAmount);
+                hitIndex++;
             }
+            
         }
     }
 
