@@ -71,4 +71,9 @@ public class EnemySpawner : MonoBehaviour
         // Si no encuentra posición válida, no spawnea
         return Vector3.zero;
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.orangeRed;
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
+    }
 }

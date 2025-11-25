@@ -519,11 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317239f0a9cd7ca488c8c14f1aab582b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CC_Player
-  playerSpeed: 5
+  playerSpeed: 6
   jumpHeight: 2
-  rotationSpeed: 300
+  rotationSpeed: 320
   gravityMultiplier: 1
-  dashSpeed: 80
+  dashSpeed: 100
   dashDuration: 0.2
 --- !u!114 &9142690191689112701
 MonoBehaviour:
@@ -538,13 +538,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAtk
   attackPoint: {fileID: 277947435364213064}
-  attackRadius: 0.7
+  attackRadius: 0.3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   damageAmount: 20
   aoeRadius: 4
-  knockbackDistance: 3
+  knockbackDistance: 10
 --- !u!1 &5597313024936354863
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e7f464eafaaa1449d7d8ab21f2c596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  dashCooldown: 2
+  dashCooldown: 1
   isDashing: 1
 --- !u!1 &6407344674255218771
 GameObject:

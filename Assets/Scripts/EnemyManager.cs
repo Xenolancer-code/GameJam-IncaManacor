@@ -21,8 +21,7 @@ public class EnemyManager : MonoBehaviour
     private bool isAttacking = false;
 
 
-    private bool isKnockback = false; // <<--- NUEVO
-
+    private bool isKnockback = false; 
     private float knockbackDuration = 0.2f; // <<--- velocidad del knockback
     private void Awake()
     {

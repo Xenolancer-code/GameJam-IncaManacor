@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 public class PlayerAtk : MonoBehaviour
@@ -7,13 +10,15 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private float maxSimultaneousHits =2f;
     [Header("Damage Amount Controller")]
-    [SerializeField] private float damageAmount = 100f;
+    [SerializeField] private float damageAmount;
     [Header("Knockback Controller")]
     [SerializeField] public float aoeRadius = 4f;
-    [SerializeField] public float knockbackDistance = 3f;
+    [SerializeField] public float knockbackDistance = 8f;
     private Animator animator;
-    private HealthEnemyController hc;
+    
+
 
     private void Awake()
     {
@@ -24,20 +29,62 @@ public class PlayerAtk : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
+    private class EnemyDistance:Comparer<EnemyDistance>
+    {
+        public GameObject target;
+        public float distance;
+
+        public override int Compare(EnemyDistance x, EnemyDistance y)
+        {
+            if (x.distance < y.distance)
+                return -1;
+            else if (x.distance > y.distance)
+                return 1;
+            else return 0;
+        }
+    }
+
     public void BasicAtk()
     {
         animator.SetTrigger("LeftClick");
         Debug.Log("Estoy atacando al enemigo");
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
-        if (TryGetComponent(out HealthEnemyController healthcontroller) != null) {
+        List<EnemyDistance> closeEnemies = new List<EnemyDistance>();
 
-            healthcontroller.GetDamage(damageAmount);
+        foreach (Collider collEnemy in collidedEnemies){
+            var go = collEnemy.gameObject;
+
+            EnemyDistance enemyDistance = new EnemyDistance();
+            enemyDistance.target = go;
+            enemyDistance.distance = Vector3.Distance(attackPoint.position, go.transform.position);
+
+            closeEnemies.Add(enemyDistance);
+
+            //comprovar distancia go sigui mes petita que closer distance
+            // si es mes petita closerdistance = nova distancia
+            // closerEnemy és aquest enemy   
+        }
+
+        // Aquí tenim la llista de impactes ordenada
+        closeEnemies.Sort();
+        int hitIndex = 0;
+        for(int i = 0; i < closeEnemies.Count; i++)
+        {
+            if (hitIndex < maxSimultaneousHits){
+                var enemy = closeEnemies[i].target;
+                if (enemy.TryGetComponent(out HealthEnemyController healthcontroller))
+                {
+                    //Hacer maxSimultaneousHits  a los que esten mas cerca del punto [list]
+                    healthcontroller.GetDamage(damageAmount);
+                    hitIndex++;
+                }
+            }
         }
     }
-       
 
-   
+
+
     public void AoEAtk()
     {
         animator.SetTrigger("RightClick");
