@@ -30,8 +30,7 @@ public class HealthEnemyController : MonoBehaviour
     private void Die()
     {
         //TODO Logica de morirse(particulas,sonido animacion etc)
-        gameManager.enemyCounter += 1;
-        hudManager.ReSizePowerBar();
+        MessageCentral.DieEnemy();
         Destroy(gameObject);
     }
 }

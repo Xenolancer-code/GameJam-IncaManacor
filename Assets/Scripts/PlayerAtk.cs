@@ -30,7 +30,7 @@ public class PlayerAtk : MonoBehaviour
     }
 
     public class EnemyDistance
-    {
+    {   //Clase per poder fer una llista i aixi ordenar els enemics i la seva distancia sobre el player
         public GameObject target;
         public float distance;
     }
@@ -41,6 +41,7 @@ public class PlayerAtk : MonoBehaviour
         Debug.Log("Estoy atacando al enemigo");
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
+        //Llista que guarda la distancia del enemics sobre el player
         List<EnemyDistance> closeEnemies = new List<EnemyDistance>();
 
         foreach (Collider collEnemy in collidedEnemies)
@@ -48,18 +49,9 @@ public class PlayerAtk : MonoBehaviour
             var go = collEnemy.gameObject;
 
             EnemyDistance enemyDistance = new EnemyDistance();
-            enemyDistance.target = go;
-            enemyDistance.distance = Vector3.Distance(attackPoint.position, go.transform.position);
-            closeEnemies.Add(enemyDistance);
-
-            //comprovar distancia go sigui mes petita que closer distance
-            // si es mes petita closerdistance = nova distancia
-            // closerEnemy és aquest enemy   
-
-            //if (go.TryGetComponent(out HealthEnemyController healtcontroller))
-            //{
-            //    healtcontroller.GetDamage(damageAmount);
-            //}
+            enemyDistance.target = go; //Deim que els targets son tots els gameobjects dins l'Array de Colliders
+            enemyDistance.distance = Vector3.Distance(attackPoint.position, go.transform.position);//Sabem la distancia entre el player i els enemics
+            closeEnemies.Add(enemyDistance);// Afagim els datos dins la llista
         }
 
     // Aquí tenim la llista de impactes ordenada

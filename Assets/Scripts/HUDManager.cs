@@ -14,12 +14,25 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Image iconDash;
     [SerializeField] private Image iconDashCooldown;
     [SerializeField] private Image fillPowerBar;
-    
+    [SerializeField] private RectTransform rtfillPowerBar;
+    [Header("Settings")]
+    [SerializeField] private float maxWidth = 97f;
+    [SerializeField] private float aumentoMedidor = 10f;
+
+    private void OnEnable()
+    {
+        MessageCentral.OnDieEnemy += ReSizePowerBar;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnDieEnemy -= ReSizePowerBar;
+    }
+
 
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
         //playerManager = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
     }
 
@@ -54,10 +67,11 @@ public class HUDManager : MonoBehaviour
        
     }
     public void ReSizePowerBar()
-    {
-        float y = fillPowerBar.GetComponent<RectTransform>().sizeDelta.y;
-        float x = fillPowerBar.GetComponent<RectTransform>().sizeDelta.x;
-        RectTransform rt = fillPowerBar.GetComponent<RectTransform>();
-        rt.sizeDelta= new Vector2(x+(10), y);
+    {//Fer proporciones en %
+        float x = rtfillPowerBar.sizeDelta.x;
+        float y = rtfillPowerBar.sizeDelta.y;
+        float nuevoAncho = Mathf.Max(x + aumentoMedidor, maxWidth);
+        //rtfillPowerBar.sizeDelta = new Vector2(x + (10), y);
+        rtfillPowerBar.sizeDelta = new Vector2(nuevoAncho, y);
     }
 }

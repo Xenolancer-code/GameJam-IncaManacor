@@ -16,6 +16,16 @@ public class GameManager : MonoBehaviour
     public float barIncrement =10f;
 
 
+    private void OnEnable()
+    {
+        MessageCentral.OnDieEnemy += IncrementCounter;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnDieEnemy -= IncrementCounter;
+    }
+
     private void Awake()
     {
         playerPrefab.SetActive(false);
@@ -39,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if(isRunningTime == true)
         {
-            currentTime = Time.time - startTime;
+            currentTime += Time.deltaTime;
             menuHUD.SetActive(false);
            
         }
@@ -51,5 +61,10 @@ public class GameManager : MonoBehaviour
         playerPrefab.SetActive(true);
         Debug.Log(playerPrefab.activeSelf);
 
+    }
+
+    private void IncrementCounter()
+    {
+        enemyCounter++;
     }
 }
