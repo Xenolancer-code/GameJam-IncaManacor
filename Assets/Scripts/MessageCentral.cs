@@ -9,4 +9,10 @@ public class MessageCentral : MonoBehaviour
     {
         OnDieEnemy?.Invoke();
     }
+
+    public static event Action OnStart; //Juego iniciado
+    public static void Start()
+    {
+        OnStart?.Invoke();
+    }
 }
