@@ -11,34 +11,57 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minDistanceToPlayer = 5f; 
     [SerializeField] private float spawnDelay = 0.5f;        
     [SerializeField] private float initialDelay = 5f;     
-    private GameManager gameManager;
+    
 
     private List<GameObject> enemiesAlive = new List<GameObject>();
     private float timer = 0f;
+    private bool spawnerActivation=false;
+
+    private void OnEnable()
+    {
+        MessageCentral.OnStart += OnspawnerActivation;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnStart -= OnspawnerActivation;
+    }
+
+
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //Funcionalidad del Spawner
+        /* Cuando inicia el juego hay un periodo de gracia donde no se activa
+         * luego de eso hacen spawn X cantidad de enemigos a la vez, pudiendo aumentar en el tiempo
+         * (pero con un numero maximo de enemigos)[maybe] cuando un enemigo muere
+         * otro alomejor en 0,2s hace spawn para intentar siempre tener una buena cantidad de enemigos presentes
+         */ 
     }
     void Update()
     {
-        if (gameManager.isRunningTime == true) { 
-        timer += Time.deltaTime;
-
-        if (timer < initialDelay)
-            return;
-
-        // Si hay menos enemigos que el máximo
-        if (enemiesAlive.Count < maxEnemies)
+        if(spawnerActivation)
         {
-            timer = 0f;
-            SpawnEnemy();
+            ControllerSpawns();
         }
+}
+    private void ControllerSpawns()
+    {
+            timer += Time.deltaTime;
 
-        // Limpiar lista de enemigos que han sido destruidos
-     
+            if (timer < initialDelay)
+                return;
+
+            // Si hay menos enemigos que el máximo
+            if (enemiesAlive.Count < maxEnemies)
+            {
+                timer = 0f;
+                SpawnEnemy();
+            }
+
+            // Limpiar lista de enemigos que han sido destruidos
+
             enemiesAlive.RemoveAll(e => e == null);
     }
-}
 
     void SpawnEnemy()
     {
@@ -76,4 +99,10 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.color = Color.orangeRed;
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
+
+    private void OnspawnerActivation()
+    {
+        spawnerActivation = true;
+    }
+
 }

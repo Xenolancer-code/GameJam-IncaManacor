@@ -8,9 +8,8 @@ public class GameManager : MonoBehaviour
     public int enemyCounter = 0;
     [SerializeField] private GameObject menuHUD;
     [Header("Timer Settings")]
-    public float startTime;
     public float currentTime;
-    public bool isRunningTime = false;
+    private bool isGameStarted = false;
     [Header("Player Settings")] 
     [SerializeField] GameObject playerPrefab;
     
@@ -34,7 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         
-        if (isRunningTime == false)
+        if (isGameStarted == false)
         {
             //Juego pausado
         }
@@ -47,7 +46,7 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        if(isRunningTime == true)
+        if(isGameStarted == true)
         {
             currentTime += Time.deltaTime;
             menuHUD.SetActive(false);  
@@ -55,9 +54,8 @@ public class GameManager : MonoBehaviour
     }
     public void StartTimer()
     {
-        isRunningTime = true;
+        isGameStarted = true;
         MessageCentral.Start();
-        startTime = Time.time;
         playerPrefab.SetActive(true);
     }
 

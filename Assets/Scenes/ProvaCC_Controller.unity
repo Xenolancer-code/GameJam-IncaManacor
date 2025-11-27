@@ -413,9 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   enemyCounter: 0
   menuHUD: {fileID: 729658137}
-  startTime: 0
   currentTime: 0
-  isRunningTime: 0
   playerPrefab: {fileID: 6964794621000456199}
 --- !u!1 &252659273
 GameObject:
@@ -981,7 +979,6 @@ GameObject:
   - component: {fileID: 627835453}
   - component: {fileID: 627835456}
   - component: {fileID: 627835457}
-  - component: {fileID: 627835458}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1114,27 +1111,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627835452}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eefb7363fb212b4e8414d6f0187162b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
-  target: {fileID: 0}
-  offset: {x: 0, y: 5, z: -8}
---- !u!114 &627835458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627835452}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82d854e28d531b649ab0218f35683642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraRotation
-  target: {fileID: 0}
-  radius: 0
+  target: {fileID: 810355113474504485}
+  offset: {x: 0, y: 18, z: -22}
 --- !u!1 &729658137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740a782c00c15cc4f8ff0908b469faf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUDManager
+  gameManager: {fileID: 217205478}
   textTimer: {fileID: 1817441773}
   textPoints: {fileID: 1917237333}
   hudElements: {fileID: 1467791973}
@@ -3506,7 +3490,8 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 700
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6908476942242714065, guid: d4a80607bf12ded4a8303df3166120ae, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

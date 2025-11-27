@@ -16,6 +16,7 @@ public class PlayerMov : MonoBehaviour
     [Header("Dash")]
     [SerializeField] private float dashSpeed = 10;
     [SerializeField] private float dashDuration = 1;
+    [SerializeField] private float dashCooldown = 2f;
 
 
 
@@ -24,16 +25,12 @@ public class PlayerMov : MonoBehaviour
     private bool groundedPlayer;
     private float gravityValue;
     private bool dashing = false;
-    private PlayerManager playerManager;
+    
     private Vector3 movmentVector = Vector3.zero;
 
     private void Awake()
     {
         cc = gameObject.GetComponent<CharacterController>();
-    }
-    private void Start()
-    {
-       playerManager = GetComponent<PlayerManager>();
     }
 
     void Update()
@@ -85,13 +82,13 @@ public class PlayerMov : MonoBehaviour
     public void TryToDash()
     {
         if (dashing) return;
-        if (playerManager.isDashing == false) return;
         StartCoroutine(Dash());
     }
 
     private IEnumerator Dash()
     {
         dashing = true;
+        MessageCentral.DashinActivated(true);
         float originalSpeed = playerSpeed;
         playerSpeed = dashSpeed;
         float timer = 0;
@@ -104,7 +101,8 @@ public class PlayerMov : MonoBehaviour
             yield return null;
         }
         playerSpeed = originalSpeed;
-        playerManager.initDashCooldown();
+        yield return new WaitForSeconds(dashCooldown);
         dashing = false;
+        MessageCentral.DashinActivated(false);
     }
 }

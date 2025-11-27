@@ -15,4 +15,9 @@ public class MessageCentral : MonoBehaviour
     {
         OnStart?.Invoke();
     }
+    public static event Action<bool> OnDashinActivated; // Activaron el Dash
+    public static void DashinActivated(bool isDashing)
+    {
+        OnDashinActivated?.Invoke(isDashing);
+    }
 }

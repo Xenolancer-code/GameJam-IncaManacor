@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    private GameManager gameManager;
-    //[SerializeField] private PlayerManager playerManager;
+    [SerializeField] private GameManager gameManager;
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI textTimer;
     [SerializeField] private TextMeshProUGUI textPoints;
@@ -19,38 +18,38 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private float maxWidth = 97f;
     [SerializeField] private float barIncrement = 10f;
 
+    private bool showHud = false;
+
     private void OnEnable()
     {
         MessageCentral.OnDieEnemy += ReSizePowerBar;
-        MessageCentral.OnStart += UpdateHUD;
+        MessageCentral.OnStart += ActivateHud;
+        MessageCentral.OnDashinActivated += ControllerDashIcons;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnDieEnemy -= ReSizePowerBar;
-        MessageCentral.OnStart -= UpdateHUD;
+        MessageCentral.OnStart -= ActivateHud;
+        MessageCentral.OnDashinActivated -= ControllerDashIcons;
     }
 
-
-    void Start()
+    private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        //playerManager = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
+        iconDash.enabled = true;
+        iconDashCooldown.enabled = false;
     }
 
-    
     void Update()
     {
-        UpdateHUD(); //Revisar porque me medio perdi xd
+        if (showHud)
+            UpdateHUD();
 
         textPoints.text = gameManager.enemyCounter.ToString();
        
     }
     public void UpdateHUD()
     {
-        //if (gameManager.isRunningTime == true)
-        //{
-
         if (!hudElements.activeSelf)
         {
             hudElements.SetActive(true);
@@ -60,31 +59,8 @@ public class HUDManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(gameManager.currentTime % 60);
 
         textTimer.text = minutes.ToString("00") + " : " + seconds.ToString("00");
-        if (TryGetComponent(out PlayerManager playerManager))
-        {
-            if (playerManager.isDashing == true)
-            {
-                iconDash.GetComponent<Image>().enabled = true;
-                iconDashCooldown.GetComponent<Image>().enabled = false;
-            }
-            else
-            {
-                iconDash.GetComponent<Image>().enabled = false;
-                iconDashCooldown.GetComponent<Image>().enabled = true;
-            }
-        }
-
-        //if (playerManager.isDashing == true)
-        //{
-        //    iconDash.GetComponent<Image>().enabled = true;
-        //    iconDashCooldown.GetComponent<Image>().enabled = false;
-        //}
-        //else
-        //{
-        //    iconDash.GetComponent<Image>().enabled = false;
-        //    iconDashCooldown.GetComponent<Image>().enabled = true;
-        //}
-        //}
+        
+       
     }
     public void ReSizePowerBar()
     {//Fer proporciones en %
@@ -95,5 +71,22 @@ public class HUDManager : MonoBehaviour
         rtfillPowerBar.sizeDelta = new Vector2(nuevoAncho, y);
     }
 
-   
+    private void ControllerDashIcons(bool isDashing)
+    {
+        // Usar Message Central
+        if (!isDashing)
+        {
+            iconDash.enabled = true;
+            iconDashCooldown.enabled = false;
+        }
+        else
+        {
+            iconDash.enabled = false;
+            iconDashCooldown.enabled = true;
+        }
+    }
+    private void ActivateHud()
+    {
+        showHud = true;
+    }
 }

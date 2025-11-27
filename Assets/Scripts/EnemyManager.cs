@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private float rotaX = 180; // Rotacion para mirar al player
     [SerializeField] private float attackCooldown = 1f;  // Tiempo entre ataques
+    [SerializeField] private float stunByKnockBack = 2f; // Tiempo que el enemigos se queda parado al ser empujado
     private float lastAttackTime = 0f;
 
     private Transform player;
@@ -75,7 +76,7 @@ public class EnemyManager : MonoBehaviour
         // Aquí puedes activar la animación
         animator.SetTrigger("Hit");
 
-        yield return new WaitForSeconds(2f);  // Duración del ataque (2 segundos)
+        yield return new WaitForSeconds(stunByKnockBack);  // Duración del ataque (2 segundos)
 
         // Después del ataque
         enemyAgent.isStopped = false;

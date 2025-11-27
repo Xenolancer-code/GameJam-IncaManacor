@@ -18,16 +18,16 @@ public class CameraFollow : MonoBehaviour
             return;
 
         // Calculate la posició desitjada de la càmera darrere el target
-        Vector3 desiredPosition = target.position + (target.forward * offset.z) + (target.up * offset.y);
+       // Vector3 desiredPosition = target.position + (target.forward * offset.z) + (target.up * offset.y);
 
         // colocam la càmera en la posició desitjada
-        transform.position = desiredPosition;
+        transform.position = target.position + offset;
 
         // Mirem al target
         transform.LookAt(target);
 
-        Debug.Log("Forward global: " + Vector3.forward);
-        Debug.Log("Forward PJ: " + target.forward);
+        //Debug.Log("Forward global: " + Vector3.forward);
+        //Debug.Log("Forward PJ: " + target.forward);
     }
 
     //Versió suavitzada
