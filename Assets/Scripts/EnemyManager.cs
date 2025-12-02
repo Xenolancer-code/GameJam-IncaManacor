@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private float rotaX = 180; // Rotacion para mirar al player
     [SerializeField] private float attackCooldown = 1f;  // Tiempo entre ataques
-    [SerializeField] private float stunByKnockBack = 2f; // Tiempo que el enemigos se queda parado al ser empujado
+    [SerializeField] private float stopByAtackPlayer = 1.1f; // Tiempo que el enemigos se queda parado al atacar
     private float lastAttackTime = 0f;
 
     private Transform player;
@@ -24,6 +24,7 @@ public class EnemyManager : MonoBehaviour
 
     private bool isKnockback = false; 
     private float knockbackDuration = 0.2f; // <<--- velocidad del knockback
+    [SerializeField] private float StandingDuration = 2f;
     private void Awake()
     {
         enemyAgent = GetComponent<NavMeshAgent>();
@@ -74,14 +75,18 @@ public class EnemyManager : MonoBehaviour
         enemyAgent.isStopped = true;
 
         // Aquí puedes activar la animación
+        animator.SetBool("isMoving", false);
         animator.SetTrigger("Hit");
 
-        yield return new WaitForSeconds(stunByKnockBack);  // Duración del ataque (2 segundos)
+        yield return new WaitForSeconds(stopByAtackPlayer);  // Duración del ataque
 
         // Después del ataque
         enemyAgent.isStopped = false;
+        animator.SetBool("isMoving", true);
         isAttacking = false;
     }
+
+  
 
     // ========================================================
     //        KNOCKBACK ((REVISAR FUNCIONALIDAD PARA APRENDER)
@@ -94,6 +99,7 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator KnockbackRoutine(Vector3 direction, float distance)
     {
         isKnockback = true;
+        animator.SetBool("isKnockBack",true);
 
         // Desactivar el NavMeshAgent para moverlo manualmente
         enemyAgent.enabled = false;
@@ -116,6 +122,7 @@ public class EnemyManager : MonoBehaviour
         enemyAgent.enabled = true;
 
         isKnockback = false;
+        animator.SetBool("isKnockBack", false);
     }
 
 

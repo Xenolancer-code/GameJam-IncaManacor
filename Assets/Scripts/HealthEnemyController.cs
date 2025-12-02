@@ -14,6 +14,7 @@ public class HealthEnemyController : MonoBehaviour
     {
         currentHealth -= damageAmount;
         textHealth.text = currentHealth.ToString();
+        MessageCentral.DamagedEnemy();
         Debug.Log(currentHealth);
         if(currentHealth <= 0) {
             currentHealth = 0;

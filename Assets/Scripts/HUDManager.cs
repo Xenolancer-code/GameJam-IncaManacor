@@ -15,21 +15,21 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Image fillPowerBar;
     [SerializeField] private RectTransform rtfillPowerBar;
     [Header("Settings")]
-    [SerializeField] private float maxWidth = 97f;
-    [SerializeField] private float barIncrement = 10f;
+    [SerializeField] private float maxWidth = 100f;
+    private float barIncrement;
 
     private bool showHud = false;
 
     private void OnEnable()
     {
-        MessageCentral.OnDieEnemy += ReSizePowerBar;
+        MessageCentral.OnDamagedEnemy += ReSizePowerBar;
         MessageCentral.OnStart += ActivateHud;
         MessageCentral.OnDashinActivated += ControllerDashIcons;
     }
 
     private void OnDisable()
     {
-        MessageCentral.OnDieEnemy -= ReSizePowerBar;
+        MessageCentral.OnDamagedEnemy -= ReSizePowerBar;
         MessageCentral.OnStart -= ActivateHud;
         MessageCentral.OnDashinActivated -= ControllerDashIcons;
     }
@@ -38,6 +38,7 @@ public class HUDManager : MonoBehaviour
     {
         iconDash.enabled = true;
         iconDashCooldown.enabled = false;
+        barIncrement = gameManager.INCREMENTDAMAGE;
     }
 
     void Update()
@@ -67,8 +68,8 @@ public class HUDManager : MonoBehaviour
         float x = rtfillPowerBar.sizeDelta.x;
         float y = rtfillPowerBar.sizeDelta.y;
         float nuevoAncho = Mathf.Min(x + barIncrement, maxWidth);
-        //rtfillPowerBar.sizeDelta = new Vector2(x + (10), y);
         rtfillPowerBar.sizeDelta = new Vector2(nuevoAncho, y);
+        gameManager.UpdatePlayerStatus(nuevoAncho);
     }
 
     private void ControllerDashIcons(bool isDashing)

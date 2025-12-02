@@ -415,6 +415,7 @@ MonoBehaviour:
   menuHUD: {fileID: 729658137}
   currentTime: 0
   playerPrefab: {fileID: 6964794621000456199}
+  INCREMENTDAMAGE: 5
 --- !u!1 &252659273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &729658138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1498,7 +1499,7 @@ RectTransform:
   m_GameObject: {fileID: 892193788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 1, z: 1}
+  m_LocalScale: {x: 4.27825, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1260410644}
@@ -1506,8 +1507,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -544.00006, y: -450.00006}
-  m_SizeDelta: {x: 100, y: 65}
+  m_AnchoredPosition: {x: -548.7, y: -450.00006}
+  m_SizeDelta: {x: 109.0137, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &892193790
 MonoBehaviour:
@@ -1610,8 +1611,7 @@ MonoBehaviour:
   iconDashCooldown: {fileID: 362792847}
   fillPowerBar: {fileID: 1260410646}
   rtfillPowerBar: {fileID: 1260410644}
-  maxWidth: 97
-  barIncrement: 10
+  maxWidth: 100
 --- !u!114 &895231501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2101,8 +2101,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4.7, y: 65}
+  m_AnchoredPosition: {x: 4.44, y: 0}
+  m_SizeDelta: {x: 0, y: 65}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!223 &1260410645
 Canvas:
@@ -2291,7 +2291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1467791974
 RectTransform:
   m_ObjectHideFlags: 0
