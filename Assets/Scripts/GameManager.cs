@@ -12,13 +12,15 @@ public class GameManager : MonoBehaviour
     private bool isGameStarted = false;
     [Header("Player Settings")] 
     [SerializeField] GameObject playerPrefab;
-    private const int INITDAMAGE= 10;
+    public static int INITDAMAGE= 10;
     public int INCREMENTDAMAGE = 5; //Cada 10%
-    private int finalDamage = INITDAMAGE;
     private const int INITRANGE = 1;
     private const int INCREMENTRANGE = 1; //Cada 30%
-    private int finalRange=INITRANGE;
-    
+    private int damageTier = 10;
+    private int rangeTier = 30;
+
+    public float barWidth;
+
 
 
 
@@ -26,11 +28,15 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         MessageCentral.OnDieEnemy += IncrementCounter;
+        MessageCentral.OnIncrementPlayerDamage += IncrementPlayerDamage;
+        MessageCentral.OnIncrementPlayerRange += IncrementPlayerRange;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnDieEnemy -= IncrementCounter;
+        MessageCentral.OnIncrementPlayerDamage -= IncrementPlayerDamage;
+        MessageCentral.OnIncrementPlayerRange -= IncrementPlayerRange;
     }
 
     private void Awake()
@@ -40,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        playerPrefab.GetComponent<PlayerAtk>().finalDamage = INITDAMAGE;
         
         if (isGameStarted == false)
         {
@@ -71,22 +78,29 @@ public class GameManager : MonoBehaviour
     {
         enemyCounter++;
     }
-
-    public void UpdatePlayerStatus(float powerbar)
-    {   
-       if(powerbar % 10 == 0)
+   
+    public void IncrementPlayerDamage()
+    {
+        if (barWidth % damageTier == 0)
         {
-            finalDamage = finalDamage + INCREMENTDAMAGE;
+            int fdmg = playerPrefab.GetComponent<PlayerAtk>().finalDamage;
+            playerPrefab.GetComponent<PlayerAtk>().finalDamage = fdmg + INCREMENTDAMAGE;
         }
-       if(powerbar % 30 == 0)
+    }
+    public void IncrementPlayerRange()
+    {
+        if (barWidth % rangeTier == 0)
         {
-            finalRange = finalRange + INCREMENTRANGE;
+            int frg = playerPrefab.GetComponent <PlayerAtk>().finalRange;
+            playerPrefab.GetComponent<PlayerAtk>().finalRange = frg + INCREMENTRANGE;
         }
     }
 
+
+
     public void ResetPlayerStatus()
     {
-        finalDamage = INITDAMAGE;
-        finalRange = INITRANGE;
+        playerPrefab.GetComponent<PlayerAtk>().finalDamage = INITDAMAGE;
+        playerPrefab.GetComponent<PlayerAtk>().finalRange = INITRANGE;
     }
 }

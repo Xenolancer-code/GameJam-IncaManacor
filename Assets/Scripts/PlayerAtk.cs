@@ -17,7 +17,8 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] public float aoeRadius = 4f;
     [SerializeField] public float knockbackDistance = 8f;
     private Animator animator;
-    
+    public int finalDamage; //Crear Maximo 30 o 25
+    public int finalRange;
 
 
     private void Awake()
@@ -62,7 +63,7 @@ public class PlayerAtk : MonoBehaviour
             var enemy = closeEnemies[i].target;
             if (enemy.TryGetComponent(out HealthEnemyController healthcontroller))
             {
-                healthcontroller.GetDamage(damageAmount);
+                healthcontroller.GetDamage(finalDamage);
                 hitIndex++;
             }
             

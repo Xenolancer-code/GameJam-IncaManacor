@@ -15,6 +15,8 @@ public class HealthEnemyController : MonoBehaviour
         currentHealth -= damageAmount;
         textHealth.text = currentHealth.ToString();
         MessageCentral.DamagedEnemy();
+        MessageCentral.IncrementPlayerDamage();
+        MessageCentral.IncrementPlayerRange();
         Debug.Log(currentHealth);
         if(currentHealth <= 0) {
             currentHealth = 0;

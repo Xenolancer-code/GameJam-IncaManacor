@@ -14,9 +14,12 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Image iconDashCooldown;
     [SerializeField] private Image fillPowerBar;
     [SerializeField] private RectTransform rtfillPowerBar;
+    [SerializeField] private Image iconShield;
+    [SerializeField] private Image iconBrokenShield;
     [Header("Settings")]
     [SerializeField] private float maxWidth = 100f;
-    private float barIncrement;
+    private float incWidthBar=5;
+    
 
     private bool showHud = false;
 
@@ -38,7 +41,7 @@ public class HUDManager : MonoBehaviour
     {
         iconDash.enabled = true;
         iconDashCooldown.enabled = false;
-        barIncrement = gameManager.INCREMENTDAMAGE;
+      
     }
 
     void Update()
@@ -67,9 +70,9 @@ public class HUDManager : MonoBehaviour
     {//Fer proporciones en %
         float x = rtfillPowerBar.sizeDelta.x;
         float y = rtfillPowerBar.sizeDelta.y;
-        float nuevoAncho = Mathf.Min(x + barIncrement, maxWidth);
+        float nuevoAncho = Mathf.Min(x + incWidthBar, maxWidth);
         rtfillPowerBar.sizeDelta = new Vector2(nuevoAncho, y);
-        gameManager.UpdatePlayerStatus(nuevoAncho);
+        gameManager.barWidth = nuevoAncho;
     }
 
     private void ControllerDashIcons(bool isDashing)
@@ -85,6 +88,12 @@ public class HUDManager : MonoBehaviour
             iconDash.enabled = false;
             iconDashCooldown.enabled = true;
         }
+    }
+
+    private void ControllerHPIcons()
+    {
+        iconShield.enabled = true;
+        iconBrokenShield.enabled = false;
     }
     private void ActivateHud()
     {

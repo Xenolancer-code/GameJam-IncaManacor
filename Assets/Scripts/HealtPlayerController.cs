@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class HealtPlayerController : MonoBehaviour
 {
-    
-    void Start()
+    private int hpPoints;
+   
+    public void GetDamage()
     {
-        
+
     }
 
-    
-    void Update()
+    public void Die()
     {
-        
+        //TODO
     }
 }

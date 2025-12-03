@@ -31,4 +31,17 @@ public class MessageCentral : MonoBehaviour
         OnDamagedEnemy?.Invoke();
     }
 
+
+    public static event Action OnIncrementPlayerDamage; //Incrementamos el daño del Player
+    public static void IncrementPlayerDamage()
+    {
+        OnIncrementPlayerDamage?.Invoke();
+    }
+
+    public static event Action OnIncrementPlayerRange; //Incrementamos el rango del Player
+    public static void IncrementPlayerRange()
+    {
+        OnIncrementPlayerRange?.Invoke();
+    }
+
 }

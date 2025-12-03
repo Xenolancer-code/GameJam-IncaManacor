@@ -49,6 +49,7 @@ public class EnemyManager : MonoBehaviour
 
         //Perseguir al player
         enemyAgent.SetDestination(player.transform.position);
+        animator.SetFloat("velocity", enemyAgent.velocity.magnitude);
         //Intento de ataque
         if (playerInsideAttackRange)
         {
@@ -123,7 +124,7 @@ public class EnemyManager : MonoBehaviour
 
         isKnockback = false;
         animator.SetBool("isKnockBack", false);
-    }
+    }//Revisa de hacer alomejor una corutina para el stun del enemigo una vez empujado
 
 
 
