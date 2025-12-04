@@ -1,9 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealtPlayerController : MonoBehaviour
 {
+    [Header("Life")]
     private int hpPoints=2;
+    private bool playerIsDamaged = false;
+    [Header("Shield")]
     [SerializeField] private float shieldRecoverTime;
+    [Header("ShieldGating")]
+    private bool shieldGatingOn = false;
+    [SerializeField] private float shieldGatingTime;
    
     public void GetDamage(int hitPlayerHP)
     {
@@ -12,11 +19,13 @@ public class HealtPlayerController : MonoBehaviour
          * Avisar al HUD Manager para que cambie el Icon
          * Sin "Vida" pueeess -> Die()
          */
+        if (shieldGatingOn == true) return;
         hitPlayerHP -= hpPoints;
         if(hpPoints == 1)
         {
             MessageCentral.DamagedPlayer();
-            ShieldRecover();
+            TrytoShieldRecover();
+            StartCoroutine(ShieldGating());
         }
         if(hpPoints == 0)
         {
@@ -33,13 +42,24 @@ public class HealtPlayerController : MonoBehaviour
          */
     }
 
-    private void ShieldRecover()
+    public void TrytoShieldRecover()
     {
-        float timer = 0f;
-        while(timer <= shieldRecoverTime)
-        {
-            timer += Time.deltaTime;
-        }
-        hpPoints++;
+        if (playerIsDamaged) return;
+        //Invoke("ShieldRecoverAlt", shieldRecoverTime);
+        StartCoroutine(ShieldRecover());
+    }
+ 
+    private IEnumerator ShieldRecover()
+    {
+        yield return new WaitForSeconds(shieldRecoverTime);
+        hpPoints = 2;
+    }
+
+    private IEnumerator ShieldGating()
+    {
+        //Inmunidad al romper escudo para no recibir hits continuos
+        shieldGatingOn = true;
+        yield return new WaitForSeconds(shieldGatingTime);
+        shieldGatingOn = false;
     }
 }

@@ -404,11 +404,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5508135841267576868}
   - component: {fileID: -6809925506852544156}
-  - component: {fileID: -5280030844389167964}
-  - component: {fileID: 4656455976289175703}
   - component: {fileID: 6694397977305406628}
-  - component: {fileID: 1813394391888736269}
+  - component: {fileID: -5280030844389167964}
   - component: {fileID: 6482753445881317620}
+  - component: {fileID: 4656455976289175703}
+  - component: {fileID: 2801079797081419088}
+  - component: {fileID: 1813394391888736269}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -456,44 +457,6 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
---- !u!195 &-5280030844389167964
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4843334104173152981}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 8
-  m_Acceleration: 100
-  avoidancePriority: 50
-  m_AngularSpeed: 1000
-  m_StoppingDistance: 2
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &4656455976289175703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4843334104173152981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b98d1d9fca95ab40af6a1dd7af47421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovment
-  rotaX: 180
-  attackCooldown: 1
-  stopByAtackPlayer: 2
-  StandingDuration: 2
 --- !u!136 &6694397977305406628
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -517,6 +480,73 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &-5280030844389167964
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843334104173152981}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 8
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 1000
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &6482753445881317620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843334104173152981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d212bda5c23f7794da5d203e2354553a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealtController
+  maxHealth: 100
+  textHealth: {fileID: 5383161930755764749}
+--- !u!114 &4656455976289175703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843334104173152981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b98d1d9fca95ab40af6a1dd7af47421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovment
+  rotaX: 180
+  attackCooldown: 1
+  stopByAtackPlayer: 2
+  StandingDuration: 2
+--- !u!114 &2801079797081419088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843334104173152981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f046e1bf393dc05449774592c23557df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAtk
+  attackCooldown: 1
+  stopByAtackPlayer: 1.1
+  StandingDuration: 2
 --- !u!95 &1813394391888736269
 Animator:
   serializedVersion: 7
@@ -539,20 +569,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6482753445881317620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4843334104173152981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d212bda5c23f7794da5d203e2354553a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealtController
-  maxHealth: 100
-  textHealth: {fileID: 5383161930755764749}
 --- !u!1 &5895060415749121677
 GameObject:
   m_ObjectHideFlags: 0

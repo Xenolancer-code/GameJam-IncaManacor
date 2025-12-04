@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int maxEnemies = 5;            
     [SerializeField] private float spawnRadius = 20f;      
     [SerializeField] private float minDistanceToPlayer = 5f; 
-    [SerializeField] private float spawnDelay = 0.5f;        
+    //[SerializeField] private float spawnDelay = 0.5f; //Por usar
     [SerializeField] private float initialDelay = 5f;     
     
 

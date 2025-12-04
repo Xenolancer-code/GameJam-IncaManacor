@@ -88,7 +88,7 @@ public class PlayerAtk : MonoBehaviour
         {
             if (hit.CompareTag("Enemy"))
             {
-                EnemyManager kb = hit.GetComponent<EnemyManager>();
+                EnemyMov kb = hit.GetComponent<EnemyMov>();
                 if (kb != null)
                 {
                     Vector3 dir = (hit.transform.position - transform.position).normalized;
