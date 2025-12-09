@@ -9,9 +9,15 @@ public class EnemyAtk : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 1f;  // Tiempo entre ataques
     [SerializeField] private float stopByAtackPlayer = 1.1f; // Tiempo que el enemigos se queda parado al atacar
+    [SerializeField] private float attackRadius;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private LayerMask playerLayer;
+    private int hitPlayerHP = 1;
     private bool playerInsideAttackRange = false;
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
+
+    private GameObject player;
     private void Awake()
     {
         enemyAgent = GetComponent<NavMeshAgent>();
@@ -32,6 +38,10 @@ public class EnemyAtk : MonoBehaviour
         }
     }
 
+    public void SetPlayer(GameObject _player)
+    {
+        player = _player;
+    }
     private void TryAttack()
     {
         if (Time.time - lastAttackTime < attackCooldown) return;
@@ -61,7 +71,22 @@ public class EnemyAtk : MonoBehaviour
         animator.SetBool("isMoving", true);
         isAttacking = false;
     }
+    public void TryToDamage()
+    {
+        Debug.Log("Entrando en TryToDamage");
+        if (player == null) return;
+        Debug.Log(1);
+        var collidedPlayer = Physics.OverlapSphere(attackPoint.position, attackRadius, playerLayer);
+        if (collidedPlayer == null || collidedPlayer.Length == 0) return;
+        Debug.Log(2);
+        if (player.TryGetComponent(out HealtPlayerController healtPlayer))
+        {
+            Debug.Log("ouch");
+            healtPlayer.GetDamage(hitPlayerHP);
+        }
 
+        //Vector3.Distance(attackPoint.position, player.transform.position);
+    }
     private void OnTriggerEnter(Collider detect)
     {
         if (detect.CompareTag("Player"))
@@ -76,6 +101,12 @@ public class EnemyAtk : MonoBehaviour
         {
             playerInsideAttackRange = false;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 
 }

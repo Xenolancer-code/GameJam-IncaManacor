@@ -364,7 +364,8 @@ GameObject:
   - component: {fileID: 4272781785595400906}
   - component: {fileID: 3596494750761858300}
   - component: {fileID: 6006670230113638428}
-  m_Layer: 0
+  - component: {fileID: 2251663642765610059}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -476,7 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAtk
   attackPoint: {fileID: 3370719534283344944}
-  attackRadius: 0.3
+  attackRadius: 0.6
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -484,6 +485,22 @@ MonoBehaviour:
   damageAmount: 20
   aoeRadius: 4
   knockbackDistance: 10
+  finalDamage: 0
+  finalRange: 0
+--- !u!114 &2251663642765610059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305994167233530112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f7bf1005f7b994c81447e6d59cff53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealtPlayerController
+  shieldRecoverTime: 4
+  shieldGatingTime: 1.5
 --- !u!1 &3573180835563905543
 GameObject:
   m_ObjectHideFlags: 0

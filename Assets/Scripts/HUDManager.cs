@@ -28,6 +28,7 @@ public class HUDManager : MonoBehaviour
         MessageCentral.OnDamagedEnemy += ReSizePowerBar;
         MessageCentral.OnStart += ActivateHud;
         MessageCentral.OnDashinActivated += ControllerDashIcons;
+        MessageCentral.OnDamagedPlayer += ControllerHPIcons;
     }
 
     private void OnDisable()
@@ -35,6 +36,7 @@ public class HUDManager : MonoBehaviour
         MessageCentral.OnDamagedEnemy -= ReSizePowerBar;
         MessageCentral.OnStart -= ActivateHud;
         MessageCentral.OnDashinActivated -= ControllerDashIcons;
+        MessageCentral.OnDamagedPlayer -= ControllerHPIcons;
     }
 
     private void Start()
@@ -90,10 +92,18 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    private void ControllerHPIcons()
+    private void ControllerHPIcons(bool playerIsDamaged)
     {
-        iconShield.enabled = true;
-        iconBrokenShield.enabled = false;
+        if(!playerIsDamaged)
+        {
+            iconShield.enabled = true;
+            iconBrokenShield.enabled = false;
+        }else
+        { 
+            iconShield.enabled = false;
+            iconBrokenShield.enabled = true;
+        }
+        
     }
     private void ActivateHud()
     {

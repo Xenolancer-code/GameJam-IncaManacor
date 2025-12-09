@@ -11,7 +11,15 @@ public class HealtPlayerController : MonoBehaviour
     [Header("ShieldGating")]
     private bool shieldGatingOn = false;
     [SerializeField] private float shieldGatingTime;
-   
+
+    private void Awake()
+    {
+        hpPoints = 2;
+    }
+    private void Start()
+    {
+        MessageCentral.DamagedPlayer(false);
+    }
     public void GetDamage(int hitPlayerHP)
     {
         /*TODO
@@ -20,10 +28,11 @@ public class HealtPlayerController : MonoBehaviour
          * Sin "Vida" pueeess -> Die()
          */
         if (shieldGatingOn == true) return;
-        hitPlayerHP -= hpPoints;
+        hpPoints -= hitPlayerHP;
         if(hpPoints == 1)
         {
-            MessageCentral.DamagedPlayer();
+            Debug.Log("Player dañado socorro");
+            MessageCentral.DamagedPlayer(true);
             TrytoShieldRecover();
             StartCoroutine(ShieldGating());
         }
@@ -35,6 +44,7 @@ public class HealtPlayerController : MonoBehaviour
 
     public void Die()
     {
+        Debug.Log("Soy el Player y me han matado");
         /*TODO
          * Matar al Player(animacion o destroy)
          * Sistema de Particulas con la muerte
@@ -53,11 +63,13 @@ public class HealtPlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(shieldRecoverTime);
         hpPoints = 2;
+        MessageCentral.DamagedPlayer(false);
     }
 
     private IEnumerator ShieldGating()
     {
         //Inmunidad al romper escudo para no recibir hits continuos
+        //TODO Particulas para indicar la invulnerabilidad
         shieldGatingOn = true;
         yield return new WaitForSeconds(shieldGatingTime);
         shieldGatingOn = false;

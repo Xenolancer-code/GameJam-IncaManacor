@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Transform player;
+    [SerializeField] private GameObject player;
     [SerializeField] private int maxEnemies = 5;            
     [SerializeField] private float spawnRadius = 20f;      
     [SerializeField] private float minDistanceToPlayer = 5f; 
@@ -70,6 +70,10 @@ public class EnemySpawner : MonoBehaviour
         if (spawnPos != Vector3.zero)
         {
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            if(newEnemy.TryGetComponent(out EnemyAtk enemyAtk))
+            {
+                enemyAtk.SetPlayer(player);
+            }
             enemiesAlive.Add(newEnemy);
         }
     }
@@ -85,7 +89,7 @@ public class EnemySpawner : MonoBehaviour
             Vector3 pos = new Vector3(circle.x, 0, circle.y) + transform.position;
 
             // distancia mínima al player
-            if (Vector3.Distance(pos, player.position) >= minDistanceToPlayer)
+            if (Vector3.Distance(pos, player.transform.position) >= minDistanceToPlayer)
             {
                 return pos;
             }

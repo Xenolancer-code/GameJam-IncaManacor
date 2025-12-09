@@ -270,6 +270,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191b6893ad44efe4e925a8f2a37e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LookAtTheCamera
+--- !u!1 &3245629424673061546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1346077197303715874}
+  m_Layer: 6
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1346077197303715874
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3245629424673061546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.653}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5508135841267576868}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.001, y: 1.438}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3655565217206997160
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,6 +464,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1346077197303715874}
   - {fileID: 2104286811726620823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -476,10 +512,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.67
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1, z: -0.04}
 --- !u!195 &-5280030844389167964
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -529,9 +565,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovment
   rotaX: 180
-  attackCooldown: 1
-  stopByAtackPlayer: 2
-  StandingDuration: 2
 --- !u!114 &2801079797081419088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +579,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAtk
   attackCooldown: 1
   stopByAtackPlayer: 1.1
-  StandingDuration: 2
+  attackRadius: 1
+  attackPoint: {fileID: 1346077197303715874}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!95 &1813394391888736269
 Animator:
   serializedVersion: 7
