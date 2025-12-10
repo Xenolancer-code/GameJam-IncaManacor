@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering.Universal;
+using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         playerPrefab.SetActive(false);
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartTimer()
     {
+        //SceneManager.LoadScene(index);
         isGameStarted = true;
         MessageCentral.Start();
         playerPrefab.SetActive(true);
@@ -103,4 +107,26 @@ public class GameManager : MonoBehaviour
         playerPrefab.GetComponent<PlayerAtk>().finalDamage = INITDAMAGE;
         playerPrefab.GetComponent<PlayerAtk>().finalRange = INITRANGE;
     }
+
+    //public void Exit()
+    //{
+    //    Application.Quit();
+    //}
+
+    //public void ReturnMenu(int index)
+    //{
+    //    Time.timeScale = 1;
+    //    SceneManager.LoadScene(index);
+    //}
+
+    //public void PauseGame()
+    //{
+    //    Time.timeScale = 0;
+    //    menuHUD.SetActive(true);
+    //}
+    //public void ResumeGame()
+    //{
+    //    Time.timeScale = 1;
+    //    menuHUD.SetActive(false);
+    //}
 }

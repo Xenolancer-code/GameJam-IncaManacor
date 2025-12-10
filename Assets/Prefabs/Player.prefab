@@ -485,7 +485,7 @@ MonoBehaviour:
   damageAmount: 20
   aoeRadius: 4
   knockbackDistance: 10
-  finalDamage: 0
+  finalDamage: 10
   finalRange: 0
 --- !u!114 &2251663642765610059
 MonoBehaviour:

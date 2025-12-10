@@ -17,7 +17,7 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] public float aoeRadius = 4f;
     [SerializeField] public float knockbackDistance = 8f;
     private Animator animator;
-    public int finalDamage; //Crear Maximo 30 o 25
+    public int finalDamage; //Crear Maximo dps de 30 o 25
     public int finalRange;
 
 

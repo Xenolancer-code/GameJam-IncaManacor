@@ -7,6 +7,7 @@ public class InputReceiver : MonoBehaviour
     private PlayerMov playerMov;
     private PlayerAtk playerAtk;
     private PlayerControls playerControls;
+    private GameManager gameManager;
     
 
     private void Awake()
@@ -14,6 +15,7 @@ public class InputReceiver : MonoBehaviour
         playerMov = GetComponent<PlayerMov>();
         playerAtk = GetComponent<PlayerAtk>();
         playerControls = new PlayerControls();
+        gameManager = GetComponent<GameManager>();
     }
 
     private void OnEnable()
@@ -25,6 +27,7 @@ public class InputReceiver : MonoBehaviour
         playerControls.Player_CC.BasicAtk.performed += BasicAtk;
         playerControls.Player_CC.AoEAtk.performed += AoEAtk;
         playerControls.Player_CC.Dash.performed += Dash;
+        playerControls.Menu.OpenMenu.performed += OpenMenu;
     }
 
     private void Jump(InputAction.CallbackContext ctx)
@@ -58,6 +61,12 @@ public class InputReceiver : MonoBehaviour
         playerMov.TryToDash();
     }
 
+    private void OpenMenu(InputAction.CallbackContext ctx)
+    {
+        if(gameManager == null) return;
+        //gameManager.PauseGame();
+    }
+
     private void OnDisable()
     {
         playerControls.Player_CC.Move.performed -= Move;
@@ -66,6 +75,7 @@ public class InputReceiver : MonoBehaviour
         playerControls.Player_CC.BasicAtk.performed -= BasicAtk;
         playerControls.Player_CC.AoEAtk.performed -= AoEAtk;
         playerControls.Player_CC.Dash.performed -= Dash;
+        playerControls.Menu.OpenMenu.performed -= OpenMenu;
         playerControls.Disable();
     }
 }
