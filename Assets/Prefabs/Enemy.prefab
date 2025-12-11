@@ -552,6 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealtController
   maxHealth: 100
   textHealth: {fileID: 5383161930755764749}
+  dropPrefab: {fileID: 4598851200255615782, guid: 69183a72a06ea3146a6655a61f4bbff5, type: 3}
 --- !u!114 &4656455976289175703
 MonoBehaviour:
   m_ObjectHideFlags: 0

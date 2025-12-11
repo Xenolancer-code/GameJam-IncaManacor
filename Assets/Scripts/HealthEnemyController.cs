@@ -6,6 +6,7 @@ public class HealthEnemyController : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
     [SerializeField] private TextMeshProUGUI textHealth;
+    [SerializeField] private GameObject dropPrefab;
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -28,5 +29,7 @@ public class HealthEnemyController : MonoBehaviour
         //TODO Logica de morirse(particulas,sonido animacion etc)
         MessageCentral.DieEnemy();
         Destroy(gameObject);
+        Vector3 arriba = new Vector3 (0,1,0);
+        GameObject drop = Instantiate(dropPrefab, transform.position+arriba, Quaternion.identity);
     }
 }

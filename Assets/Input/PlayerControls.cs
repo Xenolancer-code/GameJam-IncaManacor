@@ -311,7 +311,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""6defcf3a-1f93-4c48-b948-66e8ede3032a"",
             ""actions"": [
                 {
-                    ""name"": ""OpenMenu"",
+                    ""name"": ""PauseHUD"",
                     ""type"": ""Button"",
                     ""id"": ""cbe48578-2d67-4b0d-825b-b6a273d38718"",
                     ""expectedControlType"": """",
@@ -328,7 +328,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""OpenMenu"",
+                    ""action"": ""PauseHUD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -339,7 +339,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""OpenMenu"",
+                    ""action"": ""PauseHUD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -357,7 +357,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_CC_AoEAtk = m_Player_CC.FindAction("AoEAtk", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_OpenMenu = m_Menu.FindAction("OpenMenu", throwIfNotFound: true);
+        m_Menu_PauseHUD = m_Menu.FindAction("PauseHUD", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -579,7 +579,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Menu
     private readonly InputActionMap m_Menu;
     private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
-    private readonly InputAction m_Menu_OpenMenu;
+    private readonly InputAction m_Menu_PauseHUD;
     /// <summary>
     /// Provides access to input actions defined in input action map "Menu".
     /// </summary>
@@ -592,9 +592,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Menu/OpenMenu".
+        /// Provides access to the underlying input action "Menu/PauseHUD".
         /// </summary>
-        public InputAction @OpenMenu => m_Wrapper.m_Menu_OpenMenu;
+        public InputAction @PauseHUD => m_Wrapper.m_Menu_PauseHUD;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -621,9 +621,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
-            @OpenMenu.started += instance.OnOpenMenu;
-            @OpenMenu.performed += instance.OnOpenMenu;
-            @OpenMenu.canceled += instance.OnOpenMenu;
+            @PauseHUD.started += instance.OnPauseHUD;
+            @PauseHUD.performed += instance.OnPauseHUD;
+            @PauseHUD.canceled += instance.OnPauseHUD;
         }
 
         /// <summary>
@@ -635,9 +635,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="MenuActions" />
         private void UnregisterCallbacks(IMenuActions instance)
         {
-            @OpenMenu.started -= instance.OnOpenMenu;
-            @OpenMenu.performed -= instance.OnOpenMenu;
-            @OpenMenu.canceled -= instance.OnOpenMenu;
+            @PauseHUD.started -= instance.OnPauseHUD;
+            @PauseHUD.performed -= instance.OnPauseHUD;
+            @PauseHUD.canceled -= instance.OnPauseHUD;
         }
 
         /// <summary>
@@ -722,11 +722,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IMenuActions
     {
         /// <summary>
-        /// Method invoked when associated input action "OpenMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "PauseHUD" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnOpenMenu(InputAction.CallbackContext context);
+        void OnPauseHUD(InputAction.CallbackContext context);
     }
 }

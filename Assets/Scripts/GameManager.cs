@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("Menu Settings")]
     public int enemyCounter = 0;
     [SerializeField] private GameObject menuHUD;
+    [SerializeField] private GameObject pauseHUD;
     [Header("Timer Settings")]
     public float currentTime;
     private bool isGameStarted = false;
@@ -22,9 +23,6 @@ public class GameManager : MonoBehaviour
     private int rangeTier = 30;
 
     public float barWidth;
-
-
-
 
 
     private void OnEnable()
@@ -72,7 +70,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartTimer()
     {
-        //SceneManager.LoadScene(index);
+        
         isGameStarted = true;
         MessageCentral.Start();
         playerPrefab.SetActive(true);
@@ -108,25 +106,23 @@ public class GameManager : MonoBehaviour
         playerPrefab.GetComponent<PlayerAtk>().finalRange = INITRANGE;
     }
 
-    //public void Exit()
-    //{
-    //    Application.Quit();
-    //}
 
-    //public void ReturnMenu(int index)
-    //{
-    //    Time.timeScale = 1;
-    //    SceneManager.LoadScene(index);
-    //}
+    //Esto ira en otro script(?
+    public void ReturnMenu(int index)
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(index);
+    }
 
-    //public void PauseGame()
-    //{
-    //    Time.timeScale = 0;
-    //    menuHUD.SetActive(true);
-    //}
-    //public void ResumeGame()
-    //{
-    //    Time.timeScale = 1;
-    //    menuHUD.SetActive(false);
-    //}
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pauseHUD.SetActive(true);
+    }
+    public void ResumeGame()
+    {
+     //Revisar como hacer para que no ataque al poner Resume   
+        Time.timeScale = 1;
+        pauseHUD.SetActive(false);
+    }
 }

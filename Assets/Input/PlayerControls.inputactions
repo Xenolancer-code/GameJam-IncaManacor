@@ -225,7 +225,7 @@
             "id": "6defcf3a-1f93-4c48-b948-66e8ede3032a",
             "actions": [
                 {
-                    "name": "OpenMenu",
+                    "name": "PauseHUD",
                     "type": "Button",
                     "id": "cbe48578-2d67-4b0d-825b-b6a273d38718",
                     "expectedControlType": "",
@@ -242,7 +242,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OpenMenu",
+                    "action": "PauseHUD",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -253,7 +253,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OpenMenu",
+                    "action": "PauseHUD",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
