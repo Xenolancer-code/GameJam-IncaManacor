@@ -58,7 +58,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mutant Punch
+  m_Name: Zombie Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -72,7 +72,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 77849c1f5ef262a48bdacb712a1760ad, type: 2}
+  m_Motion: {fileID: 7400000, guid: 027ddea131a3fd84cb6ed857b382c2cb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -124,7 +124,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a05dc085fe1d3784d8859300eb29ab75, type: 2}
+  m_Motion: {fileID: 7400000, guid: 03424e5de1f3d6d41932bf93abc1a045, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -258,7 +258,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d4e5a4176406fee4698d9f50626b41df, type: 2}
+  m_Motion: {fileID: 7400000, guid: 569db443c53c29545a407c0d966115ed, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

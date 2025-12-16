@@ -3179,6 +3179,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1092280550}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: hudManager
+      value: 
+      objectReference: {fileID: 895231500}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: playerPrefab
       value: 
       objectReference: {fileID: 4799562535517344480}

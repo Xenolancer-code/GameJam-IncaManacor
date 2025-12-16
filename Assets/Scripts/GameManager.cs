@@ -15,28 +15,30 @@ public class GameManager : MonoBehaviour
     private bool isGameStarted = false;
     [Header("Player Settings")] 
     [SerializeField] GameObject playerPrefab;
+    [SerializeField] HUDManager hudManager;
     public static int INITDAMAGE= 10;
     public int INCREMENTDAMAGE = 5; //Cada 10%
     private const int INITRANGE = 1;
     private const int INCREMENTRANGE = 1; //Cada 30%
     private int damageTier = 10;
     private int rangeTier = 30;
+    private PlayerAtk playerAtk;
 
-    public float barWidth;
+
+    public float sampleAmount = 0;
+    public float maxSampleAmount = 100;
 
 
     private void OnEnable()
     {
         MessageCentral.OnDieEnemy += IncrementCounter;
-        MessageCentral.OnIncrementPlayerDamage += IncrementPlayerDamage;
-        MessageCentral.OnIncrementPlayerRange += IncrementPlayerRange;
+        MessageCentral.OnPickupSample += UpdateSample;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnDieEnemy -= IncrementCounter;
-        MessageCentral.OnIncrementPlayerDamage -= IncrementPlayerDamage;
-        MessageCentral.OnIncrementPlayerRange -= IncrementPlayerRange;
+        MessageCentral.OnPickupSample -= UpdateSample;
     }
 
     private void Awake()
@@ -47,7 +49,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerPrefab.GetComponent<PlayerAtk>().finalDamage = INITDAMAGE;
+        
+        playerAtk = playerPrefab.GetComponent<PlayerAtk>();
+       
+        playerAtk.finalDamage = INITDAMAGE;
         
         if (isGameStarted == false)
         {
@@ -57,6 +62,8 @@ public class GameManager : MonoBehaviour
         {
             //Juego empieza
         }
+
+        hudManager.ReSizePowerBar();
     }
 
     
@@ -80,34 +87,51 @@ public class GameManager : MonoBehaviour
     {
         enemyCounter++;
     }
-   
-    public void IncrementPlayerDamage()
+
+
+    private void UpdateSample(int sampleQuality)
     {
-        if (barWidth % damageTier == 0)
-        {
-            int fdmg = playerPrefab.GetComponent<PlayerAtk>().finalDamage;
-            playerPrefab.GetComponent<PlayerAtk>().finalDamage = fdmg + INCREMENTDAMAGE;
-        }
+       sampleAmount += sampleQuality;
+        if (sampleAmount > maxSampleAmount) sampleAmount = maxSampleAmount;
+       IncrementPlayerDamage();
+       IncrementPlayerRange();
+       hudManager.ReSizePowerBar();
+
     }
-    public void IncrementPlayerRange()
+    private void IncrementPlayerDamage()
     {
-        if (barWidth % rangeTier == 0)
-        {
-            int frg = playerPrefab.GetComponent <PlayerAtk>().finalRange;
-            playerPrefab.GetComponent<PlayerAtk>().finalRange = frg + INCREMENTRANGE;
-        }
+        int incrementMultiplier = (int)(sampleAmount / damageTier);
+        if (incrementMultiplier > 0)
+            playerAtk.finalDamage = INITDAMAGE + INCREMENTDAMAGE * incrementMultiplier;
+        //if (sampleAmount % damageTier == 0)
+        //{
+        //   // int fdmg =playerAtk.finalDamage;
+        //   //playerAtk.finalDamage = fdmg + INCREMENTDAMAGE;
+        //    playerAtk.finalDamage += INCREMENTDAMAGE;
+        //}
+    }
+    private void IncrementPlayerRange()
+    {
+        int incrementMultiplier = (int)(sampleAmount / rangeTier);
+        if (incrementMultiplier > 0)
+            playerAtk.finalRange = INITRANGE + INCREMENTRANGE * incrementMultiplier;
+        //if (sampleAmount % rangeTier == 0)
+        //{
+        //    int frg = playerAtk.finalRange;
+        //   playerAtk.finalRange = frg + INCREMENTRANGE;
+        //}
     }
 
 
 
     public void ResetPlayerStatus()
     {
-        playerPrefab.GetComponent<PlayerAtk>().finalDamage = INITDAMAGE;
-        playerPrefab.GetComponent<PlayerAtk>().finalRange = INITRANGE;
+       playerAtk.finalDamage = INITDAMAGE;
+       playerAtk.finalRange = INITRANGE;
     }
 
 
-    //Esto ira en otro script(?
+    
     public void ReturnMenu(int index)
     {
         Time.timeScale = 1;

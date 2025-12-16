@@ -12,7 +12,8 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int maxSimultaneousHits =2;
     [Header("Damage Amount Controller")]
-    [SerializeField] private float damageAmount;
+    //[SerializeField] private float damageAmount;
+    //Manejado por GameManager
     [Header("Knockback Controller")]
     [SerializeField] public float aoeRadius = 4f;
     [SerializeField] public float knockbackDistance = 8f;

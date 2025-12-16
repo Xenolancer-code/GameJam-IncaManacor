@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 3596494750761858300}
   - component: {fileID: 6006670230113638428}
   - component: {fileID: 2251663642765610059}
+  - component: {fileID: 2762195831936563495}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -483,7 +484,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxSimultaneousHits: 2
-  damageAmount: 20
   aoeRadius: 4
   knockbackDistance: 10
   finalDamage: 10
@@ -502,6 +502,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealtPlayerController
   shieldRecoverTime: 4
   shieldGatingTime: 1.5
+--- !u!95 &2762195831936563495
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305994167233530112}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 559e3777e47c66348a437c5c642c6fec, type: 3}
+  m_Controller: {fileID: 9100000, guid: 372237272f3bdbe41a119de092bd65d8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3573180835563905543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1309,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -26.752632
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 559e3777e47c66348a437c5c642c6fec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

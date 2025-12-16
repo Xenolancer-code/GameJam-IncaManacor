@@ -38,16 +38,10 @@ public class MessageCentral : MonoBehaviour
     }
 
 
-    public static event Action OnIncrementPlayerDamage; //Incrementamos el daño del Player
-    public static void IncrementPlayerDamage()
+    public static event Action<int> OnPickupSample; // Se recogio una muestra dropeada por enemigos
+    public static void PickupSample(int sampleQuality)
     {
-        OnIncrementPlayerDamage?.Invoke();
-    }
-
-    public static event Action OnIncrementPlayerRange; //Incrementamos el rango del Player
-    public static void IncrementPlayerRange()
-    {
-        OnIncrementPlayerRange?.Invoke();
+        OnPickupSample?.Invoke(sampleQuality);
     }
 
 }

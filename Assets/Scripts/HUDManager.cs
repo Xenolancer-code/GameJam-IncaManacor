@@ -25,15 +25,13 @@ public class HUDManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MessageCentral.OnDamagedEnemy += ReSizePowerBar;
         MessageCentral.OnStart += ActivateHud;
         MessageCentral.OnDashinActivated += ControllerDashIcons;
         MessageCentral.OnDamagedPlayer += ControllerHPIcons;
     }
 
     private void OnDisable()
-    {
-        MessageCentral.OnDamagedEnemy -= ReSizePowerBar;
+    {   
         MessageCentral.OnStart -= ActivateHud;
         MessageCentral.OnDashinActivated -= ControllerDashIcons;
         MessageCentral.OnDamagedPlayer -= ControllerHPIcons;
@@ -43,7 +41,6 @@ public class HUDManager : MonoBehaviour
     {
         iconDash.enabled = true;
         iconDashCooldown.enabled = false;
-      
     }
 
     void Update()
@@ -70,11 +67,10 @@ public class HUDManager : MonoBehaviour
     }
     public void ReSizePowerBar()
     {//Fer proporciones en %
-        float x = rtfillPowerBar.sizeDelta.x;
         float y = rtfillPowerBar.sizeDelta.y;
-        float nuevoAncho = Mathf.Min(x + incWidthBar, maxWidth);
+        float nuevoAncho = gameManager.sampleAmount;
         rtfillPowerBar.sizeDelta = new Vector2(nuevoAncho, y);
-        gameManager.barWidth = nuevoAncho;
+        
     }
 
     private void ControllerDashIcons(bool isDashing)

@@ -21,6 +21,7 @@ public class PlayerMov : MonoBehaviour
 
 
     private CharacterController cc;
+    private Animator animator;
     private Vector3 playerVerticalVelocity;
     private bool groundedPlayer;
     private float gravityValue;
@@ -31,6 +32,7 @@ public class PlayerMov : MonoBehaviour
     private void Awake()
     {
         cc = gameObject.GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -54,6 +56,7 @@ public class PlayerMov : MonoBehaviour
         // Combine horizontal and vertical movement
         Vector3 finalMove = (movmentVector * playerSpeed) + (playerVerticalVelocity.y * Vector3.up);
         cc.Move(finalMove * Time.deltaTime);
+        animator.SetFloat("velocity", cc.velocity.magnitude);
     }
 
     private void Rotate(Vector3 moveDirection)
