@@ -12,9 +12,12 @@ public class HealtPlayerController : MonoBehaviour
     private bool shieldGatingOn = false;
     [SerializeField] private float shieldGatingTime;
 
+    private Animator animator;
+
     private void Awake()
     {
         hpPoints = 2;
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -31,7 +34,8 @@ public class HealtPlayerController : MonoBehaviour
         hpPoints -= hitPlayerHP;
         if(hpPoints == 1)
         {
-            Debug.Log("Player dañado socorro");
+            animator.SetBool("PlayerIsDamaged", true);
+            animator.SetTrigger("TakeHit");
             MessageCentral.DamagedPlayer(true);
             TrytoShieldRecover();
             StartCoroutine(ShieldGating());
@@ -45,6 +49,7 @@ public class HealtPlayerController : MonoBehaviour
     public void Die()
     {
         Debug.Log("Soy el Player y me han matado");
+        animator.SetTrigger("Die");
         /*TODO
          * Matar al Player(animacion o destroy)
          * Sistema de Particulas con la muerte
@@ -58,12 +63,12 @@ public class HealtPlayerController : MonoBehaviour
         //Invoke("ShieldRecoverAlt", shieldRecoverTime);
         StartCoroutine(ShieldRecover());
     }
- 
     private IEnumerator ShieldRecover()
     {
         yield return new WaitForSeconds(shieldRecoverTime);
         hpPoints = 2;
         MessageCentral.DamagedPlayer(false);
+        animator.SetBool("PlayerIsDamaged", false);
     }
 
     private IEnumerator ShieldGating()

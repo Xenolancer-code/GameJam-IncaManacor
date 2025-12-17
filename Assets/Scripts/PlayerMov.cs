@@ -24,6 +24,7 @@ public class PlayerMov : MonoBehaviour
     private Animator animator;
     private Vector3 playerVerticalVelocity;
     private bool groundedPlayer;
+    private bool groundedPlayerPrev;
     private float gravityValue;
     private bool dashing = false;
     
@@ -44,8 +45,8 @@ public class PlayerMov : MonoBehaviour
             playerVerticalVelocity.y = -0.5f;
         }
 
- 
 
+        Landing();
         if (movmentVector != Vector3.zero)
         {
             Rotate(movmentVector);
@@ -57,8 +58,17 @@ public class PlayerMov : MonoBehaviour
         Vector3 finalMove = (movmentVector * playerSpeed) + (playerVerticalVelocity.y * Vector3.up);
         cc.Move(finalMove * Time.deltaTime);
         animator.SetFloat("velocity", cc.velocity.magnitude);
-    }
 
+        groundedPlayerPrev = groundedPlayer;
+        
+    }
+    private void Landing()
+    {
+        if(groundedPlayerPrev == false && groundedPlayer == true)
+        {
+            animator.SetBool("Landing", true);
+        }
+    }
     private void Rotate(Vector3 moveDirection)
     {
         // Obtenim la rotació referent a una direcció de moviment. El moviment en que es mourà el personatge.
@@ -79,6 +89,7 @@ public class PlayerMov : MonoBehaviour
         if (groundedPlayer)
         {
             playerVerticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+            animator.SetTrigger("Jump");
         }
     }
 

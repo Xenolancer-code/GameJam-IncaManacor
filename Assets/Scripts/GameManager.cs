@@ -77,7 +77,6 @@ public class GameManager : MonoBehaviour
     }
     public void StartTimer()
     {
-        
         isGameStarted = true;
         MessageCentral.Start();
         playerPrefab.SetActive(true);
@@ -130,8 +129,6 @@ public class GameManager : MonoBehaviour
        playerAtk.finalRange = INITRANGE;
     }
 
-
-    
     public void ReturnMenu(int index)
     {
         Time.timeScale = 1;

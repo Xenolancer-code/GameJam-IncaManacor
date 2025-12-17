@@ -45,43 +45,43 @@ public class EnemyMov : MonoBehaviour
 
     
     // ========================================================
-    //        KNOCKBACK ((REVISAR FUNCIONALIDAD PARA APRENDER)
+    //        KNOCKBACK (BORRAR PORQUE YA NO EMPUJA)
     // ========================================================
-    public void ApplyKnockback(Vector3 direction, float distance)
-    {
-        if (!isKnockback) StartCoroutine(KnockbackRoutine(direction, distance));
-    }
+    //public void ApplyKnockback(Vector3 direction, float distance)
+    //{
+    //    if (!isKnockback) StartCoroutine(KnockbackRoutine(direction, distance));
+    //}
 
-    private IEnumerator KnockbackRoutine(Vector3 direction, float distance)
-    {
-        isKnockback = true;
-        animator.SetBool("isKnockBack",true);
+    //private IEnumerator KnockbackRoutine(Vector3 direction, float distance)
+    //{
+    //    isKnockback = true;
+    //    animator.SetBool("isKnockBack",true);
 
-        // Desactivar el NavMeshAgent para moverlo manualmente
-        enemyAgent.enabled = false;
+    //    // Desactivar el NavMeshAgent para moverlo manualmente
+    //    enemyAgent.enabled = false;
 
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = startPos + direction.normalized * distance;
+    //    Vector3 startPos = transform.position;
+    //    Vector3 targetPos = startPos + direction.normalized * distance;
 
-        float elapsed = 0;
+    //    float elapsed = 0;
 
-        while (elapsed < knockbackDuration)
-        {
-            transform.position = Vector3.Lerp(startPos, targetPos, elapsed / knockbackDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
+    //    while (elapsed < knockbackDuration)
+    //    {
+    //        transform.position = Vector3.Lerp(startPos, targetPos, elapsed / knockbackDuration);
+    //        elapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
 
-        transform.position = targetPos;
+    //    transform.position = targetPos;
 
-        // Reactivar NavMeshAgent
-        enemyAgent.enabled = true;
+    //    // Reactivar NavMeshAgent
+    //    enemyAgent.enabled = true;
 
-        isKnockback = false;
-        animator.SetBool("isKnockBack", false);
+    //    isKnockback = false;
+    //    animator.SetBool("isKnockBack", false);
     }//Revisa de hacer alomejor una corutina para el stun del enemigo una vez empujado
 
-}
+
 
 
 

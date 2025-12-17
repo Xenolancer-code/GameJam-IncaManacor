@@ -48,8 +48,6 @@ public class EnemyAtk : MonoBehaviour
 
         lastAttackTime = Time.time;
 
-        Debug.Log("ATACANDO AL PLAYER");
-
         StartCoroutine(AttackSequence());
     }
 
@@ -75,13 +73,13 @@ public class EnemyAtk : MonoBehaviour
     {
         Debug.Log("Entrando en TryToDamage");
         if (player == null) return;
-        Debug.Log(1);
+       
         var collidedPlayer = Physics.OverlapSphere(attackPoint.position, attackRadius, playerLayer);
         if (collidedPlayer == null || collidedPlayer.Length == 0) return;
-        Debug.Log(2);
+       
         if (player.TryGetComponent(out HealtPlayerController healtPlayer))
         {
-            Debug.Log("ouch");
+            
             healtPlayer.GetDamage(hitPlayerHP);
         }
 

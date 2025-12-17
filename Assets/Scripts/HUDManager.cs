@@ -17,8 +17,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Image iconShield;
     [SerializeField] private Image iconBrokenShield;
     [Header("Settings")]
-    [SerializeField] private float maxWidth = 100f;
-    private float incWidthBar=5;
+
     
 
     private bool showHud = false;

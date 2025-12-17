@@ -16,18 +16,18 @@ public class PlayerAtk : MonoBehaviour
     //Manejado por GameManager
     [Header("Knockback Controller")]
     [SerializeField] public float aoeRadius = 4f;
-    [SerializeField] public float knockbackDistance = 8f;
+    //[SerializeField] public float knockbackDistance = 8f;
     private Animator animator;
+    private AudioSource audioSource;
     public int finalDamage; //Crear Maximo dps de 30 o 25
     public int finalRange;
+    [SerializeField] private GameObject zone;
 
 
     private void Awake()
     {
         //cc = gameObject.GetComponent<CharacterController>();
-    }
-    void Start()
-    {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -40,7 +40,6 @@ public class PlayerAtk : MonoBehaviour
     public void BasicAtk()
     {
         animator.SetTrigger("LeftClick");
-        Debug.Log("Estoy atacando al enemigo");
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
         //Llista que guarda la distancia del enemics sobre el player
@@ -72,33 +71,40 @@ public class PlayerAtk : MonoBehaviour
     }
 
 
-
+    //------------------------------------------------------------------------------------------
     public void AoEAtk()
     {
         animator.SetTrigger("RightClick");
-        Debug.Log("Estoy golpeando en area");
     }
 
-
-    public void DoAoEKnockback()
+    //Ya no estoy empujando sino que genero un area circular donde todo enemigo adentro muere y rompe spawners
+    private void AoeDamageZone()//Llamado por event de una animación
     {
-        Debug.Log("KNOCKBACK ejecutado desde la animación");
-        Collider[] hits = Physics.OverlapSphere(transform.position, aoeRadius);
-
-        foreach (Collider hit in hits)
-        {
-            if (hit.CompareTag("Enemy"))
-            {
-                EnemyMov kb = hit.GetComponent<EnemyMov>();
-                if (kb != null)
-                {
-                    Vector3 dir = (hit.transform.position - transform.position).normalized;
-                    kb.ApplyKnockback(dir, knockbackDistance);
-                }
-            }
-        }
+        audioSource.Play();
+        GameObject Zone = Instantiate(zone,transform.position,Quaternion.identity);
     }
 
+
+
+    //public void DoAoEKnockback()
+    //{
+    //    Debug.Log("KNOCKBACK ejecutado desde la animación");
+    //    Collider[] hits = Physics.OverlapSphere(transform.position, aoeRadius);
+
+    //    foreach (Collider hit in hits)
+    //    {
+    //        if (hit.CompareTag("Enemy"))
+    //        {
+    //            EnemyMov kb = hit.GetComponent<EnemyMov>();
+    //            if (kb != null)
+    //            {
+    //                Vector3 dir = (hit.transform.position - transform.position).normalized;
+    //                kb.ApplyKnockback(dir, knockbackDistance);
+    //            }
+    //        }
+    //    }
+    //}
+    //------------------------------------------------------------------------------------------
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
