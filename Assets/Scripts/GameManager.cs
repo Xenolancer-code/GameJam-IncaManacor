@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.Rendering.Universal;
 using System;
 using UnityEngine.SceneManagement;
+using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     private int damageTier = 10;
     private int rangeTier = 30;
     private PlayerAtk playerAtk;
+    [Header("Camera Settings")]
+    
 
 
     public float sampleAmount = 0;
@@ -80,6 +83,8 @@ public class GameManager : MonoBehaviour
         isGameStarted = true;
         MessageCentral.Start();
         playerPrefab.SetActive(true);
+        CinemachineCamera menucam = new CinemachineCamera();
+        menucam.Priority = 1;
     }
 
     private void IncrementCounter()
