@@ -16,7 +16,7 @@ public class EnemyMov : MonoBehaviour
     private Animator animator;
 
     private bool isKnockback = false; 
-    private float knockbackDuration = 0.2f; // <<--- velocidad del knockback
+    //private float knockbackDuration = 0.2f; // <<--- velocidad del knockback
     //[SerializeField] private float StandingDuration = 2f; //Por usar
     private void Awake()
     {

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private int rangeTier = 30;
     private PlayerAtk playerAtk;
     [Header("Camera Settings")]
-    
+    [SerializeField] private CinemachineCamera tutorialCam;
 
 
     public float sampleAmount = 0;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        tutorialCam.Priority = 1;
         playerAtk = playerPrefab.GetComponent<PlayerAtk>();
        
         playerAtk.finalDamage = INITDAMAGE;
@@ -83,8 +83,6 @@ public class GameManager : MonoBehaviour
         isGameStarted = true;
         MessageCentral.Start();
         playerPrefab.SetActive(true);
-        CinemachineCamera menucam = new CinemachineCamera();
-        menucam.Priority = 1;
     }
 
     private void IncrementCounter()

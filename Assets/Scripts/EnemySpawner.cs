@@ -15,17 +15,9 @@ public class EnemySpawner : MonoBehaviour
 
     private List<GameObject> enemiesAlive = new List<GameObject>();
     private float timer = 0f;
-    private bool spawnerActivation=false;
+    private bool spawnerActivation=true;
 
-    private void OnEnable()
-    {
-        MessageCentral.OnStart += OnspawnerActivation;
-    }
 
-    private void OnDisable()
-    {
-        MessageCentral.OnStart -= OnspawnerActivation;
-    }
 
 
     private void Start()
@@ -43,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
         {
             ControllerSpawns();
         }
-}
+    }
     private void ControllerSpawns()
     {
             timer += Time.deltaTime;
@@ -69,6 +61,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (spawnPos != Vector3.zero)
         {
+            
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
             if(newEnemy.TryGetComponent(out EnemyAtk enemyAtk))
             {

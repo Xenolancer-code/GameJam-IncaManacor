@@ -49,8 +49,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4843334104173152981, guid: 274e038ec8b9ee445a6cea6e34c44064, type: 3}
   player: {fileID: 3305994167233530112, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
   maxEnemies: 5
-  spawnRadius: 70
-  minDistanceToPlayer: 15
+  spawnRadius: 1
+  minDistanceToPlayer: 1
   initialDelay: 5
 --- !u!95 &3230123737924083020
 Animator:
