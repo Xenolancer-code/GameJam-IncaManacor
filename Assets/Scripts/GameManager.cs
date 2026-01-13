@@ -7,6 +7,9 @@ using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    public float sampleAmount = 0;
+    public float maxSampleAmount = 100;
+
     [Header("Menu Settings")]
     public int enemyCounter = 0;
     [SerializeField] private GameObject menuHUD;
@@ -26,10 +29,10 @@ public class GameManager : MonoBehaviour
     private PlayerAtk playerAtk;
     [Header("Camera Settings")]
     [SerializeField] private CinemachineCamera tutorialCam;
+    [SerializeField] private CinemachineCamera playerCam;
 
 
-    public float sampleAmount = 0;
-    public float maxSampleAmount = 100;
+    
 
 
     private void OnEnable()
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour
         isGameStarted = true;
         MessageCentral.Start();
         playerPrefab.SetActive(true);
+        playerCam.Priority = 2;
     }
 
     private void IncrementCounter()
@@ -136,6 +140,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(index);
+
     }
 
     public void PauseGame()

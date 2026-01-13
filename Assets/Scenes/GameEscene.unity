@@ -424,8 +424,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -1082,8 +1082,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
-    Enabled: 0
-    m_Value: 1
+    Enabled: 1
+    m_Value: 0
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -1597,8 +1597,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627835452}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21671121, y: -0.0034167639, z: 0.0007584805, w: 0.9762295}
-  m_LocalPosition: {x: 1.9521564, y: 5.45, z: -40.382156}
+  m_LocalRotation: {x: -0.20079534, y: 0.24306983, z: -0.0515048, w: -0.9475999}
+  m_LocalPosition: {x: 43.162903, y: 43.014526, z: -71.48059}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4781,9 +4781,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1092280550}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 413350008}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: hudManager
       value: 
       objectReference: {fileID: 895231500}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: tutorialCam
+      value: 
+      objectReference: {fileID: 123256883}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: playerPrefab
       value: 
