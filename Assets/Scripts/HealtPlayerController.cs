@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class HealtPlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject deadMenu;
     [Header("Life")]
     private int hpPoints=2;
     private bool playerIsDamaged = false;
@@ -50,6 +52,9 @@ public class HealtPlayerController : MonoBehaviour
     {
         Debug.Log("Soy el Player y me han matado");
         animator.SetTrigger("Die");
+        //Posible Corutina
+        Time.timeScale = 0;
+        deadMenu.SetActive(true);
         /*TODO
          * Matar al Player(animacion o destroy)
          * Sistema de Particulas con la muerte
