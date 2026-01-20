@@ -79,7 +79,7 @@ public class EnemyAtk : MonoBehaviour
        
         if (player.TryGetComponent(out HealtPlayerController healtPlayer))
         {
-            
+            Debug.Log("Estoy recibiendo daño");
             healtPlayer.GetDamage(hitPlayerHP);
         }
 

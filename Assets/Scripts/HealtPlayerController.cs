@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class HealtPlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject deadMenu;
+   
     [Header("Life")]
     private int hpPoints=2;
     private bool playerIsDamaged = false;
@@ -19,11 +18,16 @@ public class HealtPlayerController : MonoBehaviour
     private void Awake()
     {
         hpPoints = 2;
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
     private void Start()
     {
         MessageCentral.DamagedPlayer(false);
+        Debug.Log("Tengo esta cantidad de vida " +  hpPoints);
+    }
+    private void Update()
+    {
+        Debug.Log("Revisando vida " + hpPoints);
     }
     public void GetDamage(int hitPlayerHP)
     {
@@ -34,15 +38,16 @@ public class HealtPlayerController : MonoBehaviour
          */
         if (shieldGatingOn == true) return;
         hpPoints -= hitPlayerHP;
-        if(hpPoints == 1)
+        Debug.Log("vida restada? " + hpPoints);
+        if(hpPoints >= 1)
         {
-            animator.SetBool("PlayerIsDamaged", true);
-            animator.SetTrigger("TakeHit");
+            //animator.SetBool("PlayerIsDamaged", true);
+            //animator.SetTrigger("TakeHit");
             MessageCentral.DamagedPlayer(true);
             TrytoShieldRecover();
             StartCoroutine(ShieldGating());
         }
-        if(hpPoints == 0)
+        if(hpPoints <= 0)
         {
             Die();
         }
@@ -52,10 +57,9 @@ public class HealtPlayerController : MonoBehaviour
     {
         MessageCentral.DiePlayer();
         Debug.Log("Soy el Player y me han matado");
-        animator.SetTrigger("Die");
+        //animator.SetTrigger("Die");
         //Posible Corutina
-        Time.timeScale = 0;
-        deadMenu.SetActive(true);
+       
         /*TODO
          * Matar al Player(animacion o destroy)
          * Sistema de Particulas con la muerte
@@ -74,7 +78,7 @@ public class HealtPlayerController : MonoBehaviour
         yield return new WaitForSeconds(shieldRecoverTime);
         hpPoints = 2;
         MessageCentral.DamagedPlayer(false);
-        animator.SetBool("PlayerIsDamaged", false);
+        //animator.SetBool("PlayerIsDamaged", false);
     }
 
     private IEnumerator ShieldGating()

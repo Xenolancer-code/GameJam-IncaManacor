@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public int enemyCounter = 0;
     [Header("Menu Settings")]
     [SerializeField] private GameObject menuHUD;
-    [SerializeField] private GameObject pauseHUD;
+    [SerializeField] private GameObject pauseHUD; 
+    [SerializeField] private GameObject deadMenu;
     [Header("Timer Settings")]
     public float currentTime;
     private bool isGameStarted = false;
@@ -154,6 +155,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(index);
 
+    }
+    public void DiePause()
+    {
+        Time.timeScale = 0;
+        deadMenu.SetActive(true);
     }
     public void PauseGame()
     {
