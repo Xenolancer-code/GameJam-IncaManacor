@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public float sampleAmount = 0;
     public float maxSampleAmount = 100;
-
-    [Header("Menu Settings")]
+    [Header("Score")]
+    private ScoreReporter reporter;
+    public ScoreData scoreData;
     public int enemyCounter = 0;
+    [Header("Menu Settings")]
     [SerializeField] private GameObject menuHUD;
     [SerializeField] private GameObject pauseHUD;
     [Header("Timer Settings")]
@@ -39,22 +41,26 @@ public class GameManager : MonoBehaviour
     {
         MessageCentral.OnDieEnemy += IncrementCounter;
         MessageCentral.OnPickupSample += UpdateSample;
+        MessageCentral.OnDiePlayer += ObtainScoreData;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnDieEnemy -= IncrementCounter;
         MessageCentral.OnPickupSample -= UpdateSample;
+        MessageCentral.OnDiePlayer -= ObtainScoreData;
     }
 
     private void Awake()
     {
         playerPrefab.SetActive(false);
         DontDestroyOnLoad(gameObject);
+        reporter=GetComponent<ScoreReporter>();
     }
 
     void Start()
     {
+        currentTime = 0;
         tutorialCam.Priority = 1;
         playerAtk = playerPrefab.GetComponent<PlayerAtk>();
        
@@ -104,6 +110,7 @@ public class GameManager : MonoBehaviour
        hudManager.ReSizePowerBar();
 
     }
+    //Metodos para calcular el escalado
     private void IncrementPlayerDamage()
     {
         int incrementMultiplier = (int)(sampleAmount / damageTier);
@@ -128,8 +135,14 @@ public class GameManager : MonoBehaviour
         //}
     }
 
+    //Metodos de recopilación de datos
+    private void ObtainScoreData()
+    {
+        scoreData.kills = enemyCounter;
+        scoreData.time = currentTime;
+    }
 
-
+    //Metodos sobre el menu de Pausa
     public void ResetPlayerStatus()
     {
        playerAtk.finalDamage = INITDAMAGE;
@@ -142,7 +155,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(index);
 
     }
-
     public void PauseGame()
     {
         Time.timeScale = 0;

@@ -50,6 +50,7 @@ public class HealtPlayerController : MonoBehaviour
 
     public void Die()
     {
+        MessageCentral.DiePlayer();
         Debug.Log("Soy el Player y me han matado");
         animator.SetTrigger("Die");
         //Posible Corutina
