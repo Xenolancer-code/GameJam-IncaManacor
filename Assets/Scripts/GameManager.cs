@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public float maxSampleAmount = 100;
     [Header("Score")]
     private ScoreReporter reporter;
-    public ScoreData scoreData;
+    [SerializeField] private ScoreData scoreData;
     public int enemyCounter = 0;
     [Header("Menu Settings")]
     [SerializeField] private GameObject menuHUD;

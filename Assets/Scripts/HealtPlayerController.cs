@@ -18,7 +18,7 @@ public class HealtPlayerController : MonoBehaviour
     private void Awake()
     {
         hpPoints = 2;
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -41,8 +41,8 @@ public class HealtPlayerController : MonoBehaviour
         Debug.Log("vida restada? " + hpPoints);
         if(hpPoints >= 1)
         {
-            //animator.SetBool("PlayerIsDamaged", true);
-            //animator.SetTrigger("TakeHit");
+            animator.SetBool("PlayerIsDamaged", true);
+            animator.SetTrigger("TakeHit");
             MessageCentral.DamagedPlayer(true);
             TrytoShieldRecover();
             StartCoroutine(ShieldGating());
@@ -57,7 +57,7 @@ public class HealtPlayerController : MonoBehaviour
     {
         MessageCentral.DiePlayer();
         Debug.Log("Soy el Player y me han matado");
-        //animator.SetTrigger("Die");
+        animator.SetTrigger("Die");
         //Posible Corutina
        
         /*TODO
@@ -78,7 +78,7 @@ public class HealtPlayerController : MonoBehaviour
         yield return new WaitForSeconds(shieldRecoverTime);
         hpPoints = 2;
         MessageCentral.DamagedPlayer(false);
-        //animator.SetBool("PlayerIsDamaged", false);
+        animator.SetBool("PlayerIsDamaged", false);
     }
 
     private IEnumerator ShieldGating()
