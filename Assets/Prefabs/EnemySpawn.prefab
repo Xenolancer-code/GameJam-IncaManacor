@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6064768026993680788}
   - component: {fileID: 3996680400126330413}
   - component: {fileID: 3230123737924083020}
+  - component: {fileID: 2049745303512889556}
+  - component: {fileID: 609010075916734482}
   m_Layer: 0
   m_Name: EnemySpawn
   m_TagString: Spawner
@@ -47,7 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnTimer
   enemyPrefab: {fileID: 4843334104173152981, guid: 274e038ec8b9ee445a6cea6e34c44064, type: 3}
-  player: {fileID: 3305994167233530112, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
   maxEnemies: 5
   spawnRadius: 1
   minDistanceToPlayer: 1
@@ -74,6 +75,54 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &2049745303512889556
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3412994045548203}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.8228127}
+  m_Center: {x: -0, y: 0, z: -0.41140646}
+--- !u!54 &609010075916734482
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3412994045548203}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
 --- !u!1001 &1753444673453298499
 PrefabInstance:
   m_ObjectHideFlags: 0

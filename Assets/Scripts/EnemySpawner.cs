@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private GameObject player;
+    private GameObject player;
     [SerializeField] private int maxEnemies = 5;            
     [SerializeField] private float spawnRadius = 20f;      
     [SerializeField] private float minDistanceToPlayer = 5f; 
@@ -22,12 +22,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindWithTag("Player");
         //Funcionalidad del Spawner
         /* Cuando inicia el juego hay un periodo de gracia donde no se activa
          * luego de eso hacen spawn X cantidad de enemigos a la vez, pudiendo aumentar en el tiempo
          * (pero con un numero maximo de enemigos)[maybe] cuando un enemigo muere
          * otro alomejor en 0,2s hace spawn para intentar siempre tener una buena cantidad de enemigos presentes
-         */ 
+         */
     }
     void Update()
     {

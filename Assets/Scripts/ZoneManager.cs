@@ -1,34 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoneManager : MonoBehaviour
 {
     [SerializeField] private float lifeTime;
-    [SerializeField] private float damage;
-    
-    void Start()
+    [SerializeField] private float damagePerTick = 20f;
+    [SerializeField] private float damageInterval = 0.5f;
+
+    private HashSet<HealthEnemyController> enemiesInside = new();
+
+    private void Start()
     {
-        Destroy(gameObject,lifeTime);
+        Destroy(gameObject, lifeTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("enemigos entrando");
-        if(other.TryGetComponent(out HealthEnemyController healthcontroller))
+        //DAÑO A ENEMIGOS
+        if (other.TryGetComponent(out HealthEnemyController health))
         {
-            healthcontroller.GetDamage(damage);
+            if (enemiesInside.Add(health))
+            {
+                StartCoroutine(DamageOverTime(health));
+            }
+        }
+
+        //DESTRUIR SPAWNER
+        if (other.TryGetComponent(out EnemySpawner spawner))
+        {
+            Destroy(spawner.gameObject);
         }
     }
-    private void OnTriggerStay(Collider other)
+
+    private void OnTriggerExit(Collider other)
     {
-        Debug.Log("enemigos se qeudan adentro");
-        if (other.TryGetComponent(out HealthEnemyController healthcontroller))
+        if (other.TryGetComponent(out HealthEnemyController health))
         {
-            healthcontroller.GetDamage(damage);
+            enemiesInside.Remove(health);
         }
     }
-    private void OnDrawGizmos()
+
+    private IEnumerator DamageOverTime(HealthEnemyController health)
     {
-        Gizmos.color = Color.darkGreen;
-        Gizmos.DrawWireSphere(transform.position, 6f);
+        while (health != null && enemiesInside.Contains(health))
+        {
+            health.GetDamage(damagePerTick);
+            yield return new WaitForSeconds(damageInterval);
+        }
     }
 }

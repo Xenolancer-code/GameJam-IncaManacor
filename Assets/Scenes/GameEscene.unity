@@ -4974,6 +4974,10 @@ PrefabInstance:
       propertyPath: deadMenu
       value: 
       objectReference: {fileID: 968377794}
+    - target: {fileID: 2408547259145797711, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2762195831936563495, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_Enabled
       value: 1

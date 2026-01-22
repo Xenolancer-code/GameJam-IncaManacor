@@ -4905,4 +4905,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   lifeTime: 5
-  damage: 100
+  damagePerTick: 20
+  damageInterval: 0.5
