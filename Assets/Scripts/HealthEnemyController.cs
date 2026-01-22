@@ -7,6 +7,8 @@ public class HealthEnemyController : MonoBehaviour
     private float currentHealth;
     [SerializeField] private TextMeshProUGUI textHealth;
     [SerializeField] private GameObject dropPrefab;
+    [SerializeField] private GameObject bloodparticle;
+    
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -28,6 +30,7 @@ public class HealthEnemyController : MonoBehaviour
         MessageCentral.DieEnemy();
         Destroy(gameObject);
         Vector3 arriba = new Vector3 (0,0.5f,0);
+        GameObject particle = Instantiate(bloodparticle, transform.position+arriba, Quaternion.identity);
         GameObject drop = Instantiate(dropPrefab, transform.position+arriba, Quaternion.identity);
     }
 }

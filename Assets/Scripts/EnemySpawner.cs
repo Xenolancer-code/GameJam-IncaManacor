@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
+       // player = GameObject.FindWithTag("Player");
         //Funcionalidad del Spawner
         /* Cuando inicia el juego hay un periodo de gracia donde no se activa
          * luego de eso hacen spawn X cantidad de enemigos a la vez, pudiendo aumentar en el tiempo
@@ -36,6 +36,11 @@ public class EnemySpawner : MonoBehaviour
         {
             ControllerSpawns();
         }
+    }
+
+    public void SetPlayerAtSpawner(GameObject _player)
+    {
+        player = _player;
     }
     private void ControllerSpawns()
     {

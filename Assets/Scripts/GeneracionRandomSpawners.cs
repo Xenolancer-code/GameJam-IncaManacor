@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class GeneracionRandomSpawners : MonoBehaviour
 {
-    [SerializeField] private GameObject spawner;
+    [SerializeField] private GameObject spawnerPrefab;
     [SerializeField] private float radio;
+    [SerializeField] private GameObject player;
     private void OnEnable()
     {
         MessageCentral.OnStart += GenerarSpawns;
@@ -20,7 +21,11 @@ public class GeneracionRandomSpawners : MonoBehaviour
 
         if (spawnPos != Vector3.zero)
         {
-            Instantiate(spawner, spawnPos, Quaternion.identity);
+            GameObject newSpawner = Instantiate(spawnerPrefab, spawnPos, Quaternion.identity);
+            if (newSpawner.TryGetComponent(out EnemySpawner enemySpawner))
+            {
+                enemySpawner.SetPlayerAtSpawner(player);
+            }
         }
     }
 

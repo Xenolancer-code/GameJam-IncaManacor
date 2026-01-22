@@ -23,11 +23,11 @@ public class HealtPlayerController : MonoBehaviour
     private void Start()
     {
         MessageCentral.DamagedPlayer(false);
-        Debug.Log("Tengo esta cantidad de vida " +  hpPoints);
+        
     }
     private void Update()
     {
-        Debug.Log("Revisando vida " + hpPoints);
+        
     }
     public void GetDamage(int hitPlayerHP)
     {
@@ -38,7 +38,7 @@ public class HealtPlayerController : MonoBehaviour
          */
         if (shieldGatingOn == true) return;
         hpPoints -= hitPlayerHP;
-        Debug.Log("vida restada? " + hpPoints);
+        
         if(hpPoints >= 1)
         {
             animator.SetBool("PlayerIsDamaged", true);
