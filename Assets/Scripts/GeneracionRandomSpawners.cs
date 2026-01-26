@@ -3,6 +3,7 @@ using UnityEngine;
 public class GeneracionRandomSpawners : MonoBehaviour
 {
     [SerializeField] private GameObject spawnerPrefab;
+    [SerializeField] private float minDistanceToPlayer = 20f;
     [SerializeField] private float radio;
     [SerializeField] private GameObject player;
     private void OnEnable()
@@ -14,7 +15,7 @@ public class GeneracionRandomSpawners : MonoBehaviour
     {
         MessageCentral.OnStart -= GenerarSpawns;
     }
-  
+
     void GenerarSpawns()
     {
         Vector3 spawnPos = GetRandomSpawnPosition();
@@ -32,10 +33,18 @@ public class GeneracionRandomSpawners : MonoBehaviour
 
     Vector3 GetRandomSpawnPosition()
     {
-            // posición aleatoria dentro de un círculo
-            Vector2 circle = Random.insideUnitCircle * radio;
-            Vector3 pos = new Vector3(circle.x, 0, circle.y) + transform.position;
+        // posición aleatoria dentro de un círculo
+        Vector2 circle = Random.insideUnitCircle * radio;
+        Vector3 pos = new Vector3(circle.x, 0, circle.y) + transform.position;
+
+        // distancia mínima al player
+        if (Vector3.Distance(pos, player.transform.position) >= minDistanceToPlayer)
+        {
             return pos;
+        }
+
+        // Si no encuentra posición válida, no spawnea
+        return Vector3.zero;
     }
 
 
@@ -43,5 +52,7 @@ public class GeneracionRandomSpawners : MonoBehaviour
     {
         Gizmos.color = Color.lightPink;
         Gizmos.DrawWireSphere(transform.position, radio);
+        Gizmos.color = Color.pink;
+        Gizmos.DrawWireSphere(transform.position,minDistanceToPlayer);
     }
 }
