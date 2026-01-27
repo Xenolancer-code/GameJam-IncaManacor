@@ -47,5 +47,12 @@ public class MessageCentral : MonoBehaviour
     {
         OnPickupSample?.Invoke(sampleQuality);
     }
+    
+    public static event Action OnAllSpawnersDestroyed;
+
+    public static void AllSpawnersDestroyed()
+    {
+        OnAllSpawnersDestroyed?.Invoke();
+    }
 
 }

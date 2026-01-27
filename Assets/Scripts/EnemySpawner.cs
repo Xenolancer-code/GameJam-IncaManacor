@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
             if (timer < initialDelay)
                 return;
 
-            // Si hay menos enemigos que el máximo
+            // Si hay menos enemigos que el m?ximo
             if (enemiesAlive.Count < maxEnemies)
             {
                 timer = 0f;
@@ -82,18 +82,18 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < attempts; i++)
         {
-            // posición aleatoria dentro de un círculo alrededor del centro del ring
+            // posici?n aleatoria dentro de un c?rculo alrededor del centro del ring
             Vector2 circle = Random.insideUnitCircle * spawnRadius;
             Vector3 pos = new Vector3(circle.x, 0, circle.y) + transform.position;
 
-            // distancia mínima al player
+            // distancia m?nima al player
             if (Vector3.Distance(pos, player.transform.position) >= minDistanceToPlayer)
             {
                 return pos;
             }
         }
 
-        // Si no encuentra posición válida, no spawnea
+        // Si no encuentra posici?n v?lida, no spawnea
         return Vector3.zero;
     }
     private void OnDrawGizmos()

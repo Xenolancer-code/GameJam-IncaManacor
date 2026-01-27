@@ -18,10 +18,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD; 
     [SerializeField] private GameObject deadMenu;
+    [SerializeField] private GameObject winMenu;
     [Header("Timer Settings")]
     public float currentTime;
     private bool isGameStarted = false;
-    [SerializeField] private float timeBeforePause = 10f;
+    [SerializeField] private float timeBeforePause = 5f;
     [Header("Player Settings")] 
     [SerializeField] GameObject playerPrefab;
     [SerializeField] HUDManager hudManager;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnPickupSample += UpdateSample;
         MessageCentral.OnDiePlayer += ObtainScoreData;
         MessageCentral.OnDiePlayer += DiePause;
+        MessageCentral.OnAllSpawnersDestroyed += WinPause;
     }
 
     private void OnDisable()
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnPickupSample -= UpdateSample;
         MessageCentral.OnDiePlayer -= ObtainScoreData;
         MessageCentral.OnDiePlayer -= DiePause;
+        MessageCentral.OnAllSpawnersDestroyed -= WinPause;
     }
 
     private void Awake()
@@ -168,10 +171,25 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlayerDeath()
     {
-        
         yield return new WaitForSeconds(timeBeforePause);
         Time.timeScale = 0;
         deadMenu.SetActive(true);
+    }
+
+    private void WinPause()
+    {
+        StartCoroutine(PlayerWin());
+    }
+    private IEnumerator PlayerWin()
+    {
+        yield return new WaitForSeconds(timeBeforePause);
+        Time.timeScale = 0;
+        winMenu.SetActive(true);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
     
     public void PauseGame()
