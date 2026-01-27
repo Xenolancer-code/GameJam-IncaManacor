@@ -12,6 +12,7 @@ public class MainMenuController : MonoBehaviour
     private int inactiveCam = 0;
     [SerializeField] private CinemachineCamera menucam;
     [SerializeField] private CinemachineCamera settingscam;
+    [SerializeField] private Animator animatorGramo;
 
     public void Exit()
     {
@@ -30,14 +31,13 @@ public class MainMenuController : MonoBehaviour
             {
                 if (hit.collider.gameObject.name == "tapa")
                 {
-                    menucam.Priority = inactiveCam;
-                    settingscam.Priority = activeCam;
-                    //SceneManager.LoadScene("GameScene");
+                    SceneManager.LoadScene("GameScene");
                 }
                 if (hit.collider.gameObject.name == "gramo")
                 {
                     settingscam.Priority = inactiveCam;
                     menucam.Priority = activeCam;
+                    animatorGramo.SetBool("Settings",false);
                 }
             }
         }

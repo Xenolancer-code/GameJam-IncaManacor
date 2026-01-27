@@ -16,22 +16,30 @@ public class EnemyAtk : MonoBehaviour
     private bool playerInsideAttackRange = false;
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
-
+    private bool playerIsDead = false;
+    
     private GameObject player;
+    
+    private void OnEnable()
+    {
+        MessageCentral.OnDiePlayer += PlayerisDead;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnDiePlayer -= PlayerisDead;
+    }
+    
     private void Awake()
     {
         enemyAgent = GetComponent<NavMeshAgent>();
-    }
-    void Start()
-    {
         animator = GetComponent<Animator>();
     }
-
-    
+ 
     void Update()
     {
-        // Si está atacando -> no rotar ni moverse
-        if (isAttacking) return;
+        // Si est? atacando -> no rotar ni moverse
+        if (isAttacking || playerIsDead) return;
         if (playerInsideAttackRange)
         {
             TryAttack();
@@ -58,13 +66,13 @@ public class EnemyAtk : MonoBehaviour
         // Detener movimiento por completo
         enemyAgent.isStopped = true;
 
-        // Aquí puedes activar la animación
+        // Aqu? puedes activar la animaci?n
         animator.SetBool("isMoving", false);
         animator.SetTrigger("Hit");
 
-        yield return new WaitForSeconds(stopByAtackPlayer);  // Duración del ataque
+        yield return new WaitForSeconds(stopByAtackPlayer);  // Duraci?n del ataque
 
-        // Después del ataque
+        // Despu?s del ataque
         enemyAgent.isStopped = false;
         animator.SetBool("isMoving", true);
         isAttacking = false;
@@ -79,7 +87,7 @@ public class EnemyAtk : MonoBehaviour
        
         if (player.TryGetComponent(out HealtPlayerController healtPlayer))
         {
-            Debug.Log("Estoy recibiendo daño");
+            Debug.Log("Estoy recibiendo da?o");
             healtPlayer.GetDamage(hitPlayerHP);
         }
 
@@ -101,6 +109,12 @@ public class EnemyAtk : MonoBehaviour
         }
     }
 
+    private void PlayerisDead()
+    {
+        playerIsDead = true;
+        enemyAgent.isStopped = true;
+    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

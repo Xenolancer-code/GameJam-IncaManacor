@@ -7,6 +7,7 @@ public class HealtPlayerController : MonoBehaviour
     [Header("Life")]
     private int hpPoints=2;
     private bool playerIsDamaged = false;
+    private bool playerIsDead=false;
     [Header("Shield")]
     [SerializeField] private float shieldRecoverTime;
     [Header("ShieldGating")]
@@ -23,10 +24,6 @@ public class HealtPlayerController : MonoBehaviour
     private void Start()
     {
         MessageCentral.DamagedPlayer(false);
-        
-    }
-    private void Update()
-    {
         
     }
     public void GetDamage(int hitPlayerHP)
@@ -55,9 +52,10 @@ public class HealtPlayerController : MonoBehaviour
 
     public void Die()
     {
+        playerIsDead = true;
         MessageCentral.DiePlayer();
         Debug.Log("Soy el Player y me han matado");
-        animator.SetTrigger("Die");
+        animator.SetBool("Die",true);
         //Posible Corutina
        
         /*TODO
@@ -69,7 +67,7 @@ public class HealtPlayerController : MonoBehaviour
 
     public void TrytoShieldRecover()
     {
-        if (playerIsDamaged) return;
+        if (playerIsDamaged && playerIsDead) return;
         //Invoke("ShieldRecoverAlt", shieldRecoverTime);
         StartCoroutine(ShieldRecover());
     }

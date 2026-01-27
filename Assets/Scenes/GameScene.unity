@@ -1773,7 +1773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneracionRandomSpawners
   spawnerPrefab: {fileID: 3412994045548203, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
   minDistanceToPlayer: 25
-  radio: 70
+  radio: 65
   player: {fileID: 4799562535517344480}
 --- !u!1 &786899637
 GameObject:
@@ -2434,13 +2434,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: acaf162d90576b646bccef628d183bda, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 217205478}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ReturnMenu
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5115,9 +5115,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 123256883}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: tutorialHUD
+      value: 
+      objectReference: {fileID: 3872228043664501538}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: playerPrefab
       value: 
       objectReference: {fileID: 4799562535517344480}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: timeBeforePause
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5872858484470373014, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: m_Name
       value: GameManager

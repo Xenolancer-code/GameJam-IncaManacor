@@ -7,7 +7,7 @@ public class OutlineMenu : MonoBehaviour
     public LayerMask layerMask;
     RaycastHit hit;
     Collider lastHit;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animatorBook;
 
     void Update()
     {
@@ -25,7 +25,7 @@ public class OutlineMenu : MonoBehaviour
                 {
                     //outline.OutlineMode = Outline.Mode.OutlineAll;
                     outline.OutlineWidth = 10;
-                    animator.SetTrigger("Open");
+                    animatorBook.SetTrigger("Open");
                     lastHit = hit.collider;
                 }
             }
@@ -45,7 +45,7 @@ public class OutlineMenu : MonoBehaviour
             {
                 //outline.OutlineMode = Outline.Mode.OutlineHidden;
                 outline.OutlineWidth = 3;
-                animator.SetTrigger("Close");
+                animatorBook.SetTrigger("Close");
             }
             lastHit = null;
         }

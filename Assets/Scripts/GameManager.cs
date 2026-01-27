@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering.Universal;
 using System;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
 
@@ -14,12 +15,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScoreData scoreData;
     public int enemyCounter = 0;
     [Header("Menu Settings")]
-    [SerializeField] private GameObject menuHUD;
+    [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD; 
     [SerializeField] private GameObject deadMenu;
     [Header("Timer Settings")]
     public float currentTime;
     private bool isGameStarted = false;
+    [SerializeField] private float timeBeforePause = 10f;
     [Header("Player Settings")] 
     [SerializeField] GameObject playerPrefab;
     [SerializeField] HUDManager hudManager;
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDieEnemy += IncrementCounter;
         MessageCentral.OnPickupSample += UpdateSample;
         MessageCentral.OnDiePlayer += ObtainScoreData;
+        MessageCentral.OnDiePlayer += DiePause;
     }
 
     private void OnDisable()
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDieEnemy -= IncrementCounter;
         MessageCentral.OnPickupSample -= UpdateSample;
         MessageCentral.OnDiePlayer -= ObtainScoreData;
+        MessageCentral.OnDiePlayer -= DiePause;
     }
 
     private void Awake()
@@ -85,11 +89,12 @@ public class GameManager : MonoBehaviour
         if(isGameStarted == true)
         {
             currentTime += Time.deltaTime;
-            menuHUD.SetActive(false);  
+             
         }
     }
     public void StartTimer()
     {
+        tutorialHUD.SetActive(false); 
         isGameStarted = true;
         MessageCentral.Start();
         playerPrefab.SetActive(true);
@@ -136,7 +141,7 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-    //Metodos de recopilación de datos
+    //Metodos de recopilaci?n de datos
     private void ObtainScoreData()
     {
         scoreData.kills = enemyCounter;
@@ -158,9 +163,17 @@ public class GameManager : MonoBehaviour
     }
     public void DiePause()
     {
+        StartCoroutine(PlayerDeath());
+    }
+
+    private IEnumerator PlayerDeath()
+    {
+        
+        yield return new WaitForSeconds(timeBeforePause);
         Time.timeScale = 0;
         deadMenu.SetActive(true);
     }
+    
     public void PauseGame()
     {
         Time.timeScale = 0;

@@ -33,17 +33,22 @@ public class GeneracionRandomSpawners : MonoBehaviour
 
     Vector3 GetRandomSpawnPosition()
     {
-        // posición aleatoria dentro de un círculo
-        Vector2 circle = Random.insideUnitCircle * radio;
-        Vector3 pos = new Vector3(circle.x, 0, circle.y) + transform.position;
+        int attempts = 10; // intentos para no spawnear encima del jugador
 
-        // distancia mínima al player
-        if (Vector3.Distance(pos, player.transform.position) >= minDistanceToPlayer)
+        for (int i = 0; i < attempts; i++)
         {
-            return pos;
+            // posici?n aleatoria dentro de un c?rculo alrededor del centro del ring
+            Vector2 circle = Random.insideUnitCircle * radio;
+            Vector3 pos = new Vector3(circle.x, 0, circle.y) + transform.position;
+
+            // distancia m?nima al player
+            if (Vector3.Distance(pos, player.transform.position) >= minDistanceToPlayer)
+            {
+                return pos;
+            }
         }
 
-        // Si no encuentra posición válida, no spawnea
+        // Si no encuentra posici?n v?lida, no spawnea
         return Vector3.zero;
     }
 

@@ -18,10 +18,22 @@ public class EnemyMov : MonoBehaviour
     private bool isKnockback = false; 
     //private float knockbackDuration = 0.2f; // <<--- velocidad del knockback
     //[SerializeField] private float StandingDuration = 2f; //Por usar
+    private void OnEnable()
+    {
+        MessageCentral.OnDiePlayer += PlayerisDead;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnDiePlayer -= PlayerisDead;
+    }
+    
     private void Awake()
     {
         enemyAgent = GetComponent<NavMeshAgent>();
     }
+    
+   
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;   
@@ -43,6 +55,10 @@ public class EnemyMov : MonoBehaviour
         animator.SetFloat("velocity", enemyAgent.velocity.magnitude);
     }
 
+    private void PlayerisDead()
+    {
+        enemyAgent.isStopped = true;
+    }
     
     // ========================================================
     //        KNOCKBACK (BORRAR PORQUE YA NO EMPUJA)

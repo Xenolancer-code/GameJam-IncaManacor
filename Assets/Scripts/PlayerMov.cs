@@ -27,26 +27,37 @@ public class PlayerMov : MonoBehaviour
     private bool groundedPlayerPrev;
     private float gravityValue;
     private bool dashing = false;
+    private bool playerIsDead = false;
     
     private Vector3 movmentVector = Vector3.zero;
 
+    private void OnEnable()
+    {
+        MessageCentral.OnDiePlayer += PlayerisDead;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnDiePlayer -= PlayerisDead;
+    }
     private void Awake()
     {
         cc = gameObject.GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
     }
-
+    
+    
     void Update()
     {
+        if(playerIsDead) return;
         gravityValue = Physics.gravity.y * gravityMultiplier; //Calcular gravedad
         groundedPlayer = cc.isGrounded; //Revisar si player esta en el suelo
+        animator.SetBool("Grounded", groundedPlayer);
         if (groundedPlayer && playerVerticalVelocity.y < 0)
         {
             playerVerticalVelocity.y = -0.5f;
         }
 
-
-        Landing();
         if (movmentVector != Vector3.zero)
         {
             Rotate(movmentVector);
@@ -62,25 +73,26 @@ public class PlayerMov : MonoBehaviour
         groundedPlayerPrev = groundedPlayer;
         
     }
-    private void Landing()
-    {
-        if(groundedPlayerPrev == false && groundedPlayer == true)
-        {
-            animator.SetBool("Landing", true);
-        }
-    }
+    // private void Landing()
+    // {
+    //     if(groundedPlayerPrev == false && groundedPlayer == true)
+    //     {
+    //         animator.SetBool("Landing", true);
+    //     }
+    // }
     private void Rotate(Vector3 moveDirection)
     {
-        // Obtenim la rotació referent a una direcció de moviment. El moviment en que es mourà el personatge.
+        // Obtenim la rotaci? referent a una direcci? de moviment. El moviment en que es mour? el personatge.
         Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
 
-        // Interpolem la rotació des de la rotació actual del transform cap a la rotació objectiu
-        // uns quants graus cada frame. La velocitat de rotació dependrà de 'rotationSpeed'
+        // Interpolem la rotaci? des de la rotaci? actual del transform cap a la rotaci? objectiu
+        // uns quants graus cada frame. La velocitat de rotaci? dependr? de 'rotationSpeed'
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     public void SetMovmentVector(Vector2 inputVector)
     {
+        if(playerIsDead) return;
         movmentVector = new Vector3(inputVector.x, 0, inputVector.y);
     }
 
@@ -118,5 +130,10 @@ public class PlayerMov : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
         MessageCentral.DashinActivated(false);
+    }
+
+    private void PlayerisDead()
+    {
+        playerIsDead = true;
     }
 }

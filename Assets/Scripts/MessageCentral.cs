@@ -22,7 +22,7 @@ public class MessageCentral : MonoBehaviour
     }
 
 
-    public static event Action<bool> OnDashinActivated; // Activarón el Dash
+    public static event Action<bool> OnDashinActivated; // Activar?n el Dash
     public static void DashinActivated(bool isDashing)
     {
         OnDashinActivated?.Invoke(isDashing);
@@ -30,12 +30,12 @@ public class MessageCentral : MonoBehaviour
 
 
 
-    public static event Action OnDamagedEnemy; // Hicierón daño a los enemigos
+    public static event Action OnDamagedEnemy; // Hicier?n da?o a los enemigos
     public static void DamagedEnemy() {
         OnDamagedEnemy?.Invoke();
     }
 
-    public static event Action<bool> OnDamagedPlayer; // Hicierón daño al Player
+    public static event Action<bool> OnDamagedPlayer; // Hicier?n da?o al Player
     public static void DamagedPlayer(bool playerIsDamaged)
     {
         OnDamagedPlayer?.Invoke(playerIsDamaged);

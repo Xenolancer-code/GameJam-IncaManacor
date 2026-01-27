@@ -16,12 +16,10 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private RectTransform rtfillPowerBar;
     [SerializeField] private Image iconShield;
     [SerializeField] private Image iconBrokenShield;
-    [Header("Settings")]
-
-    
-
+    [Header("Settings")] 
     private bool showHud = false;
 
+    
     private void OnEnable()
     {
         MessageCentral.OnStart += ActivateHud;
@@ -104,4 +102,5 @@ public class HUDManager : MonoBehaviour
     {
         showHud = true;
     }
+
 }
