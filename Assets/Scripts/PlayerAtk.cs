@@ -55,7 +55,7 @@ public class PlayerAtk : MonoBehaviour
             closeEnemies.Add(enemyDistance);// Afagim els datos dins la llista
         }
 
-    // Aquí tenim la llista de impactes ordenada
+    // Aqu? tenim la llista de impactes ordenada
     closeEnemies.Sort((a, b) => a.distance.CompareTo(b.distance));
         int hitIndex = 0;
         for(int i = 0; i<closeEnemies.Count && hitIndex < maxSimultaneousHits; i++)
@@ -78,9 +78,9 @@ public class PlayerAtk : MonoBehaviour
     }
 
     //Ya no estoy empujando sino que genero un area circular donde todo enemigo adentro muere y rompe spawners
-    private void AoeDamageZone()//Llamado por event de una animación
+    private void AoeDamageZone()//Llamado por event de una animaci?n
     {
-        audioSource.Play();
+        //audioSource.Play();
         GameObject Zone = Instantiate(zone,transform.position,Quaternion.identity);
     }
 
@@ -88,7 +88,7 @@ public class PlayerAtk : MonoBehaviour
 
     //public void DoAoEKnockback()
     //{
-    //    Debug.Log("KNOCKBACK ejecutado desde la animación");
+    //    Debug.Log("KNOCKBACK ejecutado desde la animaci?n");
     //    Collider[] hits = Physics.OverlapSphere(transform.position, aoeRadius);
 
     //    foreach (Collider hit in hits)

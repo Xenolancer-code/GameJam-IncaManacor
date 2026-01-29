@@ -5,11 +5,13 @@ using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
+using UnityEditor.VersionControl;
 
 public class GameManager : MonoBehaviour
 {
     public float sampleAmount = 0;
     public float maxSampleAmount = 100;
+    public bool barFilled=false;
     [Header("Score")]
     private ScoreReporter reporter;
     [SerializeField] private ScoreData scoreData;
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
     {
         MessageCentral.OnDieEnemy += IncrementCounter;
         MessageCentral.OnPickupSample += UpdateSample;
+        MessageCentral.OnDamagedPlayer += EmptyBar;
         MessageCentral.OnDiePlayer += ObtainScoreData;
         MessageCentral.OnDiePlayer += DiePause;
         MessageCentral.OnAllSpawnersDestroyed += WinPause;
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         MessageCentral.OnDieEnemy -= IncrementCounter;
         MessageCentral.OnPickupSample -= UpdateSample;
+        MessageCentral.OnDamagedPlayer -= EmptyBar;
         MessageCentral.OnDiePlayer -= ObtainScoreData;
         MessageCentral.OnDiePlayer -= DiePause;
         MessageCentral.OnAllSpawnersDestroyed -= WinPause;
@@ -117,7 +121,7 @@ public class GameManager : MonoBehaviour
        IncrementPlayerDamage();
        IncrementPlayerRange();
        hudManager.ReSizePowerBar();
-
+       BarIsFull();
     }
     //Metodos para calcular el escalado
     private void IncrementPlayerDamage()
@@ -143,8 +147,29 @@ public class GameManager : MonoBehaviour
         //   playerAtk.finalRange = frg + INCREMENTRANGE;
         //}
     }
+    // Metodos para manejar si la barra esta llena o vacia
+    private void BarIsFull()
+    {
+        if (sampleAmount >= maxSampleAmount)
+        {
+            barFilled = true;
+        }
+        else
+        {
+            barFilled = false;
+        }
+    }
 
-    //Metodos de recopilaci?n de datos
+    private void EmptyBar(bool playerIsDamaged)
+    {
+        if (playerIsDamaged)
+        {
+            sampleAmount = 0;
+        }
+    }
+    
+
+    //Metodos de recopilación de datos
     private void ObtainScoreData()
     {
         scoreData.kills = enemyCounter;
