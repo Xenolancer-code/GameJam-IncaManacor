@@ -47,6 +47,13 @@ public class MessageCentral : MonoBehaviour
     {
         OnPickupSample?.Invoke(sampleQuality);
     }
+
+    public static event Action<bool> OnBarFull;
+
+    public static void BarFull(bool barFilled)
+    {
+        OnBarFull?.Invoke(barFilled);
+    }
     
     public static event Action OnAllSpawnersDestroyed;
 
