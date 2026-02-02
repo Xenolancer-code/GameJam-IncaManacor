@@ -150,14 +150,7 @@ public class GameManager : MonoBehaviour
     // Metodos para manejar si la barra esta llena o vacia
     private void BarIsFull()
     {
-        if (sampleAmount >= maxSampleAmount)
-        {
-            barFilled = true;
-        }
-        else
-        {
-            barFilled = false;
-        }
+        playerAtk.canAoe = sampleAmount >= maxSampleAmount;
     }
 
     private void EmptyBar(bool playerIsDamaged)

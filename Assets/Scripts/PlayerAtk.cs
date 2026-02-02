@@ -23,6 +23,8 @@ public class PlayerAtk : MonoBehaviour
     public int finalRange;
     [SerializeField] private GameObject zone;
 
+    public bool canAoe = false;
+
 
     private void Awake()
     {
@@ -74,7 +76,10 @@ public class PlayerAtk : MonoBehaviour
     //------------------------------------------------------------------------------------------
     public void AoEAtk()
     {
+        if (!canAoe) return;
+        
         animator.SetTrigger("RightClick");
+        canAoe = false; 
     }
 
     //Ya no estoy empujando sino que genero un area circular donde todo enemigo adentro muere y rompe spawners
