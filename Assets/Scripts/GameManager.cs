@@ -9,9 +9,9 @@ using UnityEditor.VersionControl;
 
 public class GameManager : MonoBehaviour
 {
-    public float sampleAmount = 0;
-    public float maxSampleAmount = 100;
-    public bool barFilled=false;
+
+    [SerializeField] private GameObject protector;
+    [SerializeField] private GameObject protector2;
     [Header("Score")]
     private ScoreReporter reporter;
     [SerializeField] private ScoreData scoreData;
@@ -20,12 +20,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD; 
     [SerializeField] private GameObject deadMenu;
-    [SerializeField] private GameObject winMenu;
     [Header("Timer Settings")]
     public float currentTime;
     private bool isGameStarted = false;
     [SerializeField] private float timeBeforePause = 5f;
     [Header("Player Settings")] 
+    public float sampleAmount = 0;
+    public float maxSampleAmount = 100;
     [SerializeField] GameObject playerPrefab;
     [SerializeField] HUDManager hudManager;
     public static int INITDAMAGE= 10;
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDamagedPlayer += EmptyBar;
         MessageCentral.OnDiePlayer += ObtainScoreData;
         MessageCentral.OnDiePlayer += DiePause;
-        MessageCentral.OnAllSpawnersDestroyed += WinPause;
+        MessageCentral.OnAllSpawnersDestroyed +=ActivePortalToLight;
     }
 
     private void OnDisable()
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDamagedPlayer -= EmptyBar;
         MessageCentral.OnDiePlayer -= ObtainScoreData;
         MessageCentral.OnDiePlayer -= DiePause;
-        MessageCentral.OnAllSpawnersDestroyed -= WinPause;
+        MessageCentral.OnAllSpawnersDestroyed -=ActivePortalToLight;
     }
 
     private void Awake()
@@ -161,6 +162,12 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    //
+    private void ActivePortalToLight()
+    {
+        Destroy(protector);
+        Destroy(protector2);
+    }
 
     //Metodos de recopilación de datos
     private void ObtainScoreData()
@@ -193,18 +200,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         deadMenu.SetActive(true);
     }
-
-    private void WinPause()
-    {
-        StartCoroutine(PlayerWin());
-    }
-    private IEnumerator PlayerWin()
-    {
-        yield return new WaitForSeconds(timeBeforePause);
-        Time.timeScale = 0;
-        winMenu.SetActive(true);
-    }
-
+    
     public void ExitGame()
     {
         Application.Quit();

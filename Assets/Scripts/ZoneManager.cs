@@ -17,7 +17,7 @@ public class ZoneManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //DAÑO A ENEMIGOS
+        //DA?O A ENEMIGOS
         if (other.TryGetComponent(out HealthEnemyController health))
         {
             if (enemiesInside.Add(health))

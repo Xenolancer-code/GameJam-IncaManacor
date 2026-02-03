@@ -16,7 +16,6 @@ public class PlayerAtk : MonoBehaviour
     //Manejado por GameManager
     [Header("Knockback Controller")]
     [SerializeField] public float aoeRadius = 4f;
-    //[SerializeField] public float knockbackDistance = 8f;
     private Animator animator;
     private AudioSource audioSource;
     public int finalDamage; //Crear Maximo dps de 30 o 25
@@ -76,7 +75,7 @@ public class PlayerAtk : MonoBehaviour
     //------------------------------------------------------------------------------------------
     public void AoEAtk()
     {
-        if (!canAoe) return;
+        //if (!canAoe) return;
         
         animator.SetTrigger("RightClick");
         canAoe = false; 
@@ -89,26 +88,6 @@ public class PlayerAtk : MonoBehaviour
         GameObject Zone = Instantiate(zone,transform.position,Quaternion.identity);
     }
 
-
-
-    //public void DoAoEKnockback()
-    //{
-    //    Debug.Log("KNOCKBACK ejecutado desde la animaci?n");
-    //    Collider[] hits = Physics.OverlapSphere(transform.position, aoeRadius);
-
-    //    foreach (Collider hit in hits)
-    //    {
-    //        if (hit.CompareTag("Enemy"))
-    //        {
-    //            EnemyMov kb = hit.GetComponent<EnemyMov>();
-    //            if (kb != null)
-    //            {
-    //                Vector3 dir = (hit.transform.position - transform.position).normalized;
-    //                kb.ApplyKnockback(dir, knockbackDistance);
-    //            }
-    //        }
-    //    }
-    //}
     //------------------------------------------------------------------------------------------
     private void OnDrawGizmos()
     {

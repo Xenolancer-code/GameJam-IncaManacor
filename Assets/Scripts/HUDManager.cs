@@ -27,7 +27,7 @@ public class HUDManager : MonoBehaviour
         MessageCentral.OnStart += ActivateHud;
         MessageCentral.OnDashinActivated += ControllerDashIcons;
         MessageCentral.OnDamagedPlayer += ControllerHPIcons;
-        MessageCentral.OnAllSpawnersDestroyed += WinPause;
+      
     }
 
     private void OnDisable()
@@ -35,7 +35,7 @@ public class HUDManager : MonoBehaviour
         MessageCentral.OnStart -= ActivateHud;
         MessageCentral.OnDashinActivated -= ControllerDashIcons;
         MessageCentral.OnDamagedPlayer -= ControllerHPIcons;
-        MessageCentral.OnAllSpawnersDestroyed -= WinPause;
+       
     }
 
     private void Start()
@@ -105,15 +105,6 @@ public class HUDManager : MonoBehaviour
     private void ActivateHud()
     {
         showHud = true;
-    }
-    private void WinPause()
-    {
-        StartCoroutine(PlayerWin());
-    }
-    private IEnumerator PlayerWin()
-    {
-        yield return new WaitForSeconds(winTimer);
-        hudElements.SetActive(false);
     }
 
 }
