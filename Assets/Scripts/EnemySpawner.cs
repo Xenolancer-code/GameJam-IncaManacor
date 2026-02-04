@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Settings Padre")]
-    private GeneracionRandomSpawners listaCriptas;
+    private GeneracionRandomSpawners parentManager;
     [Header("Spawner Settings")]
     [SerializeField] private GameObject enemyPrefab;
     private GameObject player;
@@ -115,10 +115,16 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
 
+
+    public void SetParentManager(GeneracionRandomSpawners manager)
+    {
+        parentManager  = manager;
+    }
     private void SelfDestroy()
     {
         if (spawnerActivation)return;
-        listaCriptas.CheckSpawnersState(gameObject);
+        parentManager.RemoveSpawner(gameObject);
+        
     }
 
 }

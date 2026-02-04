@@ -9,7 +9,11 @@ using UnityEditor.VersionControl;
 
 public class GameManager : MonoBehaviour
 {
-
+    [Header("Portal Settings")] 
+    [SerializeField] private ParticleSystem smokeScreen;
+    [SerializeField] private ParticleSystem smokeScreen2;
+    [SerializeField] private ParticleSystem smokeScreen3;
+    [SerializeField] private ParticleSystem portalGlow;
     [SerializeField] private GameObject protector;
     [SerializeField] private GameObject protector2;
     [Header("Score")]
@@ -42,7 +46,12 @@ public class GameManager : MonoBehaviour
 
 
     
-
+/*
+ * Contador que incremente con cada item
+ * y que revise que no incremente de mas al tener sampleAmount>=100
+ * y al recibir daño instanciar esa cantidad en forma de drops
+ * repartidos aleatoriamente alrededor del player con un Lerp
+ */
 
     private void OnEnable()
     {
@@ -167,6 +176,13 @@ public class GameManager : MonoBehaviour
     {
         Destroy(protector);
         Destroy(protector2);
+        portalGlow.Play();
+    }
+
+    private void SmokeOut()
+    {
+        //Deberia destruirse o apagarse de 1 en 1 los Particle system de humo
+        //Siendo llamado por "SpawnerDestroyed" del MessageCentral
     }
 
     //Metodos de recopilación de datos

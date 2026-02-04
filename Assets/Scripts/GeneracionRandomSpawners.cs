@@ -24,18 +24,18 @@ public class GeneracionRandomSpawners : MonoBehaviour
     private void OnEnable()
     {
         MessageCentral.OnStart += GenerarSpawnsIniciales;
-        MessageCentral.OnSpawnerDestroyed += MinusOneSpawner;
+        
     }
 
     private void OnDisable()
     {
         MessageCentral.OnStart -= GenerarSpawnsIniciales;
-        MessageCentral.OnSpawnerDestroyed -= MinusOneSpawner;
+        
     }
 
     private void Update()
     {
-        CheckSpawnersState(gameObject);
+        //CheckSpawnersState();
     }
 
     // Genera X spawners a la vez
@@ -55,6 +55,7 @@ public class GeneracionRandomSpawners : MonoBehaviour
             if (newSpawner.TryGetComponent(out EnemySpawner enemySpawner))
             {
                 enemySpawner.SetPlayerAtSpawner(player);
+                enemySpawner.SetParentManager(this);
             }
 
             activeSpawners.Add(newSpawner);
@@ -62,27 +63,25 @@ public class GeneracionRandomSpawners : MonoBehaviour
     }
 
     // Limpia spawners destruidos y detecta si no queda ninguno
-    public void CheckSpawnersState(GameObject spawner)
+    
+    public void RemoveSpawner(GameObject spawner)
     {
-        // if (!spawnersGenerated) return;
-        // // Elimina referencias null (spawners destruidos)
-        // activeSpawners.RemoveAll(spawner => spawner == null);
-        
+        if (!activeSpawners.Contains(spawner)) return;
+
         activeSpawners.Remove(spawner);
-        Debug.Log("Spawner destruido" + activeSpawners.Count);
+
+        Debug.Log($"Spawner eliminado manualmente. Restantes: {activeSpawners.Count}");
+
         MessageCentral.SpawnerDestroyed();
+
         if (!allSpawnersDestroyed && activeSpawners.Count == 0)
         {
             allSpawnersDestroyed = true;
-            Debug.Log("Todos los spawners han sido destruidos");
+            Debug.Log("Todos los spawners han sido eliminados");
             MessageCentral.AllSpawnersDestroyed();
         }
     }
 
-    private void MinusOneSpawner()
-    {
-        //Recibe el mensaje y borra 1 spawner de la lista (Retocar CheckSpawnersState)
-    }
 
     // Hace intentos para generar los spawners fuera del radio del player
     private Vector3 GetRandomSpawnPosition()
