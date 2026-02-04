@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ZoneManager : MonoBehaviour
 {
@@ -29,7 +30,11 @@ public class ZoneManager : MonoBehaviour
         //DESTRUIR SPAWNER
         if (other.TryGetComponent(out EnemySpawner spawner))
         {
-            Destroy(spawner.gameObject);
+            Debug.Log("Estoy colisioando con el Spawner");
+            spawner.spawnerActivation = false;
+            spawner.smokePS.Play();
+            spawner.explosionPS.Play();
+            
         }
     }
 

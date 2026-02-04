@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Settings Padre")]
+    private GeneracionRandomSpawners listaCriptas;
     [Header("Spawner Settings")]
     [SerializeField] private GameObject enemyPrefab;
     private GameObject player;
@@ -11,11 +13,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minDistanceToPlayer = 5f; 
     //[SerializeField] private float spawnDelay = 0.5f; //Por usar
     [SerializeField] private float initialDelay = 5f;     
+    [Header("ParticleSystem")]
+    [SerializeField] public ParticleSystem smokePS;
+    [SerializeField] public ParticleSystem explosionPS;
     
 
     private List<GameObject> enemiesAlive = new List<GameObject>();
     private float timer = 0f;
-    private bool spawnerActivation=true;
+    public bool spawnerActivation=true;
 
 
 
@@ -34,6 +39,10 @@ public class EnemySpawner : MonoBehaviour
         if(spawnerActivation)
         {
             ControllerSpawns();
+        }
+        else
+        {
+            SelfDestroy();
         }
     }
 
@@ -72,6 +81,10 @@ public class EnemySpawner : MonoBehaviour
             {
                 enemyAtk.SetPlayer(player);
             }
+            if(newEnemy.TryGetComponent(out EnemyMov enemyMov))
+            {
+                enemyMov.SetPlayer(player);
+            }
             enemiesAlive.Add(newEnemy);
         }
     }
@@ -102,9 +115,10 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
 
-    private void OnspawnerActivation()
+    private void SelfDestroy()
     {
-        spawnerActivation = true;
+        if (spawnerActivation)return;
+        listaCriptas.CheckSpawnersState(gameObject);
     }
 
 }

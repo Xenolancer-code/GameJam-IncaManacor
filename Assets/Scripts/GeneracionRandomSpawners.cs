@@ -24,20 +24,22 @@ public class GeneracionRandomSpawners : MonoBehaviour
     private void OnEnable()
     {
         MessageCentral.OnStart += GenerarSpawnsIniciales;
+        MessageCentral.OnSpawnerDestroyed += MinusOneSpawner;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnStart -= GenerarSpawnsIniciales;
+        MessageCentral.OnSpawnerDestroyed -= MinusOneSpawner;
     }
 
     private void Update()
     {
-        CheckSpawnersState();
+        CheckSpawnersState(gameObject);
     }
 
     // Genera X spawners a la vez
-    void GenerarSpawnsIniciales()
+    private void GenerarSpawnsIniciales()
     {
         allSpawnersDestroyed = false;
         spawnersGenerated = true;
@@ -60,12 +62,15 @@ public class GeneracionRandomSpawners : MonoBehaviour
     }
 
     // Limpia spawners destruidos y detecta si no queda ninguno
-    void CheckSpawnersState()
+    public void CheckSpawnersState(GameObject spawner)
     {
-        if (!spawnersGenerated) return;
-        // Elimina referencias null (spawners destruidos)
-        activeSpawners.RemoveAll(spawner => spawner == null);
-
+        // if (!spawnersGenerated) return;
+        // // Elimina referencias null (spawners destruidos)
+        // activeSpawners.RemoveAll(spawner => spawner == null);
+        
+        activeSpawners.Remove(spawner);
+        Debug.Log("Spawner destruido" + activeSpawners.Count);
+        MessageCentral.SpawnerDestroyed();
         if (!allSpawnersDestroyed && activeSpawners.Count == 0)
         {
             allSpawnersDestroyed = true;
@@ -74,8 +79,13 @@ public class GeneracionRandomSpawners : MonoBehaviour
         }
     }
 
+    private void MinusOneSpawner()
+    {
+        //Recibe el mensaje y borra 1 spawner de la lista (Retocar CheckSpawnersState)
+    }
+
     // Hace intentos para generar los spawners fuera del radio del player
-    Vector3 GetRandomSpawnPosition()
+    private Vector3 GetRandomSpawnPosition()
     {
         int attempts = 10;
 

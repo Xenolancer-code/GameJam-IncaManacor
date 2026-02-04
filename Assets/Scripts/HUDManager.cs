@@ -19,7 +19,6 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Image iconBrokenShield;
     [Header("Settings")] 
     private bool showHud = false;
-    [SerializeField] private float winTimer = 5f;
 
     
     private void OnEnable()

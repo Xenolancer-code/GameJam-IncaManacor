@@ -61,5 +61,12 @@ public class MessageCentral : MonoBehaviour
     {
         OnAllSpawnersDestroyed?.Invoke();
     }
+    
+    public static event Action OnSpawnerDestroyed;
+
+    public static void SpawnerDestroyed()
+    {
+        OnSpawnerDestroyed?.Invoke();
+    }
 
 }

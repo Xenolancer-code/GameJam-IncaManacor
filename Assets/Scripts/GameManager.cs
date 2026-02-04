@@ -172,8 +172,7 @@ public class GameManager : MonoBehaviour
     //Metodos de recopilación de datos
     private void ObtainScoreData()
     {
-        scoreData.kills = enemyCounter;
-        scoreData.time = currentTime;
+        scoreData.puntuacion = currentTime;
     }
 
     //Metodos sobre el menu de Pausa

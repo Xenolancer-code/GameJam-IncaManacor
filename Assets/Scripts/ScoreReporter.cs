@@ -18,25 +18,25 @@ public class ScoreReporter : MonoBehaviour
         // Temps sobreviscut (en segons)
         public float timeSurvived;
         // Nombre de salts
-        public int kills;
+        public string token;
     }
 
-    // Mètode públic per enviar la puntuació
-    public void SubmitScore(string playerName, float timeSeconds, int kills)
+    // M?tode p?blic per enviar la puntuaci?
+    public void SubmitScore(string playerName, float timeSeconds, string tokken)
     {
         // Empaquetem les dades en l'objecte que serialitzarem a JSON
         var payload = new Score
         {
             player = playerName,
             timeSurvived = timeSeconds,
-            kills = kills,
+            token = tokken,
         };
 
-        // Llancem la corutina que fa la petició HTTP
+        // Llancem la corutina que fa la petici? HTTP
         StartCoroutine(PostScoreCoroutine(payload));
     }
 
-    // Corutina que construeix i envia la petició POST
+    // Corutina que construeix i envia la petici? POST
     private IEnumerator PostScoreCoroutine(Score payload)
     {
         // Assegurem que no quedin dobles '/' entre base i path
@@ -45,20 +45,20 @@ public class ScoreReporter : MonoBehaviour
         // Serialitzem l'objecte a JSON
         string json = JsonUtility.ToJson(payload);
 
-        // UnityWebRequest.Put crea un request amb cos; canviem el mètode a POST
+        // UnityWebRequest.Put crea un request amb cos; canviem el m?tode a POST
         using (var req = UnityWebRequest.Put(url, json))
         {
-            // Forcem POST perquè la nostra API espera aquest mètode
+            // Forcem POST perqu? la nostra API espera aquest m?tode
             req.method = UnityWebRequest.kHttpVerbPOST;
             // Indiquem el tipus de contingut del cos
             req.SetRequestHeader("Content-Type", "application/json");
-            // Temps màxim d'espera (segons)
+            // Temps m?xim d'espera (segons)
             req.timeout = 10; // segundos
 
-            // Enviem la petició i esperem la resposta
+            // Enviem la petici? i esperem la resposta
             yield return req.SendWebRequest();
 
-            // Considerem èxit qualsevol codi 2xx
+            // Considerem ?xit qualsevol codi 2xx
             bool isHttpSuccess = req.responseCode >= 200 && req.responseCode < 300;
             if (req.result == UnityWebRequest.Result.Success || isHttpSuccess)
             {
@@ -67,11 +67,11 @@ public class ScoreReporter : MonoBehaviour
             }
             else
             {
-                // Informació d'error per depuració
+                // Informaci? d'error per depuraci?
                 Debug.LogWarning(
                     $"Error enviant puntuacio: Result={req.result}, Code={req.responseCode}, Error={req.error}\n{req.downloadHandler.text}"
                 );
-                // Aquí pots implementar reintents o desar-ho offline per enviar-ho després
+                // Aqu? pots implementar reintents o desar-ho offline per enviar-ho despr?s
             }
         }
     }

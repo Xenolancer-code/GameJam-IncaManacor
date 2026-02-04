@@ -24668,6 +24668,7 @@ MonoBehaviour:
   lifeTime: 4
   damagePerTick: 20
   damageInterval: 0.5
+  spawnerPrefab: {fileID: 3412994045548203, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
 --- !u!135 &3446657339497378351
 SphereCollider:
   m_ObjectHideFlags: 0

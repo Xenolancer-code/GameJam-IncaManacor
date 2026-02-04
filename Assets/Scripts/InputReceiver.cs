@@ -49,13 +49,6 @@ public class InputReceiver : MonoBehaviour
     private void AoEAtk(InputAction.CallbackContext ctx)
     {
         if (playerAtk == null) return;
-        // if (Si la barra esta llena)
-        // {
-        //     playerAtk.AoEAtk();
-        // }else
-        // {
-        //     Debug.Log("No puedes hacer esta acción aun");
-        // }
         playerAtk.AoEAtk();
     }
 
