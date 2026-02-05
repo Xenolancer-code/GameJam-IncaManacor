@@ -188,7 +188,9 @@ public class GameManager : MonoBehaviour
     //Metodos de recopilación de datos
     private void ObtainScoreData()
     {
-        scoreData.puntuacion = currentTime;
+        //TODO: Calcular puntuación con diferentes variables
+        
+        reporter.SubmitScore(scoreData.name,enemyCounter,scoreData.api_token);
     }
 
     //Metodos sobre el menu de Pausa

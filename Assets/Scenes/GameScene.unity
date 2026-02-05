@@ -1154,7 +1154,7 @@ Transform:
   m_GameObject: {fileID: 413350004}
   serializedVersion: 2
   m_LocalRotation: {x: 0.21671122, y: -0.003416741, z: 0.0007584753, w: 0.9762295}
-  m_LocalPosition: {x: -2.69495, y: 5.45, z: -31.962269}
+  m_LocalPosition: {x: -2.69495, y: 5.8479996, z: -31.962269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2887,7 +2887,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -3789,7 +3789,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -5297,8 +5297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee76e03c8aa5e9944bfd89db8b9e0048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreReporter
-  apiBaseUrl: https://phpstack-1076337-5399863.cloudwaysapps.com/
-  submitPath: api/classification/
+  apiBaseUrl: https://phpstack-1076337-5399863.cloudwaysapps.com
+  submitPath: /api/classification/
 --- !u!1 &1665639878
 GameObject:
   m_ObjectHideFlags: 0
@@ -6720,13 +6720,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 543314524442614529, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 543314524442614529, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 543314524442614529, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8115d7e5ec983c47baa846c7da900b2, type: 2}
+    - target: {fileID: 543314524442614529, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8115d7e5ec983c47baa846c7da900b2, type: 2}
+    - target: {fileID: 543314524442614529, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8115d7e5ec983c47baa846c7da900b2, type: 2}
     - target: {fileID: 1626346281342570070, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.08
       objectReference: {fileID: 0}
     - target: {fileID: 1626346281342570070, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.398
       objectReference: {fileID: 0}
     - target: {fileID: 1626346281342570070, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6768,8 +6788,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2762195831936563495, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 3281678224536788710, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_Name
+      value: Plague Oscuro
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281678224536788710, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3305994167233530112, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
@@ -6792,24 +6816,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3596494750761858300, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
-      propertyPath: rotationSpeed
-      value: 1000
+    - target: {fileID: 6750499860420423669, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_Name
+      value: Plague Doctor
       objectReference: {fileID: 0}
-    - target: {fileID: 3596494750761858300, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
-      propertyPath: gravityMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6006670230113638428, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
-      propertyPath: zone
-      value: 
-      objectReference: {fileID: 7986504087968017091, guid: 12a56ee4630040c4eb17ae9707ed4cef, type: 3}
     - target: {fileID: 7973165217372447057, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8478316815505596291, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7973165217372447057, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}

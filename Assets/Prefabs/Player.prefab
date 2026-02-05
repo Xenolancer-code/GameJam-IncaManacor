@@ -309,8 +309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CC_Player
   playerSpeed: 10
   jumpHeight: 4
-  rotationSpeed: 700
-  gravityMultiplier: 1
+  rotationSpeed: 1000
+  gravityMultiplier: 1.5
   dashSpeed: 100
   dashDuration: 0.2
   dashCooldown: 2
@@ -335,7 +335,7 @@ MonoBehaviour:
   aoeRadius: 4
   finalDamage: 10
   finalRange: 0
-  zone: {fileID: 2678252438534174331, guid: 7f84cd6a2a814a942b194b8521b4951c, type: 3}
+  zone: {fileID: 7986504087968017091, guid: 12a56ee4630040c4eb17ae9707ed4cef, type: 3}
   canAoe: 0
 --- !u!114 &2251663642765610059
 MonoBehaviour:

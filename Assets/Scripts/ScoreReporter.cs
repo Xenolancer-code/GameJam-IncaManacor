@@ -14,22 +14,22 @@ public class ScoreReporter : MonoBehaviour
     private class Score
     {
         // Nom del jugador/a
-        public string player;
+        public string name;
         // Temps sobreviscut (en segons)
-        public float timeSurvived;
+        public int  puntuacion;
         // Nombre de salts
-        public string token;
+        public string api_token;
     }
 
     // M?tode p?blic per enviar la puntuaci?
-    public void SubmitScore(string playerName, float timeSeconds, string tokken)
+    public void SubmitScore(string playerName, int  puntuaciones, string tokken)
     {
         // Empaquetem les dades en l'objecte que serialitzarem a JSON
         var payload = new Score
         {
-            player = playerName,
-            timeSurvived = timeSeconds,
-            token = tokken,
+            api_token = tokken,
+            name = playerName,
+            puntuacion = puntuaciones
         };
 
         // Llancem la corutina que fa la petici? HTTP
@@ -44,7 +44,7 @@ public class ScoreReporter : MonoBehaviour
 
         // Serialitzem l'objecte a JSON
         string json = JsonUtility.ToJson(payload);
-
+        Debug.Log(json);
         // UnityWebRequest.Put crea un request amb cos; canviem el m?tode a POST
         using (var req = UnityWebRequest.Put(url, json))
         {
