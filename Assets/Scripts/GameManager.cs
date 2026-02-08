@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     public float currentTime;
     private bool isGameStarted = false;
     [SerializeField] private float timeBeforePause = 5f;
-    [Header("Player Settings")] 
-    public float sampleAmount = 0;
-    public float maxSampleAmount = 100;
+    [Header("Player Settings")]
+    public int sampleAmount = 0;
+    public int maxSampleAmount = 100;
     [SerializeField] GameObject playerPrefab;
     [SerializeField] HUDManager hudManager;
     public static int INITDAMAGE= 10;
@@ -123,11 +123,10 @@ public class GameManager : MonoBehaviour
         enemyCounter++;
     }
 
-
     private void UpdateSample(int sampleQuality)
     {
        sampleAmount += sampleQuality;
-        if (sampleAmount > maxSampleAmount) sampleAmount = maxSampleAmount;
+        if (sampleAmount > maxSampleAmount) sampleAmount = maxSampleAmount; //if (sampleAmount >= maxSampleAmount) return;
        IncrementPlayerDamage();
        IncrementPlayerRange();
        hudManager.ReSizePowerBar();
