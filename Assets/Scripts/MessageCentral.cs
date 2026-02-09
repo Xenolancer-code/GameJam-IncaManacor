@@ -68,5 +68,12 @@ public class MessageCentral : MonoBehaviour
     {
         OnSpawnerDestroyed?.Invoke();
     }
+    
+    public static event Action OnSwapScene;
+
+    public static void SwapScene()
+    {
+        OnSwapScene?.Invoke();
+    }
 
 }

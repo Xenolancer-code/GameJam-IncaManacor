@@ -14,6 +14,7 @@ public class Portal : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         if (!canActivate) return;
 
+        MessageCentral.SwapScene();
         StartCoroutine(RotatePlane());
     }
 

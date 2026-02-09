@@ -44,7 +44,6 @@ public class ScoreReporter : MonoBehaviour
 
         // Serialitzem l'objecte a JSON
         string json = JsonUtility.ToJson(payload);
-        Debug.Log(json);
         // UnityWebRequest.Put crea un request amb cos; canviem el m?tode a POST
         using (var req = UnityWebRequest.Put(url, json))
         {
@@ -55,6 +54,11 @@ public class ScoreReporter : MonoBehaviour
             // Temps m?xim d'espera (segons)
             req.timeout = 10; // segundos
 
+            Debug.Log(req.uri);
+            Debug.Log(req.url);
+            Debug.Log(url);
+            
+            
             // Enviem la petici? i esperem la resposta
             yield return req.SendWebRequest();
 

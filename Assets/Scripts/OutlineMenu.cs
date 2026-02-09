@@ -8,27 +8,36 @@ public class OutlineMenu : MonoBehaviour
     RaycastHit hit;
     Collider lastHit;
     [SerializeField] private Animator animatorBook;
+    [SerializeField] private Animator animatorGramofono;
 
-    void Update()
+    void LateUpdate()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
         {
-            // Si es un objeto nuevo
-            if (hit.collider != lastHit)
-            {
-                ClearLastOutline();
+            Debug.Log("Hit: "+hit.collider.name);
 
-                Outline outline = hit.collider.GetComponent<Outline>();
-                if (outline != null)
+            Outline outline = hit.collider.GetComponent<Outline>();
+            if (outline != null)
+            {
+                outline.OutlineWidth = 10;
+
+                if(hit.collider.name=="tapa")
                 {
                     //outline.OutlineMode = Outline.Mode.OutlineAll;
-                    outline.OutlineWidth = 10;
-                    animatorBook.SetTrigger("Open");
-                    lastHit = hit.collider;
+                    animatorBook.SetBool("Close2",false);
+                   
                 }
+                if(hit.collider.name=="gramo")
+                {
+                    //outline.OutlineMode = Outline.Mode.OutlineAll;
+                    animatorGramofono.SetBool("Settings",true);
+                   
+                }
+                lastHit = hit.collider;
             }
+            
         }
         else
         {
@@ -43,13 +52,21 @@ public class OutlineMenu : MonoBehaviour
             Outline outline = lastHit.GetComponent<Outline>();
             if (outline != null)
             {
+                Debug.Log("Release: "+lastHit.name);
                 //outline.OutlineMode = Outline.Mode.OutlineHidden;
                 outline.OutlineWidth = 3;
-                animatorBook.SetTrigger("Close");
+
+                if (lastHit.name == "tapa")
+                {
+                    animatorBook.SetBool("Close2",true);
+                }
+                if (lastHit.name == "gramo")
+                {
+                    animatorGramofono.SetBool("Settings",false);
+                }
             }
             lastHit = null;
         }
     }
-
 }
 

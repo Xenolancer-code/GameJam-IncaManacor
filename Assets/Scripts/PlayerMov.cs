@@ -136,4 +136,9 @@ public class PlayerMov : MonoBehaviour
     {
         playerIsDead = true;
     }
+
+    public void SetGravity(float newGravity)
+    {
+        gravityValue = newGravity;
+    }
 }

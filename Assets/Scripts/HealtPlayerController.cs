@@ -28,6 +28,7 @@ public class HealtPlayerController : MonoBehaviour
     }
     public void GetDamage(int hitPlayerHP)
     {
+        
         /*TODO
          * Manejar la "Vida"
          * Avisar al HUD Manager para que cambie el Icon
