@@ -61,7 +61,7 @@ public class PlayerModeSwap : MonoBehaviour
             yield return null;
         }
         
-        transform.position = endPos;
+        transform.position = startPos;
         //yield return new WaitForSeconds();
     }
 }
