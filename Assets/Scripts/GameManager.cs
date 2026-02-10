@@ -3,16 +3,15 @@ using TMPro;
 using UnityEngine.Rendering.Universal;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
 using UnityEditor.VersionControl;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Portal Settings")] 
-    [SerializeField] private ParticleSystem smokeScreen;
-    [SerializeField] private ParticleSystem smokeScreen2;
-    [SerializeField] private ParticleSystem smokeScreen3; 
+    [SerializeField] private List<ParticleSystem> smokeScreens = new();
+    private int currentSmokeIndex = 0;
     //Hacer lista de estos 3 objetos de forma serializada y que cada vez que se llama al metodo se elimina 1 culaquiera
     [SerializeField] private ParticleSystem portalGlow;
     [SerializeField] private GameObject protector;
@@ -62,6 +61,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDiePlayer += ObtainScoreData;
         MessageCentral.OnDiePlayer += DiePause;
         MessageCentral.OnAllSpawnersDestroyed +=ActivePortalToLight;
+        MessageCentral.OnSpawnerDestroyed += SmokeOut;
     }
 
     private void OnDisable()
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDiePlayer -= ObtainScoreData;
         MessageCentral.OnDiePlayer -= DiePause;
         MessageCentral.OnAllSpawnersDestroyed -=ActivePortalToLight;
+        MessageCentral.OnSpawnerDestroyed -= SmokeOut;
     }
 
     private void Awake()
@@ -171,7 +172,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    //
+    
     private void ActivePortalToLight()
     {
         Destroy(protector);
@@ -179,10 +180,18 @@ public class GameManager : MonoBehaviour
         portalGlow.Play();
     }
 
-    private void SmokeOut()
+    public void SmokeOut()
     {
-        //Deberia destruirse o apagarse de 1 en 1 los Particle system de humo
-        //Siendo llamado por "SpawnerDestroyed" del MessageCentral
+        if (currentSmokeIndex >= smokeScreens.Count)
+            return;
+
+        ParticleSystem currentSmoke = smokeScreens[currentSmokeIndex];
+
+        if (currentSmoke != null)
+        {
+            currentSmoke.Stop();
+        }
+        currentSmokeIndex++;
     }
 
     //Metodos de recopilación de datos

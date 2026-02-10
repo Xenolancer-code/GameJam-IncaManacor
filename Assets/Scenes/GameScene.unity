@@ -496,13 +496,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149208720}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 80, y: 0, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1792592349}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!64 &149208722
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1610,6 +1610,10 @@ PrefabInstance:
       propertyPath: altura
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5733088779949590988, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: portalLuz
+      value: 
+      objectReference: {fileID: 1447809987}
     - target: {fileID: 5733088779949590988, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: duracionImpulso
       value: 1
@@ -7126,6 +7130,22 @@ PrefabInstance:
       propertyPath: timeBeforePause
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: smokeScreens.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: 'smokeScreens.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1365220238}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: 'smokeScreens.Array.data[1]'
+      value: 
+      objectReference: {fileID: 852617895}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: 'smokeScreens.Array.data[2]'
+      value: 
+      objectReference: {fileID: 678598520}
     - target: {fileID: 5872858484470373014, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: m_Name
       value: GameManager
