@@ -1164,7 +1164,7 @@ Transform:
   m_GameObject: {fileID: 413350004}
   serializedVersion: 2
   m_LocalRotation: {x: 0.21671122, y: -0.003416741, z: 0.0007584753, w: 0.9762295}
-  m_LocalPosition: {x: -6.77495, y: 5.45, z: -27.11227}
+  m_LocalPosition: {x: -7.4749503, y: 5.5499997, z: -11.072269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1536,15 +1536,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: db37530d563004a419b352019bd82a8f, type: 2}
     - target: {fileID: 1626346281342570070, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1626346281342570070, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1626346281342570070, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.7
+      value: -7.66
       objectReference: {fileID: 0}
     - target: {fileID: 1626346281342570070, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1606,6 +1606,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: db37530d563004a419b352019bd82a8f, type: 2}
+    - target: {fileID: 5733088779949590988, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: altura
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5733088779949590988, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: duracionImpulso
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5958938456654911294, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2873,6 +2881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   collectionScene: {fileID: 904574844}
+  player: {fileID: 46049823}
   rotationSpeed: 0.5
   cooldown: 10
 --- !u!1 &904574844
@@ -4506,7 +4515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6e293b58c81c984fa52d9ef674d1a32, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.51
+      value: -1.41
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6e293b58c81c984fa52d9ef674d1a32, type: 3}
       propertyPath: m_LocalRotation.w

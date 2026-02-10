@@ -8,10 +8,10 @@ using UnityEngine.UIElements.Experimental;
 public class PlayerMov : MonoBehaviour
 {
     [Header("Basic movment")]
-    [SerializeField] private float playerSpeed = 5.0f; //Velocidad del jugador
-    [SerializeField] private float jumpHeight = 1.5f; //Altura de salto(!)
-    [SerializeField] private float rotationSpeed = 300; //Velocidad en la que rota
-    [SerializeField] private float gravityMultiplier = 1; //Cantidad de gravedad que le afecta(!)
+    [SerializeField] private float playerSpeed; //Velocidad del jugador
+    [SerializeField] private float jumpHeight; //Altura de salto(!)
+    [SerializeField] private float rotationSpeed; //Velocidad en la que rota
+    [SerializeField] private float gravityMultiplier; //Cantidad de gravedad que le afecta(!)
 
     [Header("Dash")]
     [SerializeField] private float dashSpeed = 10;
@@ -51,6 +51,7 @@ public class PlayerMov : MonoBehaviour
     {
         if(playerIsDead) return;
         gravityValue = Physics.gravity.y * gravityMultiplier; //Calcular gravedad
+        
         groundedPlayer = cc.isGrounded; //Revisar si player esta en el suelo
         animator.SetBool("Grounded", groundedPlayer);
         if (groundedPlayer && playerVerticalVelocity.y < 0)
@@ -139,6 +140,8 @@ public class PlayerMov : MonoBehaviour
 
     public void SetGravity(float newGravity)
     {
-        gravityValue = newGravity;
+        float gravityMultiplierOriginal = gravityMultiplier;
+        gravityMultiplier = newGravity;
+        
     }
 }

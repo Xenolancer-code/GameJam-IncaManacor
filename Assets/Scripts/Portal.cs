@@ -4,6 +4,7 @@ using System.Collections;
 public class Portal : MonoBehaviour
 {
     [SerializeField] private GameObject collectionScene;
+    [SerializeField] private GameObject player;
     [SerializeField] private float rotationSpeed = 6f;
     [SerializeField] private float cooldown = 10f;
 
@@ -14,7 +15,8 @@ public class Portal : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         if (!canActivate) return;
 
-        MessageCentral.SwapScene();
+       
+        player.SetActive(false);
         StartCoroutine(RotatePlane());
     }
 
@@ -32,8 +34,10 @@ public class Portal : MonoBehaviour
             collectionScene.transform.rotation = Quaternion.Slerp(start, end, t);
             yield return null;
         }
-
+        player.SetActive(true);
+        MessageCentral.SwapScene();
         yield return new WaitForSeconds(cooldown);
         canActivate = true;
+        
     }
 }

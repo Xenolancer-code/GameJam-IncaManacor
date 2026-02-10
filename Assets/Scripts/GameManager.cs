@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     [Header("Portal Settings")] 
     [SerializeField] private ParticleSystem smokeScreen;
     [SerializeField] private ParticleSystem smokeScreen2;
-    [SerializeField] private ParticleSystem smokeScreen3;
+    [SerializeField] private ParticleSystem smokeScreen3; 
+    //Hacer lista de estos 3 objetos de forma serializada y que cada vez que se llama al metodo se elimina 1 culaquiera
     [SerializeField] private ParticleSystem portalGlow;
     [SerializeField] private GameObject protector;
     [SerializeField] private GameObject protector2;

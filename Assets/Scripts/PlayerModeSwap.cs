@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class PlayerModeSwap : MonoBehaviour
     [SerializeField] private Material materialLuz;
     [SerializeField] private Material materialOscuro;
     private PlayerMov playerMov;
+    [SerializeField] private float altura;
+    [SerializeField] private float duracionImpulso;
     private void Awake()
     {
 
@@ -39,7 +42,26 @@ public class PlayerModeSwap : MonoBehaviour
             {
                 r.material = materialOscuro;
             }
-            playerMov.SetGravity(0);
         }
+        StartCoroutine(PortalImpulse());
+    }
+    //Corutina aqui
+    private IEnumerator PortalImpulse()
+    {
+        Vector3 startPos = transform.position;
+        Vector3 endPos = startPos + Vector3.up * altura;
+        float timer = 0f;
+
+        //Impulso (rápido al inicio, suave al final)
+        while (timer < duracionImpulso)
+        {
+            timer += Time.deltaTime;
+            float interpolator = timer / duracionImpulso;
+            transform.position = Vector3.Lerp(startPos, endPos, interpolator);
+            yield return null;
+        }
+        
+        transform.position = endPos;
+        //yield return new WaitForSeconds();
     }
 }
