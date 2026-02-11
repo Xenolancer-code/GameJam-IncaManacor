@@ -28,13 +28,7 @@ public class HealtPlayerController : MonoBehaviour
     }
     public void GetDamage(int hitPlayerHP)
     {
-        
-        /*TODO
-         * Manejar la "Vida"
-         * Avisar al HUD Manager para que cambie el Icon
-         * Sin "Vida" pueeess -> Die()
-         */
-        if (shieldGatingOn == true) return;
+        if(shieldGatingOn || playerIsDamaged) return;
         hpPoints -= hitPlayerHP;
         
         if(hpPoints >= 1)

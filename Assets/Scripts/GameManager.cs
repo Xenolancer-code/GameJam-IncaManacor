@@ -8,14 +8,21 @@ using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
 using UnityEditor.VersionControl;
 
+
 public class GameManager : MonoBehaviour
 {
+    [Header("Smoke Particles")]
     [SerializeField] private List<ParticleSystem> smokeScreens = new();
     private int currentSmokeIndex = 0;
     //Hacer lista de estos 3 objetos de forma serializada y que cada vez que se llama al metodo se elimina 1 culaquiera
     [SerializeField] private ParticleSystem portalGlow;
     [SerializeField] private GameObject protector;
     [SerializeField] private GameObject protector2;
+    [Header("Drop Settings")]
+    [SerializeField] private float dropRadius = 3f;
+    [SerializeField] private float jumpHeight = 1f;
+    [SerializeField] private float dropDuration = 0.4f;
+
     [Header("Score")]
     private ScoreReporter reporter;
     [SerializeField] private ScoreData scoreData;
@@ -24,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD; 
     [SerializeField] private GameObject deadMenu;
+    [SerializeField] HUDManager hudManager;
     [Header("Timer Settings")]
     public float currentTime;
     private bool isGameStarted = false;
@@ -31,8 +39,9 @@ public class GameManager : MonoBehaviour
     [Header("Player Settings")]
     public int sampleAmount = 0;
     public int maxSampleAmount = 100;
-    [SerializeField] GameObject playerPrefab;
-    [SerializeField] HUDManager hudManager;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject dropPrefab;
+    
     public static int INITDAMAGE= 10;
     public int INCREMENTDAMAGE = 5; //Cada 10%
     private const int INITRANGE = 1;
@@ -77,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        playerPrefab.SetActive(false);
+        player.SetActive(false);
         DontDestroyOnLoad(gameObject);
         reporter=GetComponent<ScoreReporter>();
     }
@@ -86,7 +95,7 @@ public class GameManager : MonoBehaviour
     {
         currentTime = 0;
         tutorialCam.Priority = 1;
-        playerAtk = playerPrefab.GetComponent<PlayerAtk>();
+        playerAtk = player.GetComponent<PlayerAtk>();
        
         playerAtk.finalDamage = INITDAMAGE;
         
@@ -116,7 +125,7 @@ public class GameManager : MonoBehaviour
         tutorialHUD.SetActive(false); 
         isGameStarted = true;
         MessageCentral.Start();
-        playerPrefab.SetActive(true);
+        player.SetActive(true);
         playerCam.Priority = 2;
     }
 
@@ -168,11 +177,57 @@ public class GameManager : MonoBehaviour
     {
         if (playerIsDamaged)
         {
+            int dropAmount = sampleAmount / 20;
             sampleAmount = 0;
+            hudManager.ReSizePowerBar();
+
+            for (int i = 0; i < dropAmount; i++)
+            {
+                Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * dropRadius;
+                Vector3 randomOffset = new Vector3(randomCircle.x, 0, randomCircle.y);
+
+                Vector3 targetPos = player.transform.position + randomOffset;
+
+                GameObject drop = Instantiate(dropPrefab, player.transform.position, Quaternion.identity);
+
+                StartCoroutine(JumpDrop(drop.transform, targetPos));
+            }
+
         }
     }
-    
-    
+    private IEnumerator JumpDrop(Transform drop, Vector3 targetPos)
+    {
+        float time = 0f;
+        Vector3 startPos = drop.position;
+
+        Collider col = drop.GetComponent<Collider>();
+        if (col != null)
+            col.enabled = false; 
+        while (time < dropDuration)
+        {
+            float t = time / dropDuration;
+
+            // Movimiento horizontal normal
+            Vector3 horizontalPos = Vector3.Lerp(startPos, targetPos, t);
+
+            // Curva parabólica para el salto
+            float height = 4 * jumpHeight * t * (1 - t);
+
+            drop.position = new Vector3(
+                horizontalPos.x,
+                horizontalPos.y + height,
+                horizontalPos.z
+            );
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        drop.position = targetPos;
+        yield return new WaitForSeconds(0.2f);
+        if (col != null)
+            col.enabled = true;
+    }
     private void ActivePortalToLight()
     {
         Destroy(protector);

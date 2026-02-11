@@ -7063,6 +7063,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 46049823}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: menuHUD
       value: 
       objectReference: {fileID: 3872228043664501538}
@@ -7090,6 +7094,14 @@ PrefabInstance:
       propertyPath: scoreData
       value: 
       objectReference: {fileID: 11400000, guid: a647100f837ba4d4b856b4f3bfe9575f, type: 2}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: dropPrefab
+      value: 
+      objectReference: {fileID: 8639030385552002631, guid: b82768b0a334c42499d0189211ec6c11, type: 3}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: dropRadius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: hudManager
       value: 
