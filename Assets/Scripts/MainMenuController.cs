@@ -10,9 +10,13 @@ public class MainMenuController : MonoBehaviour
     public LayerMask layerMask;
     private int activeCam = 1;
     private int inactiveCam = 0;
-    [SerializeField] private CinemachineCamera menucam;
-    [SerializeField] private CinemachineCamera settingscam;
-    [SerializeField] private Animator animatorGramo;
+    [Header("Referencia all cameras")]
+    [SerializeField] private CinemachineCamera camMenu;
+    [SerializeField] private CinemachineCamera camPlay;
+    [SerializeField] private CinemachineCamera camExit;
+    [SerializeField] private CinemachineCamera camAbout;
+    [SerializeField] private CinemachineCamera camSettings;
+    
 
     public void Exit()
     {
@@ -35,9 +39,20 @@ public class MainMenuController : MonoBehaviour
                 }
                 if (hit.collider.gameObject.name == "gramo")
                 {
-                    settingscam.Priority = inactiveCam;
-                    menucam.Priority = activeCam;
-                    animatorGramo.SetBool("Settings",false);
+                    camMenu.Priority = inactiveCam;
+                    camSettings.Priority = activeCam;
+                }
+
+                if (hit.collider.gameObject.name == "Cuadro")
+                {
+                    camMenu.Priority = inactiveCam;
+                    camAbout.Priority = activeCam;
+                }
+
+                if (hit.collider.gameObject.name == "Cube")
+                {
+                    camMenu.Priority = activeCam;
+                    camAbout.Priority = inactiveCam;
                 }
             }
         }
