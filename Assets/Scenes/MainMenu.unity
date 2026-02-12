@@ -2684,7 +2684,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  timeSpline: 1.5
+  timeSpline: 2
   camMenu: {fileID: 1763082652}
   camPlay: {fileID: 1695221449}
   camExit: {fileID: 1823595471}
@@ -2822,13 +2822,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248678069}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13051286, y: 0.014145515, z: -0.0018622918, w: 0.991344}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 132931742}
-  m_LocalEulerAnglesHint: {x: 15, y: 1.635, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1248678071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,7 +2836,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248678069}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5342500578afb24a9b83d6343d32a0f, type: 3}
   m_Name: 
@@ -2877,56 +2877,36 @@ MonoBehaviour:
       TangentIn:
         x: 0
         y: 0
-        z: -0.9487791
+        z: -2.9341843
       TangentOut:
         x: 0
         y: 0
-        z: 0.9487791
+        z: 2.9341843
       Rotation:
         value:
-          x: -0.12019723
-          y: -0.15997665
-          z: -0.020776328
-          w: 0.9795552
+          x: -0.08010091
+          y: -0.6134699
+          z: 0.02586109
+          w: 0.7852195
     - Position:
-        x: -1.1704799
-        y: 0.91890055
-        z: 3.4912043
+        x: -1.232
+        y: 0.5250001
+        z: 3.375
       TangentIn:
         x: 0
         y: 0
-        z: -0
+        z: -1.1842234
       TangentOut:
         x: 0
         y: 0
-        z: 0
+        z: 1.1842234
       Rotation:
         value:
           x: 0
-          y: 0
+          y: 0.7002064
           z: 0
-          w: 1
-    - Position:
-        x: 0
-        y: 0
-        z: 0
-      TangentIn:
-        x: 0
-        y: 0
-        z: -0
-      TangentOut:
-        x: 0
-        y: 0
-        z: 0
-      Rotation:
-        value:
-          x: 0
-          y: 0
-          z: 0
-          w: 1
+          w: 0.7139405
     m_MetaData:
-    - Mode: 2
-      Tension: 0.5
     - Mode: 2
       Tension: 0.5
     - Mode: 2
@@ -2935,14 +2915,7 @@ MonoBehaviour:
     m_IntData:
       m_Data: []
     m_FloatData:
-      m_Data:
-      - Key: 
-        Value:
-          m_IndexUnit: 0
-          m_DefaultValue: 0
-          m_DataPoints:
-          - m_Index: 0
-            m_Value: 0
+      m_Data: []
     m_Float4Data:
       m_Data: []
     m_ObjectData:
@@ -3387,7 +3360,7 @@ MonoBehaviour:
     Enabled: 0
     DefaultMode: 2
   DefaultBlend:
-    Style: 1
+    Style: 0
     Time: 2
     CustomCurve:
       serializedVersion: 2
@@ -3963,7 +3936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674134088}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.017551184, y: -0.082497634, z: -0.0014530991, w: 0.99643564}
+  m_LocalRotation: {x: -0.01755064, y: -0.08249762, z: -0.0014530643, w: 0.9964357}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

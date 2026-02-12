@@ -41,37 +41,58 @@ public class MainMenuController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
             {
-                if (hit.collider.gameObject.name == "tapa")
-                {
-                    SceneManager.LoadScene("GameScene");
-                }
-                if (hit.collider.gameObject.name == "gramo")
-                {
-                    camMenu.Priority = inactiveCam;
-                    camSettings.Priority = activeCam;
-                }
+                string objectClickedName = hit.collider.gameObject.name;
 
-                if (hit.collider.gameObject.name == "Cuadro")
+                switch (objectClickedName)      
                 {
-                    camMenu.Priority = inactiveCam;
-                    camAbout.Priority = activeCam;
-                    splineAbout.CameraPosition=0.5f;
-                }
-
-                if (hit.collider.gameObject.name == "Cube")
-                {
-                    StartCoroutine(ReturnCamMenu());
+                    case "tapa":
+                        //SceneManager.LoadScene("GameScene");
+                        StartCoroutine((MoveCamWithSpline(splinePlay,1f, timeSpline)));
+                        break;
+                    case "gramo":
+                        camMenu.Priority = inactiveCam;
+                        camSettings.Priority = activeCam;
+                        StartCoroutine((MoveCamWithSpline(splineSettings,1f, timeSpline)));
+                        break;
+                    case "key":
+                        camMenu.Priority = inactiveCam;
+                        StartCoroutine((MoveCamWithSpline(splineExit,1f, timeSpline)));
+                        break;
+                    case "Cuadro":
+                        camMenu.Priority = inactiveCam;
+                        camAbout.Priority = activeCam;
+                        StartCoroutine((MoveCamWithSpline(splineAbout,1f, timeSpline)));
+                        break;
+                    case "Cube":
+                        StartCoroutine(ReturnCamMenu());
+                        break;
                 }
             }
         }
     }
+
+    private IEnumerator MoveCamWithSpline(CinemachineSplineDolly spline,float target, float duration)
+    {
+        float start = spline.CameraPosition;;
+        //float end = 1f;
+
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float interpolator = (timer / duration);
+
+            spline.CameraPosition = Mathf.Lerp(start, target, interpolator);
+
+            yield return null;
+        }
+
+        spline.CameraPosition = target;
+    }
     private IEnumerator ReturnCamMenu()
     {
-        splinePlay.CameraPosition=1f;
-        splineSettings.CameraPosition=1f;
-        splineExit.CameraPosition=1f;
-        splineAbout.CameraPosition=1f;
-        yield return new WaitForSeconds(timeSpline);
+        yield return MoveCamWithSpline(splineAbout,0f, timeSpline);
         camMenu.Priority = activeCam;
         camPlay.Priority = inactiveCam;
         camSettings.Priority = inactiveCam;

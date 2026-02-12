@@ -197,21 +197,21 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator JumpDrop(Transform drop, Vector3 targetPos)
     {
-        float time = 0f;
+        float timer = 0f;
         Vector3 startPos = drop.position;
 
         Collider col = drop.GetComponent<Collider>();
         if (col != null)
             col.enabled = false; 
-        while (time < dropDuration)
+        while (timer < dropDuration)
         {
-            float t = time / dropDuration;
+            float interpolator = timer / dropDuration;
 
             // Movimiento horizontal normal
-            Vector3 horizontalPos = Vector3.Lerp(startPos, targetPos, t);
+            Vector3 horizontalPos = Vector3.Lerp(startPos, targetPos, interpolator);
 
             // Curva parabólica para el salto
-            float height = 4 * jumpHeight * t * (1 - t);
+            float height = 4 * jumpHeight * interpolator * (1 - interpolator);
 
             drop.position = new Vector3(
                 horizontalPos.x,
@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
                 horizontalPos.z
             );
 
-            time += Time.deltaTime;
+            timer += Time.deltaTime;
             yield return null;
         }
 
