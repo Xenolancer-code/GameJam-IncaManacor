@@ -47,6 +47,8 @@ public class MainMenuController : MonoBehaviour
                 {
                     case "tapa":
                         //SceneManager.LoadScene("GameScene");
+                        camMenu.Priority = inactiveCam;
+                        camPlay.Priority = activeCam;
                         StartCoroutine((MoveCamWithSpline(splinePlay,1f, timeSpline)));
                         break;
                     case "gramo":
@@ -56,6 +58,7 @@ public class MainMenuController : MonoBehaviour
                         break;
                     case "key":
                         camMenu.Priority = inactiveCam;
+                        camExit.Priority = activeCam;
                         StartCoroutine((MoveCamWithSpline(splineExit,1f, timeSpline)));
                         break;
                     case "Cuadro":
