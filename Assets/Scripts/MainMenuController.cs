@@ -67,7 +67,12 @@ public class MainMenuController : MonoBehaviour
                         StartCoroutine((MoveCamWithSpline(splineAbout,1f, timeSpline)));
                         break;
                     case "Cube":
-                        StartCoroutine(ReturnCamMenu());
+                        StartCoroutine(ReturnToMenu(
+                            camMenu,
+                            new CinemachineCamera[] { camPlay, camSettings, camExit, camAbout },
+                            new CinemachineSplineDolly[] { splinePlay, splineSettings, splineExit, splineAbout },
+                            timeSpline
+                        ));
                         break;
                 }
             }
@@ -93,13 +98,23 @@ public class MainMenuController : MonoBehaviour
 
         spline.CameraPosition = target;
     }
-    private IEnumerator ReturnCamMenu()
+    private IEnumerator ReturnToMenu(
+        CinemachineCamera menuCam,
+        CinemachineCamera[] otherCams,
+        CinemachineSplineDolly[] splines,
+        float duration)
     {
-        yield return MoveCamWithSpline(splineAbout,0f, timeSpline);
-        camMenu.Priority = activeCam;
-        camPlay.Priority = inactiveCam;
-        camSettings.Priority = inactiveCam;
-        camExit.Priority = inactiveCam;
-        camAbout.Priority = inactiveCam;
-    } 
+        foreach (var spline in splines)
+        {
+            yield return MoveCamWithSpline(spline, 0f, duration);
+        }
+        
+        menuCam.Priority = activeCam;
+
+        foreach (var cam in otherCams)
+        {
+            cam.Priority = inactiveCam;
+        }
+    }
+
 }
