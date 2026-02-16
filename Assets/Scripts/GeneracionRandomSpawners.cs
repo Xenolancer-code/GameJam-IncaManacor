@@ -33,11 +33,6 @@ public class GeneracionRandomSpawners : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        //CheckSpawnersState();
-    }
-
     // Genera X spawners a la vez
     private void GenerarSpawnsIniciales()
     {
