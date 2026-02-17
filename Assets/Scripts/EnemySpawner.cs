@@ -23,16 +23,14 @@ public class EnemySpawner : MonoBehaviour
     public bool spawnerActivation=true;
 
 
-
-
-    private void Start()
+    private void OnEnable()
     {
-        //Funcionalidad del Spawner
-        /* Cuando inicia el juego hay un periodo de gracia donde no se activa
-         * luego de eso hacen spawn X cantidad de enemigos a la vez, pudiendo aumentar en el tiempo
-         * (pero con un numero maximo de enemigos)[maybe] cuando un enemigo muere
-         * otro alomejor en 0,2s hace spawn para intentar siempre tener una buena cantidad de enemigos presentes
-         */
+        MessageCentral.OnSwapScene += SpawnerOffScreen;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnSwapScene -= SpawnerOffScreen;
     }
     void Update()
     {
@@ -124,7 +122,10 @@ public class EnemySpawner : MonoBehaviour
     {
         if (spawnerActivation)return;
         parentManager.RemoveSpawner(gameObject);
-        
+    }
+    private void SpawnerOffScreen()
+    {
+        gameObject.SetActive(false);
     }
 
 }

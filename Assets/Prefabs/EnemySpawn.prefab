@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486e19fddbd8b314ab5258ce624d0800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnTimer
-  isSpawnerActive: 1
   enemyPrefab: {fileID: 4843334104173152981, guid: 274e038ec8b9ee445a6cea6e34c44064, type: 3}
   maxEnemies: 5
   spawnRadius: 1
@@ -58,6 +57,7 @@ MonoBehaviour:
   initialDelay: 5
   smokePS: {fileID: 4172007428849908034}
   explosionPS: {fileID: 7869267440725865270}
+  spawnerActivation: 1
 --- !u!95 &3230123737924083020
 Animator:
   serializedVersion: 7
@@ -124,7 +124,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

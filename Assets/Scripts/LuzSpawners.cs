@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class LuzSpawners : MonoBehaviour
 {
+    private Animator animatorPortalSpawner;
     [SerializeField] GameObject player;
     [SerializeField] private float awakeTime = 5f;
-    private List<GameObject> enemiesAlive = new List<GameObject>();
+    private List<GameObject> enemiesAlive2 = new List<GameObject>();
     [SerializeField] private float initialDelay = 5f;     
     [SerializeField] private int maxEnemies = 5;    
     [SerializeField] private GameObject enemyLuzPrefab;
     private float timer = 0f;
-    public bool spawnerActivation=true;
-    
+    private bool spawnerActivation;
+
+    private void Awake()
+    {
+        animatorPortalSpawner = GetComponent<Animator>();
+    }
+    private void Start()
+    {
+    spawnerActivation=false;
+    }
     private void OnEnable()
     {
         MessageCentral.OnSwapScene += CorutinaSpawnerLuz;
@@ -41,7 +50,7 @@ public class LuzSpawners : MonoBehaviour
             return;
 
         // Si hay menos enemigos que el m?ximo
-        if (enemiesAlive.Count < maxEnemies)
+        if (enemiesAlive2.Count < maxEnemies)
         {
             timer = 0f;
             SpawnEnemy();
@@ -49,7 +58,7 @@ public class LuzSpawners : MonoBehaviour
 
         // Limpiar lista de enemigos que han sido destruidos
 
-        enemiesAlive.RemoveAll(e => e == null);
+        enemiesAlive2.RemoveAll(e => e == null);
     }
 
     void SpawnEnemy()
@@ -68,7 +77,7 @@ public class LuzSpawners : MonoBehaviour
             {
                 enemyMov.SetPlayer(player);
             }
-            enemiesAlive.Add(newEnemy);
+            enemiesAlive2.Add(newEnemy);
         }
     }
 
@@ -79,7 +88,9 @@ public class LuzSpawners : MonoBehaviour
 
     private IEnumerator AwakeSpawners()
     {
+        spawnerActivation=true;
         yield return new WaitForSeconds(awakeTime);
+        animatorPortalSpawner.SetTrigger("OpenPortal");
         ControllerSpawns();
     }
 
