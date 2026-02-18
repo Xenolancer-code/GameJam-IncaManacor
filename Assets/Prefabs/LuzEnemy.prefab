@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4344775436928601716}
   - component: {fileID: 6551765338179088805}
+  - component: {fileID: 7586791380902898575}
+  - component: {fileID: 3267774875121786649}
   m_Layer: 0
   m_Name: LuzEnemy
   m_TagString: Untagged
@@ -42,7 +44,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3827179903306521204}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: ba1431ece8f1e244d8ceb11292f1d537, type: 3}
   m_Controller: {fileID: 9100000, guid: 26ad4664bad29144cbed00cb99cc57cf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -55,6 +57,40 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &7586791380902898575
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827179903306521204}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &3267774875121786649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827179903306521204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b98d1d9fca95ab40af6a1dd7af47421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMov
 --- !u!1 &5893281087660824923
 GameObject:
   m_ObjectHideFlags: 0
