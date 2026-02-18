@@ -29,9 +29,9 @@ public class PlayerModeSwap : MonoBehaviour
 
     private void ChangeTexture()
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        SkinnedMeshRenderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 
-        foreach (Renderer r in renderers)
+        foreach (SkinnedMeshRenderer r in renderers)
         {
             
             if (r.material.name.StartsWith(materialOscuro.name))

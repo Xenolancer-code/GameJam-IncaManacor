@@ -40,20 +40,25 @@ public class LuzSpawners : MonoBehaviour
          -Cuando termina el juego tambíen se destruyen todos los enemigos
          -Y efectos visuales y/o animaciones
          */
-    
+        void Update()
+        {
+            if(spawnerActivation)
+            {
+                ControllerSpawns();
+            }
+        }
     private void ControllerSpawns()
     {
-        if(!spawnerActivation) return;
         timer += Time.deltaTime;
 
-        if (timer < initialDelay)
-            return;
+        if (timer < initialDelay) return;
 
         // Si hay menos enemigos que el m?ximo
         if (enemiesAlive2.Count < maxEnemies)
         {
             timer = 0f;
             SpawnEnemy();
+            Debug.Log("haciendo spawns luz");
         }
 
         // Limpiar lista de enemigos que han sido destruidos
@@ -69,6 +74,7 @@ public class LuzSpawners : MonoBehaviour
         {
             
             GameObject newEnemy = Instantiate(enemyLuzPrefab, spawnPos, Quaternion.identity);
+            Debug.Log("Enemigo instanciado");
             if(newEnemy.TryGetComponent(out EnemyAtk enemyAtk))
             {
                 enemyAtk.SetPlayer(player);
@@ -88,10 +94,9 @@ public class LuzSpawners : MonoBehaviour
 
     private IEnumerator AwakeSpawners()
     {
-        spawnerActivation=true;
         yield return new WaitForSeconds(awakeTime);
         animatorPortalSpawner.SetTrigger("OpenPortal");
-        ControllerSpawns();
+        spawnerActivation=true;
     }
 
     private void DesactiveEnemies()
