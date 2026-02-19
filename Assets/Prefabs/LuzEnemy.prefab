@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6551765338179088805}
   - component: {fileID: 7586791380902898575}
   - component: {fileID: 3267774875121786649}
+  - component: {fileID: 6065007726923912660}
   m_Layer: 0
   m_Name: LuzEnemy
   m_TagString: Untagged
@@ -91,6 +92,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b98d1d9fca95ab40af6a1dd7af47421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMov
+--- !u!114 &6065007726923912660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827179903306521204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d212bda5c23f7794da5d203e2354553a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthEnemyController
+  maxHealth: 100
+  textHealth: {fileID: 0}
+  dropPrefab: {fileID: 0}
+  bloodparticle: {fileID: 0}
 --- !u!1 &5893281087660824923
 GameObject:
   m_ObjectHideFlags: 0
