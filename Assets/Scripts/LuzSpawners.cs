@@ -5,7 +5,7 @@ using UnityEngine;
 public class LuzSpawners : MonoBehaviour
 {
     private Animator animatorPortalSpawner;
-    [SerializeField] GameObject player;
+    [SerializeField] private GameObject player;
     [SerializeField] private float awakeTime = 5f;
     private List<GameObject> enemiesAlive2 = new List<GameObject>();
     [SerializeField] private float initialDelay = 5f;     
@@ -75,9 +75,9 @@ public class LuzSpawners : MonoBehaviour
             
             GameObject newEnemy = Instantiate(enemyLuzPrefab, spawnPos, Quaternion.identity);
             Debug.Log("Enemigo instanciado");
-            if(newEnemy.TryGetComponent(out EnemyAtk enemyAtk))
+            if(newEnemy.TryGetComponent(out EnemyLuzAtk enemyLuzAtk))
             {
-                enemyAtk.SetPlayer(player);
+                enemyLuzAtk.SetPlayer2(player);
             }
             if(newEnemy.TryGetComponent(out EnemyMov enemyMov))
             {

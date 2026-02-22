@@ -1054,7 +1054,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5981163460485221948, guid: e2631997e296f1c4eaa7efb3b8e1c894, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 980626257}
   m_SourcePrefab: {fileID: 100100000, guid: e2631997e296f1c4eaa7efb3b8e1c894, type: 3}
 --- !u!4 &349373924 stripped
 Transform:
@@ -1148,6 +1151,7 @@ GameObject:
   - component: {fileID: 413350008}
   - component: {fileID: 413350007}
   - component: {fileID: 413350006}
+  - component: {fileID: 413350009}
   m_Layer: 0
   m_Name: Follow Player Camara
   m_TagString: Untagged
@@ -1261,6 +1265,45 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!114 &413350009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413350004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe43d662878a7c43bcd44d43c9e2094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDeoccluder
+  CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTag: 
+  TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  MinimumDistanceFromTarget: 0.1
+  AvoidObstacles:
+    Enabled: 1
+    DistanceLimit: 0
+    MinimumOcclusionTime: 0
+    CameraRadius: 0.1
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Strategy: 0
+    MaximumEffort: 4
+    SmoothingTime: 0.89
+    Damping: 1.08
+    DampingWhenOccluded: 1.22
+  ShotQualityEvaluation:
+    Enabled: 0
+    OptimalDistance: 10
+    NearLimit: 5
+    FarLimit: 30
+    MaxQualityBoost: 0.2
 --- !u!1 &450427080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1573,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 172445106081923770, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 172445106081923770, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: ghostMaterial
+      value: 
+      objectReference: {fileID: -6240049869330327794, guid: f8549a8924772cb409222a1b3006bdd2, type: 3}
     - target: {fileID: 1626346281342570070, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7
@@ -2292,7 +2343,7 @@ MonoBehaviour:
   awakeTime: 4
   initialDelay: 4
   maxEnemies: 5
-  enemyLuzPrefab: {fileID: 4843334104173152981, guid: 274e038ec8b9ee445a6cea6e34c44064, type: 3}
+  enemyLuzPrefab: {fileID: 3827179903306521204, guid: 8cf666fafa8de434da763338994534f3, type: 3}
 --- !u!1001 &765259695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2975,7 +3026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904574844}
   serializedVersion: 2
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2983,7 +3034,7 @@ Transform:
   - {fileID: 1800623310}
   - {fileID: 1792592349}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &957014249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3322,6 +3373,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976837168}
   m_CullTransparentMesh: 1
+--- !u!1 &980626256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5981163460485221948, guid: e2631997e296f1c4eaa7efb3b8e1c894, type: 3}
+  m_PrefabInstance: {fileID: 349373923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &980626257
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980626256}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1035684059
 GameObject:
   m_ObjectHideFlags: 0
@@ -6500,9 +6578,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: LuzEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3827179903306521204, guid: 8cf666fafa8de434da763338994534f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -19.73
       objectReference: {fileID: 0}
     - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6510,7 +6592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.09
       objectReference: {fileID: 0}
     - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
       propertyPath: m_LocalRotation.w
