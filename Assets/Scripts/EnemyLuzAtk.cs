@@ -54,6 +54,7 @@ public class EnemyLuzAtk : MonoBehaviour
     void Update()
     {
         if (isAttacking || playerIsDead) return;
+        PlayerInRange();
         if (playerInsideAttackRange)
         {
             TryAttack();
@@ -89,6 +90,18 @@ public class EnemyLuzAtk : MonoBehaviour
         isAttacking = false;
     }
 
+    private void PlayerInRange()
+    {
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance <= attackDistance)
+        {
+            playerInsideAttackRange = true;
+        }
+        else
+        {
+            playerInsideAttackRange = false;
+        }
+    }
     public void CastFireball()
     {
         GameObject fireball = Instantiate(

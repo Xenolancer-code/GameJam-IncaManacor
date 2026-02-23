@@ -12,7 +12,8 @@ public class MainMenuController : MonoBehaviour
     public LayerMask layerMask;
     private int activeCam = 1;
     private int inactiveCam = 0;
-    [SerializeField] private float timeSpline = 2.5f;
+    [SerializeField] private float timeSpline = 2f;
+    private bool cameraReachedEnd= false;
     [Header("Referencia all Cameras")]
     [SerializeField] private CinemachineCamera camMenu;
     [SerializeField] private CinemachineCamera camPlay;
@@ -35,7 +36,6 @@ public class MainMenuController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // Click izquierdo
         {
-       
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -47,10 +47,17 @@ public class MainMenuController : MonoBehaviour
                 {
                     case "tapa":
                         //SceneManager.LoadScene("GameScene");
-                        camMenu.Priority = inactiveCam;
-                        camPlay.Priority = activeCam;
-                        StartCoroutine((MoveCamWithSpline(splinePlay,1f, timeSpline)));
-                        break;
+                        if (cameraReachedEnd)
+                        {
+                            SceneManager.LoadScene("GameScene");
+                        }
+                        else
+                        {
+                            camMenu.Priority = inactiveCam;
+                            camPlay.Priority = activeCam;
+                            StartCoroutine((MoveCamWithSpline(splinePlay,1f, timeSpline)));
+                        }
+                        break;  
                     case "gramo":
                         camMenu.Priority = inactiveCam;
                         camSettings.Priority = activeCam;
@@ -66,15 +73,17 @@ public class MainMenuController : MonoBehaviour
                         camAbout.Priority = activeCam;
                         StartCoroutine((MoveCamWithSpline(splineAbout,1f, timeSpline)));
                         break;
-                    case "Cube":
-                        StartCoroutine(ReturnToMenu(
-                            camMenu,
-                            new CinemachineCamera[] { camPlay, camSettings, camExit, camAbout },
-                            new CinemachineSplineDolly[] { splinePlay, splineSettings, splineExit, splineAbout },
-                            timeSpline
-                        ));
-                        break;
                 }
+            }
+            else
+            {
+                cameraReachedEnd = false;
+                StartCoroutine(ReturnToMenu(
+                    camMenu,
+                    new CinemachineCamera[] { camPlay, camSettings, camExit, camAbout },
+                    new CinemachineSplineDolly[] { splinePlay, splineSettings, splineExit, splineAbout },
+                    timeSpline
+                ));
             }
         }
     }
@@ -97,6 +106,7 @@ public class MainMenuController : MonoBehaviour
         }
 
         spline.CameraPosition = target;
+        cameraReachedEnd = target >= 0.9;
     }
     private IEnumerator ReturnToMenu(
         CinemachineCamera menuCam,
@@ -104,16 +114,16 @@ public class MainMenuController : MonoBehaviour
         CinemachineSplineDolly[] splines,
         float duration)
     {
-        foreach (var spline in splines)
-        {
-            yield return MoveCamWithSpline(spline, 0f, duration);
-        }
-        
         menuCam.Priority = activeCam;
-
+        
         foreach (var cam in otherCams)
         {
             cam.Priority = inactiveCam;
+        }
+        
+        foreach (var spline in splines)
+        {
+            yield return MoveCamWithSpline(spline, 0f, duration);
         }
     }
 

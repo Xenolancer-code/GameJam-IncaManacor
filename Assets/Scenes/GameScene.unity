@@ -2107,6 +2107,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2003628781529242846, guid: f9d9793366789ae48a7e1b0692763acc, type: 3}
   m_PrefabInstance: {fileID: 678598517}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &718455531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6567661072904554217, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+  m_PrefabInstance: {fileID: 535416095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &733089599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2339,7 +2344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e54208cc68854a468c20ab2cdb53926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LuzSpawners
-  player: {fileID: 46049823}
+  player: {fileID: 718455531}
   awakeTime: 4
   initialDelay: 4
   maxEnemies: 5

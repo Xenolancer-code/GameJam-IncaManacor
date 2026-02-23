@@ -1951,7 +1951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600065823}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08411901, y: 0.22903125, z: -0.019870456, w: 0.9695741}
+  m_LocalRotation: {x: 0.08411899, y: 0.22903126, z: -0.019870454, w: 0.9695741}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2810,6 +2810,58 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1217438573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217438575}
+  - component: {fileID: 1217438574}
+  m_Layer: 0
+  m_Name: Target Group
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1217438574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217438573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineTargetGroup
+  PositionMode: 0
+  RotationMode: 1
+  UpdateMethod: 2
+  Targets:
+  - Object: {fileID: 391028532}
+    Weight: 1
+    Radius: 1
+  m_LegacyTargets: []
+--- !u!4 &1217438575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217438573}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071067, w: 0}
+  m_LocalPosition: {x: -0.155, y: 0.70746, z: -0.957}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1248678069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2836,7 +2888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248678069}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.13051288, y: 0.014145515, z: -0.0018622922, w: 0.991344}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3074,7 +3126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291441680}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13051286, y: 0.014145515, z: -0.0018622918, w: 0.991344}
+  m_LocalRotation: {x: 0.13051288, y: 0.014145515, z: -0.0018622922, w: 0.991344}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3136,10 +3188,10 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: 0
-          y: 0
-          z: 0
-          w: 1
+          x: 0.13051291
+          y: 0.014145522
+          z: -0.0018622935
+          w: 0.991344
     - Position:
         x: 0.010192163
         y: -0.21807748
@@ -3374,7 +3426,7 @@ MonoBehaviour:
     Enabled: 0
     DefaultMode: 2
   DefaultBlend:
-    Style: 0
+    Style: 1
     Time: 2
     CustomCurve:
       serializedVersion: 2
@@ -3733,7 +3785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548372019}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13051286, y: 0.014145515, z: -0.0018622918, w: 0.991344}
+  m_LocalRotation: {x: 0.13051288, y: 0.014145515, z: -0.0018622922, w: 0.991344}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3950,7 +4002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674134088}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.01755064, y: -0.08249762, z: -0.0014530643, w: 0.9964357}
+  m_LocalRotation: {x: -0.01755063, y: -0.08249764, z: -0.0014530645, w: 0.9964357}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4074,7 +4126,7 @@ GameObject:
   - component: {fileID: 1695221446}
   - component: {fileID: 1695221449}
   - component: {fileID: 1695221448}
-  - component: {fileID: 1695221447}
+  - component: {fileID: 1695221450}
   m_Layer: 0
   m_Name: CamPlay
   m_TagString: Untagged
@@ -4090,42 +4142,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695221445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27517757, y: 0.003025581, z: -0.00086600974, w: 0.96138835}
+  m_LocalRotation: {x: 0.27517754, y: 0.0030255828, z: -0.00086601067, w: 0.9613883}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 132931742}
-  m_LocalEulerAnglesHint: {x: 15, y: 1.635, z: 0}
---- !u!114 &1695221447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1695221445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 0
-      Size: {x: 0.2, y: 0.2}
-    HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
-  Lookahead:
-    Enabled: 0
-    Time: 0
-    Smoothing: 0
-    IgnoreY: 0
+  m_LocalEulerAnglesHint: {x: 152.7, y: 180.361, z: 180}
 --- !u!114 &1695221448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4146,8 +4169,8 @@ MonoBehaviour:
   CameraRotation: 0
   Damping:
     Enabled: 0
-    Position: {x: 0, y: 0, z: 0}
-    Angular: 0
+    Position: {x: 3, y: 3, z: 0}
+    Angular: 10
   AutomaticDolly:
     Enabled: 0
     Method:
@@ -4181,7 +4204,7 @@ MonoBehaviour:
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 391028532}
-    LookAtTarget: {fileID: 0}
+    LookAtTarget: {fileID: 391028532}
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60.000004
@@ -4202,7 +4225,20 @@ MonoBehaviour:
       Curvature: {x: 2, y: 11}
       BarrelClipping: 0.25
       Anamorphism: 0
-  BlendHint: 0
+  BlendHint: 1
+--- !u!114 &1695221450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695221445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLookAt
+  LookAtOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1763082651
 GameObject:
   m_ObjectHideFlags: 0
@@ -4305,7 +4341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823595467}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.28258508, y: 0.2937874, z: -0.09137505, w: 0.90856224}
+  m_LocalRotation: {x: 0.28258505, y: 0.2937874, z: -0.09137505, w: 0.90856224}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4436,7 +4472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1823796093
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4556,7 +4592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842124242}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13051286, y: 0.014145515, z: -0.0018622918, w: 0.991344}
+  m_LocalRotation: {x: 0.13051288, y: 0.014145515, z: -0.0018622922, w: 0.991344}
   m_LocalPosition: {x: -0.163, y: 1.5, z: -2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4623,9 +4659,9 @@ MonoBehaviour:
           z: 0
           w: 1
     - Position:
-        x: 1
-        y: 0
-        z: 0
+        x: 0.726863
+        y: -0.40306765
+        z: 0.74054277
       TangentIn:
         x: 0
         y: 0
@@ -5628,3 +5664,4 @@ SceneRoots:
   - {fileID: 1823796096}
   - {fileID: 395442486}
   - {fileID: 572809201}
+  - {fileID: 1217438575}
