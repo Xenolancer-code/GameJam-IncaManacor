@@ -1,31 +1,46 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
     [SerializeField] private float speed = 8f;
+    [SerializeField] private float rotationSpeed = 180;
     [SerializeField] private float maxDistance = 12f;
     private int hitPlayerHP = 1;
 
-    private Vector3 direction;
+    private Transform target;
     private Vector3 startPosition;
+    
 
-    public void Init(Vector3 dir)
+    public void Init(Transform _target)
     {
-        direction = dir;
+        target = _target;
         startPosition = transform.position;
+        transform.LookAt(target);
 
-        // Rotar visualmente hacia donde dispara
-        transform.forward = direction;
+        // // Rotar visualmente hacia donde dispara
+        // transform.forward = direction;
     }
 
     private void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
+        // transform.position += direction * speed * Time.deltaTime;
+        
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        RotateToPlayer();
 
         if (Vector3.Distance(startPosition, transform.position) >= maxDistance)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void RotateToPlayer()
+    {
+        Vector3 directionToPlayer = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

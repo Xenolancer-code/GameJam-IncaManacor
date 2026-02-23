@@ -110,9 +110,9 @@ public class EnemyLuzAtk : MonoBehaviour
             Quaternion.identity
         );
 
-        Vector3 direction = (player.transform.position - fireballPoint.position).normalized;
+        // Vector3 direction = (player.transform.position - fireballPoint.position).normalized;
 
-        fireball.GetComponent<FireBall>().Init(direction);
+        fireball.GetComponent<FireBall>().Init(player.transform);
 
         fireEffect.Stop();
     }

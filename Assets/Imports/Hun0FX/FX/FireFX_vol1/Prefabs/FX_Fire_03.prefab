@@ -9702,7 +9702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireBall
   speed: 8
-  maxDistance: 12
+  rotationSpeed: 180
+  maxDistance: 200
 --- !u!135 &5613702939522792177
 SphereCollider:
   m_ObjectHideFlags: 0
