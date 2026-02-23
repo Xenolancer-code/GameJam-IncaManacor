@@ -9701,9 +9701,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b6e4318a59dd439523ab333ec60f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireBall
-  speed: 8
+  speed: 6
   rotationSpeed: 180
-  maxDistance: 200
+  maxDistance: 30
 --- !u!135 &5613702939522792177
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -6,12 +6,18 @@ public class FireBall : MonoBehaviour
 {
     [SerializeField] private float speed = 8f;
     [SerializeField] private float rotationSpeed = 180;
+    private Vector3 lastPosition;
+    private float distanceTravelled = 0f;
     [SerializeField] private float maxDistance = 12f;
     private int hitPlayerHP = 1;
 
     private Transform target;
     private Vector3 startPosition;
-    
+
+    void Start()
+    {
+        lastPosition = transform.position;
+    }
 
     public void Init(Transform _target)
     {
@@ -30,7 +36,13 @@ public class FireBall : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         RotateToPlayer();
 
-        if (Vector3.Distance(startPosition, transform.position) >= maxDistance)
+        // Calcular cuánto se movió este frame
+        float frameDistance = Vector3.Distance(transform.position, lastPosition);
+        distanceTravelled += frameDistance;
+
+        lastPosition = transform.position;
+
+        if (distanceTravelled >= maxDistance)
         {
             Destroy(gameObject);
         }
