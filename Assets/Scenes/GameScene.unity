@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 2d056ac30ecc9e542b26e06133f23602, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -7240,6 +7240,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a647100f837ba4d4b856b4f3bfe9575f, type: 2}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: skyboxDay
+      value: 
+      objectReference: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: dropPrefab
       value: 
       objectReference: {fileID: 8639030385552002631, guid: b82768b0a334c42499d0189211ec6c11, type: 3}
@@ -7259,6 +7263,10 @@ PrefabInstance:
       propertyPath: protector2
       value: 
       objectReference: {fileID: 17678434}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: skyboxNight
+      value: 
+      objectReference: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: smokeScreen
       value: 

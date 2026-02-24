@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float dropRadius = 3f;
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float dropDuration = 0.4f;
-
+    [Header("SkyBox")]
+    [SerializeField] private Material skyboxDay;
+    [SerializeField] private Material skyboxNight;
     [Header("Score")]
     private ScoreReporter reporter;
     [SerializeField] private ScoreData scoreData;
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        RenderSettings.skybox = skyboxNight;
         player.SetActive(false);
         DontDestroyOnLoad(gameObject);
         reporter=GetComponent<ScoreReporter>();
@@ -125,7 +128,8 @@ public class GameManager : MonoBehaviour
 
     private void SkyboxChange()
     {
-        
+        RenderSettings.skybox = skyboxDay;
+        DynamicGI.UpdateEnvironment();
     }
     
     

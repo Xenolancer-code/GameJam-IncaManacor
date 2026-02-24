@@ -17,7 +17,6 @@ public class EnemyLuzAtk : MonoBehaviour
     [SerializeField] Transform fireballPoint;
     [SerializeField] ParticleSystem fireEffect;
     
-    private int hitPlayerHP = 1;
     private bool playerInsideAttackRange = false;
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
