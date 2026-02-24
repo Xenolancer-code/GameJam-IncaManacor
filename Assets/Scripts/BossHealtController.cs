@@ -2,7 +2,16 @@ using UnityEngine;
 
 public class BossHealtController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    
+    
+    
+    /*Todo:
+     El boss tiene un barra de vida que solo baja con el Atk AoE
+     Si es atacado con el AoE Reproducir efectos especiales de daño
+     Si es atacado de otra manera Reproducir efectos especiales de inmunidad
+     Al morir el juego termina
+     */
     void Start()
     {
         

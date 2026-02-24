@@ -35,10 +35,9 @@ public class FireBall : MonoBehaviour
         
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         RotateToPlayer();
-
-        // Calcular cuánto se movió este frame
-        float frameDistance = Vector3.Distance(transform.position, lastPosition);
-        distanceTravelled += frameDistance;
+        
+        float travelDistance = Vector3.Distance(transform.position, lastPosition);
+        distanceTravelled += travelDistance;
 
         lastPosition = transform.position;
 

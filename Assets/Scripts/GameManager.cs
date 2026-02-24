@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDiePlayer += DiePause;
         MessageCentral.OnAllSpawnersDestroyed +=ActivePortalToLight;
         MessageCentral.OnSpawnerDestroyed += SmokeOut;
+        MessageCentral.OnSwapScene += SkyboxChange;
     }
 
     private void OnDisable()
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDiePlayer -= DiePause;
         MessageCentral.OnAllSpawnersDestroyed -=ActivePortalToLight;
         MessageCentral.OnSpawnerDestroyed -= SmokeOut;
+        MessageCentral.OnSwapScene -= SkyboxChange;
     }
 
     private void Awake()
@@ -120,6 +122,15 @@ public class GameManager : MonoBehaviour
              
         }
     }
+
+    private void SkyboxChange()
+    {
+        
+    }
+    
+    
+    
+    
     public void StartTimer()
     {
         tutorialHUD.SetActive(false); 
