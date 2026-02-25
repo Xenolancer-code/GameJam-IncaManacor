@@ -4,6 +4,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class MainMenuController : MonoBehaviour
     private int inactiveCam = 0;
     [SerializeField] private float timeSpline = 2f;
     private bool cameraReachedEnd= false;
+
+    [Header("Referencias SoundCanvas")] 
+    [SerializeField] private Button btnMusic;
+    [SerializeField] private Button btnFX;
+    [SerializeField] private Slider volumeMusic;
+    [SerializeField] private Slider volumeFX;
     [Header("Referencia all Cameras")]
     [SerializeField] private CinemachineCamera camMenu;
     [SerializeField] private CinemachineCamera camPlay;
@@ -30,6 +37,14 @@ public class MainMenuController : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    private void Start()
+    {
+        btnMusic.interactable = false;
+        btnFX.interactable = false;
+        volumeMusic.interactable = false;
+        volumeFX.interactable = false;
     }
 
     void Update()
@@ -59,9 +74,19 @@ public class MainMenuController : MonoBehaviour
                         }
                         break;  
                     case "gramo":
-                        camMenu.Priority = inactiveCam;
-                        camSettings.Priority = activeCam;
-                        StartCoroutine((MoveCamWithSpline(splineSettings,1f, timeSpline)));
+                        if (cameraReachedEnd)
+                        {
+                            btnMusic.interactable = true;
+                            btnFX.interactable = true;
+                            volumeMusic.interactable = true;
+                            volumeFX.interactable = true;
+                        }
+                        else
+                        {
+                            camMenu.Priority = inactiveCam;
+                            camSettings.Priority = activeCam;
+                            StartCoroutine((MoveCamWithSpline(splineSettings,1f, timeSpline)));    
+                        }
                         break;
                     case "key":
                         camMenu.Priority = inactiveCam;
@@ -115,6 +140,10 @@ public class MainMenuController : MonoBehaviour
         float duration)
     {
         menuCam.Priority = activeCam;
+        btnMusic.interactable = false;
+        btnFX.interactable = false;
+        volumeMusic.interactable = false;
+        volumeFX.interactable = false;
         
         foreach (var cam in otherCams)
         {
