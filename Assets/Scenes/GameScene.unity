@@ -2719,6 +2719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 172445106081923770, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+    - {fileID: 4833379436937629883, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4656,7 +4657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904574844}
   serializedVersion: 2
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4664,7 +4665,7 @@ Transform:
   - {fileID: 1800623310}
   - {fileID: 1792592349}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &956115317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8487,6 +8488,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreReporter
   apiBaseUrl: https://phpstack-1076337-5399863.cloudwaysapps.com
   submitPath: /api/classification
+--- !u!114 &1660104166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660104161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556a925fbef3fa340962c973a838e021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolManager
 --- !u!1001 &1663637529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10316,67 +10329,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &693033779079199274
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3827179903306521204, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_Name
-      value: LuzEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3827179903306521204, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -19.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344775436928601716, guid: 8cf666fafa8de434da763338994534f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8cf666fafa8de434da763338994534f3, type: 3}
 --- !u!114 &797417176719817440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11171,6 +11123,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5872858484470373014, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1660104164}
+    - targetCorrespondingSourceObject: {fileID: 5872858484470373014, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1660104166}
   m_SourcePrefab: {fileID: 100100000, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
 --- !u!222 &9205493342333743594
 CanvasRenderer:
@@ -11197,4 +11152,3 @@ SceneRoots:
   - {fileID: 535416095}
   - {fileID: 904574845}
   - {fileID: 744262820}
-  - {fileID: 693033779079199274}

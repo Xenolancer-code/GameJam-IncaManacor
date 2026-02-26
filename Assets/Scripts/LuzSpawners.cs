@@ -58,7 +58,6 @@ public class LuzSpawners : MonoBehaviour
         {
             timer = 0f;
             SpawnEnemy();
-            Debug.Log("haciendo spawns luz");
         }
 
         // Limpiar lista de enemigos que han sido destruidos
@@ -73,7 +72,7 @@ public class LuzSpawners : MonoBehaviour
         if (spawnPos != Vector3.zero)
         {
             
-            GameObject newEnemy = Instantiate(enemyLuzPrefab, spawnPos, Quaternion.identity);
+            GameObject newEnemy = PoolManager.SpawnObject(enemyLuzPrefab, spawnPos, Quaternion.identity);
             Debug.Log("Enemigo instanciado");
             if(newEnemy.TryGetComponent(out EnemyLuzAtk enemyLuzAtk))
             {

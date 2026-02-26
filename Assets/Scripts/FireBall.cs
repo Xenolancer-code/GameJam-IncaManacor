@@ -14,7 +14,7 @@ public class FireBall : MonoBehaviour
     private Transform target;
     private Vector3 startPosition;
 
-    void Start()
+    private void OnEnable()
     {
         lastPosition = transform.position;
     }
@@ -44,6 +44,7 @@ public class FireBall : MonoBehaviour
         if (distanceTravelled >= maxDistance)
         {
             Destroy(gameObject);
+            //PoolManager.ReturnObjectToPool(gameObject);
         }
     }
 
@@ -60,6 +61,7 @@ public class FireBall : MonoBehaviour
         {
             health.GetDamage(hitPlayerHP);
             Destroy(gameObject);
+            //PoolManager.ReturnObjectToPool(gameObject);
         }
     }
 }

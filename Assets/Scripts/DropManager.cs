@@ -9,7 +9,7 @@ public class DropManager : MonoBehaviour
         if (detect.CompareTag("Player"))
         {
             MessageCentral.PickupSample(20);
-            Destroy(gameObject);
+            PoolManager.ReturnObjectToPool(gameObject);
         }
     }
 

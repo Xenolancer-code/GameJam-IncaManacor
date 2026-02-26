@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,10 +10,12 @@ public class HealthEnemyController : MonoBehaviour
     [SerializeField] private GameObject dropPrefab;
     [SerializeField] private GameObject bloodparticle;
     
-    private void Awake()
+    private void OnEnable()
     {
         currentHealth = maxHealth;
+        textHealth.text = maxHealth.ToString();
     }
+
     public void GetDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
@@ -26,11 +29,14 @@ public class HealthEnemyController : MonoBehaviour
     }
     private void Die()
     {
-        //TODO Logica de morirse(particulas,sonido animacion etc)
         MessageCentral.DieEnemy();
-        Destroy(gameObject);
+        PoolManager.ReturnObjectToPool(gameObject);
+    }
+
+    private void OnDisable()
+    {
         Vector3 arriba = new Vector3 (0,0.5f,0);
-        GameObject particle = Instantiate(bloodparticle, transform.position+arriba, Quaternion.identity);
-        GameObject drop = Instantiate(dropPrefab, transform.position+arriba, Quaternion.identity);
+        GameObject particle = PoolManager.SpawnObject(bloodparticle, transform.position+arriba, Quaternion.identity);
+        GameObject drop = PoolManager.SpawnObject(dropPrefab, transform.position+arriba, Quaternion.identity);
     }
 }

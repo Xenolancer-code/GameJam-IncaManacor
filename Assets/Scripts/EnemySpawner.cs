@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
         if (spawnPos != Vector3.zero)
         {
             
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            GameObject newEnemy = PoolManager.SpawnObject(enemyPrefab, spawnPos, Quaternion.identity);
             if(newEnemy.TryGetComponent(out EnemyAtk enemyAtk))
             {
                 enemyAtk.SetPlayer(player);

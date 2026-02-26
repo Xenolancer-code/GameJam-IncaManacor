@@ -33,11 +33,11 @@ public class EnemyLuzAtk : MonoBehaviour
     {
         enemyAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        fireEffect.Stop();
     }
     private void OnEnable()
     {
         MessageCentral.OnDiePlayer += PlayerisDead;
+        fireEffect.Stop();
     }
 
     private void OnDisable()
@@ -103,13 +103,8 @@ public class EnemyLuzAtk : MonoBehaviour
     }
     public void CastFireball()
     {
-        GameObject fireball = Instantiate(
-            fireballPrefab,
-            fireballPoint.position,
-            Quaternion.identity
-        );
-
-        // Vector3 direction = (player.transform.position - fireballPoint.position).normalized;
+        GameObject fireball = Instantiate(fireballPrefab, fireballPoint.position, Quaternion.identity);
+        //GameObject fireball = PoolManager.SpawnObject(fireballPrefab, fireballPoint.position, Quaternion.identity);
 
         fireball.GetComponent<FireBall>().Init(player.transform);
 
