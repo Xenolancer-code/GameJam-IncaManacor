@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
         if(spawnerActivation)
         {
             ControllerSpawns();
-        }
+        }  
         else
         {
             SelfDestroy();
@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
 
             // Limpiar lista de enemigos que han sido destruidos
 
-            enemiesAlive.RemoveAll(e => e == null);
+            enemiesAlive.RemoveAll(e => !e.activeSelf);
     }
 
     void SpawnEnemy()

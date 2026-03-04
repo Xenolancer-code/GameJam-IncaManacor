@@ -649,7 +649,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827312681579402940}
-  - component: {fileID: 4833379436937629883}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -675,34 +674,6 @@ Transform:
   - {fileID: 6261489437215995215}
   m_Father: {fileID: 1626346281342570070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4833379436937629883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288710855335441717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26e20b1d565b2a42bf1f5ae5455c17f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeshAfterimagePool
-  sources: []
-  ghostMaterial: {fileID: 0}
-  colorProperty: _BaseColor
-  spawnInterval: 0.05
-  lifeTime: 0.4
-  initialPoolSize: 16
-  canExpandPool: 1
-  startAlpha: 0.75
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  emitWhenMovingOnly: 0
-  minDistanceToEmit: 0.02
 --- !u!1 &2410389808107201321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,7 +1261,6 @@ GameObject:
   - component: {fileID: 2251663642765610059}
   - component: {fileID: 2762195831936563495}
   - component: {fileID: 5733088779949590988}
-  - component: {fileID: 172445106081923770}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1465,34 +1435,6 @@ MonoBehaviour:
   materialOscuro: {fileID: 2100000, guid: db37530d563004a419b352019bd82a8f, type: 2}
   altura: 5
   duracionImpulso: 1
---- !u!114 &172445106081923770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3305994167233530112}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26e20b1d565b2a42bf1f5ae5455c17f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeshAfterimagePool
-  sources: []
-  ghostMaterial: {fileID: 2100000, guid: db1b76f76a985b4429ac1294eca09d43, type: 2}
-  colorProperty: _BaseColor
-  spawnInterval: 0.05
-  lifeTime: 0.4
-  initialPoolSize: 16
-  canExpandPool: 1
-  startAlpha: 0.75
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  emitWhenMovingOnly: 1
-  minDistanceToEmit: 0.02
 --- !u!1 &3590840585694569342
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,27 +3043,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.033333335
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.03333332
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.03333332
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00024248782
+      value: 0.00054
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00077314174
+      value: 0.00073
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00010215593
+      value: -0.00023
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3150,6 +3092,10 @@ PrefabInstance:
     - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -136.325
+      objectReference: {fileID: 0}
+    - target: {fileID: 3402698728817732020, guid: bb2273c7919a6ad4bacc3198a1e0fd5b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

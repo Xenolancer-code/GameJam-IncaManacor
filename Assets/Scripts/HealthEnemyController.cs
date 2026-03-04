@@ -36,7 +36,7 @@ public class HealthEnemyController : MonoBehaviour
     private void OnDisable()
     {
         Vector3 arriba = new Vector3 (0,0.5f,0);
-        GameObject particle = PoolManager.SpawnObject(bloodparticle, transform.position+arriba, Quaternion.identity);
+        //GameObject particle = PoolManager.SpawnObject(bloodparticle, transform.position+arriba, Quaternion.identity);
         GameObject drop = PoolManager.SpawnObject(dropPrefab, transform.position+arriba, Quaternion.identity);
     }
 }

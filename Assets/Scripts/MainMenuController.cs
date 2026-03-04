@@ -89,9 +89,17 @@ public class MainMenuController : MonoBehaviour
                         }
                         break;
                     case "key":
-                        camMenu.Priority = inactiveCam;
-                        camExit.Priority = activeCam;
-                        StartCoroutine((MoveCamWithSpline(splineExit,1f, timeSpline)));
+                        if (cameraReachedEnd)
+                        {
+                            Application.Quit();
+                        }
+                        else
+                        {
+                            camMenu.Priority = inactiveCam;
+                            camExit.Priority = activeCam;
+                            StartCoroutine((MoveCamWithSpline(splineExit,1f, timeSpline)));
+                        }
+                        
                         break;
                     case "Cuadro":
                         camMenu.Priority = inactiveCam;

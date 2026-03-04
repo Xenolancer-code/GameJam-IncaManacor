@@ -62,7 +62,7 @@ public class LuzSpawners : MonoBehaviour
 
         // Limpiar lista de enemigos que han sido destruidos
 
-        enemiesAlive2.RemoveAll(e => e == null);
+        enemiesAlive2.RemoveAll(e => !e.activeSelf);
     }
 
     void SpawnEnemy()
