@@ -34,7 +34,7 @@ public class ZoneManager : MonoBehaviour
             spawner.spawnerActivation = false;
             spawner.smokePS.Play();
             spawner.explosionPS.Play();
-            
+            AudioManager.I.PlaySound(SoundName.EliminateSmoke,spawner.transform);
         }
     }
 

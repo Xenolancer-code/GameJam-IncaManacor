@@ -32,12 +32,6 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private CinemachineSplineDolly splineExit;
     [SerializeField] private CinemachineSplineDolly splineAbout;
     [SerializeField] private CinemachineSplineDolly splineSettings;
-    
-
-    public void Exit()
-    {
-        Application.Quit();
-    }
 
     private void Start()
     {
@@ -61,7 +55,6 @@ public class MainMenuController : MonoBehaviour
                 switch (objectClickedName)      
                 {
                     case "tapa":
-                        //SceneManager.LoadScene("GameScene");
                         if (cameraReachedEnd)
                         {
                             SceneManager.LoadScene("GameScene");
@@ -124,7 +117,6 @@ public class MainMenuController : MonoBehaviour
     private IEnumerator MoveCamWithSpline(CinemachineSplineDolly spline,float target, float duration)
     {
         float start = spline.CameraPosition;;
-        //float end = 1f;
 
         float timer = 0f;
 

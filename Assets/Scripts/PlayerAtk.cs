@@ -41,6 +41,7 @@ public class PlayerAtk : MonoBehaviour
     public void BasicAtk()
     {
         animator.SetTrigger("LeftClick");
+        AudioManager.I.PlaySound(SoundName.SlashPlayer,transform);
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
         //Llista que guarda la distancia del enemics sobre el player
