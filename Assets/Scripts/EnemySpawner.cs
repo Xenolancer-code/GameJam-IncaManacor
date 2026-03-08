@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     private GeneracionRandomSpawners parentManager;
     [Header("Spawner Settings")]
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private List<GameObject> enemysPrefab = new();
     private GameObject player;
     [SerializeField] private int maxEnemies = 5;            
     [SerializeField] private float spawnRadius = 20f;      
