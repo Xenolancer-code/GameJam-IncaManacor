@@ -560,7 +560,262 @@ Avatar:
   m_HumanDescription:
     serializedVersion: 3
     m_Human: []
-    m_Skeleton: []
+    m_Skeleton:
+    - m_Name: BossAnimated(Clone)
+      m_ParentName: 
+      m_Position: {x: 0, y: 0, z: 0}
+      m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: Cuernos
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: 9.485658e-16, z: -0.000000021700659}
+      m_Rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      m_Scale: {x: 100, y: 100, z: 100}
+    - m_Name: Cuerpo
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: -3.970467e-23, z: 7.4115383e-22}
+      m_Rotation: {x: 0.00000006717942, y: 0, z: -0, w: 1}
+      m_Scale: {x: 100, y: 100.000015, z: 100.000015}
+    - m_Name: Dientes
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: 1.3437783e-16, z: -0.0000000030742073}
+      m_Rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      m_Scale: {x: 100, y: 100, z: 100}
+    - m_Name: Ojo derecho
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: 3.970467e-23, z: -1.7763561e-15}
+      m_Rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      m_Scale: {x: 100, y: 100, z: 100}
+    - m_Name: Ojo izquierdo
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: 3.970467e-23, z: -1.7763561e-15}
+      m_Rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      m_Scale: {x: 100, y: 100, z: 100}
+    - m_Name: Parpado inf der
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: 3.970467e-23, z: -1.7763561e-15}
+      m_Rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      m_Scale: {x: 100, y: 100, z: 100}
+    - m_Name: Parpado inf izq
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: 3.970467e-23, z: -1.7763561e-15}
+      m_Rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      m_Scale: {x: 100, y: 100, z: 100}
+    - m_Name: Parpado sup der
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: 3.970467e-23, z: -1.7763561e-15}
+      m_Rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      m_Scale: {x: 100, y: 100, z: 100}
+    - m_Name: Parpado sup izq
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: 3.970467e-23, z: -1.7763561e-15}
+      m_Rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      m_Scale: {x: 100, y: 100, z: 100}
+    - m_Name: metarig
+      m_ParentName: BossAnimated(Clone)
+      m_Position: {x: -0, y: -0.000000059604645, z: -3.5527137e-15}
+      m_Rotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+      m_Scale: {x: 101.01992, y: 101.01992, z: 101.01992}
+    - m_Name: spine
+      m_ParentName: metarig
+      m_Position: {x: -0, y: 0.0031478077, z: 0.010098999}
+      m_Rotation: {x: 0.12581876, y: 0.003870699, z: -0.00049091136, w: 0.99204564}
+      m_Scale: {x: 1, y: 1.0000004, z: 1.0000014}
+    - m_Name: spine.001
+      m_ParentName: spine
+      m_Position: {x: -0, y: 0.0015221952, z: 0}
+      m_Rotation: {x: -0.0644764, y: -0, z: -0, w: 0.99791926}
+      m_Scale: {x: 1, y: 1.0000012, z: 1.0000015}
+    - m_Name: spine.002
+      m_ParentName: spine.001
+      m_Position: {x: -0, y: 0.0013663672, z: 1.4901161e-10}
+      m_Rotation: {x: -0.077464096, y: -3.735988e-24, z: -3.0966007e-24, w: 0.99699515}
+      m_Scale: {x: 1, y: 1.0000021, z: 1.0000019}
+    - m_Name: spine.003
+      m_ParentName: spine.002
+      m_Position: {x: -1.0339757e-26, y: 0.0017288756, z: 2.9802322e-10}
+      m_Rotation: {x: 0.0016271097, y: -3.7071418e-24, z: 3.8067883e-24, w: 0.9999987}
+      m_Scale: {x: 1, y: 1.000001, z: 1.0000011}
+    - m_Name: spine.004
+      m_ParentName: spine.003
+      m_Position: {x: -2.8744526e-25, y: 0.001925782, z: 0.000000001490116}
+      m_Rotation: {x: -0.21116425, y: -1.5580845e-17, z: -8.8345126e-17, w: 0.97745055}
+      m_Scale: {x: 1, y: 0.9999985, z: 1.0000014}
+    - m_Name: spine.005
+      m_ParentName: spine.004
+      m_Position: {x: -6.617445e-26, y: 0.001729673, z: 2.9802322e-10}
+      m_Rotation: {x: 0.18307658, y: 1.706458e-17, z: 5.874621e-17, w: 0.9830986}
+      m_Scale: {x: 1, y: 1.0000023, z: 0.99999934}
+    - m_Name: spine.006
+      m_ParentName: spine.005
+      m_Position: {x: 1.6543611e-25, y: 0.0016391608, z: 2.9802322e-10}
+      m_Rotation: {x: 0.04227959, y: 2.8241123e-18, z: 3.000365e-17, w: 0.9991059}
+      m_Scale: {x: 1, y: 1.0000012, z: 1.0000008}
+    - m_Name: spine.006_end
+      m_ParentName: spine.006
+      m_Position: {x: -0, y: 0.0024970765, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: shoulder.L
+      m_ParentName: spine.003
+      m_Position: {x: -0.0003816057, y: 0.0013722092, z: 0.00078250945}
+      m_Rotation: {x: -0.5757679, y: 0.39283505, z: 0.40335345, w: 0.5928559}
+      m_Scale: {x: 0.99999976, y: 1.0000002, z: 0.99999964}
+    - m_Name: upper_arm.L
+      m_ParentName: shoulder.L
+      m_Position: {x: -0.00016244635, y: 0.004186825, z: -0.000031176693}
+      m_Rotation: {x: 0.15918434, y: -0.6875098, z: 0.15538642, w: 0.69126385}
+      m_Scale: {x: 1.0000031, y: 1.000013, z: 0.99999094}
+    - m_Name: forearm.L
+      m_ParentName: upper_arm.L
+      m_Position: {x: -0.0000000017136335, y: 0.006016229, z: 5.7742e-10}
+      m_Rotation: {x: -0.00786965, y: 0.0036113544, z: 0.027046258, w: 0.99959666}
+      m_Scale: {x: 1.0000008, y: 1.0000007, z: 1.0000008}
+    - m_Name: hand.L
+      m_ParentName: forearm.L
+      m_Position: {x: 2.7630448e-10, y: 0.0054808515, z: 0.000000001490116}
+      m_Rotation: {x: 0.025046451, y: -0.0035536792, z: -0.028186424, w: -0.9992826}
+      m_Scale: {x: 1.000003, y: 1.0000025, z: 1.0000036}
+    - m_Name: hand.L_end
+      m_ParentName: hand.L
+      m_Position: {x: -0, y: 0.0016715763, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: shoulder.R
+      m_ParentName: spine.003
+      m_Position: {x: 0.0003816057, y: 0.0013722092, z: 0.00078250945}
+      m_Rotation: {x: -0.57292336, y: -0.39696464, z: -0.4077986, w: 0.5898121}
+      m_Scale: {x: 1.000001, y: 1.0000017, z: 1}
+    - m_Name: upper_arm.R
+      m_ParentName: shoulder.R
+      m_Position: {x: 0.00016244814, y: 0.004186824, z: -0.000031174266}
+      m_Rotation: {x: 0.149569, y: 0.6824757, z: -0.15067255, w: 0.6993954}
+      m_Scale: {x: 1.0000017, y: 1.0000107, z: 0.9999934}
+    - m_Name: forearm.R
+      m_ParentName: upper_arm.R
+      m_Position: {x: -9.685754e-10, y: 0.006016228, z: -8.0093737e-10}
+      m_Rotation: {x: 0.0030059055, y: 0.0046288646, z: 0.03268235, w: -0.99945056}
+      m_Scale: {x: 1.0000023, y: 1.0000008, z: 1.0000014}
+    - m_Name: hand.R
+      m_ParentName: forearm.R
+      m_Position: {x: 3.352761e-10, y: 0.0054808473, z: -7.4505804e-11}
+      m_Rotation: {x: 0.025046544, y: 0.003553914, z: 0.02818652, w: -0.99928254}
+      m_Scale: {x: 1.0000013, y: 1.0000017, z: 1.0000017}
+    - m_Name: hand.R_end
+      m_ParentName: hand.R
+      m_Position: {x: -0, y: 0.0016715769, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: breast.L
+      m_ParentName: spine.003
+      m_Position: {x: -0.0011839999, y: -0.00004881024, z: -0.00042756795}
+      m_Rotation: {x: -0.00000005414203, y: 0.69693625, z: 0.7171331, w: -0.000000052617235}
+      m_Scale: {x: 1.0000002, y: 0.9999997, z: 0.9999999}
+    - m_Name: breast.L_end
+      m_ParentName: breast.L
+      m_Position: {x: -0, y: 0.0013919997, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: breast.R
+      m_ParentName: spine.003
+      m_Position: {x: 0.0011839999, y: -0.00004881024, z: -0.00042756795}
+      m_Rotation: {x: -0.00000005414203, y: 0.69693625, z: 0.7171331, w: -0.000000052617235}
+      m_Scale: {x: 1.0000002, y: 0.9999997, z: 0.9999999}
+    - m_Name: breast.R_end
+      m_ParentName: breast.R
+      m_Position: {x: -0, y: 0.0013919997, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: pelvis.L
+      m_ParentName: spine
+      m_Position: {x: -0, y: 7.4505804e-11, z: 0}
+      m_Rotation: {x: -0.15245514, y: 0.79333067, z: 0.28550395, w: 0.5156272}
+      m_Scale: {x: 1, y: 1.000001, z: 0.99999994}
+    - m_Name: pelvis.L_end
+      m_ParentName: pelvis.L
+      m_Position: {x: -0, y: 0.0020733816, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: pelvis.R
+      m_ParentName: spine
+      m_Position: {x: -0, y: 7.4505804e-11, z: 0}
+      m_Rotation: {x: 0.15245514, y: 0.79333067, z: 0.28550395, w: -0.5156272}
+      m_Scale: {x: 1, y: 1.000001, z: 0.99999994}
+    - m_Name: pelvis.R_end
+      m_ParentName: pelvis.R
+      m_Position: {x: -0, y: 0.0020733816, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: thigh.L
+      m_ParentName: spine
+      m_Position: {x: -0.0009799999, y: 0.00070818514, z: 0.00025942267}
+      m_Rotation: {x: -0.9865149, y: -0, z: -0, w: -0.16367118}
+      m_Scale: {x: 1, y: 1.0000011, z: 1.0000025}
+    - m_Name: shin.L
+      m_ParentName: thigh.L
+      m_Position: {x: 7.4505804e-11, y: 0.005363694, z: -1.11758706e-10}
+      m_Rotation: {x: 0.08754089, y: -0, z: -0, w: 0.9961609}
+      m_Scale: {x: 1, y: 1.0000004, z: 0.9999995}
+    - m_Name: foot.L
+      m_ParentName: shin.L
+      m_Position: {x: -7.4505804e-11, y: 0.0045421463, z: 1.3038516e-10}
+      m_Rotation: {x: 0.52736366, y: -0, z: -0, w: -0.84963965}
+      m_Scale: {x: 1, y: 1.0000058, z: 1.0000018}
+    - m_Name: toe.L
+      m_ParentName: foot.L
+      m_Position: {x: 7.4505804e-11, y: 0.001292453, z: 1.3038516e-10}
+      m_Rotation: {x: 0.000000020813498, y: 0.9612487, z: -0.27568272, w: -0.000000072572256}
+      m_Scale: {x: 1.0000038, y: 0.9999958, z: 1.0000077}
+    - m_Name: toe.L_end
+      m_ParentName: toe.L
+      m_Position: {x: -0, y: 0.00067200005, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: heel.02.L
+      m_ParentName: foot.L
+      m_Position: {x: 0.00038000004, y: 0.00019970474, z: 0.00087990414}
+      m_Rotation: {x: -0.67970556, y: 0.67970556, z: -0.1949369, w: -0.1949369}
+      m_Scale: {x: 0.9999966, y: 1.0000048, z: 1.0000076}
+    - m_Name: heel.02.L_end
+      m_ParentName: heel.02.L
+      m_Position: {x: -0, y: 0.0008, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: thigh.R
+      m_ParentName: spine
+      m_Position: {x: 0.0009799999, y: 0.00070818514, z: 0.00025942267}
+      m_Rotation: {x: -0.9865149, y: -0, z: -0, w: -0.16367118}
+      m_Scale: {x: 1, y: 1.0000011, z: 1.0000025}
+    - m_Name: shin.R
+      m_ParentName: thigh.R
+      m_Position: {x: -7.4505804e-11, y: 0.005363694, z: -1.11758706e-10}
+      m_Rotation: {x: 0.08754089, y: -0, z: -0, w: 0.9961609}
+      m_Scale: {x: 1, y: 1.0000004, z: 0.9999995}
+    - m_Name: foot.R
+      m_ParentName: shin.R
+      m_Position: {x: 7.4505804e-11, y: 0.0045421463, z: 1.3038516e-10}
+      m_Rotation: {x: 0.52736366, y: -0, z: -0, w: -0.84963965}
+      m_Scale: {x: 1, y: 1.0000058, z: 1.0000018}
+    - m_Name: toe.R
+      m_ParentName: foot.R
+      m_Position: {x: -7.4505804e-11, y: 0.001292453, z: 1.3038516e-10}
+      m_Rotation: {x: 0.000000020813498, y: 0.9612487, z: -0.27568272, w: -0.000000072572256}
+      m_Scale: {x: 1.0000038, y: 0.9999958, z: 1.0000077}
+    - m_Name: toe.R_end
+      m_ParentName: toe.R
+      m_Position: {x: -0, y: 0.00067200005, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    - m_Name: heel.02.R
+      m_ParentName: foot.R
+      m_Position: {x: -0.00038000004, y: 0.00019970474, z: 0.00087990414}
+      m_Rotation: {x: -0.67970556, y: -0.67970556, z: 0.1949369, w: -0.1949369}
+      m_Scale: {x: 0.9999966, y: 1.0000048, z: 1.0000076}
+    - m_Name: heel.02.R_end
+      m_ParentName: heel.02.R
+      m_Position: {x: -0, y: 0.0008, z: 0}
+      m_Rotation: {x: 0, y: -0, z: -0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
     m_ArmTwist: 0.5
     m_ForeArmTwist: 0.5
     m_UpperLegTwist: 0.5
@@ -571,5 +826,5 @@ Avatar:
     m_GlobalScale: 1
     m_RootMotionBoneName: 
     m_HasTranslationDoF: 0
-    m_HasExtraRoot: 0
+    m_HasExtraRoot: 1
     m_SkeletonHasParents: 1

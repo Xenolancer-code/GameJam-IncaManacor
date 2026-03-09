@@ -6,7 +6,6 @@ public class EnemySpawner : MonoBehaviour
     [Header("Settings Padre")]
     private GeneracionRandomSpawners parentManager;
     [Header("Spawner Settings")]
-    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private List<GameObject> enemysPrefab = new();
     private GameObject player;
     [SerializeField] private int maxEnemies = 5;            
@@ -74,8 +73,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (spawnPos != Vector3.zero)
         {
-            
-            GameObject newEnemy = PoolManager.SpawnObject(enemyPrefab, spawnPos, Quaternion.identity);
+            GameObject randomPrefab = enemysPrefab[Random.Range(0, enemysPrefab.Count)];
+            GameObject newEnemy = PoolManager.SpawnObject(randomPrefab, spawnPos, Quaternion.identity);
             if(newEnemy.TryGetComponent(out EnemyAtk enemyAtk))
             {
                 enemyAtk.SetPlayer(player);

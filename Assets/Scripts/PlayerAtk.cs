@@ -11,37 +11,53 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int maxSimultaneousHits =2;
-    [Header("Damage Amount Controller")]
-    //[SerializeField] private float damageAmount;
-    //Manejado por GameManager
-    [Header("Knockback Controller")]
-    [SerializeField] public float aoeRadius = 4f;
-    private Animator animator;
-    private AudioSource audioSource;
+    
+    [Header("Damage")]
     public int finalDamage; //Crear Maximo dps de 30 o 25
     public int finalRange;
+    //[SerializeField] private float damageAmount; - Manejado por GameManager
+    
+    [Header("Aoe")]
+    //[SerializeField] public float aoeRadius = 4f; - Manejado por prefab instanciado
     [SerializeField] private GameObject zone;
-
     public bool canAoe = false;
+    
+    //--Combo State--
+    private int comboStep = 0;        // 0 = ninguno, 1 = primer atk, 2 = segundo, 3 = tercero
+    private float comboWindowTimer = 0f;
+    private bool comboWindowOpen = false;  // true = puede encadenar el siguiente ataque
+    private bool isAttacking = false;      // true = animación de ataque en curso (bloquea movimiento)
+
+    private Animator animator;
+    private CharacterController cc;
+    private PlayerMov playerMov;
+   
 
 
     private void Awake()
     {
-        //cc = gameObject.GetComponent<CharacterController>();
-        audioSource = GetComponent<AudioSource>();
+        cc = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        playerMov = GetComponent<PlayerMov>();
     }
 
-    public class EnemyDistance
-    {   //Clase per poder fer una llista i aixi ordenar els enemics i la seva distancia sobre el player
-        public GameObject target;
-        public float distance;
+    private void Update()
+    {
+        // Cuenta regresiva de la ventana de combo
+        if (comboWindowOpen)
+        {
+            comboWindowTimer -= Time.deltaTime;
+            if (comboWindowTimer <= 0f)
+            {
+                //ResetCombo();
+            }
+        }
     }
-
+    
     public void BasicAtk()
     {
         animator.SetTrigger("LeftClick");
-        AudioManager.I.PlaySound(SoundName.SlashPlayer,transform);
+        AudioManager.I.PlaySound(SoundName.SlashPlayer,transform);//Sonido de SoundLibrary
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
         //Llista que guarda la distancia del enemics sobre el player
@@ -71,28 +87,35 @@ public class PlayerAtk : MonoBehaviour
             
         }
     }
-
-
-    //------------------------------------------------------------------------------------------
+    
+    // -------------------------------------------------------
+    //  AOE (sin cambios)
+    // -------------------------------------------------------
     public void AoEAtk()
     {
-        //if (!canAoe) return;
-        
         animator.SetTrigger("RightClick");
-        canAoe = false; 
+        canAoe = false;
     }
 
-    //Ya no estoy empujando sino que genero un area circular donde todo enemigo adentro muere y rompe spawners
-    private void AoeDamageZone()//Llamado por event de una animaci?n
+    private void AoeDamageZone()
     {
-        //audioSource.Play();
-        GameObject Zone = Instantiate(zone,transform.position,Quaternion.identity);
+        Instantiate(zone, transform.position, Quaternion.identity);
     }
 
-    //------------------------------------------------------------------------------------------
+    // -------------------------------------------------------
+    //  CLASES AUXILIARES
+    // -------------------------------------------------------
+    public class EnemyDistance
+    {
+        //Clase per poder fer una llista i aixi ordenar els enemics i la seva distancia sobre el player
+        public GameObject target;
+        public float distance;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+        if (attackPoint != null)
+            Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }
