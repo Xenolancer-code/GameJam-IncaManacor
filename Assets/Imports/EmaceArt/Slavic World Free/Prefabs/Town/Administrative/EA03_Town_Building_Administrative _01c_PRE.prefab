@@ -101,7 +101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 896298597, guid: 87ad4bd871d2ab6458839424117f7180, type: 3}
+    - {fileID: 5613214079624834443, guid: 87ad4bd871d2ab6458839424117f7180, type: 3}
+    - {fileID: 1672892992, guid: 87ad4bd871d2ab6458839424117f7180, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -167,7 +170,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5451097320778943452, guid: d3fc18ac09f3a724c85acef1602515dd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -245,7 +249,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8835453520638999709, guid: 72a62258ff91e7a468e5877a9f60549b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -319,7 +324,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 59938691626019817, guid: b92d2bfd19a172d4db4af5c57cbac44c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -397,7 +403,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8835453520638999709, guid: 72a62258ff91e7a468e5877a9f60549b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -463,7 +470,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9198910303607128962, guid: 143c781376b84854ba8ddfed3f3098ab, type: 3}
+    - {fileID: 252626618668696204, guid: 143c781376b84854ba8ddfed3f3098ab, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -529,7 +538,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8587127465785934985, guid: 6cc9013353b72b74ea03e7c9166454a4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -607,7 +617,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Foundation_02b_PRE
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 590566447, guid: e6ae1b2523142a94797ab44e46647cdb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -681,7 +692,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Village_HouseModule_Porch_R_03b_PRE (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2920435366626933667, guid: c2b9a4f9fc4f69f45b0f32b0a6615c15, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -747,7 +759,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65205510540059904, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 65823256424906276, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 65397630950687908, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 2465808537594526472, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 344958472467905233, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -813,7 +830,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6879170967463894281, guid: c51651d067868744cbce58bf2a96a94f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -887,7 +905,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Village_HouseModule_Porch_R_03b_PRE
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2920435366626933667, guid: c2b9a4f9fc4f69f45b0f32b0a6615c15, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -953,7 +972,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4113668035358219357, guid: 8beab32d0b0a3f04786a91a7d19292b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1059,7 +1079,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 64.452
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2465808537594526472, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 344958472467905233, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 65205510540059904, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 65823256424906276, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 65397630950687908, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

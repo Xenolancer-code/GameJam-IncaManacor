@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2660088060749099418}
-  - component: {fileID: 7851719014227359756}
   m_Layer: 0
   m_Name: SideWall_02_R
   m_TagString: Untagged
@@ -32,27 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &7851719014227359756
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184980396642105368}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.93992203, y: 0.67000395, z: 0.7691475}
-  m_Center: {x: -0.0000019771596, y: 0.0000027072044, z: -0.000032062908}
 --- !u!1 &444294740673954375
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 305053939359589531}
-  - component: {fileID: 7066791721054402938}
   m_Layer: 0
   m_Name: FloorBalcoon_01
   m_TagString: Untagged
@@ -85,27 +62,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15300001}
---- !u!65 &7066791721054402938
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444294740673954375}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.20713413, y: 0.71355927, z: 0.66900307}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &449916056682303578
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +71,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4313077844828112188}
-  - component: {fileID: 8328231423192245079}
   m_Layer: 0
   m_Name: FrontWall_02_L
   m_TagString: Untagged
@@ -138,27 +93,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8328231423192245079
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449916056682303578}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.88869697, y: 1.206237, z: 1}
-  m_Center: {x: 0, y: -0.000000098266284, z: 0}
 --- !u!1 &1457637681515965862
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +141,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4642033074886660679}
-  - component: {fileID: 3760362488302578472}
   m_Layer: 0
   m_Name: SideWall_01_R
   m_TagString: Untagged
@@ -230,27 +163,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &3760362488302578472
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906340342838878013}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0038894, y: 0.46451378, z: 1}
-  m_Center: {x: 0, y: 0.000000019049619, z: 0}
 --- !u!1 &1945627688064331022
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +172,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4214712864071697890}
-  - component: {fileID: 6333751434185237781}
   m_Layer: 0
   m_Name: FrontWall_03_L
   m_TagString: Untagged
@@ -283,27 +194,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6333751434185237781
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1945627688064331022}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.8643756, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2351155043956873810
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +203,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4812352344747859594}
-  - component: {fileID: 8558431990130451113}
   m_Layer: 0
   m_Name: InWall_01_L
   m_TagString: Untagged
@@ -336,27 +225,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &8558431990130451113
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2351155043956873810}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2649221714017621846
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +234,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6615157395040096707}
-  - component: {fileID: 2924500896732692884}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
@@ -389,27 +256,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8772104750524040397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15300001}
---- !u!65 &2924500896732692884
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2649221714017621846}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36595508, y: 0.12257497, z: 2.1985965}
-  m_Center: {x: -1.5938137e-10, y: -0.00000005960443, z: 0}
 --- !u!1 &2665001176834235165
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +265,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5994864372118452521}
-  - component: {fileID: 2309240444604889913}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -442,27 +287,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3027160150062183267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.289}
---- !u!65 &2309240444604889913
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2665001176834235165}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.14040416, y: 1.1621114, z: 1.6810505}
-  m_Center: {x: 0, y: 0, z: -0.00000047683716}
 --- !u!1 &2832501294639960853
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +296,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4544467999644294195}
-  - component: {fileID: 1141250432035996873}
   m_Layer: 0
   m_Name: Cube (9)
   m_TagString: Untagged
@@ -495,27 +318,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8772104750524040397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15300001}
---- !u!65 &1141250432035996873
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2832501294639960853}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36595508, y: 0.12257497, z: 2.1985965}
-  m_Center: {x: -1.5938137e-10, y: -0.00000005960443, z: 0}
 --- !u!1 &2976903730711792622
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +327,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 824926879567196254}
-  - component: {fileID: 4945529799540955970}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -548,27 +349,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8772104750524040397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15300001}
---- !u!65 &4945529799540955970
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2976903730711792622}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36595508, y: 0.12257497, z: 2.1985965}
-  m_Center: {x: -1.5938137e-10, y: -0.00000005960443, z: 0}
 --- !u!1 &3438411364412550337
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +358,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573890706899007891}
-  - component: {fileID: 401573352680989092}
   m_Layer: 0
   m_Name: Cube (8)
   m_TagString: Untagged
@@ -601,27 +380,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8772104750524040397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15300001}
---- !u!65 &401573352680989092
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3438411364412550337}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36595508, y: 0.12257497, z: 2.1985965}
-  m_Center: {x: -1.5938137e-10, y: -0.00000005960443, z: 0}
 --- !u!1 &4063551847368150773
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +476,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2359090618418922680}
-  - component: {fileID: 4761759544223083175}
   m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Untagged
@@ -741,27 +498,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8772104750524040397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15300001}
---- !u!65 &4761759544223083175
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097091205639483515}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36595508, y: 0.12257497, z: 2.1985965}
-  m_Center: {x: -1.5938137e-10, y: -0.00000005960443, z: 0}
 --- !u!1 &5072555151175909782
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +507,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994335403557470028}
-  - component: {fileID: 5996089989381086903}
   m_Layer: 0
   m_Name: BackWall_02
   m_TagString: Untagged
@@ -794,27 +529,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5996089989381086903
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5072555151175909782}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.204867, y: 1.206237, z: 1}
-  m_Center: {x: 0, y: -0.000000098266284, z: 0.00000068595847}
 --- !u!1 &5081442378477396727
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +538,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3839178485332272291}
-  - component: {fileID: 973786719946505508}
   m_Layer: 0
   m_Name: SideWall_01_L
   m_TagString: Untagged
@@ -847,27 +560,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &973786719946505508
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5081442378477396727}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5156296705181152031
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +603,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4231092451504984976}
-  - component: {fileID: 8091741226173236725}
   m_Layer: 0
   m_Name: Cube (6)
   m_TagString: Untagged
@@ -934,27 +625,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8772104750524040397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15300001}
---- !u!65 &8091741226173236725
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5344316430194358340}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36595508, y: 0.12257497, z: 2.1985965}
-  m_Center: {x: -1.5938137e-10, y: -0.00000005960443, z: 0}
 --- !u!1 &5689384818096757779
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,7 +634,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4299520463193345796}
-  - component: {fileID: 726200646749229268}
   m_Layer: 0
   m_Name: InWall_03_L
   m_TagString: Untagged
@@ -987,27 +656,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &726200646749229268
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5689384818096757779}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.2674145, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.00000003973643, z: 0}
 --- !u!1 &5780062307675883756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +665,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1500710130095754453}
-  - component: {fileID: 6597001998476567821}
   m_Layer: 0
   m_Name: InWall_02_L
   m_TagString: Untagged
@@ -1040,27 +687,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &6597001998476567821
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5780062307675883756}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.34882298, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.00000003973643, z: 0}
 --- !u!1 &6198020705529042742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +743,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1533833200160912003}
-  - component: {fileID: 1699619871443589466}
   m_Layer: 0
   m_Name: FrontWall_01_R
   m_TagString: Untagged
@@ -1140,27 +765,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1699619871443589466
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230533713113833446}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.94765645, y: 1, z: 1.2229141}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6718346659666767789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +774,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6459729893139983153}
-  - component: {fileID: 6727856345662012567}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -1193,27 +796,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3027160150062183267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.289}
---- !u!65 &6727856345662012567
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6718346659666767789}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.1120834, y: 2.1535647, z: 1.8567524}
-  m_Center: {x: 0.016122265, y: 0.0008512939, z: -0.00000023841858}
 --- !u!1 &7567466888707133619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,7 +805,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6224298058565104519}
-  - component: {fileID: 4529958900826530523}
   m_Layer: 0
   m_Name: Cube (10)
   m_TagString: Untagged
@@ -1246,27 +827,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8772104750524040397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15300001}
---- !u!65 &4529958900826530523
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7567466888707133619}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36595508, y: 0.12257497, z: 2.1985965}
-  m_Center: {x: -1.5938137e-10, y: -0.00000005960443, z: 0}
 --- !u!1 &7581037720090018296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,7 +836,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1558824425705005973}
-  - component: {fileID: 1805546053957808364}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -1299,27 +858,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3027160150062183267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.289}
---- !u!65 &1805546053957808364
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7581037720090018296}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.14040416, y: 0.85463, z: 1.6810505}
-  m_Center: {x: 0, y: 0, z: -0.00000047683716}
 --- !u!1 &7872201253946645159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +867,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3802162769166271818}
-  - component: {fileID: 8734414326475148811}
   m_Layer: 0
   m_Name: WallBalcoon_02
   m_TagString: Untagged
@@ -1352,27 +889,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: -89.84801, y: -90.00101, z: 90.00101}
---- !u!65 &8734414326475148811
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7872201253946645159}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.16317852, y: 2.1600494, z: 1.3778591}
-  m_Center: {x: 6.375256e-10, y: 0, z: 0.00000023841774}
 --- !u!1 &7932797129734885955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +898,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5421911599817567516}
-  - component: {fileID: 9004467750130592900}
   m_Layer: 0
   m_Name: BackWall_01
   m_TagString: Untagged
@@ -1405,27 +920,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &9004467750130592900
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7932797129734885955}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.5412591, z: 1}
-  m_Center: {x: 0, y: 0.00000000891701, z: 0}
 --- !u!1 &8136595185034563805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,7 +929,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5690826185661503912}
-  - component: {fileID: 2794628012155940039}
   m_Layer: 0
   m_Name: WallBalcoon_01
   m_TagString: Untagged
@@ -1458,27 +951,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: -89.84801, y: -90.00101, z: 90.00101}
---- !u!65 &2794628012155940039
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8136595185034563805}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.2162841, y: 0.3343435, z: 0.37603796}
-  m_Center: {x: 1.631381e-11, y: 0, z: 0.000000039083364}
 --- !u!1 &8901031274162908546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,7 +960,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1517636233700711712}
-  - component: {fileID: 7610826438151074683}
   m_Layer: 0
   m_Name: FrontWall_01_L
   m_TagString: Untagged
@@ -1511,27 +982,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6860054037768044864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7610826438151074683
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8901031274162908546}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0839342, y: 1.0933911, z: 1.2647957}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9133377798970361094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,7 +991,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4836703799063039133}
-  - component: {fileID: 8487817845451779443}
   m_Layer: 0
   m_Name: Cube (13)
   m_TagString: Untagged
@@ -1564,27 +1013,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8772104750524040397}
   m_LocalEulerAnglesHint: {x: -134.336, y: -90, z: 89.99999}
---- !u!65 &8487817845451779443
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9133377798970361094}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.22985491, y: 0.12172066, z: 0.25963274}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &180876996328414392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1645,7 +1073,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8492301108687765582, guid: 100539ae3b0bce945a2f6004a921042d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1711,7 +1140,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Prop_House_Shutter_01e (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7964672120999092193, guid: 1476b9a23d1668b4b8a13d9478600734, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1777,7 +1207,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8879248110826233279, guid: 06a8d51f3d3b2824a924b5fd11f46453, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1851,7 +1282,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65637774100200418, guid: 7a671999f01e8394f8224141a5e39ba3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1917,7 +1349,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6879170967463894281, guid: c51651d067868744cbce58bf2a96a94f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1983,7 +1416,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Village_step_platform_Stair_R_03a_PRE
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5732303049305481197, guid: 6846503cbdf6f2047bb7008195882b52, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2049,7 +1483,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 96682966308514066, guid: eb66b999a5299a9428c113820b096dc4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2119,7 +1554,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8587127465785934985, guid: 6cc9013353b72b74ea03e7c9166454a4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2185,7 +1621,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1855666304667046466, guid: 8abcc72b495ecc94697e2373b679d652, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2251,7 +1688,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Village_HouseModule_Porch_R_03b_PRE
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2920435366626933667, guid: c2b9a4f9fc4f69f45b0f32b0a6615c15, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2321,7 +1759,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8492301108687765582, guid: 100539ae3b0bce945a2f6004a921042d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2387,7 +1826,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 896298597, guid: 87ad4bd871d2ab6458839424117f7180, type: 3}
+    - {fileID: 5613214079624834443, guid: 87ad4bd871d2ab6458839424117f7180, type: 3}
+    - {fileID: 1672892992, guid: 87ad4bd871d2ab6458839424117f7180, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2461,7 +1903,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65423732559244014, guid: 80b2778c4fb21f945b01de2cc7f33850, type: 3}
+    - {fileID: 65008756090135290, guid: 80b2778c4fb21f945b01de2cc7f33850, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2539,7 +1983,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8587127465785934985, guid: 6cc9013353b72b74ea03e7c9166454a4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2621,7 +2066,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4113668035358219357, guid: 8beab32d0b0a3f04786a91a7d19292b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2687,7 +2133,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Ill_Roof_01a_PRE
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6241871539985072179, guid: 6a658c6e83d0941459dd15ac7fddc99e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2765,7 +2212,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EA03_Town_Hut_Foundation_02b_PRE
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 590566447, guid: e6ae1b2523142a94797ab44e46647cdb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2835,7 +2283,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5730319662410081136, guid: 1899adc2d5fc5e54f8b05c94d0c36f17, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2901,7 +2350,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5730319662410081136, guid: 1899adc2d5fc5e54f8b05c94d0c36f17, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2979,7 +2429,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4113668035358219357, guid: 8beab32d0b0a3f04786a91a7d19292b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3057,7 +2508,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.000015258789
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8587127465785934985, guid: 6cc9013353b72b74ea03e7c9166454a4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3123,7 +2575,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65205510540059904, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 65823256424906276, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 65397630950687908, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 2465808537594526472, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
+    - {fileID: 344958472467905233, guid: 41b2c1261ee15604e83b7b9709a0b208, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
