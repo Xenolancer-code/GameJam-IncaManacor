@@ -22,6 +22,7 @@ public class PlayerMov : MonoBehaviour
 
     private CharacterController cc;
     private Animator animator;
+    private bool movementLocked = false;
     private Vector3 playerVerticalVelocity;
     private bool groundedPlayer;
     private bool groundedPlayerPrev;
@@ -49,7 +50,7 @@ public class PlayerMov : MonoBehaviour
     
     void Update()
     {
-        if(playerIsDead) return;
+        if(playerIsDead || movementLocked) return;
         gravityValue = Physics.gravity.y * gravityMultiplier; //Calcular gravedad
         
         groundedPlayer = cc.isGrounded; //Revisar si player esta en el suelo
@@ -73,6 +74,10 @@ public class PlayerMov : MonoBehaviour
 
         groundedPlayerPrev = groundedPlayer;
         
+    }
+    public void SetMovementLocked(bool locked)
+    {
+        movementLocked = locked;
     }
     // private void Landing()
     // {
@@ -108,7 +113,7 @@ public class PlayerMov : MonoBehaviour
 
     public void TryToDash()
     {
-        if (dashing) return;
+        if (dashing || movementLocked) return;
         StartCoroutine(Dash());
     }
 

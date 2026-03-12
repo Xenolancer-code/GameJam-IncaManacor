@@ -23,10 +23,7 @@ public class PlayerAtk : MonoBehaviour
     public bool canAoe = false;
     
     //--Combo State--
-    private int comboStep = 0;        // 0 = ninguno, 1 = primer atk, 2 = segundo, 3 = tercero
-    private float comboWindowTimer = 0f;
-    private bool comboWindowOpen = false;  // true = puede encadenar el siguiente ataque
-    private bool isAttacking = false;      // true = animación de ataque en curso (bloquea movimiento)
+    private bool isAttacking = false;
 
     private Animator animator;
     private CharacterController cc;
@@ -40,23 +37,13 @@ public class PlayerAtk : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         playerMov = GetComponent<PlayerMov>();
     }
-
-    private void Update()
-    {
-        // Cuenta regresiva de la ventana de combo
-        if (comboWindowOpen)
-        {
-            comboWindowTimer -= Time.deltaTime;
-            if (comboWindowTimer <= 0f)
-            {
-                //ResetCombo();
-            }
-        }
-    }
     
     public void BasicAtk()
     {
         animator.SetTrigger("LeftClick");
+    }
+    public void DmgBasicAtk() //Llamado por Event en animation
+    {
         AudioManager.I.PlaySound(SoundName.SlashPlayer,transform);//Sonido de SoundLibrary
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
@@ -73,8 +60,8 @@ public class PlayerAtk : MonoBehaviour
             closeEnemies.Add(enemyDistance);// Afagim els datos dins la llista
         }
 
-    // Aqu? tenim la llista de impactes ordenada
-    closeEnemies.Sort((a, b) => a.distance.CompareTo(b.distance));
+        // Aqui tenim la llista de impactes ordenada
+        closeEnemies.Sort((a, b) => a.distance.CompareTo(b.distance));
         int hitIndex = 0;
         for(int i = 0; i<closeEnemies.Count && hitIndex < maxSimultaneousHits; i++)
         {
@@ -84,13 +71,29 @@ public class PlayerAtk : MonoBehaviour
                 healthcontroller.GetDamage(finalDamage);
                 hitIndex++;
             }
-            
         }
     }
-    
-    // -------------------------------------------------------
+    public void StartAnimation() //Llamado por Event en animation
+    {
+        isAttacking = true;
+        if (playerMov != null)
+        {
+            playerMov.SetMovementLocked(true);
+            Debug.Log("Movimiento bloqueado");
+        }
+    }
+    public void EndAnimation() //Llamado por Event en animation
+    {
+        isAttacking = false;
+        if (playerMov != null)
+        {
+            playerMov.SetMovementLocked(false);
+            Debug.Log("Movimiento desbloqueado");
+        }
+    }
+    // ----------------------
     //  AOE (sin cambios)
-    // -------------------------------------------------------
+    // ----------------------
     public void AoEAtk()
     {
         animator.SetTrigger("RightClick");
@@ -102,9 +105,9 @@ public class PlayerAtk : MonoBehaviour
         Instantiate(zone, transform.position, Quaternion.identity);
     }
 
-    // -------------------------------------------------------
+    // ----------------------
     //  CLASES AUXILIARES
-    // -------------------------------------------------------
+    // ----------------------
     public class EnemyDistance
     {
         //Clase per poder fer una llista i aixi ordenar els enemics i la seva distancia sobre el player
