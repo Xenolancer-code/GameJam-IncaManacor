@@ -19,7 +19,9 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private float dashCooldown = 2f;
 
 
-
+    [SerializeField] private float stepForce = 3f;
+    [SerializeField] private float stepDuration = 0.15f;
+    
     private CharacterController cc;
     private Animator animator;
     private bool movementLocked = false;
@@ -78,6 +80,23 @@ public class PlayerMov : MonoBehaviour
     public void SetMovementLocked(bool locked)
     {
         movementLocked = locked;
+    }
+
+    public void Step()
+    {
+        StartCoroutine(StepForward());
+    }
+    private IEnumerator StepForward()
+    {
+        float elapsed = 0f;
+        while (elapsed < stepDuration)
+        {
+            float t = elapsed / stepDuration;
+            float speed = Mathf.Lerp(stepForce, 0f, t); //Version con curva float speed = stepCurve.Evaluate(t) * stepForce; con [SerializeField] private AnimationCurve stepCurve;
+            cc.Move(transform.forward * speed * Time.deltaTime); 
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
     }
     // private void Landing()
     // {

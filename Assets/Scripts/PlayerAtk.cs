@@ -24,11 +24,11 @@ public class PlayerAtk : MonoBehaviour
     
     //--Combo State--
     private bool isAttacking = false;
-
+        
     private Animator animator;
     private CharacterController cc;
     private PlayerMov playerMov;
-   
+    
 
 
     private void Awake()

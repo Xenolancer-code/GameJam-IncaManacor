@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Combo_ : StateMachineBehaviour
 {
     [SerializeField] private int num;
+ 
 
     private int valor = 0;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
