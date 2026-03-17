@@ -4,24 +4,27 @@ using UnityEngine;
 public class BossAtk : MonoBehaviour
 {
     private Animator animator;
-    
+    [Header("Player Effects")]
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float knockbackForce;
+    private int hitPlayerHP = 1;
+    private bool playerIsDead = false;
     [Header("Empty GameObject Position References")]
     [SerializeField] private Transform ogRightHandPosition;
     [SerializeField] private Transform ogLeftHandPosition;
-    // [SerializeField] private Transform slamAtk
-    // [SerializeField] private Transform playerTransform;
-    // [SerializeField] private Transform playerTransform;
-    // [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform slamRightHandPosition;
+    [SerializeField] private Transform slamLeftHandPosition;
+    [SerializeField] private Transform swipeRightHandPosition;
+    [SerializeField] private Transform swipeLeftHandPosition;
+    [SerializeField] private Transform hornRayCast;
     [Header("Collider Tiggers")]
-    [SerializeField] private Collider handAttackRight;
-    [SerializeField] private Collider handAttackLeft;
+    [SerializeField] private Collider handRight;
+    [SerializeField] private Collider handLeft;
+    [SerializeField] private Collider head;
 
     //private int instakill = 2;
-    private int hitPlayerHP = 1;
     private bool playerInsideAttackRange = false;
-    private bool playerIsDead = false;
+    
     /*Todo:
      El boss tiene 2 ataques fisicos y 2 a distancia
      Fisicos:
