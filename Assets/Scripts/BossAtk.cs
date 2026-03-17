@@ -7,7 +7,8 @@ public class BossAtk : MonoBehaviour
     [Header("Player Effects")]
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float knockbackForce;
-    private int hitPlayerHP = 1;
+    [SerializeField] private float knockbackDuration;
+    [SerializeField] private GameObject player;
     private bool playerIsDead = false;
     [Header("Empty GameObject Position References")]
     [SerializeField] private Transform ogRightHandPosition;
@@ -17,10 +18,14 @@ public class BossAtk : MonoBehaviour
     [SerializeField] private Transform swipeRightHandPosition;
     [SerializeField] private Transform swipeLeftHandPosition;
     [SerializeField] private Transform hornRayCast;
+    [SerializeField] private Transform centerRange;
     [Header("Collider Tiggers")]
     [SerializeField] private Collider handRight;
     [SerializeField] private Collider handLeft;
-    [SerializeField] private Collider head;
+    [SerializeField] private Collider damaged_area;
+    [Header("Boss Parameters")] 
+    [SerializeField] private float range;
+    private int hitPlayerHP = 1;
 
     //private int instakill = 2;
     private bool playerInsideAttackRange = false;
@@ -54,4 +59,10 @@ public class BossAtk : MonoBehaviour
     private void OnTriggerEnter(Collider detect)
     {
     }
+    
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.chartreuse;
+    //     Gizmos.DrawWireSphere(centerRange.position, range);
+    // }
 }
