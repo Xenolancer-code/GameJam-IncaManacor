@@ -42,6 +42,11 @@ public class PlayerAtk : MonoBehaviour
     {
         animator.SetTrigger("LeftClick");
     }
+    public void SetCanInterruptTrue()
+    { 
+        animator.SetBool("canInterrupt", true);   
+    }
+    
     public void DmgBasicAtk() //Llamado por Event en animation
     {
         AudioManager.I.PlaySound(SoundName.SlashPlayer,transform);//Sonido de SoundLibrary
@@ -80,6 +85,7 @@ public class PlayerAtk : MonoBehaviour
         {
             playerMov.SetMovementLocked(true);
             Debug.Log("Movimiento bloqueado");
+            animator.SetBool("canInterrupt", false);
         }
     }
     public void EndAnimation() //Llamado por Event en animation

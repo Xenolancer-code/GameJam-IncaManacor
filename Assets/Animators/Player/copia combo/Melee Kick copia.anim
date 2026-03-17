@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Melee Kick
+  m_Name: Melee Kick copia
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -37275,7 +37275,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.2333333
+  - time: 1.8666667
     functionName: EndAnimation
     data: 
     objectReferenceParameter: {fileID: 0}

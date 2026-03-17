@@ -1085,6 +1085,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3318265044510368940, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318265044510368940, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318265044510368940, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 3596494750761858300, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: stepForce
       value: 7

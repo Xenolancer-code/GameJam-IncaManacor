@@ -4,17 +4,16 @@ using UnityEngine.InputSystem;
 public class Combo_ : StateMachineBehaviour
 {
     [SerializeField] private int num;
-    
     private int valor = 0;
      //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    // override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    // {
-    //      
-    // }
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       animator.SetBool("canInterrupt", false);
+    }
      //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame && (num == 1 || animator.GetBool("canInterrupt")))
         {
             valor = num;
         }

@@ -7,9 +7,14 @@ public class BossAtk : MonoBehaviour
     
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float knockbackForce;
+    [Header("Empty GameObject Position References")]
+    [SerializeField] private Transform ogRightHandPosition;
+    [SerializeField] private Transform ogLeftHandPosition;
+    // [SerializeField] private Transform slamAtk
+    // [SerializeField] private Transform playerTransform;
+    // [SerializeField] private Transform playerTransform;
+    // [SerializeField] private Transform playerTransform;
     [Header("Collider Tiggers")]
-    [SerializeField] private Collider armColliderRight;
-    [SerializeField] private Collider armColliderLeft;
     [SerializeField] private Collider handAttackRight;
     [SerializeField] private Collider handAttackLeft;
 
