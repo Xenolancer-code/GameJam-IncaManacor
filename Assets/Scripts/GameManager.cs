@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
     [Header("Menu Settings")]
     [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD; 
-    [SerializeField] private GameObject deadMenu;
+    [SerializeField] private GameObject deadLayerUI;
+    [SerializeField] private GameObject winLayerUI;
     [SerializeField] HUDManager hudManager;
     [Header("Timer Settings")]
     public float currentTime;
@@ -70,7 +71,8 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnPickupSample += UpdateSample;
         MessageCentral.OnDamagedPlayer += EmptyBar;
         MessageCentral.OnDiePlayer += ObtainScoreData;
-        MessageCentral.OnDiePlayer += DiePause;
+        MessageCentral.OnDieBoss += WinScreen;
+        MessageCentral.OnDiePlayer += DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed +=ActivePortalToLight;
         MessageCentral.OnSpawnerDestroyed += SmokeOut;
         MessageCentral.OnSwapScene += SkyboxChange;
@@ -82,7 +84,8 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnPickupSample -= UpdateSample;
         MessageCentral.OnDamagedPlayer -= EmptyBar;
         MessageCentral.OnDiePlayer -= ObtainScoreData;
-        MessageCentral.OnDiePlayer -= DiePause;
+        MessageCentral.OnDieBoss -= WinScreen;
+        MessageCentral.OnDiePlayer -= DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed -=ActivePortalToLight;
         MessageCentral.OnSpawnerDestroyed -= SmokeOut;
         MessageCentral.OnSwapScene -= SkyboxChange;
@@ -285,7 +288,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(index);
 
     }
-    public void DiePause()
+    private void DeadScreen()
     {
         StartCoroutine(PlayerDeath());
     }
@@ -294,7 +297,19 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforePause);
         Time.timeScale = 0;
-        deadMenu.SetActive(true);
+        deadLayerUI.SetActive(true);
+    }
+
+    private void WinScreen()
+    {
+        StartCoroutine(PlayerWin());
+    }
+
+    private IEnumerator PlayerWin()
+    {
+        yield return new WaitForSeconds(timeBeforePause);
+        Time.timeScale = 0;
+        winLayerUI.SetActive(true);
     }
     
     public void ExitGame()

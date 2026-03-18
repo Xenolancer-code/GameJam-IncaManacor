@@ -84,7 +84,7 @@ public class PlayerAtk : MonoBehaviour
             }
             if (enemy.TryGetComponent(out BossHealtController bhc))
             {
-                bhc.TakeDamage(finalDamage);
+                bhc.TakeDamageBoss(finalDamage);
                 hitIndex++;
             }
         }

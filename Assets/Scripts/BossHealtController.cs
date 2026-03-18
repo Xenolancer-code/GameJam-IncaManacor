@@ -4,12 +4,12 @@ using UnityEngine.UI;
 public class BossHealtController : MonoBehaviour
 {
     [Header("Canvas")]
-    public Canvas headCanvas;                   // Canvas de esta mano (World Space)
+    [SerializeField] private Canvas headCanvas;                   // Canvas de esta mano (World Space)
 
     [Header("Imágenes de la barra")]
-    public RectTransform backgroundImage;       // Image negra (fondo)
-    public RectTransform healthImage;           // Image roja  (vida actual)
-    public RectTransform hitImage;              // Image blanca (daño recibido)
+    [SerializeField] private RectTransform backgroundImage;       // Image negra (fondo)
+    [SerializeField] private RectTransform healthImage;           // Image roja  (vida actual)
+    [SerializeField] private RectTransform hitImage;              // Image blanca (daño recibido)
     
 
     // ─────────────────────────────────────────────
@@ -17,23 +17,24 @@ public class BossHealtController : MonoBehaviour
     // ─────────────────────────────────────────────
 
     [Header("Vida")]
-    public float maxHealth      = 100f;
-    public float currentHealth  = 100f;
+    [SerializeField] private float maxHealth      = 100f;
+    [SerializeField] private float currentHealth  = 100f;
 
     [Header("Barra")]
     [Tooltip("Anchura máxima de la barra en unidades UI (debe coincidir con el width inicial en el Inspector)")]
-    public float barMaxWidth    = 100f;
+    [SerializeField] private float barMaxWidth    = 100f;
 
     // ─────────────────────────────────────────────
     //  EFECTO DE GOLPE (hit flash)
     // ─────────────────────────────────────────────
-    private Collider collider;
+    [SerializeField] private Animator animator;
+    
     [Header("Efecto de golpe")]
     [Tooltip("Tiempo que la barra blanca permanece visible antes de reducirse")]
-    public float hitHoldDuration    = 0.3f;
+    [SerializeField] private float hitHoldDuration    = 0.3f;
 
     [Tooltip("Tiempo que tarda la barra blanca en reducirse hasta la vida actual")]
-    public float hitDrainDuration   = 0.4f;
+    [SerializeField] private float hitDrainDuration   = 0.4f;
 
     // ─────────────────────────────────────────────
     //  CÁMARA (billboard)
@@ -64,7 +65,6 @@ public class BossHealtController : MonoBehaviour
     private void Awake()
     {
         _mainCamera = Camera.main;
-        collider = GetComponent<Collider>();
         // Inicializar barras al máximo
         SetBarWidth(healthImage, barMaxWidth);
         SetBarWidth(hitImage,    barMaxWidth);
@@ -88,7 +88,7 @@ public class BossHealtController : MonoBehaviour
     // ─────────────────────────────────────────────
 
     /// <summary>Aplica daño a la mano.</summary>
-    public void TakeDamage(float damage)
+    public void TakeDamageBoss(float damage)
     {
         if (currentHealth <= 0f) return;
 
@@ -109,7 +109,7 @@ public class BossHealtController : MonoBehaviour
         _hitCoroutine = StartCoroutine(HitEffect());
 
         if (currentHealth <= 0f)
-            OnHandDestroyed();
+            OnHeadDestroyed();
     }
 
     // ─────────────────────────────────────────────
@@ -144,10 +144,11 @@ public class BossHealtController : MonoBehaviour
     //  DESTRUCCIÓN
     // ─────────────────────────────────────────────
 
-    private void OnHandDestroyed()
+    private void OnHeadDestroyed()
     {
         Debug.Log($"{gameObject.name}: BoosMuerto");
         MessageCentral.DieBoss();
+        animator.SetTrigger("Defeat");
         // Añade aquí tu lógica: animación de muerte, desactivar colisionador, notificar al boss…
     }
 

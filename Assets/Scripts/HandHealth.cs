@@ -115,7 +115,6 @@ public class HandHealth : MonoBehaviour
     /// <summary>Cura la mano.</summary>
     public void Heal()//float amount
     {
-        collider.enabled = true;
         currentHealth = maxHealth; //Mathf.Min(maxHealth, currentHealth + amount);
         float newWidth = HealthToWidth(currentHealth);
         SetBarWidth(healthImage, newWidth);
@@ -157,7 +156,6 @@ public class HandHealth : MonoBehaviour
     private void OnHandDestroyed()
     {
         Debug.Log($"{gameObject.name}: mano destruida.");
-        collider.enabled = false;
         MessageCentral.HandDestroyed();
         // Añade aquí tu lógica: animación de muerte, desactivar colisionador, notificar al boss…
     }
