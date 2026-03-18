@@ -1,18 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-/// <summary>
-/// BossController - Controla un boss con 3 tipos de ataque:
-///   1. Manotazo (Slap)  - mano derecha o izquierda según posición del player
-///   2. Barrido (Sweep)  - mano pasa por la posición del player
-///   3. Proyectil        - aparece sobre el boss y se dispara al player
-/// </summary>
 public class BossController : MonoBehaviour
 {
-    // ─────────────────────────────────────────────
-    //  REFERENCIAS PÚBLICAS
-    // ─────────────────────────────────────────────
-
     [Header("Target")]
     public Transform target;                        // El player
     
@@ -38,7 +30,7 @@ public class BossController : MonoBehaviour
     [Header("Proyectil")]
    [SerializeField] private GameObject projectilePrefab;             // Prefab del proyectil
    [SerializeField] private Transform projectileSpawnPoint;          // Punto de spawn (sobre la cabeza)
-   [SerializeField] private float projectileSpeed = 15f;
+   [SerializeField] private float projectileSpeed = 30f;
 
     // ─────────────────────────────────────────────
     //  AJUSTES DE ATAQUE
@@ -46,11 +38,11 @@ public class BossController : MonoBehaviour
 
     [Header("Umbrales de distancia")]
     [Tooltip("Distancia mínima al player para usar ataque a distancia")]
-    [SerializeField] private float rangedAttackDistance = 10f;
+    [SerializeField] private float rangedAttackDistance = 30f;
 
     [Header("Velocidades de movimiento de manos")]
-    [SerializeField] private float handMoveSpeed = 5f;                // Velocidad movimiento manos
-    [SerializeField] private float handReturnSpeed = 4f;              // Velocidad de vuelta al origen
+    [SerializeField] private float handMoveSpeed = 20f;                // Velocidad movimiento manos
+    [SerializeField] private float handReturnSpeed = 30f;              // Velocidad de vuelta al origen
 
     [Header("Tiempos de ataque")]
     [SerializeField] private float slapLiftWait = 0.4f;               // Espera tras levantar la mano (manotazo)
@@ -67,6 +59,11 @@ public class BossController : MonoBehaviour
     [SerializeField] private float rangedCooldown  = 4f;
     [SerializeField] private float globalCooldown  = 1f;              // Tiempo mínimo entre ataques
 
+
+    [Header("K.O. Stats")] 
+    [SerializeField] private float durationKO =10f;
+    private bool isKO = false;
+    
     // ─────────────────────────────────────────────
     //  ESTADO INTERNO
     // ─────────────────────────────────────────────
@@ -78,10 +75,25 @@ public class BossController : MonoBehaviour
 
     private bool _isAttacking   = false;
 
+    private Animator animator;
+    private void OnEnable()
+    {
+        MessageCentral.OnHandDestroyed += BossKO;
+    }
+    
+    private void OnDisable()
+    {
+        MessageCentral.OnHandDestroyed -= BossKO;
+    }
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // ─────────────────────────────────────────────
     //  UNITY LOOP
     // ─────────────────────────────────────────────
-
     private void Update()
     {
         if (target == null) return;
@@ -92,7 +104,7 @@ public class BossController : MonoBehaviour
         _rangedTimer = Mathf.Max(0f, _rangedTimer - Time.deltaTime);
         _globalTimer = Mathf.Max(0f, _globalTimer - Time.deltaTime);
 
-        if (!_isAttacking && _globalTimer <= 0f)
+        if (!_isAttacking && _globalTimer <= 0f && !isKO)
         {
             DecideAttack();
         }
@@ -303,7 +315,27 @@ public class BossController : MonoBehaviour
         Gizmos.color = Color.magenta;
         if (projectileSpawnPoint != null) Gizmos.DrawSphere(projectileSpawnPoint.position, 0.2f);
     }
+
+// ─────────────────────────────────────────────────────────────────────────────
+//                              KO
+// ─────────────────────────────────────────────────────────────────────────────
+    private void BossKO()
+    {
+        animator.SetBool("KO",true);
+        isKO=true;
+        StartCoroutine(KOduration());
+    }
+
+    private IEnumerator KOduration()
+    {
+        yield return new WaitForSeconds(durationKO);
+        animator.SetBool("KO",false);
+        isKO=false;
+        MessageCentral.HandHeal();
+    }
+
 }
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  COMPONENTE AUXILIAR: Mover proyectil sin Rigidbody

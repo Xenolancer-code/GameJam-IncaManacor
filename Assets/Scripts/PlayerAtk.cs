@@ -24,7 +24,7 @@ public class PlayerAtk : MonoBehaviour
     
     //--Combo State--
     private bool isAttacking = false;
-        
+    public bool basicAttackPerformed = false;
     private Animator animator;
     private CharacterController cc;
     private PlayerMov playerMov;
@@ -38,10 +38,11 @@ public class PlayerAtk : MonoBehaviour
         playerMov = GetComponent<PlayerMov>();
     }
     
-    public void BasicAtk()
+    public void BasicAtk(bool performed)
     {
-        animator.SetTrigger("LeftClick");
+        basicAttackPerformed  = performed;
     }
+  
     public void SetCanInterruptTrue()
     { 
         animator.SetBool("canInterrupt", true);   
@@ -74,6 +75,16 @@ public class PlayerAtk : MonoBehaviour
             if (enemy.TryGetComponent(out HealthEnemyController healthcontroller))
             {
                 healthcontroller.GetDamage(finalDamage);
+                hitIndex++;
+            }
+            if (enemy.TryGetComponent(out HandHealth hahe))
+            {
+                hahe.TakeDamage(finalDamage);
+                hitIndex++;
+            }
+            if (enemy.TryGetComponent(out BossHealtController bhc))
+            {
+                bhc.TakeDamage(finalDamage);
                 hitIndex++;
             }
         }

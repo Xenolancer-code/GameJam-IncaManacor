@@ -5,17 +5,20 @@ public class Combo_ : StateMachineBehaviour
 {
     [SerializeField] private int num;
     private int valor = 0;
-    
+    private PlayerAtk playerAtk;
     
      //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        animator.SetBool("canInterrupt", false);
+       
+       if (playerAtk == null)
+           playerAtk = animator.GetComponent<PlayerAtk>();
     }
      //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame && (num == 1 || animator.GetBool("canInterrupt")))
+        if (playerAtk != null && playerAtk.basicAttackPerformed && (num == 1 || animator.GetBool("canInterrupt")))
         {
             valor = num;
         }

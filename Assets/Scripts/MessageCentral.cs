@@ -9,6 +9,12 @@ public class MessageCentral : MonoBehaviour
         OnDieEnemy?.Invoke();
     }
 
+    public static event Action OnDieBoss; //Boss derrotado
+    public static void DieBoss()
+    {
+        OnDieBoss?.Invoke();
+    }
+    
     public static event Action OnDiePlayer;
     public static void DiePlayer()
     {
@@ -20,21 +26,31 @@ public class MessageCentral : MonoBehaviour
     {
         OnStart?.Invoke();
     }
-
-
+    
     public static event Action<bool> OnDashinActivated; // Activar?n el Dash
     public static void DashinActivated(bool isDashing)
     {
         OnDashinActivated?.Invoke(isDashing);
     }
 
-
-
     public static event Action OnDamagedEnemy; // Hicier?n da?o a los enemigos
     public static void DamagedEnemy() {
         OnDamagedEnemy?.Invoke();
     }
+    public static event Action OnHandDestroyed; //Mano destruida
 
+    public static void HandDestroyed()
+    {
+        OnHandDestroyed?.Invoke();
+    }
+    
+    public static event Action OnHandHeal; //Mano destruida
+
+    public static void HandHeal()
+    {
+        OnHandHeal?.Invoke();
+    }
+    
     public static event Action<bool> OnDamagedPlayer; // Hicier?n da?o al Player
     public static void DamagedPlayer(bool playerIsDamaged)
     {

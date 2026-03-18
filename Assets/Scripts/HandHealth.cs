@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-public class BossHealtController : MonoBehaviour
+public class HandHealth : MonoBehaviour
 {
     [Header("Canvas")]
-    public Canvas headCanvas;                   // Canvas de esta mano (World Space)
+    public Canvas handCanvas;                   // Canvas de esta mano (World Space)
 
     [Header("Imágenes de la barra")]
     public RectTransform backgroundImage;       // Image negra (fondo)
@@ -52,15 +52,15 @@ public class BossHealtController : MonoBehaviour
     //  UNITY LOOP
     // ─────────────────────────────────────────────
 
-    // private void OnEnable()
-    // {
-    //     MessageCentral.OnHandHeal += Heal;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     MessageCentral.OnHandHeal -= Heal;
-    // }
+    private void OnEnable()
+    {
+        MessageCentral.OnHandHeal += Heal;
+    }
+    
+    private void OnDisable()
+    {
+        MessageCentral.OnHandHeal -= Heal;
+    }
     private void Awake()
     {
         _mainCamera = Camera.main;
@@ -74,10 +74,10 @@ public class BossHealtController : MonoBehaviour
     private void LateUpdate()
     {
         // Billboard: el canvas siempre mira a la cámara
-        if (headCanvas != null && _mainCamera != null)
+        if (handCanvas != null && _mainCamera != null)
         {
-            headCanvas.transform.LookAt(
-                headCanvas.transform.position + _mainCamera.transform.rotation * Vector3.forward,
+            handCanvas.transform.LookAt(
+                handCanvas.transform.position + _mainCamera.transform.rotation * Vector3.forward,
                 _mainCamera.transform.rotation * Vector3.up
             );
         }
@@ -110,6 +110,16 @@ public class BossHealtController : MonoBehaviour
 
         if (currentHealth <= 0f)
             OnHandDestroyed();
+    }
+
+    /// <summary>Cura la mano.</summary>
+    public void Heal()//float amount
+    {
+        collider.enabled = true;
+        currentHealth = maxHealth; //Mathf.Min(maxHealth, currentHealth + amount);
+        float newWidth = HealthToWidth(currentHealth);
+        SetBarWidth(healthImage, newWidth);
+        SetBarWidth(hitImage,    newWidth);
     }
 
     // ─────────────────────────────────────────────
@@ -146,8 +156,9 @@ public class BossHealtController : MonoBehaviour
 
     private void OnHandDestroyed()
     {
-        Debug.Log($"{gameObject.name}: BoosMuerto");
-        MessageCentral.DieBoss();
+        Debug.Log($"{gameObject.name}: mano destruida.");
+        collider.enabled = false;
+        MessageCentral.HandDestroyed();
         // Añade aquí tu lógica: animación de muerte, desactivar colisionador, notificar al boss…
     }
 
