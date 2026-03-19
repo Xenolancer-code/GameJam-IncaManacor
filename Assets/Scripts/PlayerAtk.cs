@@ -11,6 +11,9 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int maxSimultaneousHits =2;
+
+    // [SerializeField]
+    // private BossHealtController bossHealtController;
     
     [Header("Damage")]
     public int finalDamage; //Crear Maximo dps de 30 o 25
@@ -82,11 +85,20 @@ public class PlayerAtk : MonoBehaviour
                 hahe.TakeDamage(finalDamage);
                 hitIndex++;
             }
-            if (enemy.TryGetComponent(out BossHealtController bhc))
+            else
             {
-                bhc.TakeDamageBoss(finalDamage);
-                hitIndex++;
+                //TODO: 2- Mirar component BossHealthController en els pares i si el troba...
+                var bossHealtController = enemy.GetComponentInParent<BossHealtController>();
+                if (bossHealtController != null)
+                {
+                    bossHealtController.TakeDamageBoss(finalDamage);
+                    hitIndex++;
+                }
             }
+            
+            //TODO: 1- COMPROVAR QUE AIXO SIGUI UN CAP PER NOM DE GAMEOBJECT O TAG. Si ho és usar bossHealthController
+
+            
         }
     }
     public void StartAnimation() //Llamado por Event en animation
