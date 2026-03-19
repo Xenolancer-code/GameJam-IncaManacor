@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-public class HandHealth : MonoBehaviour
+public class HandHealth : MonoBehaviour, IDamageable
 {
     [Header("Canvas")]
     public Canvas handCanvas;                   // Canvas de esta mano (World Space)
@@ -88,7 +88,7 @@ public class HandHealth : MonoBehaviour
     // ─────────────────────────────────────────────
 
     /// <summary>Aplica daño a la mano.</summary>
-    public void TakeDamage(float damage)
+    public void GetDamage(float damage)
     {
         if (currentHealth <= 0f) return;
 

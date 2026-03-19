@@ -82,7 +82,7 @@ public class PlayerAtk : MonoBehaviour
             }
             if (enemy.TryGetComponent(out HandHealth hahe))
             {
-                hahe.TakeDamage(finalDamage);
+                hahe.GetDamage(finalDamage);
                 hitIndex++;
             }
             else
@@ -91,7 +91,7 @@ public class PlayerAtk : MonoBehaviour
                 var bossHealtController = enemy.GetComponentInParent<BossHealtController>();
                 if (bossHealtController != null)
                 {
-                    bossHealtController.TakeDamageBoss(finalDamage);
+                    bossHealtController.GetDamage(finalDamage);
                     hitIndex++;
                 }
             }

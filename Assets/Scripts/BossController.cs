@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class BossController : MonoBehaviour
 {
     [Header("Target")]
-    public Transform target;                        // El player
+    public GameObject target;                        // El player
     
     [Header("Centro Boss")]
     [SerializeField] private Transform centerRange;
@@ -14,6 +14,8 @@ public class BossController : MonoBehaviour
     [Header("Manos")]
     [SerializeField] private Transform rightHand;                     // Transform de la mano derecha
     [SerializeField] private Transform leftHand;                      // Transform de la mano izquierda
+    [SerializeField] private HandAtk handAtkRight;
+    [SerializeField] private HandAtk handAtkLeft;
 
     [Header("Posiciones de Reposo de Manos")]
     [SerializeField] private Transform rightHandOrigin;               // Punto de reposo mano derecha
@@ -88,6 +90,8 @@ public class BossController : MonoBehaviour
 
     private void Awake()
     {
+        handAtkRight.enabled = false;
+        handAtkLeft.enabled = false;
         animator = GetComponent<Animator>();
     }
 
@@ -116,7 +120,7 @@ public class BossController : MonoBehaviour
 
     private void DecideAttack()
     {
-        float distanceToPlayer = Vector3.Distance(centerRange.position, target.position);
+        float distanceToPlayer = Vector3.Distance(centerRange.position, target.transform.position);
         bool playerIsClose     = distanceToPlayer < rangedAttackDistance;
  
         if (playerIsClose)
@@ -151,7 +155,7 @@ public class BossController : MonoBehaviour
     private bool UseRightHand()
     {
         // Convertir posición del player al espacio local del boss
-        Vector3 localPos = transform.InverseTransformPoint(target.position);
+        Vector3 localPos = transform.InverseTransformPoint(target.transform.position);
         return localPos.x >= 0f; // Player a la derecha → mano derecha
     }
 
@@ -175,6 +179,8 @@ public class BossController : MonoBehaviour
 
     private IEnumerator SlapAttack()
     {
+        handAtkRight.enabled = true;
+        handAtkLeft.enabled = true;
         _isAttacking = true;
         _slapTimer   = slapCooldown;
         _globalTimer = globalCooldown;
@@ -192,11 +198,12 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(slapLiftWait);
 
         // 3. Capturar posición del player AHORA (tras la espera)
-        Vector3 strikePosition = target.position;
+        Vector3 strikePosition = target.transform.position;
 
         // 4. Golpear hacia la posición capturada
         yield return MoveToTarget(hand, strikePosition, handMoveSpeed * 2f);
-
+        handAtkRight.enabled = false;
+        handAtkLeft.enabled = false;
         // 5. Breve pausa al golpear
         yield return new WaitForSeconds(slapHitWait);
 
@@ -212,6 +219,8 @@ public class BossController : MonoBehaviour
 
     private IEnumerator SweepAttack()
     {
+        handAtkRight.enabled = true;
+        handAtkLeft.enabled = true;
         _isAttacking = true;
         _sweepTimer  = sweepCooldown;
         _globalTimer = globalCooldown;
@@ -229,7 +238,7 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(sweepStartWait);
 
         // 3. Capturar posición del player para el barrido
-        Vector3 sweepTarget = target.position;
+        Vector3 sweepTarget = target.transform.position;
 
         // 4. Barrido hasta la posición del player
         yield return MoveToTarget(hand, sweepTarget, sweepSpeed);
@@ -242,7 +251,8 @@ public class BossController : MonoBehaviour
 
         // 6. Volver al origen
         yield return MoveToTarget(hand, origin.position, handReturnSpeed);
-
+        handAtkRight.enabled = false;
+        handAtkLeft.enabled = false;
         _isAttacking = false;
     }
 
@@ -265,12 +275,11 @@ public class BossController : MonoBehaviour
         }
 
         GameObject proj = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
-
         // Opcional: el proyectil flota un momento (telegráfico)
         yield return new WaitForSeconds(projectileSpawnWait);
 
         // 2. Capturar posición del player y disparar
-        Vector3 directionToPlayer = (target.position - proj.transform.position).normalized;
+        Vector3 directionToPlayer = (target.transform.position - proj.transform.position).normalized;
         Rigidbody rb = proj.GetComponent<Rigidbody>();
 
         if (rb != null)

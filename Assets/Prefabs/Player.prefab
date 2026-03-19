@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CC_Player
   playerSpeed: 10
-  jumpHeight: 4
+  jumpHeight: 2
   rotationSpeed: 1000
   gravityMultiplier: 1.5
   dashSpeed: 100
@@ -1383,6 +1383,7 @@ MonoBehaviour:
   finalRange: 0
   zone: {fileID: 7986504087968017091, guid: 12a56ee4630040c4eb17ae9707ed4cef, type: 3}
   canAoe: 0
+  basicAttackPerformed: 0
 --- !u!114 &2251663642765610059
 MonoBehaviour:
   m_ObjectHideFlags: 0

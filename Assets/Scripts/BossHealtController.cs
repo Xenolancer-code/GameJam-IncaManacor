@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-public class BossHealtController : MonoBehaviour
+public class BossHealtController : MonoBehaviour,IDamageable
 {
     [Header("Canvas")]
     [SerializeField] private Canvas headCanvas;                   // Canvas de esta mano (World Space)
@@ -88,7 +88,7 @@ public class BossHealtController : MonoBehaviour
     // ─────────────────────────────────────────────
 
     /// <summary>Aplica daño a la mano.</summary>
-    public void TakeDamageBoss(float damage)
+    public void GetDamage(float damage)
     {
         if (currentHealth <= 0f) return;
 

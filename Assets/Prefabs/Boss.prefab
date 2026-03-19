@@ -10801,6 +10801,7 @@ GameObject:
   - component: {fileID: 767136198090201300}
   - component: {fileID: 4117403488206427996}
   - component: {fileID: 5825854962785304951}
+  - component: {fileID: 3412426639539424944}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
@@ -10897,6 +10898,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3412426639539424944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722731005948922939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86a6c0aa89e97447ab50335e08a5981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHealtController
+  headCanvas: {fileID: 7444308045621372577}
+  backgroundImage: {fileID: 672606742657157590}
+  healthImage: {fileID: 5235021809059406997}
+  hitImage: {fileID: 4938155634541142399}
+  maxHealth: 100
+  currentHealth: 100
+  barMaxWidth: 100
+  animator: {fileID: 5825854962785304951}
+  hitHoldDuration: 0.3
+  hitDrainDuration: 0.4
 --- !u!1 &2884297200783929263
 GameObject:
   m_ObjectHideFlags: 0
@@ -12307,7 +12330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8923539298049710382}
   - component: {fileID: 5412436094400828763}
-  - component: {fileID: 4776984144383821025}
+  - component: {fileID: 4002928582836532863}
   m_Layer: 6
   m_Name: cara
   m_TagString: Untagged
@@ -12355,28 +12378,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.004, y: 0.004, z: 0.004}
   m_Center: {x: 0, y: 0.0012, z: -0.0003}
---- !u!114 &4776984144383821025
-MonoBehaviour:
+--- !u!54 &4002928582836532863
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6222945210819623891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f86a6c0aa89e97447ab50335e08a5981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossHealtController
-  headCanvas: {fileID: 7444308045621372577}
-  backgroundImage: {fileID: 672606742657157590}
-  healthImage: {fileID: 5235021809059406997}
-  hitImage: {fileID: 4938155634541142399}
-  maxHealth: 100
-  currentHealth: 100
-  barMaxWidth: 100
-  animator: {fileID: 5825854962785304951}
-  hitHoldDuration: 0.3
-  hitDrainDuration: 0.4
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6401942285793934698
 GameObject:
   m_ObjectHideFlags: 0
@@ -13680,7 +13708,13 @@ PrefabInstance:
       addedObject: {fileID: 2464941975176518650}
     - targetCorrespondingSourceObject: {fileID: 7333938591088497114, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 354609428524448518}
+    - targetCorrespondingSourceObject: {fileID: 7333938591088497114, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4469158103964251248}
+    - targetCorrespondingSourceObject: {fileID: 7333938591088497114, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2339154930253400635}
     - targetCorrespondingSourceObject: {fileID: 4009356746675680976, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9114923022567801676}
@@ -13744,6 +13778,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7, y: 2, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &354609428524448518
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436322548539483613}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &4469158103964251248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13765,6 +13826,19 @@ MonoBehaviour:
   barMaxWidth: 100
   hitHoldDuration: 0.3
   hitDrainDuration: 0.4
+--- !u!114 &2339154930253400635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436322548539483613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c922a36347bcd8d4db6a5cdc593cc2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandAtk
+  player: {fileID: 0}
 --- !u!1001 &1327407277782905999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13854,6 +13928,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8691904350867724103, guid: f8de429949985fb4d8f19ab208239e74, type: 3}
       insertIndex: -1
       addedObject: {fileID: 327272557193950007}
+    - targetCorrespondingSourceObject: {fileID: 8691904350867724103, guid: f8de429949985fb4d8f19ab208239e74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6805221811199012333}
+    - targetCorrespondingSourceObject: {fileID: 8691904350867724103, guid: f8de429949985fb4d8f19ab208239e74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1219695774686736556}
   m_SourcePrefab: {fileID: 100100000, guid: f8de429949985fb4d8f19ab208239e74, type: 3}
 --- !u!4 &743404324969939395 stripped
 Transform:
@@ -13912,3 +13992,43 @@ MonoBehaviour:
   barMaxWidth: 100
   hitHoldDuration: 0.3
   hitDrainDuration: 0.4
+--- !u!54 &6805221811199012333
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7706852029043319752}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1219695774686736556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7706852029043319752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c922a36347bcd8d4db6a5cdc593cc2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  player: {fileID: 0}

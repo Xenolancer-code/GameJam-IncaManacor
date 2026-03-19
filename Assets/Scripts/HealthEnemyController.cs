@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class HealthEnemyController : MonoBehaviour
+public class HealthEnemyController : MonoBehaviour,IDamageable
 {
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
