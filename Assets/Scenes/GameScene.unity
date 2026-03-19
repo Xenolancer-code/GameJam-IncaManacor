@@ -2757,7 +2757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &450427081
 Transform:
   m_ObjectHideFlags: 0
@@ -4191,7 +4191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3412994045548203, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3412994045548203, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
       propertyPath: m_TagString
@@ -4261,6 +4261,11 @@ PrefabInstance:
 --- !u!4 &654101859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6064768026993680788, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
+  m_PrefabInstance: {fileID: 654101858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &654101860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3412994045548203, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
   m_PrefabInstance: {fileID: 654101858}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &661917330
@@ -5753,6 +5758,8 @@ MonoBehaviour:
   collectionScene: {fileID: 904574844}
   player: {fileID: 46049823}
   bossportal: {fileID: 1768113692}
+  boss: {fileID: 6717507679867282247}
+  bossdoor: {fileID: 654101860}
   rotationSpeed: 0.5
   cooldown: 10
 --- !u!1 &904574844
@@ -5779,7 +5786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904574844}
   serializedVersion: 2
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5787,7 +5794,7 @@ Transform:
   - {fileID: 1800623310}
   - {fileID: 1792592349}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &956115317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13038,6 +13045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puerta Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f06d7fe2d5a4d844a549db1708e18c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8603339840771121511, guid: 3f06d7fe2d5a4d844a549db1708e18c9, type: 3}
@@ -14080,6 +14091,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 2722731005948922939, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4117403488206427996, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: target
       value: 
@@ -14100,6 +14115,11 @@ PrefabInstance:
 --- !u!4 &6717507679867282246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 767136198090201300, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+  m_PrefabInstance: {fileID: 6717507679867282245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6717507679867282247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2722731005948922939, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
   m_PrefabInstance: {fileID: 6717507679867282245}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6761799699507131716

@@ -1,12 +1,9 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.Rendering.Universal;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
-using UnityEditor.VersionControl;
+
 
 
 public class GameManager : MonoBehaviour

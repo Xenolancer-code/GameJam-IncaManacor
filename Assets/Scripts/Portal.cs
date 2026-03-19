@@ -6,6 +6,8 @@ public class Portal : MonoBehaviour
     [SerializeField] private GameObject collectionScene;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject bossportal;
+    [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject bossdoor;
     [SerializeField] private float rotationSpeed = 6f;
     [SerializeField] private float cooldown = 10f;
 
@@ -38,6 +40,8 @@ public class Portal : MonoBehaviour
         player.SetActive(true);
         MessageCentral.SwapScene();
         bossportal.SetActive(true);
+        boss.SetActive(true);
+        bossdoor.SetActive(true);
         yield return new WaitForSeconds(cooldown);
         canActivate = true;
         
