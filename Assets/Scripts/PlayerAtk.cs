@@ -74,7 +74,12 @@ public class PlayerAtk : MonoBehaviour
         int hitIndex = 0;
         for(int i = 0; i<closeEnemies.Count && hitIndex < maxSimultaneousHits; i++)
         {
+            IDamageable damageable =  GetComponent<HandHealth>()
+                                      ?? GetComponentInParent<BossHealtController>()
+                                      ?? GetComponent<HealthEnemyController>() as IDamageable;
+            
             var enemy = closeEnemies[i].target;
+            
             if (enemy.TryGetComponent(out HealthEnemyController healthcontroller))
             {
                 healthcontroller.GetDamage(finalDamage);
@@ -137,6 +142,7 @@ public class PlayerAtk : MonoBehaviour
     // ----------------------
     //  CLASES AUXILIARES
     // ----------------------
+    
     public class EnemyDistance
     {
         //Clase per poder fer una llista i aixi ordenar els enemics i la seva distancia sobre el player

@@ -17,17 +17,7 @@ public class ZoneManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IDamageable damageable = other.GetComponent<HandHealth>() as IDamageable
-                                 ?? other.GetComponentInParent<HandHealth>() as IDamageable
-                                 ?? other.GetComponent<HealthEnemyController>() as IDamageable;
-
-        // Solo busca BossHealtController si no encontró HandHealth
-        if (damageable == null)
-        {
-            BossHealtController boss = other.GetComponentInParent<BossHealtController>();
-            if (boss != null) damageable = boss as IDamageable;
-        }
-        
+        IDamageable damageable = GetDamageable(other);
         
         if (damageable != null && enemiesInside.Add(damageable))
         {
@@ -47,9 +37,7 @@ public class ZoneManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        IDamageable damageable = other.GetComponent<HandHealth>() as IDamageable
-                                 ?? other.GetComponentInParent<HandHealth>() as IDamageable
-                                 ?? other.GetComponent<HealthEnemyController>() as IDamageable;
+        IDamageable damageable = GetDamageable(other);
 
         // Solo busca BossHealtController si no encontró HandHealth
         if (damageable == null)
@@ -62,6 +50,13 @@ public class ZoneManager : MonoBehaviour
         {
             enemiesInside.Remove(damageable);
         }
+    }
+
+    private IDamageable GetDamageable(Collider other)
+    {
+        return other.GetComponent<HandHealth>()
+               ?? other.GetComponentInParent<BossHealtController>()
+               ?? other.GetComponent<HealthEnemyController>() as IDamageable;
     }
 
     private IEnumerator DamageOverTime(IDamageable damageable)
