@@ -14087,10 +14087,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 46049823}
+    - target: {fileID: 1219695774686736556, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 6717507679867282248}
+    - target: {fileID: 1219695774686736556, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 2339154930253400635, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 46049823}
+    - target: {fileID: 2339154930253400635, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 6717507679867282249}
+    - target: {fileID: 2339154930253400635, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 2722731005948922939, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -14120,6 +14136,16 @@ Transform:
 --- !u!1 &6717507679867282247 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2722731005948922939, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+  m_PrefabInstance: {fileID: 6717507679867282245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6717507679867282248 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8270496687852540042, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+  m_PrefabInstance: {fileID: 6717507679867282245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6717507679867282249 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4112355691192746795, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
   m_PrefabInstance: {fileID: 6717507679867282245}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6761799699507131716
