@@ -24668,7 +24668,9 @@ MonoBehaviour:
   lifeTime: 4
   damagePerTick: 20
   damageInterval: 0.5
-  spawnerPrefab: {fileID: 3412994045548203, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!135 &3446657339497378351
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24689,4 +24691,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 4
-  m_Center: {x: 0, y: 0.005049944, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}

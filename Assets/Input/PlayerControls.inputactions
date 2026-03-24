@@ -178,7 +178,7 @@
                     "name": "",
                     "id": "fab598a8-ef6f-46d4-bc7a-1953314a52b0",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "BasicAtk",

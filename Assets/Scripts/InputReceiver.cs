@@ -23,6 +23,7 @@ public class InputReceiver : MonoBehaviour
         playerControls.Player_CC.Move.canceled += Move;
         playerControls.Player_CC.Jump.performed += Jump;
         playerControls.Player_CC.BasicAtk.performed += BasicAtk;
+        playerControls.Player_CC.BasicAtk.canceled += BasicAtk;
         playerControls.Player_CC.AoEAtk.performed += AoEAtk;
         playerControls.Player_CC.Dash.performed += Dash;
     }
@@ -43,7 +44,7 @@ public class InputReceiver : MonoBehaviour
     private void BasicAtk(InputAction.CallbackContext ctx)
     {
         if(playerAtk == null) return;
-        playerAtk.BasicAtk();
+        playerAtk.BasicAtk(ctx.performed);
     }
 
     private void AoEAtk(InputAction.CallbackContext ctx)
@@ -64,6 +65,7 @@ public class InputReceiver : MonoBehaviour
         playerControls.Player_CC.Move.canceled -= Move;
         playerControls.Player_CC.Jump.performed -= Jump;
         playerControls.Player_CC.BasicAtk.performed -= BasicAtk;
+        playerControls.Player_CC.BasicAtk.canceled -= BasicAtk;
         playerControls.Player_CC.AoEAtk.performed -= AoEAtk;
         playerControls.Player_CC.Dash.performed -= Dash;
         playerControls.Disable();

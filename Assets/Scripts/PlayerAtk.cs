@@ -11,6 +11,9 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int maxSimultaneousHits =2;
+
+    // [SerializeField]
+    // private BossHealtController bossHealtController;
     
     [Header("Damage")]
     public int finalDamage; //Crear Maximo dps de 30 o 25
@@ -24,7 +27,7 @@ public class PlayerAtk : MonoBehaviour
     
     //--Combo State--
     private bool isAttacking = false;
-        
+    public bool basicAttackPerformed = false;
     private Animator animator;
     private CharacterController cc;
     private PlayerMov playerMov;
@@ -38,10 +41,11 @@ public class PlayerAtk : MonoBehaviour
         playerMov = GetComponent<PlayerMov>();
     }
     
-    public void BasicAtk()
+    public void BasicAtk(bool performed)
     {
-        animator.SetTrigger("LeftClick");
+        basicAttackPerformed  = performed;
     }
+  
     public void SetCanInterruptTrue()
     { 
         animator.SetBool("canInterrupt", true);   
@@ -70,12 +74,36 @@ public class PlayerAtk : MonoBehaviour
         int hitIndex = 0;
         for(int i = 0; i<closeEnemies.Count && hitIndex < maxSimultaneousHits; i++)
         {
+            IDamageable damageable =  GetComponent<HandHealth>()
+                                      ?? GetComponentInParent<BossHealtController>()
+                                      ?? GetComponent<HealthEnemyController>() as IDamageable;
+            
             var enemy = closeEnemies[i].target;
+            
             if (enemy.TryGetComponent(out HealthEnemyController healthcontroller))
             {
                 healthcontroller.GetDamage(finalDamage);
                 hitIndex++;
             }
+            if (enemy.TryGetComponent(out HandHealth hahe))
+            {
+                hahe.GetDamage(finalDamage);
+                hitIndex++;
+            }
+            else
+            {
+                //TODO: 2- Mirar component BossHealthController en els pares i si el troba...
+                var bossHealtController = enemy.GetComponentInParent<BossHealtController>();
+                if (bossHealtController != null)
+                {
+                    bossHealtController.GetDamage(finalDamage);
+                    hitIndex++;
+                }
+            }
+            
+            //TODO: 1- COMPROVAR QUE AIXO SIGUI UN CAP PER NOM DE GAMEOBJECT O TAG. Si ho és usar bossHealthController
+
+            
         }
     }
     public void StartAnimation() //Llamado por Event en animation
@@ -114,6 +142,7 @@ public class PlayerAtk : MonoBehaviour
     // ----------------------
     //  CLASES AUXILIARES
     // ----------------------
+    
     public class EnemyDistance
     {
         //Clase per poder fer una llista i aixi ordenar els enemics i la seva distancia sobre el player

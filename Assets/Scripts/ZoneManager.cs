@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class ZoneManager : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class ZoneManager : MonoBehaviour
     [SerializeField] private float damagePerTick = 20f;
     [SerializeField] private float damageInterval = 0.5f;
 
-    private HashSet<HealthEnemyController> enemiesInside = new();
+    private HashSet<IDamageable> enemiesInside = new();
 
     private void Start()
     {
@@ -18,39 +17,56 @@ public class ZoneManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //DA?O A ENEMIGOS
-        if (other.TryGetComponent(out HealthEnemyController health))
+        IDamageable damageable = GetDamageable(other);
+        
+        if (damageable != null && enemiesInside.Add(damageable))
         {
-            if (enemiesInside.Add(health))
-            {
-                StartCoroutine(DamageOverTime(health));
-            }
+            StartCoroutine(DamageOverTime(damageable));
         }
 
-        //DESTRUIR SPAWNER
+        // DESTRUIR SPAWNER
         if (other.TryGetComponent(out EnemySpawner spawner))
         {
-            Debug.Log("Estoy colisioando con el Spawner");
+            Debug.Log("Estoy colisionando con el Spawner");
             spawner.spawnerActivation = false;
             spawner.smokePS.Play();
             spawner.explosionPS.Play();
-            AudioManager.I.PlaySound(SoundName.EliminateSmoke,spawner.transform);
+            AudioManager.I.PlaySound(SoundName.EliminateSmoke, spawner.transform);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out HealthEnemyController health))
+        IDamageable damageable = GetDamageable(other);
+
+        // Solo busca BossHealtController si no encontró HandHealth
+        if (damageable == null)
         {
-            enemiesInside.Remove(health);
+            BossHealtController boss = other.GetComponentInParent<BossHealtController>();
+            if (boss != null) damageable = boss as IDamageable;
+        }
+        
+        if (damageable != null)
+        {
+            enemiesInside.Remove(damageable);
         }
     }
 
-    private IEnumerator DamageOverTime(HealthEnemyController health)
+    private IDamageable GetDamageable(Collider other)
     {
-        while (health != null && enemiesInside.Contains(health))
+        return other.GetComponent<HandHealth>()
+               ?? other.GetComponentInParent<BossHealtController>()
+               ?? other.GetComponent<HealthEnemyController>() as IDamageable;
+    }
+
+    private IEnumerator DamageOverTime(IDamageable damageable)
+    {
+        // Necesitamos el MonoBehaviour para comprobar si fue destruido
+        MonoBehaviour mb = damageable as MonoBehaviour;
+
+        while (mb != null && enemiesInside.Contains(damageable))
         {
-            health.GetDamage(damagePerTick);
+            damageable.GetDamage(damagePerTick);
             yield return new WaitForSeconds(damageInterval);
         }
     }
