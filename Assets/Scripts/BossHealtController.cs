@@ -27,7 +27,7 @@ public class BossHealtController : MonoBehaviour,IDamageable
     // ─────────────────────────────────────────────
     //  EFECTO DE GOLPE (hit flash)
     // ─────────────────────────────────────────────
-    [SerializeField] private Animator animator;
+    
     
     [Header("Efecto de golpe")]
     [Tooltip("Tiempo que la barra blanca permanece visible antes de reducirse")]
@@ -48,7 +48,8 @@ public class BossHealtController : MonoBehaviour,IDamageable
 
     private float _hitBarTargetWidth;   // Ancho al que tiene que llegar la barra blanca
     private Coroutine _hitCoroutine;
-
+    [SerializeField] private Animator animator;
+    [SerializeField] private BossController bossController;
     // ─────────────────────────────────────────────
     //  UNITY LOOP
     // ─────────────────────────────────────────────
@@ -149,7 +150,7 @@ public class BossHealtController : MonoBehaviour,IDamageable
         Debug.Log($"{gameObject.name}: BoosMuerto");
         MessageCentral.DieBoss();
         animator.SetTrigger("Defeat");
-        // Añade aquí tu lógica: animación de muerte, desactivar colisionador, notificar al boss…
+        bossController.enabled = false;
     }
 
     // ─────────────────────────────────────────────

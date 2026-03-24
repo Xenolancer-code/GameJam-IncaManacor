@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 1630233769}
     - target: {fileID: 1219695774686736556, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: attackRadius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1219695774686736556, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: playerLayer.m_Bits
@@ -193,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 94403074}
     - target: {fileID: 2339154930253400635, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: attackRadius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2339154930253400635, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: playerLayer.m_Bits
@@ -203,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 3412426639539424944, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+      propertyPath: bossController
+      value: 
+      objectReference: {fileID: 62556702}
     - target: {fileID: 4117403488206427996, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: target
       value: 
@@ -228,6 +232,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+--- !u!114 &62556702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4117403488206427996, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+  m_PrefabInstance: {fileID: 62556701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acb52bed73fbee46927b2a9a1da5312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &69448039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -381,8 +396,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704503751}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09760647, y: -0.11710904, z: 0.011147473, w: -0.98824805}
-  m_LocalPosition: {x: -21.629875, y: 14.725754, z: -44.331413}
+  m_LocalRotation: {x: -0.0784496, y: -0.54931355, z: 0.051350694, w: -0.8303394}
+  m_LocalPosition: {x: -41.599625, y: 10.224594, z: -14.939911}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1019,6 +1034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6006670230113638428, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 2319384772025575332, guid: 98c4704d0fd7211449bcf5c451095a60, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

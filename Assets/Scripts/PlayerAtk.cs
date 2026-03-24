@@ -24,6 +24,8 @@ public class PlayerAtk : MonoBehaviour
     //[SerializeField] public float aoeRadius = 4f; - Manejado por prefab instanciado
     [SerializeField] private GameObject zone;
     public bool canAoe = false;
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem hitEffect;
     
     //--Combo State--
     private bool isAttacking = false;
@@ -53,7 +55,7 @@ public class PlayerAtk : MonoBehaviour
     
     public void DmgBasicAtk() //Llamado por Event en animation
     {
-        AudioManager.I.PlaySound(SoundName.SlashPlayer,transform);//Sonido de SoundLibrary
+        //AudioManager.I.PlaySound(SoundName.SlashPlayer,transform);//Sonido de SoundLibrary
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
         //Llista que guarda la distancia del enemics sobre el player
@@ -74,38 +76,23 @@ public class PlayerAtk : MonoBehaviour
         int hitIndex = 0;
         for(int i = 0; i<closeEnemies.Count && hitIndex < maxSimultaneousHits; i++)
         {
-            IDamageable damageable =  GetComponent<HandHealth>()
-                                      ?? GetComponentInParent<BossHealtController>()
-                                      ?? GetComponent<HealthEnemyController>() as IDamageable;
-            
-            var enemy = closeEnemies[i].target;
-            
-            if (enemy.TryGetComponent(out HealthEnemyController healthcontroller))
+            IDamageable damageable = GetDamageable(closeEnemies[i].target);
+            if (damageable != null)
             {
-                healthcontroller.GetDamage(finalDamage);
+                damageable.GetDamage(finalDamage);
                 hitIndex++;
+                hitEffect.Play();
             }
-            if (enemy.TryGetComponent(out HandHealth hahe))
-            {
-                hahe.GetDamage(finalDamage);
-                hitIndex++;
-            }
-            else
-            {
-                //TODO: 2- Mirar component BossHealthController en els pares i si el troba...
-                var bossHealtController = enemy.GetComponentInParent<BossHealtController>();
-                if (bossHealtController != null)
-                {
-                    bossHealtController.GetDamage(finalDamage);
-                    hitIndex++;
-                }
-            }
-            
-            //TODO: 1- COMPROVAR QUE AIXO SIGUI UN CAP PER NOM DE GAMEOBJECT O TAG. Si ho és usar bossHealthController
-
             
         }
     }
+    private IDamageable GetDamageable(GameObject other)
+    {
+        return other.GetComponent<HandHealth>()
+               ?? other.GetComponentInParent<BossHealtController>()
+               ?? other.GetComponent<HealthEnemyController>() as IDamageable;
+    }
+    
     public void StartAnimation() //Llamado por Event en animation
     {
         isAttacking = true;
