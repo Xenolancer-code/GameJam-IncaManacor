@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 44284836944319936}
   m_Layer: 0
   m_Name: Sparks
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4916,7 +4916,7 @@ GameObject:
   - component: {fileID: 4537244849594526554}
   m_Layer: 0
   m_Name: Sides
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9810,7 +9810,7 @@ GameObject:
   - component: {fileID: 7580349444792151480}
   m_Layer: 0
   m_Name: Healing
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14715,7 +14715,7 @@ GameObject:
   - component: {fileID: 2468570459699616108}
   m_Layer: 0
   m_Name: Light
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19768,7 +19768,7 @@ GameObject:
   - component: {fileID: 3446657339497378351}
   m_Layer: 0
   m_Name: Healing circle
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24668,9 +24668,6 @@ MonoBehaviour:
   lifeTime: 4
   damagePerTick: 20
   damageInterval: 0.5
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!135 &3446657339497378351
 SphereCollider:
   m_ObjectHideFlags: 0

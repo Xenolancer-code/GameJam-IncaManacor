@@ -24,8 +24,6 @@ public class PlayerAtk : MonoBehaviour
     //[SerializeField] public float aoeRadius = 4f; - Manejado por prefab instanciado
     [SerializeField] private GameObject zone;
     public bool canAoe = false;
-    [Header("Effects")]
-    [SerializeField] private ParticleSystem hitEffect;
     
     //--Combo State--
     private bool isAttacking = false;
@@ -81,7 +79,6 @@ public class PlayerAtk : MonoBehaviour
             {
                 damageable.GetDamage(finalDamage);
                 hitIndex++;
-                hitEffect.Play();
             }
             
         }

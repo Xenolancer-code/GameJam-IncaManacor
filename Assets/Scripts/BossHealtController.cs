@@ -88,7 +88,7 @@ public class BossHealtController : MonoBehaviour,IDamageable
     //  API PÚBLICA
     // ─────────────────────────────────────────────
 
-    /// <summary>Aplica daño a la mano.</summary>
+    /// <summary>Aplica daño al boss.</summary>
     public void GetDamage(float damage)
     {
         if (currentHealth <= 0f) return;

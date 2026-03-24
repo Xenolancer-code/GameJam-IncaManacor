@@ -4,12 +4,12 @@ using UnityEngine.UI;
 public class HandHealth : MonoBehaviour, IDamageable
 {
     [Header("Canvas")]
-    public Canvas handCanvas;                   // Canvas de esta mano (World Space)
+    [SerializeField] private Canvas handCanvas;                   // Canvas de esta mano (World Space)
 
     [Header("Imágenes de la barra")]
-    public RectTransform backgroundImage;       // Image negra (fondo)
-    public RectTransform healthImage;           // Image roja  (vida actual)
-    public RectTransform hitImage;              // Image blanca (daño recibido)
+    [SerializeField] private RectTransform backgroundImage;       // Image negra (fondo)
+    [SerializeField] private RectTransform healthImage;           // Image roja  (vida actual)
+    [SerializeField] private RectTransform hitImage;              // Image blanca (daño recibido)
     
 
     // ─────────────────────────────────────────────
@@ -17,23 +17,28 @@ public class HandHealth : MonoBehaviour, IDamageable
     // ─────────────────────────────────────────────
 
     [Header("Vida")]
-    public float maxHealth      = 100f;
-    public float currentHealth  = 100f;
+    [SerializeField] private float maxHealth      = 100f;
+    [SerializeField] private float currentHealth  = 100f;
 
     [Header("Barra")]
     [Tooltip("Anchura máxima de la barra en unidades UI (debe coincidir con el width inicial en el Inspector)")]
-    public float barMaxWidth    = 100f;
+    [SerializeField] private float barMaxWidth    = 100f;
 
     // ─────────────────────────────────────────────
     //  EFECTO DE GOLPE (hit flash)
     // ─────────────────────────────────────────────
-    private Collider collider;
+    
     [Header("Efecto de golpe")]
     [Tooltip("Tiempo que la barra blanca permanece visible antes de reducirse")]
-    public float hitHoldDuration    = 0.3f;
+    private Collider collider;
+    [SerializeField] private float hitHoldDuration    = 0.3f;
 
     [Tooltip("Tiempo que tarda la barra blanca en reducirse hasta la vida actual")]
-    public float hitDrainDuration   = 0.4f;
+    [SerializeField] private float hitDrainDuration   = 0.4f;
+
+    [SerializeField] private Material materialOriginal;
+    [SerializeField] private Material materialDañoRecibido;
+    private SkinnedMeshRenderer smr;
 
     // ─────────────────────────────────────────────
     //  CÁMARA (billboard)
@@ -63,6 +68,7 @@ public class HandHealth : MonoBehaviour, IDamageable
     }
     private void Awake()
     {
+        smr = GetComponentInChildren<SkinnedMeshRenderer>();
         _mainCamera = Camera.main;
         collider = GetComponent<Collider>();
         // Inicializar barras al máximo
@@ -98,7 +104,7 @@ public class HandHealth : MonoBehaviour, IDamageable
 
         // 1. Actualizar barra roja inmediatamente
         SetBarWidth(healthImage, newHealthWidth);
-
+        EjecutarCambioMaterial();
         // 2. La barra blanca QUEDA donde estaba y se drena hasta la vida actual
         //    (si hay una animación en curso, la reiniciamos con el nuevo valor)
         _hitBarTargetWidth = newHealthWidth;
@@ -147,6 +153,20 @@ public class HandHealth : MonoBehaviour, IDamageable
 
         SetBarWidth(hitImage, _hitBarTargetWidth);
         _hitCoroutine = null;
+    }
+
+    private void EjecutarCambioMaterial()
+    {
+        if(smr ==null) return;
+        StartCoroutine(CambiarYRevertir());
+
+    }
+
+    private IEnumerator CambiarYRevertir()
+    {
+        smr.material = materialDañoRecibido;
+        yield return new WaitForSeconds(0.5f);
+        smr.material = materialOriginal;
     }
 
     // ─────────────────────────────────────────────
