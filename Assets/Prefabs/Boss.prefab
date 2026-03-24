@@ -10802,6 +10802,7 @@ GameObject:
   - component: {fileID: 4117403488206427996}
   - component: {fileID: 5825854962785304951}
   - component: {fileID: 3412426639539424944}
+  - component: {fileID: 887653806059590462}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
@@ -10854,8 +10855,8 @@ MonoBehaviour:
   centerRange: {fileID: 6734462216774878932}
   rightHand: {fileID: 743404324969939395}
   leftHand: {fileID: 4075887975388946092}
-  handAtkRight: {fileID: 0}
-  handAtkLeft: {fileID: 0}
+  handAtkRight: {fileID: 1219695774686736556}
+  handAtkLeft: {fileID: 2339154930253400635}
   rightHandOrigin: {fileID: 97558368753097971}
   leftHandOrigin: {fileID: 2111604864897493225}
   rightHandAttackStart: {fileID: 5252573301217769842}
@@ -10869,7 +10870,7 @@ MonoBehaviour:
   handMoveSpeed: 20
   handReturnSpeed: 30
   slapLiftWait: 0.4
-  slapHitWait: 0.3
+  slapHitWait: 1
   sweepStartWait: 0.35
   sweepSpeed: 40
   projectileSpawnWait: 0.6
@@ -10921,8 +10922,24 @@ MonoBehaviour:
   barMaxWidth: 100
   hitHoldDuration: 0.3
   hitDrainDuration: 0.4
+  materialOriginal: {fileID: 2100000, guid: db7099bee5e43534e8a3035699a98947, type: 2}
+  "materialDa\xF1oRecibido": {fileID: 2100000, guid: 59eb3477d73273b4d903050b54378a95, type: 2}
   animator: {fileID: 5825854962785304951}
-  bossController: {fileID: 0}
+  bossController: {fileID: 4117403488206427996}
+--- !u!114 &887653806059590462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722731005948922939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623e43d7773ac5a47af5f3d72a23e1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  meleeEffect: {fileID: 2319384772025575332, guid: 98c4704d0fd7211449bcf5c451095a60, type: 3}
+  zoneEffect: {fileID: 4642848129145531053, guid: 3138a83bedbd6ad4481ba0b061da2eb6, type: 3}
 --- !u!1 &2884297200783929263
 GameObject:
   m_ObjectHideFlags: 0
@@ -13722,6 +13739,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7333938591088497114, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2339154930253400635}
+    - targetCorrespondingSourceObject: {fileID: 7333938591088497114, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1721234591296907787}
     - targetCorrespondingSourceObject: {fileID: 4009356746675680976, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9114923022567801676}
@@ -13757,6 +13777,11 @@ MonoBehaviour:
 --- !u!4 &4075887975388946092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4207500300169226923, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
+  m_PrefabInstance: {fileID: 212933345086518279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4112355691192746795 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4316269274159003436, guid: affa3bd80d299fd41aa48ac9a5f8a73f, type: 3}
   m_PrefabInstance: {fileID: 212933345086518279}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7436322548539483613 stripped
@@ -13833,6 +13858,8 @@ MonoBehaviour:
   barMaxWidth: 100
   hitHoldDuration: 0.3
   hitDrainDuration: 0.4
+  materialOriginal: {fileID: 2100000, guid: db7099bee5e43534e8a3035699a98947, type: 2}
+  "materialDa\xF1oRecibido": {fileID: 2100000, guid: 59eb3477d73273b4d903050b54378a95, type: 2}
 --- !u!114 &2339154930253400635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13846,11 +13873,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandAtk
   player: {fileID: 0}
-  attackRadius: 0
-  attackPoint: {fileID: 0}
+  attackRadius: 2
+  attackPoint: {fileID: 4112355691192746795}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+--- !u!114 &1721234591296907787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436322548539483613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623e43d7773ac5a47af5f3d72a23e1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  meleeEffect: {fileID: 2319384772025575332, guid: 98c4704d0fd7211449bcf5c451095a60, type: 3}
+  zoneEffect: {fileID: 4642848129145531053, guid: 3138a83bedbd6ad4481ba0b061da2eb6, type: 3}
 --- !u!1001 &1327407277782905999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13950,6 +13991,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8691904350867724103, guid: f8de429949985fb4d8f19ab208239e74, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1219695774686736556}
+    - targetCorrespondingSourceObject: {fileID: 8691904350867724103, guid: f8de429949985fb4d8f19ab208239e74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4985462951359523547}
   m_SourcePrefab: {fileID: 100100000, guid: f8de429949985fb4d8f19ab208239e74, type: 3}
 --- !u!4 &743404324969939395 stripped
 Transform:
@@ -14008,6 +14052,8 @@ MonoBehaviour:
   barMaxWidth: 100
   hitHoldDuration: 0.3
   hitDrainDuration: 0.4
+  materialOriginal: {fileID: 2100000, guid: db7099bee5e43534e8a3035699a98947, type: 2}
+  "materialDa\xF1oRecibido": {fileID: 2100000, guid: 59eb3477d73273b4d903050b54378a95, type: 2}
 --- !u!54 &6805221811199012333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14048,8 +14094,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 0}
-  attackRadius: 0
-  attackPoint: {fileID: 0}
+  attackRadius: 2
+  attackPoint: {fileID: 8270496687852540042}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+--- !u!114 &4985462951359523547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7706852029043319752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623e43d7773ac5a47af5f3d72a23e1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  meleeEffect: {fileID: 2319384772025575332, guid: 98c4704d0fd7211449bcf5c451095a60, type: 3}
+  zoneEffect: {fileID: 4642848129145531053, guid: 3138a83bedbd6ad4481ba0b061da2eb6, type: 3}
+--- !u!4 &8270496687852540042 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6966313301130765317, guid: f8de429949985fb4d8f19ab208239e74, type: 3}
+  m_PrefabInstance: {fileID: 1327407277782905999}
+  m_PrefabAsset: {fileID: 0}

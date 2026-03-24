@@ -35,6 +35,10 @@ public class BossHealtController : MonoBehaviour,IDamageable
 
     [Tooltip("Tiempo que tarda la barra blanca en reducirse hasta la vida actual")]
     [SerializeField] private float hitDrainDuration   = 0.4f;
+    
+    [SerializeField] private Material materialOriginal;
+    [SerializeField] private Material materialDañoRecibido;
+    private SkinnedMeshRenderer smr;
 
     // ─────────────────────────────────────────────
     //  CÁMARA (billboard)
@@ -65,6 +69,7 @@ public class BossHealtController : MonoBehaviour,IDamageable
     // }
     private void Awake()
     {
+        smr = GetComponentInChildren<SkinnedMeshRenderer>();
         _mainCamera = Camera.main;
         // Inicializar barras al máximo
         SetBarWidth(healthImage, barMaxWidth);
@@ -99,7 +104,7 @@ public class BossHealtController : MonoBehaviour,IDamageable
 
         // 1. Actualizar barra roja inmediatamente
         SetBarWidth(healthImage, newHealthWidth);
-
+        EjecutarCambioMaterial();
         // 2. La barra blanca QUEDA donde estaba y se drena hasta la vida actual
         //    (si hay una animación en curso, la reiniciamos con el nuevo valor)
         _hitBarTargetWidth = newHealthWidth;
@@ -141,6 +146,19 @@ public class BossHealtController : MonoBehaviour,IDamageable
         _hitCoroutine = null;
     }
 
+    private void EjecutarCambioMaterial()
+    {
+        if(smr ==null) return;
+        StartCoroutine(CambiarYRevertir());
+
+    }
+
+    private IEnumerator CambiarYRevertir()
+    {
+        smr.material = materialDañoRecibido;
+        yield return new WaitForSeconds(0.2f);
+        smr.material = materialOriginal;
+    }
     // ─────────────────────────────────────────────
     //  DESTRUCCIÓN
     // ─────────────────────────────────────────────

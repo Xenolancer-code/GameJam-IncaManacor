@@ -90,9 +90,13 @@ public class BossController : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
         handAtkRight.enabled = false;
         handAtkLeft.enabled = false;
-        animator = GetComponent<Animator>();
     }
 
     // ─────────────────────────────────────────────

@@ -38,7 +38,7 @@ public class HandHealth : MonoBehaviour, IDamageable
 
     [SerializeField] private Material materialOriginal;
     [SerializeField] private Material materialDañoRecibido;
-    private SkinnedMeshRenderer smr;
+    private MeshRenderer mr;
 
     // ─────────────────────────────────────────────
     //  CÁMARA (billboard)
@@ -68,7 +68,7 @@ public class HandHealth : MonoBehaviour, IDamageable
     }
     private void Awake()
     {
-        smr = GetComponentInChildren<SkinnedMeshRenderer>();
+        mr = GetComponentInChildren<MeshRenderer>();
         _mainCamera = Camera.main;
         collider = GetComponent<Collider>();
         // Inicializar barras al máximo
@@ -157,16 +157,16 @@ public class HandHealth : MonoBehaviour, IDamageable
 
     private void EjecutarCambioMaterial()
     {
-        if(smr ==null) return;
+        if(mr ==null) return;
         StartCoroutine(CambiarYRevertir());
 
     }
 
     private IEnumerator CambiarYRevertir()
     {
-        smr.material = materialDañoRecibido;
-        yield return new WaitForSeconds(0.5f);
-        smr.material = materialOriginal;
+        mr.material = materialDañoRecibido;
+        yield return new WaitForSeconds(0.2f);
+        mr.material = materialOriginal;
     }
 
     // ─────────────────────────────────────────────
