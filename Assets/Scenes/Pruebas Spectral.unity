@@ -1119,6 +1119,14 @@ PrefabInstance:
       propertyPath: stepDuration
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6006670230113638428, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: spectralStaff
+      value: 
+      objectReference: {fileID: 1794841272}
+    - target: {fileID: 6006670230113638428, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: spectralFadeInDuration
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1127,6 +1135,11 @@ PrefabInstance:
       addedObject: {fileID: 360975926}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+--- !u!1 &1794841272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2626443951144104718, guid: eb273cea8e8d74c19a26041826183833, type: 3}
+  m_PrefabInstance: {fileID: 1988106084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1988106084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1141,7 +1154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2626443951144104718, guid: eb273cea8e8d74c19a26041826183833, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: eb273cea8e8d74c19a26041826183833, type: 3}
       propertyPath: m_LocalScale.x

@@ -11,7 +11,12 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int maxSimultaneousHits =2;
-
+    
+    [Header("Attack Visuals")]
+    [SerializeField] private GameObject spectralStaff;
+    [SerializeField] private float spectralFadeInDuration = 0.5f;
+    [SerializeField] private float spectralFadeOutDuration = 0.3f;
+    
     // [SerializeField]
     // private BossHealtController bossHealtController;
     
@@ -33,6 +38,13 @@ public class PlayerAtk : MonoBehaviour
     private Animator animator;
     private CharacterController cc;
     private PlayerMov playerMov;
+    
+    //Spectral visuals
+    private Coroutine spectralStaffEmissionRoutine;
+    private Color spectralStaffOriginalEmissionColor;
+    private Color spectralStaffOriginalEmissionBaseColor;
+    private float spectralStaffOriginalEmissionIntensity;
+    private bool spectralStaffEmissionCached;
     
 
 
@@ -103,6 +115,22 @@ public class PlayerAtk : MonoBehaviour
             animator.SetBool("canInterrupt", false);
         }
     }
+
+    public void StartVisuals()
+    {
+        if (spectralStaff != null)
+        {
+            spectralStaff.SetActive(true);
+
+            if (spectralStaffEmissionRoutine != null)
+            {
+                StopCoroutine(spectralStaffEmissionRoutine);
+            }
+
+            spectralStaffEmissionRoutine = StartCoroutine(LerpSpectralStaffEmission());
+        }
+    }
+    
     public void EndAnimation() //Llamado por Event en animation
     {
         isAttacking = false;
@@ -142,5 +170,67 @@ public class PlayerAtk : MonoBehaviour
         Gizmos.color = Color.yellow;
         if (attackPoint != null)
             Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+    }
+
+    private IEnumerator LerpSpectralStaffEmission()
+    {
+        MeshRenderer meshRenderer = spectralStaff.GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+        {
+            spectralStaffEmissionRoutine = null;
+            yield break;
+        }
+
+        Material material = meshRenderer.material;
+        if (!material.HasProperty("_EmissionColor"))
+        {
+            spectralStaffEmissionRoutine = null;
+            yield break;
+        }
+
+        if (!spectralStaffEmissionCached)
+        {
+            spectralStaffOriginalEmissionColor = material.GetColor("_EmissionColor");
+            spectralStaffOriginalEmissionIntensity = Mathf.Max(
+                spectralStaffOriginalEmissionColor.r,
+                Mathf.Max(spectralStaffOriginalEmissionColor.g, spectralStaffOriginalEmissionColor.b)
+            );
+            spectralStaffOriginalEmissionBaseColor = spectralStaffOriginalEmissionIntensity > 0f
+                ? spectralStaffOriginalEmissionColor / spectralStaffOriginalEmissionIntensity
+                : Color.black;
+            spectralStaffEmissionCached = true;
+        }
+
+        material.EnableKeyword("_EMISSION");
+        material.SetColor("_EmissionColor", spectralStaffOriginalEmissionBaseColor * 0f);
+
+        float elapsed = 0f;
+        while (elapsed < spectralFadeInDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / spectralFadeInDuration);
+            float intensity = Mathf.Lerp(0f, spectralStaffOriginalEmissionIntensity, t);
+            material.SetColor("_EmissionColor", spectralStaffOriginalEmissionBaseColor * intensity);
+
+            yield return null;
+        }
+
+        material.SetColor("_EmissionColor", spectralStaffOriginalEmissionColor);
+
+        elapsed = 0f;
+        while (elapsed < spectralFadeOutDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / spectralFadeOutDuration);
+            float intensity = Mathf.Lerp(spectralStaffOriginalEmissionIntensity, 0f, t);
+            material.SetColor("_EmissionColor", spectralStaffOriginalEmissionBaseColor * intensity);
+
+            yield return null;
+        }
+
+        material.SetColor("_EmissionColor", spectralStaffOriginalEmissionBaseColor * 0f);
+        spectralStaff.SetActive(false);
+
+        spectralStaffEmissionRoutine = null;
     }
 }
