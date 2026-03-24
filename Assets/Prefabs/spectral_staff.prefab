@@ -10,11 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4902781039296221114, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
       propertyPath: m_Time
-      value: 0.5
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902781039296221114, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
+      propertyPath: m_Emitting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6249941258657119635, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
       propertyPath: m_Time
-      value: 0.25
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6249941258657119635, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
+      propertyPath: m_Emitting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7403834500226571452, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -62,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897345380465783967, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
       propertyPath: m_Time
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -144,7 +152,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 748d518be9eff4317a3ab7c0ed85475d, type: 2}
     - target: {fileID: 919132149155446097, guid: 0f0304dbff8c19b4a9292727ae80809f, type: 3}
       propertyPath: m_Name
-      value: spectral_staff
+      value: Spectral_Staff
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0f0304dbff8c19b4a9292727ae80809f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -172,11 +184,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4902781039296221114, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
       propertyPath: m_Time
-      value: 0.5
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902781039296221114, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
+      propertyPath: m_Emitting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6249941258657119635, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
       propertyPath: m_Time
-      value: 0.25
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6249941258657119635, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
+      propertyPath: m_Emitting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7403834500226571452, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
       propertyPath: m_LocalScale.x
@@ -240,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897345380465783967, guid: ae6bdf3417a5d6047a559654858dac31, type: 3}
       propertyPath: m_Time
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

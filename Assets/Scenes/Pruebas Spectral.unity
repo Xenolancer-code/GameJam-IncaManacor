@@ -1095,6 +1095,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3305994167233530112, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3318265044510368940, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.04
@@ -1134,6 +1138,10 @@ PrefabInstance:
     - target: {fileID: 2626443951144104718, guid: eb273cea8e8d74c19a26041826183833, type: 3}
       propertyPath: m_Name
       value: spectral_staff
+      objectReference: {fileID: 0}
+    - target: {fileID: 2626443951144104718, guid: eb273cea8e8d74c19a26041826183833, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3402698728817732020, guid: eb273cea8e8d74c19a26041826183833, type: 3}
       propertyPath: m_LocalScale.x
