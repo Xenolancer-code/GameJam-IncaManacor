@@ -24,7 +24,6 @@ public class HealtPlayerController : MonoBehaviour
     private void Start()
     {
         MessageCentral.DamagedPlayer(false);
-        
     }
     public void GetDamage(int hitPlayerHP)
     {
