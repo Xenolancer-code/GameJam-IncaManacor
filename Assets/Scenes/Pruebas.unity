@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 2722731005948922939, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4117403488206427996, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: target
       value: 
@@ -932,9 +936,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2762195831936563495, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d0e3668905b339044b9456ecab84070c, type: 2}
     - target: {fileID: 3305994167233530112, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596494750761858300, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: stepForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596494750761858300, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: stepDuration
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
