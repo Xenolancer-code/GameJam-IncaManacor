@@ -24668,6 +24668,7 @@ MonoBehaviour:
   lifeTime: 4
   damagePerTick: 20
   damageInterval: 0.5
+  impactEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6, type: 3}
 --- !u!135 &3446657339497378351
 SphereCollider:
   m_ObjectHideFlags: 0

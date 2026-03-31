@@ -16,6 +16,7 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private GameObject spectralStaff;
     [SerializeField] private float spectralFadeInDuration = 0.5f;
     [SerializeField] private float spectralFadeOutDuration = 0.3f;
+    [SerializeField] private GameObject impacateffects;
     
     // [SerializeField]
     // private BossHealtController bossHealtController;
@@ -31,7 +32,6 @@ public class PlayerAtk : MonoBehaviour
     public bool canAoe = false;
     
     //--Combo State--
-    private bool isAttacking = false;
     public bool basicAttackPerformed = false;
     private Animator animator;
     private CharacterController cc;
@@ -69,16 +69,17 @@ public class PlayerAtk : MonoBehaviour
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
         //Llista que guarda la distancia del enemics sobre el player
-        List<EnemyDistance> closeEnemies = new List<EnemyDistance>();
+        List<EnemyHitInfo> closeEnemies = new List<EnemyHitInfo>();
 
         foreach (Collider collEnemy in collidedEnemies)
         {
             var go = collEnemy.gameObject;
-
-            EnemyDistance enemyDistance = new EnemyDistance();
-            enemyDistance.target = go; //Deim que els targets son tots els gameobjects dins l'Array de Colliders
-            enemyDistance.distance = Vector3.Distance(attackPoint.position, go.transform.position);//Sabem la distancia entre el player i els enemics
-            closeEnemies.Add(enemyDistance);// Afagim els datos dins la llista
+            
+            EnemyHitInfo enemyHitInfo = new EnemyHitInfo();
+            enemyHitInfo.target = go; //Deim que els targets son tots els gameobjects dins l'Array de Colliders
+            enemyHitInfo.distance = Vector3.Distance(attackPoint.position, go.transform.position);//Sabem la distancia entre el player i els enemics
+            enemyHitInfo.hitPoint = collEnemy.ClosestPoint(attackPoint.position);
+            closeEnemies.Add(enemyHitInfo);// Afagim els datos dins la llista
         }
 
         // Aqui tenim la llista de impactes ordenada
@@ -86,15 +87,19 @@ public class PlayerAtk : MonoBehaviour
         int hitIndex = 0;
         for(int i = 0; i<closeEnemies.Count && hitIndex < maxSimultaneousHits; i++)
         {
-            IDamageable damageable = GetDamageable(closeEnemies[i].target);
+            EnemyHitInfo hitInfo = closeEnemies[i];
+            IDamageable damageable = GetDamageable(hitInfo.target);
             if (damageable != null)
             {
+                Instantiate(impacateffects,hitInfo.hitPoint, Quaternion.identity);
                 damageable.GetDamage(finalDamage);
                 hitIndex++;
             }
             
         }
     }
+
+
     private IDamageable GetDamageable(GameObject other)
     {
         return other.GetComponent<HandHealth>()
@@ -102,13 +107,12 @@ public class PlayerAtk : MonoBehaviour
                ?? other.GetComponent<HealthEnemyController>() as IDamageable;
     }
     
-    public void StartAnimation() //Llamado por Event en animation
+    public void StartAnimation(int fase) //Llamado por Event en animation
     {
-        isAttacking = true;
         if (playerMov != null)
         {
             playerMov.SetMovementLocked(true);
-            Debug.Log("Movimiento bloqueado");
+            Debug.Log("Movimiento bloqueado " + fase);
             animator.SetBool("canInterrupt", false);
         }
     }
@@ -128,13 +132,12 @@ public class PlayerAtk : MonoBehaviour
         }
     }
     
-    public void EndAnimation() //Llamado por Event en animation
+    public void EndAnimation(int fase) //Llamado por Event en animation
     {
-        isAttacking = false;
         if (playerMov != null)
         {
             playerMov.SetMovementLocked(false);
-            Debug.Log("Movimiento desbloqueado");
+            Debug.Log("Movimiento desbloqueado " + fase);
         }
     }
     // ----------------------
@@ -155,11 +158,13 @@ public class PlayerAtk : MonoBehaviour
     //  CLASES AUXILIARES
     // ----------------------
     
-    public class EnemyDistance
+    public class EnemyHitInfo
     {
         //Clase per poder fer una llista i aixi ordenar els enemics i la seva distancia sobre el player
         public GameObject target;
         public float distance;
+        public Vector3 hitPoint;
+
     }
 
     private void OnDrawGizmos()

@@ -7,6 +7,7 @@ public class ZoneManager : MonoBehaviour
     [SerializeField] private float lifeTime;
     [SerializeField] private float damagePerTick = 20f;
     [SerializeField] private float damageInterval = 0.5f;
+    [SerializeField] private GameObject impactEffect;
 
     private HashSet<IDamageable> enemiesInside = new();
 
@@ -18,10 +19,10 @@ public class ZoneManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = GetDamageable(other);
-        
+       
         if (damageable != null && enemiesInside.Add(damageable))
         {
-            StartCoroutine(DamageOverTime(damageable));
+            StartCoroutine(DamageOverTime(damageable,other));
         }
 
         // DESTRUIR SPAWNER
@@ -38,7 +39,7 @@ public class ZoneManager : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         IDamageable damageable = GetDamageable(other);
-
+        
         // Solo busca BossHealtController si no encontró HandHealth
         if (damageable == null)
         {
@@ -59,14 +60,15 @@ public class ZoneManager : MonoBehaviour
                ?? other.GetComponent<HealthEnemyController>() as IDamageable;
     }
 
-    private IEnumerator DamageOverTime(IDamageable damageable)
+    private IEnumerator DamageOverTime(IDamageable damageable,Collider collider)
     {
         // Necesitamos el MonoBehaviour para comprobar si fue destruido
         MonoBehaviour mb = damageable as MonoBehaviour;
-
+        Vector3 impact = collider.ClosestPoint(transform.position);
         while (mb != null && enemiesInside.Contains(damageable))
         {
             damageable.GetDamage(damagePerTick);
+            Instantiate(impactEffect,impact,Quaternion.identity);
             yield return new WaitForSeconds(damageInterval);
         }
     }
