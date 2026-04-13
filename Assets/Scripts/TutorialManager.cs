@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,12 +21,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Sprite imagePS;
     [SerializeField] private Sprite imagePU;
     [SerializeField] private List<GameObject> pointers;
-
-
-
+    
+    private Animator animator;
     void Start()
     {
         index = 0;
+        animator = GetComponent<Animator>();
+        animator.Play(index.ToString());
         maxImages = images.Count-1;   
 
         imageC.sprite = images[0];
@@ -41,9 +43,8 @@ public class TutorialManager : MonoBehaviour
         {
             index = 0;
         }
-       
-
         UpdateImages();
+        animator.Play(index.ToString());
     }
 
     public void PreviousSlide()
@@ -53,10 +54,8 @@ public class TutorialManager : MonoBehaviour
         {
             index = maxImages;
         }
-        
-
        UpdateImages();
-
+       animator.Play(index.ToString());
         //TODO
         //EFECTO PARALLAX
     }
@@ -86,7 +85,6 @@ public class TutorialManager : MonoBehaviour
             pointers[i].GetComponent<Image>().sprite = imagePU;
         }
         pointers[index].GetComponent<Image>().sprite = imagePS;
-
     }
     private void CreatePointers() {
         float pointerX=0;
