@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CC_Player
   playerSpeed: 10
   jumpHeight: 2
-  rotationSpeed: 1000
+  rotationSpeed: 2000
   gravityMultiplier: 1.5
   dashSpeed: 100
   dashDuration: 0.2
