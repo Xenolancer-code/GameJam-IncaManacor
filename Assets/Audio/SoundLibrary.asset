@@ -29,3 +29,11 @@ MonoBehaviour:
     playTimer: 0
     spacialBlend: 0
     pitch: 1
+  - soundName: 20
+    audioClip: {fileID: 8300000, guid: 42fc8e225b94e294a854fdddf944f401, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+    pitch: 1
