@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnPickupSample += UpdateSample;
         MessageCentral.OnDamagedPlayer += EmptyBar;
         MessageCentral.OnDiePlayer += ObtainScoreData;
+        MessageCentral.OnDieBoss += ObtainScoreData;
         MessageCentral.OnDieBoss += WinScreen;
         MessageCentral.OnDiePlayer += DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed +=ActivePortalToLight;
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnPickupSample -= UpdateSample;
         MessageCentral.OnDamagedPlayer -= EmptyBar;
         MessageCentral.OnDiePlayer -= ObtainScoreData;
+        MessageCentral.OnDieBoss -= ObtainScoreData;
         MessageCentral.OnDieBoss -= WinScreen;
         MessageCentral.OnDiePlayer -= DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed -=ActivePortalToLight;
@@ -131,8 +133,6 @@ public class GameManager : MonoBehaviour
         RenderSettings.skybox = skyboxDay;
         DynamicGI.UpdateEnvironment();
     }
-    
-    
     
     
     public void StartTimer()
