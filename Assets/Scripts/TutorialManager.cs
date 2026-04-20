@@ -6,12 +6,9 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    private int index;
+    private int pageIndex;
     private int maxImages;
     [Header("Lista")]
-    [SerializeField] private Button leftButton;
-    [SerializeField] private Button rightButton;
-    [SerializeField] private RectTransform content;
     [SerializeField] private List<Sprite> images;
     [Header("Conteiner")]
     [SerializeField] private Image imageL;
@@ -25,9 +22,9 @@ public class TutorialManager : MonoBehaviour
     private Animator animator;
     void Start()
     {
-        index = 0;
+        pageIndex = 0;
         animator = GetComponent<Animator>();
-        animator.Play(index.ToString());
+        animator.Play(pageIndex.ToString());
         maxImages = images.Count-1;   
 
         imageC.sprite = images[0];
@@ -38,53 +35,53 @@ public class TutorialManager : MonoBehaviour
     }
     public void NextSlide()
     {
-        index+=1;
-        if(index > maxImages)
+        pageIndex+=1;
+        if(pageIndex > maxImages)
         {
-            index = 0;
+            pageIndex = 0;
         }
         UpdateImages();
-        animator.Play(index.ToString());
+        animator.Play(pageIndex.ToString());
     }
 
     public void PreviousSlide()
     {
-        index-=1;
-        if(index < 0)
+        pageIndex-=1;
+        if(pageIndex < 0)
         {
-            index = maxImages;
+            pageIndex = maxImages;
         }
        UpdateImages();
-       animator.Play(index.ToString());
+       animator.Play(pageIndex.ToString());
         //TODO
         //EFECTO PARALLAX
     }
 
     private void UpdateImages()
     {
-        imageC.sprite = images[index];
-        if (index <= 0)
+        imageC.sprite = images[pageIndex];
+        if (pageIndex <= 0)
         {
             imageL.sprite = images[maxImages];
         }
         else
         {
-            imageL.sprite = images[index - 1];
+            imageL.sprite = images[pageIndex - 1];
         }
 
-        if (index >= maxImages)
+        if (pageIndex >= maxImages)
         {
             imageR.sprite = images[0];
         }
         else
         {
-            imageR.sprite = images[index + 1];
+            imageR.sprite = images[pageIndex + 1];
         }
         for (int i = 0; i < pointers.Count; i++)
         {
             pointers[i].GetComponent<Image>().sprite = imagePU;
         }
-        pointers[index].GetComponent<Image>().sprite = imagePS;
+        pointers[pageIndex].GetComponent<Image>().sprite = imagePS;
     }
     private void CreatePointers() {
         float pointerX=0;
@@ -100,6 +97,6 @@ public class TutorialManager : MonoBehaviour
             go.transform.position = new Vector3(pointerX+(i* (imagePU.rect.width) + imagePU.rect.width / 16), Screen.height / 8, 0);
             pointers.Add(go);
         }
-        pointers[index].GetComponent<Image>().sprite = imagePS;
+        pointers[pageIndex].GetComponent<Image>().sprite = imagePS;
     }
 }
