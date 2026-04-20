@@ -101,6 +101,5 @@ public class TutorialManager : MonoBehaviour
             pointers.Add(go);
         }
         pointers[index].GetComponent<Image>().sprite = imagePS;
-
     }
 }
