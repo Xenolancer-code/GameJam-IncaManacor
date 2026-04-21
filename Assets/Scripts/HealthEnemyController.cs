@@ -31,12 +31,14 @@ public class HealthEnemyController : MonoBehaviour,IDamageable
     {
         MessageCentral.DieEnemy();
         PoolManager.ReturnObjectToPool(gameObject);
+        DropOrb();
     }
-
-    private void OnDisable()
+    
+    private void DropOrb()
     {
         Vector3 arriba = new Vector3 (0,0.5f,0);
         //GameObject particle = PoolManager.SpawnObject(bloodparticle, transform.position+arriba, Quaternion.identity);
-        GameObject drop = PoolManager.SpawnObject(dropPrefab, transform.position+arriba, Quaternion.identity);
+        
+        PoolManager.SpawnObject(dropPrefab, transform.position+arriba, Quaternion.identity);
     }
 }

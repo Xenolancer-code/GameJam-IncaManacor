@@ -31,17 +31,19 @@ public class PlayerMov : MonoBehaviour
     private float gravityValue;
     private bool dashing = false;
     private bool playerIsDead = false;
-    
+    private bool pausedGame = false;
     private Vector3 movmentVector = Vector3.zero;
 
     private void OnEnable()
     {
         MessageCentral.OnDiePlayer += PlayerisDead;
+        MessageCentral.OnPausedGame += IsGamePaused;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnDiePlayer -= PlayerisDead;
+        MessageCentral.OnPausedGame -= IsGamePaused;
     }
     private void Awake()
     {
@@ -52,7 +54,7 @@ public class PlayerMov : MonoBehaviour
     
     void Update()
     {
-        if(playerIsDead || movementLocked) return;
+        if(playerIsDead || movementLocked|| pausedGame) return;
         gravityValue = Physics.gravity.y * gravityMultiplier; //Calcular gravedad
         
         groundedPlayer = cc.isGrounded; //Revisar si player esta en el suelo
@@ -75,7 +77,6 @@ public class PlayerMov : MonoBehaviour
         animator.SetFloat("velocity", cc.velocity.magnitude);
 
         groundedPlayerPrev = groundedPlayer;
-        
     }
     public void SetMovementLocked(bool locked)
     {
@@ -93,7 +94,7 @@ public class PlayerMov : MonoBehaviour
         {
             float t = elapsed / stepDuration;
             float speed = Mathf.Lerp(stepForce, 0f, t); //Version con curva float speed = stepCurve.Evaluate(t) * stepForce; con [SerializeField] private AnimationCurve stepCurve;
-            cc.Move(transform.forward * speed * Time.deltaTime); 
+            cc.Move(transform.forward * speed * Time.deltaTime);
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -123,6 +124,7 @@ public class PlayerMov : MonoBehaviour
 
     public void TrytoJump()
     {
+        if(pausedGame) return;
         if (groundedPlayer)
         {
             playerVerticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
@@ -132,7 +134,7 @@ public class PlayerMov : MonoBehaviour
 
     public void TryToDash()
     {
-        if (dashing || movementLocked) return;
+        if (dashing || movementLocked||pausedGame) return;
         StartCoroutine(Dash());
     }
 
@@ -162,10 +164,14 @@ public class PlayerMov : MonoBehaviour
         playerIsDead = true;
     }
 
+    private void IsGamePaused(bool paused)
+    {
+        pausedGame = paused;
+    }
+
     public void SetGravity(float newGravity)
     {
         float gravityMultiplierOriginal = gravityMultiplier;
         gravityMultiplier = newGravity;
-        
     }
 }

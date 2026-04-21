@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [Header("Menu Settings")]
     [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD; 
+    private bool paused = false;
     [SerializeField] private GameObject deadLayerUI;
     [SerializeField] private GameObject winLayerUI;
     [SerializeField] HUDManager hudManager;
@@ -317,12 +318,14 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        MessageCentral.PausedGame(true);
         pauseHUD.SetActive(true);
     }
     public void ResumeGame()
     {
      //Revisar como hacer para que no ataque al poner Resume   
         Time.timeScale = 1;
+        MessageCentral.PausedGame(false);
         pauseHUD.SetActive(false);
     }
 }

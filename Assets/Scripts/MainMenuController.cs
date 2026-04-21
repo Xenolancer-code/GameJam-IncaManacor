@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Splines;
 using UnityEngine.UI;
 
-public class MainMenuController : MonoBehaviour
+public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
 {
     public Camera cam;
     public float maxDistance = 100f;
@@ -14,146 +13,317 @@ public class MainMenuController : MonoBehaviour
     private int activeCam = 1;
     private int inactiveCam = 0;
     [SerializeField] private float timeSpline = 2f;
-    private bool cameraReachedEnd= false;
+    private bool cameraReachedEnd = false;
 
-    [Header("Referencias SoundCanvas")] 
+    [Header("Referencias SoundCanvas")]
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnFX;
     [SerializeField] private Slider volumeMusic;
     [SerializeField] private Slider volumeFX;
+
     [Header("Referencia all Cameras")]
     [SerializeField] private CinemachineCamera camMenu;
     [SerializeField] private CinemachineCamera camPlay;
     [SerializeField] private CinemachineCamera camExit;
     [SerializeField] private CinemachineCamera camAbout;
     [SerializeField] private CinemachineCamera camSettings;
+
     [Header("Referencia all Spline")]
     [SerializeField] private CinemachineSplineDolly splinePlay;
     [SerializeField] private CinemachineSplineDolly splineExit;
     [SerializeField] private CinemachineSplineDolly splineAbout;
     [SerializeField] private CinemachineSplineDolly splineSettings;
 
-    private void Start()
+    [Header("Gamepad Navigation")]
+    [SerializeField] private float stickThreshold = 0.5f;
+
+    [Header("Outline y Animators")]
+    [SerializeField] private Outline outlineBook;
+    [SerializeField] private Outline outlineGramofono;
+    [SerializeField] private Outline outlineAbout;
+    [SerializeField] private Outline outlineExit;
+    [SerializeField] private Animator animatorBook;
+    [SerializeField] private Animator animatorGramofono;
+    [SerializeField] private float outlineWidthSelected = 10f;
+    [SerializeField] private float outlineWidthDefault = 3f;
+
+    // Ciclo: izquierda → -1 (Play→About→Settings→Exit)
+    //        derecha   → +1 (Play→Exit→Settings→About)
+    private enum MenuOption { Play, About, Settings, Exit }
+    private readonly MenuOption[] cycleOrder =
+        { MenuOption.Play, MenuOption.About, MenuOption.Settings, MenuOption.Exit };
+
+    private int currentIndex = -1;
+    private bool isNavigating = false;
+    private bool stickWasNeutral = true;
+
+    private PlayerControls controls;
+
+    // ── Ciclo de vida ────────────────────────────────────────────────────────
+    private void Awake()
     {
-        btnMusic.interactable = false;
-        btnFX.interactable = false;
-        volumeMusic.interactable = false;
-        volumeFX.interactable = false;
+        controls = new PlayerControls();
+        controls.UI.SetCallbacks(this);
     }
 
-    void Update()
+    private void OnEnable()
     {
-        if (Input.GetMouseButtonDown(0)) // Click izquierdo
+        controls.UI.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.UI.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        controls.Dispose();
+    }
+
+    private void Start()
+    {
+        btnMusic.interactable    = false;
+        btnFX.interactable       = false;
+        volumeMusic.interactable = false;
+        volumeFX.interactable    = false;
+    }
+
+    // ── IUIActions ───────────────────────────────────────────────────────────
+    public void OnNavigate(InputAction.CallbackContext context)
+    {
+        if (isNavigating) return;
+        if (!context.performed) return;
+        if (!stickWasNeutral) return;
+
+        Vector2 input = context.ReadValue<Vector2>();
+        if (Mathf.Abs(input.x) <= stickThreshold) return;
+
+        stickWasNeutral = false;
+
+        if (currentIndex == -1)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            ActivateOption(0);
+            return;
+        }
 
-            if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
+        int direction = input.x < 0 ? -1 : 1;
+        int nextIndex = (currentIndex + direction + cycleOrder.Length) % cycleOrder.Length;
+        ActivateOption(nextIndex);
+    }
+
+    public void OnSubmit(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (!cameraReachedEnd) return;
+
+        ConfirmSelection();
+    }
+
+    // Métodos de IUIActions que no usamos — implementación vacía obligatoria
+    public void OnCancel(InputAction.CallbackContext context) { }
+    public void OnPoint(InputAction.CallbackContext context) { }
+    public void OnClick(InputAction.CallbackContext context) { }
+    public void OnScrollWheel(InputAction.CallbackContext context) { }
+    public void OnMiddleClick(InputAction.CallbackContext context) { }
+    public void OnRightClick(InputAction.CallbackContext context) { }
+    public void OnTrackedDevicePosition(InputAction.CallbackContext context) { }
+    public void OnTrackedDeviceOrientation(InputAction.CallbackContext context) { }
+
+    // ── Input de ratón ───────────────────────────────────────────────────────
+    private void Update()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, layerMask))
+        {
+            int clickedIndex = hit.collider.gameObject.name switch
             {
-                string objectClickedName = hit.collider.gameObject.name;
+                "tapa"   => 0, // Play
+                "Cuadro" => 1, // About
+                "gramo"  => 2, // Settings
+                "key"    => 3, // Exit
+                _        => -1
+            };
 
-                switch (objectClickedName)      
-                {
-                    case "tapa":
-                        if (cameraReachedEnd)
-                        {
-                            SceneManager.LoadScene("GameScene");
-                        }
-                        else
-                        {
-                            camMenu.Priority = inactiveCam;
-                            camPlay.Priority = activeCam;
-                            StartCoroutine((MoveCamWithSpline(splinePlay,1f, timeSpline)));
-                        }
-                        break;  
-                    case "gramo":
-                        if (cameraReachedEnd)
-                        {
-                            btnMusic.interactable = true;
-                            btnFX.interactable = true;
-                            volumeMusic.interactable = true;
-                            volumeFX.interactable = true;
-                        }
-                        else
-                        {
-                            camMenu.Priority = inactiveCam;
-                            camSettings.Priority = activeCam;
-                            StartCoroutine((MoveCamWithSpline(splineSettings,1f, timeSpline)));    
-                        }
-                        break;
-                    case "key":
-                        if (cameraReachedEnd)
-                        {
-                            Application.Quit();
-                        }
-                        else
-                        {
-                            camMenu.Priority = inactiveCam;
-                            camExit.Priority = activeCam;
-                            StartCoroutine((MoveCamWithSpline(splineExit,1f, timeSpline)));
-                        }
-                        
-                        break;
-                    case "Cuadro":
-                        camMenu.Priority = inactiveCam;
-                        camAbout.Priority = activeCam;
-                        StartCoroutine((MoveCamWithSpline(splineAbout,1f, timeSpline)));
-                        break;
-                }
-            }
+            if (clickedIndex == -1) return;
+
+            if (clickedIndex == currentIndex && cameraReachedEnd)
+                ConfirmSelection();
             else
-            {
-                cameraReachedEnd = false;
-                StartCoroutine(ReturnToMenu(
-                    camMenu,
-                    new CinemachineCamera[] { camPlay, camSettings, camExit, camAbout },
-                    new CinemachineSplineDolly[] { splinePlay, splineSettings, splineExit, splineAbout },
-                    timeSpline
-                ));
-            }
+                ActivateOption(clickedIndex);
+        }
+        else
+        {
+            GoToMainMenu();
         }
     }
 
-    private IEnumerator MoveCamWithSpline(CinemachineSplineDolly spline,float target, float duration)
+    // ── Outline y Animators ──────────────────────────────────────────────────
+    private void ApplySelectedVisuals(MenuOption option)
     {
-        float start = spline.CameraPosition;;
+        // Resetear ambos primero
+        ClearAllVisuals();
 
+        switch (option)
+        {
+            case MenuOption.Play:
+                if (outlineBook != null)   outlineBook.OutlineWidth = outlineWidthSelected;
+                if (animatorBook != null)  animatorBook.SetBool("Close2", false);
+                break;
+            case MenuOption.About:
+                if(outlineAbout!=null) outlineAbout.OutlineWidth = outlineWidthSelected;
+                break;
+            case MenuOption.Exit:
+                if(outlineExit!=null) outlineExit.OutlineWidth = outlineWidthSelected;
+                break;
+            case MenuOption.Settings:
+                if (outlineGramofono != null)  outlineGramofono.OutlineWidth = outlineWidthSelected;
+                if (animatorGramofono != null) animatorGramofono.SetBool("Settings", true);
+                break;
+        }
+    }
+
+    private void ClearAllVisuals()
+    {
+        if (outlineBook != null)
+        {
+            outlineBook.OutlineWidth = outlineWidthDefault;
+            animatorBook.SetBool("Close2", true);
+        }
+
+        if (outlineAbout != null)
+        {
+            outlineAbout.OutlineWidth = outlineWidthDefault;
+        }
+
+        if (outlineExit != null)
+        {
+            outlineExit.OutlineWidth = outlineWidthDefault;
+        }
+        if (outlineGramofono != null)
+        {
+            outlineGramofono.OutlineWidth = outlineWidthDefault;
+            animatorGramofono.SetBool("Settings", false);
+        }
+    }
+
+    // ── Activar opción por índice ────────────────────────────────────────────
+    private void ActivateOption(int index)
+    {
+        if (isNavigating) return;
+
+        currentIndex = index;
+        ResetAllCameraPriorities();
+        ApplySelectedVisuals(cycleOrder[index]);
+
+        switch (cycleOrder[index])
+        {
+            case MenuOption.Play:
+                camPlay.Priority = activeCam;
+                StartCoroutine(MoveCamWithSpline(splinePlay, 1f, timeSpline));
+                break;
+            case MenuOption.About:
+                camAbout.Priority = activeCam;
+                StartCoroutine(MoveCamWithSpline(splineAbout, 1f, timeSpline));
+                break;
+            case MenuOption.Settings:
+                camSettings.Priority = activeCam;
+                StartCoroutine(MoveCamWithSpline(splineSettings, 1f, timeSpline));
+                break;
+            case MenuOption.Exit:
+                camExit.Priority = activeCam;
+                StartCoroutine(MoveCamWithSpline(splineExit, 1f, timeSpline));
+                break;
+        }
+    }
+
+    // ── Confirmar la opción actual ───────────────────────────────────────────
+    private void ConfirmSelection()
+    {
+        if (currentIndex == -1) return;
+
+        switch (cycleOrder[currentIndex])
+        {
+            case MenuOption.Play:
+                SceneManager.LoadScene("GameScene");
+                break;
+            case MenuOption.Settings:
+                btnMusic.interactable    = true;
+                btnFX.interactable       = true;
+                volumeMusic.interactable = true;
+                volumeFX.interactable    = true;
+                break;
+            case MenuOption.Exit:
+                Application.Quit();
+                break;
+        }
+    }
+
+    // ── Volver al menú principal ─────────────────────────────────────────────
+    private void GoToMainMenu()
+    {
+        currentIndex = -1;
+        cameraReachedEnd = false;
+        ClearAllVisuals();
+        StartCoroutine(ReturnToMenu(
+            camMenu,
+            new CinemachineCamera[]      { camPlay, camSettings, camExit, camAbout },
+            new CinemachineSplineDolly[] { splinePlay, splineSettings, splineExit, splineAbout },
+            timeSpline
+        ));
+    }
+
+    private void ResetAllCameraPriorities()
+    {
+        camMenu.Priority     = inactiveCam;
+        camPlay.Priority     = inactiveCam;
+        camSettings.Priority = inactiveCam;
+        camExit.Priority     = inactiveCam;
+        camAbout.Priority    = inactiveCam;
+        cameraReachedEnd     = false;
+    }
+
+    // ── Corrutinas ───────────────────────────────────────────────────────────
+    private IEnumerator MoveCamWithSpline(CinemachineSplineDolly spline, float target, float duration)
+    {
+        isNavigating = true;
+        float start = spline.CameraPosition;
         float timer = 0f;
 
         while (timer < duration)
         {
             timer += Time.deltaTime;
-            float interpolator = (timer / duration);
-
-            spline.CameraPosition = Mathf.Lerp(start, target, interpolator);
-
+            spline.CameraPosition = Mathf.Lerp(start, target, timer / duration);
             yield return null;
         }
 
         spline.CameraPosition = target;
-        cameraReachedEnd = target >= 0.9;
+        cameraReachedEnd = target >= 0.9f;
+        isNavigating = false;
+        stickWasNeutral = true;
     }
+
     private IEnumerator ReturnToMenu(
         CinemachineCamera menuCam,
         CinemachineCamera[] otherCams,
         CinemachineSplineDolly[] splines,
         float duration)
     {
+        isNavigating = true;
         menuCam.Priority = activeCam;
-        btnMusic.interactable = false;
-        btnFX.interactable = false;
-        volumeMusic.interactable = false;
-        volumeFX.interactable = false;
-        
-        foreach (var cam in otherCams)
-        {
-            cam.Priority = inactiveCam;
-        }
-        
-        foreach (var spline in splines)
-        {
-            yield return MoveCamWithSpline(spline, 0f, duration);
-        }
-    }
 
+        btnMusic.interactable    = false;
+        btnFX.interactable       = false;
+        volumeMusic.interactable = false;
+        volumeFX.interactable    = false;
+
+        foreach (var c in otherCams) c.Priority = inactiveCam;
+        foreach (var s in splines)   StartCoroutine(MoveCamWithSpline(s, 0f, duration));
+
+        yield return new WaitForSeconds(duration);
+
+        isNavigating = false;
+    }
 }

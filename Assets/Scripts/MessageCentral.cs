@@ -92,4 +92,11 @@ public class MessageCentral : MonoBehaviour
         OnSwapScene?.Invoke();
     }
 
+    public static event Action<bool> OnPausedGame;
+
+    public static void PausedGame(bool paused)
+    {
+        OnPausedGame?.Invoke(paused);
+    }
+
 }

@@ -18,8 +18,7 @@ public class PlayerAtk : MonoBehaviour
     [SerializeField] private float spectralFadeOutDuration = 0.3f;
     [SerializeField] private GameObject impacateffects;
     
-    // [SerializeField]
-    // private BossHealtController bossHealtController;
+    private bool pausedGame = false;
     
     [Header("Damage")]
     public int finalDamage; //Crear Maximo dps de 30 o 25
@@ -43,7 +42,14 @@ public class PlayerAtk : MonoBehaviour
     private Color spectralStaffOriginalEmissionBaseColor;
     private float spectralStaffOriginalEmissionIntensity;
     private bool spectralStaffEmissionCached;
-    
+    private void OnEnable()
+    {
+        MessageCentral.OnPausedGame += IsGamePaused;
+    }
+    private void OnDisable()
+    {
+        MessageCentral.OnPausedGame -= IsGamePaused;
+    }
 
 
     private void Awake()
@@ -55,6 +61,7 @@ public class PlayerAtk : MonoBehaviour
     
     public void BasicAtk(bool performed)
     {
+        if(pausedGame) return;
         basicAttackPerformed  = performed;
     }
   
@@ -145,6 +152,7 @@ public class PlayerAtk : MonoBehaviour
     // ----------------------
     public void AoEAtk()
     {
+        if(pausedGame)return;
         animator.SetTrigger("RightClick");
         canAoe = false;
     }
@@ -164,9 +172,13 @@ public class PlayerAtk : MonoBehaviour
         public GameObject target;
         public float distance;
         public Vector3 hitPoint;
-
     }
 
+    private void IsGamePaused(bool paused)
+    {
+        pausedGame = paused;
+    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -174,6 +186,7 @@ public class PlayerAtk : MonoBehaviour
             Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 
+    //-------------------------------------------------
     private IEnumerator LerpSpectralStaffEmission()
     {
         MeshRenderer meshRenderer = spectralStaff.GetComponent<MeshRenderer>();
