@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
-
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [Header("Menu Settings")]
     [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD; 
-    private bool paused = false;
+   
     [SerializeField] private GameObject deadLayerUI;
     [SerializeField] private GameObject winLayerUI;
     [SerializeField] HUDManager hudManager;
@@ -55,7 +55,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CinemachineCamera playerCam;
 
 
-    
+    [Header("Pause Navigation")]
+    public Button btnResume;
+    public Button btnExit;
+    public bool paused = false;
 /*
  * Contador que incremente con cada item
  * y que revise que no incremente de mas al tener sampleAmount>=100
@@ -97,6 +100,7 @@ public class GameManager : MonoBehaviour
         player.SetActive(false);
         DontDestroyOnLoad(gameObject);
         reporter=GetComponent<ScoreReporter>();
+       
     }
 
     void Start()

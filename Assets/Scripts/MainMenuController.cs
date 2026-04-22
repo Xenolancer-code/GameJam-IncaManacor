@@ -40,12 +40,15 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     [Header("Outline y Animators")]
     [SerializeField] private Outline outlineBook;
     [SerializeField] private Outline outlineGramofono;
-    [SerializeField] private Outline outlineAbout;
-    [SerializeField] private Outline outlineExit;
     [SerializeField] private Animator animatorBook;
     [SerializeField] private Animator animatorGramofono;
     [SerializeField] private float outlineWidthSelected = 10f;
     [SerializeField] private float outlineWidthDefault = 3f;
+
+    [Header("Settings Navigation")]
+    [SerializeField] private float sliderStep = 0.05f;
+    [SerializeField] private Image highlightMusic;
+    [SerializeField] private Image highlightFX;
 
     // Ciclo: izquierda → -1 (Play→About→Settings→Exit)
     //        derecha   → +1 (Play→Exit→Settings→About)
@@ -53,9 +56,15 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     private readonly MenuOption[] cycleOrder =
         { MenuOption.Play, MenuOption.About, MenuOption.Settings, MenuOption.Exit };
 
+    private enum SettingsOption { Music, FX }
+    private SettingsOption currentSettingsOption = SettingsOption.Music;
+    private bool isInSettingsMode = false;
+
     private int currentIndex = -1;
     private bool isNavigating = false;
     private bool stickWasNeutral = true;
+    private bool dpadWasNeutral = true;
+    private bool submitCooldown = false;
 
     private PlayerControls controls;
 
@@ -92,8 +101,15 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     // ── IUIActions ───────────────────────────────────────────────────────────
     public void OnNavigate(InputAction.CallbackContext context)
     {
-        if (isNavigating) return;
+        if (context.canceled)
+        {
+            stickWasNeutral = true;
+            return;
+        }
+
         if (!context.performed) return;
+        if (isInSettingsMode) return;
+        if (isNavigating) return;
         if (!stickWasNeutral) return;
 
         Vector2 input = context.ReadValue<Vector2>();
@@ -107,21 +123,62 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
             return;
         }
 
-        int direction = input.x < 0 ? -1 : 1;
+        int direction = input.x < 0 ? 1 : -1;
         int nextIndex = (currentIndex + direction + cycleOrder.Length) % cycleOrder.Length;
         ActivateOption(nextIndex);
     }
 
     public void OnSubmit(InputAction.CallbackContext context)
     {
+        Debug.Log($"[OnSubmit] performed:{context.performed} isInSettingsMode:{isInSettingsMode} cameraReachedEnd:{cameraReachedEnd} currentIndex:{currentIndex}");
         if (!context.performed) return;
+        if (isInSettingsMode) return;
+        if (submitCooldown) return;
         if (!cameraReachedEnd) return;
 
         ConfirmSelection();
     }
 
+    public void OnCancel(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (!isInSettingsMode) return;
+
+        ExitSettingsMode();
+    }
+
+    public void OnVolumenControl(InputAction.CallbackContext context)
+    {
+        if (!isInSettingsMode) return;
+
+        if (context.canceled)
+        {
+            dpadWasNeutral = true;
+            return;
+        }
+
+        if (!context.performed) return;
+        if (!dpadWasNeutral) return;
+
+        Vector2 input = context.ReadValue<Vector2>();
+        dpadWasNeutral = false;
+
+        // Arriba/Abajo → cambiar slider seleccionado
+        if (Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) > stickThreshold)
+        {
+            currentSettingsOption = input.y > 0 ? SettingsOption.Music : SettingsOption.FX;
+            UpdateSettingsHighlight();
+        }
+        // Izquierda/Derecha → modificar valor del slider activo
+        else if (Mathf.Abs(input.x) > stickThreshold)
+        {
+            float delta = input.x > 0 ? sliderStep : -sliderStep;
+            Slider activeSlider = currentSettingsOption == SettingsOption.Music ? volumeMusic : volumeFX;
+            activeSlider.value = Mathf.Clamp01(activeSlider.value + delta);
+        }
+    }
+
     // Métodos de IUIActions que no usamos — implementación vacía obligatoria
-    public void OnCancel(InputAction.CallbackContext context) { }
     public void OnPoint(InputAction.CallbackContext context) { }
     public void OnClick(InputAction.CallbackContext context) { }
     public void OnScrollWheel(InputAction.CallbackContext context) { }
@@ -160,23 +217,62 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         }
     }
 
+    // ── Settings mode ────────────────────────────────────────────────────────
+    private void EnterSettingsMode()
+    {
+        isInSettingsMode = true;
+        currentSettingsOption = SettingsOption.Music;
+        dpadWasNeutral = true;
+        submitCooldown = true; // bloquear el Submit del frame actual
+        StartCoroutine(ClearSubmitCooldown());
+
+        btnMusic.interactable    = true;
+        btnFX.interactable       = true;
+        volumeMusic.interactable = true;
+        volumeFX.interactable    = true;
+        
+
+        UpdateSettingsHighlight();
+    }
+    private IEnumerator ClearSubmitCooldown()
+    {
+        yield return null; // esperar un frame
+        submitCooldown = false;
+    }
+
+    private void ExitSettingsMode()
+    {
+        isInSettingsMode = false;
+
+        btnMusic.interactable    = false;
+        btnFX.interactable       = false;
+        volumeMusic.interactable = false;
+        volumeFX.interactable    = false;
+
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+        
+        if (highlightMusic != null) highlightMusic.enabled = false;
+        if (highlightFX != null)    highlightFX.enabled    = false;
+    }
+
+    private void UpdateSettingsHighlight()
+    {
+        if (highlightMusic != null)
+            highlightMusic.enabled = currentSettingsOption == SettingsOption.Music;
+        if (highlightFX != null)
+            highlightFX.enabled = currentSettingsOption == SettingsOption.FX;
+    }
+
     // ── Outline y Animators ──────────────────────────────────────────────────
     private void ApplySelectedVisuals(MenuOption option)
     {
-        // Resetear ambos primero
         ClearAllVisuals();
 
         switch (option)
         {
             case MenuOption.Play:
-                if (outlineBook != null)   outlineBook.OutlineWidth = outlineWidthSelected;
-                if (animatorBook != null)  animatorBook.SetBool("Close2", false);
-                break;
-            case MenuOption.About:
-                if(outlineAbout!=null) outlineAbout.OutlineWidth = outlineWidthSelected;
-                break;
-            case MenuOption.Exit:
-                if(outlineExit!=null) outlineExit.OutlineWidth = outlineWidthSelected;
+                if (outlineBook != null)  outlineBook.OutlineWidth = outlineWidthSelected;
+                if (animatorBook != null) animatorBook.SetBool("Close2", false);
                 break;
             case MenuOption.Settings:
                 if (outlineGramofono != null)  outlineGramofono.OutlineWidth = outlineWidthSelected;
@@ -192,16 +288,6 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
             outlineBook.OutlineWidth = outlineWidthDefault;
             animatorBook.SetBool("Close2", true);
         }
-
-        if (outlineAbout != null)
-        {
-            outlineAbout.OutlineWidth = outlineWidthDefault;
-        }
-
-        if (outlineExit != null)
-        {
-            outlineExit.OutlineWidth = outlineWidthDefault;
-        }
         if (outlineGramofono != null)
         {
             outlineGramofono.OutlineWidth = outlineWidthDefault;
@@ -213,6 +299,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     private void ActivateOption(int index)
     {
         if (isNavigating) return;
+
+        if (isInSettingsMode) ExitSettingsMode();
 
         currentIndex = index;
         ResetAllCameraPriorities();
@@ -250,10 +338,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
                 SceneManager.LoadScene("GameScene");
                 break;
             case MenuOption.Settings:
-                btnMusic.interactable    = true;
-                btnFX.interactable       = true;
-                volumeMusic.interactable = true;
-                volumeFX.interactable    = true;
+                EnterSettingsMode();
                 break;
             case MenuOption.Exit:
                 Application.Quit();
@@ -264,6 +349,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     // ── Volver al menú principal ─────────────────────────────────────────────
     private void GoToMainMenu()
     {
+        if (isInSettingsMode) ExitSettingsMode();
+
         currentIndex = -1;
         cameraReachedEnd = false;
         ClearAllVisuals();
