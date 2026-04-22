@@ -6,24 +6,27 @@ public class HealthEnemyController : MonoBehaviour,IDamageable
 {
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
-    [SerializeField] private TextMeshProUGUI textHealth;
     [SerializeField] private GameObject dropPrefab;
-    [SerializeField] private GameObject bloodparticle;
-    
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator=GetComponent<Animator>();
+    }
+
     private void OnEnable()
     {
         currentHealth = maxHealth;
-        textHealth.text = maxHealth.ToString();
     }
 
     public void GetDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        textHealth.text = currentHealth.ToString();
+        MessageCentral.DamagedEnemy();
+        animator.SetTrigger("TakeHit");
         MessageCentral.DamagedEnemy();
         Debug.Log(currentHealth);
-        if(currentHealth <= 0) {
-            currentHealth = 0;
+        if(gameObject.activeSelf && currentHealth <= 0) {
             Die();        
         }
     }
@@ -37,8 +40,8 @@ public class HealthEnemyController : MonoBehaviour,IDamageable
     private void DropOrb()
     {
         Vector3 arriba = new Vector3 (0,0.5f,0);
-        //GameObject particle = PoolManager.SpawnObject(bloodparticle, transform.position+arriba, Quaternion.identity);
-        
         PoolManager.SpawnObject(dropPrefab, transform.position+arriba, Quaternion.identity);
     }
+
+    
 }

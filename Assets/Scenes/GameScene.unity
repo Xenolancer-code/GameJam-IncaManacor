@@ -4941,6 +4941,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2146905877}
     m_Modifications:
+    - target: {fileID: 49254486640649771, guid: 4c584ede7836b8d43803864087bf9d4c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 718455531}
     - target: {fileID: 3497219063531062869, guid: 4c584ede7836b8d43803864087bf9d4c, type: 3}
       propertyPath: m_Name
       value: portal frame (1)
@@ -5278,6 +5282,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2251663642765610059, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: bloodParticles
+      value: 
+      objectReference: {fileID: 6356438961120104147, guid: 89a56443582cc8a4fb4bd75c64f3eb32, type: 3}
     - target: {fileID: 3305994167233530112, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: m_Name
       value: Player
@@ -13208,6 +13216,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2146905877}
     m_Modifications:
+    - target: {fileID: 49254486640649771, guid: 4c584ede7836b8d43803864087bf9d4c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 718455531}
     - target: {fileID: 3497219063531062869, guid: 4c584ede7836b8d43803864087bf9d4c, type: 3}
       propertyPath: m_Name
       value: portal frame (2)

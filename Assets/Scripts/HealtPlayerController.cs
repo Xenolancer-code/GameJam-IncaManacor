@@ -34,7 +34,7 @@ public class HealtPlayerController : MonoBehaviour
         {
             animator.SetBool("PlayerIsDamaged", true);
             animator.SetTrigger("TakeHit");
-            Vector3 arriba = new Vector3(0, 0.5f, 0);
+            Vector3 arriba = new Vector3(0, 0.75f, 0);
             Instantiate(bloodParticles,transform.position+arriba,Quaternion.identity);
             MessageCentral.DamagedPlayer(true);
             TrytoShieldRecover();

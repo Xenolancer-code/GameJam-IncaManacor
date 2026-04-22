@@ -17,17 +17,24 @@ public class EnemyAtk : MonoBehaviour
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
     private bool playerIsDead = false;
+
+    [Header("Recibiendo Daño")] 
+    [SerializeField] private float tiempo=1.2f;
+    private bool takingDamage=false;
+    
     
     private GameObject player;
     
     private void OnEnable()
     {
         MessageCentral.OnDiePlayer += PlayerisDead;
+        MessageCentral.OnDamagedEnemy += TakingDamage;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnDiePlayer -= PlayerisDead;
+        MessageCentral.OnDamagedEnemy -= TakingDamage;
     }
     
     private void Awake()
@@ -39,7 +46,7 @@ public class EnemyAtk : MonoBehaviour
     void Update()
     {
         // Si est? atacando -> no rotar ni moverse
-        if (isAttacking || playerIsDead) return;
+        if (isAttacking || playerIsDead||takingDamage) return;
         if (playerInsideAttackRange)
         {
             TryAttack();
@@ -113,6 +120,18 @@ public class EnemyAtk : MonoBehaviour
     {
         playerIsDead = true;
         enemyAgent.isStopped = true;
+    }
+
+    private void TakingDamage()
+    {
+        takingDamage=true;
+        StartCoroutine(Tempo());
+    }
+
+    private IEnumerator Tempo()
+    {
+        yield return new WaitForSeconds(tiempo);
+        takingDamage = false;
     }
     
     private void OnDrawGizmos()
