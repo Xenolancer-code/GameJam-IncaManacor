@@ -16975,7 +16975,7 @@ MonoBehaviour:
   musicSource: {fileID: 1694236919}
   sfxSource: {fileID: 604675}
   menuMusic: {fileID: 8300000, guid: d394e1056450bf449a10292da3880edb, type: 3}
-  gameMusic: {fileID: 0}
+  tutorialMusic: {fileID: 0}
   fx_hit: {fileID: 8300000, guid: 9b6a25c2b24fdac489c7b75c818ee381, type: 3}
   musicVolume: 1
   sfxVolume: 1

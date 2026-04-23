@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.tutorialMusic,true);
         currentTime = 0;
         tutorialCam.Priority = 1;
         playerAtk = player.GetComponent<PlayerAtk>();

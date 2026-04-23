@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource sfxSource;
     public AudioClip menuMusic;
-    public AudioClip gameMusic;
+    public AudioClip tutorialMusic;
     public AudioClip fx_hit;
     [Header("Volumes")]
     [Range(0f, 1f)]
