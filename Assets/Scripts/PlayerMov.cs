@@ -17,7 +17,7 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private float dashSpeed = 10;
     [SerializeField] private float dashDuration = 1;
     [SerializeField] private float dashCooldown = 2f;
-
+    [SerializeField] private MeshAfterimagePool afterimagePool;
 
     [SerializeField] private float stepForce = 3f;
     [SerializeField] private float stepDuration = 0.15f;
@@ -134,12 +134,14 @@ public class PlayerMov : MonoBehaviour
 
     public void TryToDash()
     {
-        if (dashing || movementLocked||pausedGame) return;
+        if (dashing || movementLocked||pausedGame||movmentVector==Vector3.zero) return;
         StartCoroutine(Dash());
+        
     }
 
     private IEnumerator Dash()
     {
+        afterimagePool.enabled=true;
         dashing = true;
         MessageCentral.DashinActivated(true);
         float originalSpeed = playerSpeed;
@@ -154,9 +156,11 @@ public class PlayerMov : MonoBehaviour
             yield return null;
         }
         playerSpeed = originalSpeed;
+        afterimagePool.enabled=false;
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
         MessageCentral.DashinActivated(false);
+        
     }
 
     private void PlayerisDead()
