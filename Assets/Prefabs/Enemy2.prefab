@@ -5374,7 +5374,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  tiempo: 1.2
+  tiempo: 1.8
 --- !u!54 &5940971268130776748
 Rigidbody:
   m_ObjectHideFlags: 0

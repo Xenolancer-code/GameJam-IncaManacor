@@ -14,6 +14,10 @@ public class GeneracionRandomSpawners : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject player;
+    
+    [Header("Obstáculos")]
+    [SerializeField] private float minDistanceToObjects = 3f;
+    [SerializeField] private LayerMask obstacleLayer; // Asigna las layers de objetos en el Inspector
 
     // Lista de spawners activos
     private List<GameObject> activeSpawners = new();
@@ -88,10 +92,11 @@ public class GeneracionRandomSpawners : MonoBehaviour
             Vector2 circle = Random.insideUnitCircle * radio;
             Vector3 pos = new Vector3(circle.x, 0, circle.y) + transform.position;
 
-            if (Vector3.Distance(pos, player.transform.position) >= minDistanceToPlayer)
-            {
+            bool lejosDeljugador = Vector3.Distance(pos, player.transform.position) >= minDistanceToPlayer;
+            bool sinObstaculos = !Physics.CheckSphere(pos, minDistanceToObjects, obstacleLayer);
+
+            if (lejosDeljugador && sinObstaculos)
                 return pos;
-            }
         }
 
         return Vector3.zero;
@@ -103,6 +108,13 @@ public class GeneracionRandomSpawners : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radio);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, minDistanceToPlayer);
+        Gizmos.DrawWireSphere(player.transform.position, minDistanceToPlayer);
+        
+        Gizmos.color = Color.yellow;
+        foreach (var spawner in activeSpawners)
+        {
+            if (spawner != null)
+                Gizmos.DrawWireSphere(spawner.transform.position, minDistanceToObjects);
+        }
     }
 }

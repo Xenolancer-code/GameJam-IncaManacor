@@ -19,7 +19,7 @@ public class EnemyAtk : MonoBehaviour
     private bool playerIsDead = false;
 
     [Header("Recibiendo Daño")] 
-    [SerializeField] private float tiempo=1.2f;
+    [SerializeField] private float tiempo=1.8f;
     private bool takingDamage=false;
     
     

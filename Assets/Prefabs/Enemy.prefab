@@ -186,9 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealtController
   maxHealth: 100
-  textHealth: {fileID: 0}
   dropPrefab: {fileID: 8639030385552002631, guid: b82768b0a334c42499d0189211ec6c11, type: 3}
-  bloodparticle: {fileID: 4359841417530782731, guid: 8027a6322fcef9a458924ae10f8a7b92, type: 3}
 --- !u!114 &4656455976289175703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +218,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  tiempo: 1.8
 --- !u!95 &1813394391888736269
 Animator:
   serializedVersion: 7
