@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
     public int enemyCounter = 0;
     [Header("Menu Settings")]
     [SerializeField] private GameObject tutorialHUD;
-    [SerializeField] private GameObject pauseHUD; 
+    [SerializeField] private GameObject pauseHUD;
+    [SerializeField] private Animator animator;
    
     [SerializeField] private GameObject deadLayerUI;
     [SerializeField] private GameObject winLayerUI;
@@ -98,14 +99,13 @@ public class GameManager : MonoBehaviour
     {
         RenderSettings.skybox = skyboxNight;
         player.SetActive(false);
-        DontDestroyOnLoad(gameObject);
         reporter=GetComponent<ScoreReporter>();
        
     }
 
     void Start()
     {
-        SoundManager.Instance.PlayMusic(SoundManager.Instance.tutorialMusic,true);
+        //SoundManager.Instance.PlayMusic(SoundManager.Instance.tutorialMusic,true);
         currentTime = 0;
         tutorialCam.Priority = 1;
         playerAtk = player.GetComponent<PlayerAtk>();
@@ -322,15 +322,16 @@ public class GameManager : MonoBehaviour
     
     public void PauseGame()
     {
+        pauseHUD.SetActive(true);
+        animator.Play("Desenrollar");
         Time.timeScale = 0;
         MessageCentral.PausedGame(true);
-        pauseHUD.SetActive(true);
     }
     public void ResumeGame()
     {
      //Revisar como hacer para que no ataque al poner Resume   
-        Time.timeScale = 1;
+         animator.Play("Enrollar");   
+         Time.timeScale = 1;
         MessageCentral.PausedGame(false);
-        pauseHUD.SetActive(false);
     }
 }

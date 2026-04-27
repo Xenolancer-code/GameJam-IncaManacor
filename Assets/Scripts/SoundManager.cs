@@ -3,46 +3,28 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance;
-    
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider fxSlider;
-    [Header("Audio Sources")]
-    public AudioSource musicSource;
+    [Header("Audio Sources")] 
+    public AudioSource musicSource;//quitar(?
     public AudioSource sfxSource;
-    public AudioClip menuMusic;
-    public AudioClip tutorialMusic;
+    public AudioClip menuMusic;//quitar(?
     public AudioClip fx_hit;
     [Header("Volumes")]
-    [Range(0f, 1f)]
-    public float musicVolume = 1f;
-    [Range(0f, 1f)]
-    public float sfxVolume = 1f;
+    [Range(0f, 1f)] public float musicVolume = 1f;
+    [Range(0f, 1f)] public float sfxVolume = 1f;
 
     private bool musicMuted = false;
     private bool sfxMuted = false;
 
     void Awake()
     {
-        // Singleton pattern
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         // Apply initial volume
-        UpdateMusicVolume();
+        //UpdateMusicVolume();
         UpdateSFXVolume();
     }
-    
-    
-    #region Music Controls
 
+    //-- Music audio
     public void PlayMusic(AudioClip clip, bool loop = true)
     {
         if (clip == null) return;
@@ -57,7 +39,7 @@ public class SoundManager : MonoBehaviour
         if (musicMuted)
         {
             musicMuted = false;
-            PlayMusic(menuMusic,true);
+            PlayMusic(menuMusic, true);
         }
         else
         {
@@ -77,7 +59,7 @@ public class SoundManager : MonoBehaviour
         {
             sfxMuted = true;
         }
-    } 
+    }
 
     public void StopMusic()
     {
@@ -88,23 +70,16 @@ public class SoundManager : MonoBehaviour
     {
         musicVolume = Mathf.Clamp01(musicSlider.value);
         UpdateMusicVolume();
+        SaveVolume();
     }
 
-    public void MuteMusic(bool mute)
-    {
-        musicMuted = mute;
-        UpdateMusicVolume();
-    }
 
     private void UpdateMusicVolume()
     {
         musicSource.volume = musicMuted ? 0f : musicVolume;
     }
 
-    #endregion
-
-    #region SFX Controls
-
+//-SFX Audio
     public void PlaySFX(AudioClip clip)
     {
         if (clip == null) return;
@@ -116,30 +91,26 @@ public class SoundManager : MonoBehaviour
     {
         sfxVolume = Mathf.Clamp01(fxSlider.value);
         UpdateSFXVolume();
-        if(!sfxSource.isPlaying)
+        SaveVolume();
+        if (!sfxSource.isPlaying)
             PlaySFX(fx_hit);
     }
 
-    public void MuteSFX(bool mute)
-    {
-        sfxMuted = mute;
-        UpdateSFXVolume();
-    }
+    // public void MuteSFX(bool mute)
+    // {
+    //     sfxMuted = mute;
+    //     UpdateSFXVolume();
+    // }
 
     private void UpdateSFXVolume()
     {
         sfxSource.volume = sfxMuted ? 0f : sfxVolume;
     }
 
-    #endregion
-
-    #region Global Controls
-
-    public void MuteAll(bool mute)
+    private void SaveVolume()
     {
-        MuteMusic(mute);
-        MuteSFX(mute);
+        PlayerPrefs.SetFloat("musicVolume", musicVolume);
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
+        PlayerPrefs.Save();
     }
-
-    #endregion
 }

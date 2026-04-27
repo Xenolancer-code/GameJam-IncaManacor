@@ -15,22 +15,26 @@ public class AudioManager : MonoBehaviour
     private AudioSource sceneMusicAudioSource;
     private AudioSource ambianceAudioSource;
     
+    private float globalMusicVolume;
+    private float globalSFXVolume;
+    
     public static AudioManager I { get; private set; }
     private void Awake()
     {
-        if (I != null && I != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // if (I != null && I != this)
+        // {
+        //     Destroy(gameObject);
+        //     return;
+        // }
 
         I = this;
         InitializeSoundTimers();
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
+        GlobalVolumeSaved();
         if (playSceneMusic)
             PlayBackgroundSounds(sceneMusicClip, ref sceneMusicAudioSource);
 
@@ -50,7 +54,7 @@ public class AudioManager : MonoBehaviour
 
         AudioSource audioSource2d = soundGameObject.AddComponent<AudioSource>();
         audioSource2d.loop = soundClip.loop;
-        audioSource2d.volume = soundClip.volume;
+        audioSource2d.volume = soundClip.volume*globalSFXVolume;
         audioSource2d.pitch = pitch;
 
         if (audioSource2d.loop)
@@ -76,7 +80,7 @@ public class AudioManager : MonoBehaviour
 
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.loop = soundClip.loop;
-        audioSource.volume = soundClip.volume;
+        audioSource.volume = soundClip.volume*globalSFXVolume;
         audioSource.spatialBlend = soundClip.spacialBlend;
         audioSource.pitch = pitch;
 
@@ -103,7 +107,7 @@ public class AudioManager : MonoBehaviour
 
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.loop = soundClip.loop;
-        audioSource.volume = soundClip.volume;
+        audioSource.volume = soundClip.volume*globalSFXVolume;
         audioSource.spatialBlend = soundClip.spacialBlend;
         audioSource.pitch = pitch;
 
@@ -131,12 +135,17 @@ public class AudioManager : MonoBehaviour
         }
 
         audiosource.loop = true;
-        audiosource.volume = soundClip.volume;
+        audiosource.volume = soundClip.volume * globalMusicVolume;
         audiosource.clip = soundClip.audioClip;
 
         audiosource.Play();
     }
 
+    private void GlobalVolumeSaved()
+    {
+        globalMusicVolume = PlayerPrefs.GetFloat("musicvolume");
+        globalSFXVolume = PlayerPrefs.GetFloat("sfxvolume");
+    }
     public AudioSource StopBackgroundMusic()
     {
         if(sceneMusicAudioSource != null)
