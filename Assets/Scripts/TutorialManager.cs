@@ -119,17 +119,22 @@ public class TutorialManager : MonoBehaviour
 
     private void CreatePointers()
     {
-        float pointerX = (Screen.width / 2) - ((maxImages / 2) * (imagePU.rect.width + (imagePU.rect.width / 4) * maxImages / 2));
+        float scaledWidth = imagePU.rect.width * 0.7f; // Ancho real tras el escalado
+
+        float pointerX = (Screen.width / 2) - ((maxImages / 2) * (scaledWidth + (scaledWidth / 4) * maxImages / 2));
 
         for (int i = 0; i < images.Count; i++)
         {
             GameObject go = new GameObject("pointer" + i);
             go.transform.parent = transform;
             go.transform.position = Vector3.zero;
+
             Image img = go.AddComponent<Image>();
             img.sprite = imagePU;
+            go.transform.localScale = new Vector3(0.6f, 0.6f, 1f); // Escala a la mitad
+
             go.transform.position = new Vector3(
-                pointerX + (i * (imagePU.rect.width) + imagePU.rect.width / 16),
+                pointerX + (i * scaledWidth + scaledWidth / 16),
                 Screen.height / 8,
                 0
             );

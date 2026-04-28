@@ -46,7 +46,7 @@ public class EnemyAtk : MonoBehaviour
     void Update()
     {
         // Si est? atacando -> no rotar ni moverse
-        if (isAttacking || playerIsDead||takingDamage) return;
+        if (isAttacking || playerIsDead) return;
         if (playerInsideAttackRange)
         {
             TryAttack();
@@ -125,12 +125,14 @@ public class EnemyAtk : MonoBehaviour
     private void TakingDamage()
     {
         takingDamage=true;
+        enemyAgent.isStopped = true;
         StartCoroutine(Tempo());
     }
 
     private IEnumerator Tempo()
     {
         yield return new WaitForSeconds(tiempo);
+        enemyAgent.isStopped = false;
         takingDamage = false;
     }
     

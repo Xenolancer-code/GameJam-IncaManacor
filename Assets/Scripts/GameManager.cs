@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseHUD;
     [SerializeField] private Animator animator;
    
-    [SerializeField] private GameObject deadLayerUI;
+    [SerializeField] private Animator animatorDeadLayerUI;
     [SerializeField] private GameObject winLayerUI;
     [SerializeField] HUDManager hudManager;
     [Header("Timer Settings")]
@@ -300,7 +300,9 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforePause);
         Time.timeScale = 0;
-        deadLayerUI.SetActive(true);
+        animatorDeadLayerUI.SetTrigger("Active");
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(0);
     }
 
     private void WinScreen()
@@ -313,11 +315,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(timeBeforePause);
         Time.timeScale = 0;
         winLayerUI.SetActive(true);
-    }
-    
-    public void ExitGame()
-    {
-        Application.Quit();
     }
     
     public void PauseGame()

@@ -26,7 +26,7 @@ public class HUDManager : MonoBehaviour
         MessageCentral.OnStart += ActivateHud;
         MessageCentral.OnDashinActivated += ControllerDashIcons;
         MessageCentral.OnDamagedPlayer += ControllerHPIcons;
-      
+        MessageCentral.OnDiePlayer += DeadScreen;
     }
 
     private void OnDisable()
@@ -34,7 +34,7 @@ public class HUDManager : MonoBehaviour
         MessageCentral.OnStart -= ActivateHud;
         MessageCentral.OnDashinActivated -= ControllerDashIcons;
         MessageCentral.OnDamagedPlayer -= ControllerHPIcons;
-       
+        MessageCentral.OnDiePlayer -= DeadScreen;
     }
 
     private void Start()
@@ -104,6 +104,18 @@ public class HUDManager : MonoBehaviour
     private void ActivateHud()
     {
         showHud = true;
+    }
+    
+    
+    private void DeadScreen()
+    {
+        StartCoroutine(PlayerDeath());
+    }
+
+    private IEnumerator PlayerDeath()
+    {
+        yield return new WaitForSeconds(5f);
+        hudElements.SetActive(false);
     }
 
 }
