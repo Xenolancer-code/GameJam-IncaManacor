@@ -19,7 +19,7 @@ public class EnemyAtk : MonoBehaviour
     private bool playerIsDead = false;
 
     [Header("Recibiendo Daño")] 
-    [SerializeField] private float tiempo=1.8f;
+    [SerializeField] private float tiempo=1.5f;
     private bool takingDamage=false;
     
     
@@ -46,7 +46,7 @@ public class EnemyAtk : MonoBehaviour
     void Update()
     {
         // Si est? atacando -> no rotar ni moverse
-        if (isAttacking || playerIsDead) return;
+        if (isAttacking || playerIsDead||takingDamage) return;
         if (playerInsideAttackRange)
         {
             TryAttack();
@@ -125,14 +125,12 @@ public class EnemyAtk : MonoBehaviour
     private void TakingDamage()
     {
         takingDamage=true;
-        enemyAgent.isStopped = true;
         StartCoroutine(Tempo());
     }
 
     private IEnumerator Tempo()
     {
         yield return new WaitForSeconds(tiempo);
-        enemyAgent.isStopped = false;
         takingDamage = false;
     }
     

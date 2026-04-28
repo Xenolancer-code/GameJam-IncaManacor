@@ -13,18 +13,21 @@ public class EnemyMov : MonoBehaviour
     private NavMeshAgent enemyAgent;
     private Animator animator;
 
-    private bool isKnockback = false;
+    private bool takingDamage = false;
+    [SerializeField] private float tiempoStuned =2f;
 
     //private float knockbackDuration = 0.2f; // <<--- velocidad del knockback
     //[SerializeField] private float StandingDuration = 2f; //Por usar
     private void OnEnable()
     {
         MessageCentral.OnDiePlayer += PlayerisDead;
+        MessageCentral.OnDamagedEnemy +=TakingDamage;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnDiePlayer -= PlayerisDead;
+        MessageCentral.OnDamagedEnemy -=TakingDamage;
     }
 
     private void Awake()
@@ -42,7 +45,7 @@ public class EnemyMov : MonoBehaviour
     void Update()
     {
         // Si hay knockback → no hacer nada
-        if (isKnockback) return;
+        if (takingDamage) return;
 
         //Perseguir al player
         enemyAgent.SetDestination(player.transform.position);
@@ -58,6 +61,20 @@ public class EnemyMov : MonoBehaviour
     {
         enemyAgent.isStopped = true;
     }
+    
+    private void TakingDamage()
+    {
+        takingDamage=true;
+        StartCoroutine(Tempo());
+    }
+
+    private IEnumerator Tempo()
+    {
+        yield return new WaitForSeconds(tiempoStuned);
+        takingDamage = false;
+    }
+    
+    
 }
 
 
