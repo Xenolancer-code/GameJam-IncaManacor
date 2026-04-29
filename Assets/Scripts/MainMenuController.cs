@@ -16,6 +16,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     private bool cameraReachedEnd = false;
 
     [Header("Referencias SoundCanvas")]
+    [SerializeField] private SoundManager soundManager;
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnFX;
     [SerializeField] private Slider volumeMusic;
@@ -273,16 +274,25 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
             case MenuOption.Play:
                 if (outlineBook != null)  outlineBook.OutlineWidth = outlineWidthSelected;
                 if (animatorBook != null) animatorBook.SetBool("Close2", false);
+                soundManager.PlayMenuOptionsMusic(0,true);
                 break;
             case MenuOption.Settings:
                 if (outlineGramofono != null)  outlineGramofono.OutlineWidth = outlineWidthSelected;
                 if (animatorGramofono != null) animatorGramofono.SetBool("Settings", true);
+                soundManager.PlayMenuOptionsMusic(1,true);
+                break;
+            case MenuOption.About:
+                soundManager.PlayMenuOptionsMusic(2,true);
+                break;
+            case MenuOption.Exit:
+                soundManager.PlayMenuOptionsMusic(3,true);
                 break;
         }
     }
 
     private void ClearAllVisuals()
     {
+        soundManager.StopMenuOptionsMusic();
         if (outlineBook != null)
         {
             outlineBook.OutlineWidth = outlineWidthDefault;
