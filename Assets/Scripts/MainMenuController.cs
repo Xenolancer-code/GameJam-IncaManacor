@@ -50,16 +50,32 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     [SerializeField] private float sliderStep = 0.05f;
     [SerializeField] private Image highlightMusic;
     [SerializeField] private Image highlightFX;
+    [SerializeField] private Button[] settingsButtons;
 
+    [Header("Player Name")]
+    [SerializeField] private LetterSlot[] letterSlots; // 5 casillas en el Inspector
+    private int[] letterIndices = new int[5];           // índice de letra actual por casilla
+    private const string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private string playerName = "";
+    [System.Serializable]
+    public struct LetterSlot
+    {
+        public TMPro.TMP_Text textUp;     // letra anterior
+        public TMPro.TMP_Text textCenter; // letra actual
+        public TMPro.TMP_Text textDown;   // letra posterior
+    }
+    
     // Ciclo: izquierda → -1 (Play→About→Settings→Exit)
     //        derecha   → +1 (Play→Exit→Settings→About)
     private enum MenuOption { Play, About, Settings, Exit }
     private readonly MenuOption[] cycleOrder =
         { MenuOption.Play, MenuOption.About, MenuOption.Settings, MenuOption.Exit };
 
-    private enum SettingsOption { Music, FX }
+    private enum SettingsOption { Music, FX, Buttons }
     private SettingsOption currentSettingsOption = SettingsOption.Music;
     private bool isInSettingsMode = false;
+    private int currentButtonIndex = 0;
+    private const int totalButtons = 5;
 
     private int currentIndex = -1;
     private bool isNavigating = false;
@@ -97,6 +113,14 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         btnFX.interactable       = false;
         volumeMusic.interactable = false;
         volumeFX.interactable    = false;
+        
+        // Inicializar casillas de letras
+        for (int i = 0; i < letterSlots.Length; i++)
+        {
+            letterIndices[i] = 0; // empieza en 'A'
+            UpdateSlotTexts(i);
+        }
+        UpdatePlayerName();
     }
 
     // ── IUIActions ───────────────────────────────────────────────────────────
@@ -131,10 +155,18 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
 
     public void OnSubmit(InputAction.CallbackContext context)
     {
-        Debug.Log($"[OnSubmit] performed:{context.performed} isInSettingsMode:{isInSettingsMode} cameraReachedEnd:{cameraReachedEnd} currentIndex:{currentIndex}");
         if (!context.performed) return;
-        if (isInSettingsMode) return;
         if (submitCooldown) return;
+
+        // Si estamos en botones → invocar el botón seleccionado
+        if (isInSettingsMode && currentSettingsOption == SettingsOption.Buttons)
+        {
+            if (settingsButtons.Length > 0)
+                settingsButtons[currentButtonIndex].onClick.Invoke();
+            return;
+        }
+
+        if (isInSettingsMode) return;
         if (!cameraReachedEnd) return;
 
         ConfirmSelection();
@@ -149,35 +181,79 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     }
 
     public void OnVolumenControl(InputAction.CallbackContext context)
+{
+    if (!isInSettingsMode) return;
+
+    if (context.canceled)
     {
-        if (!isInSettingsMode) return;
+        dpadWasNeutral = true;
+        return;
+    }
 
-        if (context.canceled)
+    if (!context.performed) return;
+    if (!dpadWasNeutral) return;
+
+    Vector2 input = context.ReadValue<Vector2>();
+    dpadWasNeutral = false;
+
+    // ── Movimiento vertical: navegar entre Music → FX → Buttons ─────────
+    if (Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) > stickThreshold)
+    {
+        if (input.y > 0) // Arriba
         {
-            dpadWasNeutral = true;
-            return;
+            switch (currentSettingsOption)
+            {
+                case SettingsOption.FX:
+                    currentSettingsOption = SettingsOption.Music;
+                    break;
+                case SettingsOption.Buttons:
+                    SwapLetterUp();
+                    break;
+            }
         }
-
-        if (!context.performed) return;
-        if (!dpadWasNeutral) return;
-
-        Vector2 input = context.ReadValue<Vector2>();
-        dpadWasNeutral = false;
-
-        // Arriba/Abajo → cambiar slider seleccionado
-        if (Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) > stickThreshold)
+        else // Abajo
         {
-            currentSettingsOption = input.y > 0 ? SettingsOption.Music : SettingsOption.FX;
-            UpdateSettingsHighlight();
+            switch (currentSettingsOption)
+            {
+                case SettingsOption.Music:
+                    currentSettingsOption = SettingsOption.FX;
+                    break;
+                case SettingsOption.FX:
+                    currentSettingsOption = SettingsOption.Buttons;
+                    currentButtonIndex = 0;
+                    break;
+                case SettingsOption.Buttons:
+                    SwapLetterDown();
+                    break;
+            }
         }
-        // Izquierda/Derecha → modificar valor del slider activo
-        else if (Mathf.Abs(input.x) > stickThreshold)
+        UpdateSettingsHighlight();
+        return;
+    }
+
+    // ── Movimiento horizontal ────────────────────────────────────────────
+    if (Mathf.Abs(input.x) > stickThreshold)
+    {
+        float delta = input.x > 0 ? sliderStep : -sliderStep;
+
+        switch (currentSettingsOption)
         {
-            float delta = input.x > 0 ? sliderStep : -sliderStep;
-            Slider activeSlider = currentSettingsOption == SettingsOption.Music ? volumeMusic : volumeFX;
-            activeSlider.value = Mathf.Clamp01(activeSlider.value + delta);
+            // Sliders: izquierda/derecha modifica el valor
+            case SettingsOption.Music:
+                volumeMusic.value = Mathf.Clamp01(volumeMusic.value + delta);
+                break;
+            case SettingsOption.FX:
+                volumeFX.value = Mathf.Clamp01(volumeFX.value + delta);
+                break;
+            // Botones: izquierda/derecha navega entre ellos
+            case SettingsOption.Buttons:
+                int direction = input.x > 0 ? 1 : -1;
+                currentButtonIndex = Mathf.Clamp(currentButtonIndex + direction, 0, totalButtons - 1);
+                UpdateSettingsHighlight();
+                break;
         }
     }
+}
 
     // Métodos de IUIActions que no usamos — implementación vacía obligatoria
     public void OnPoint(InputAction.CallbackContext context) { }
@@ -223,16 +299,17 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     {
         isInSettingsMode = true;
         currentSettingsOption = SettingsOption.Music;
+        currentButtonIndex = 0;
         dpadWasNeutral = true;
-        submitCooldown = true; // bloquear el Submit del frame actual
+        submitCooldown = true;
         StartCoroutine(ClearSubmitCooldown());
 
         btnMusic.interactable    = true;
         btnFX.interactable       = true;
         volumeMusic.interactable = true;
         volumeFX.interactable    = true;
-        
 
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         UpdateSettingsHighlight();
     }
     private IEnumerator ClearSubmitCooldown()
@@ -262,6 +339,13 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
             highlightMusic.enabled = currentSettingsOption == SettingsOption.Music;
         if (highlightFX != null)
             highlightFX.enabled = currentSettingsOption == SettingsOption.FX;
+
+        // Highlight de botones — usa el Selected color del EventSystem
+        if (currentSettingsOption == SettingsOption.Buttons && settingsButtons.Length > 0)
+            UnityEngine.EventSystems.EventSystem.current
+                .SetSelectedGameObject(settingsButtons[currentButtonIndex].gameObject);
+        else
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
     }
 
     // ── Outline y Animators ──────────────────────────────────────────────────
@@ -381,7 +465,64 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         camAbout.Priority    = inactiveCam;
         cameraReachedEnd     = false;
     }
+    // ── Nombre del jugador ───────────────────────────────────────────────────────
+    private void SwapLetterUp()
+    {
+        // Subir → letra anterior en el alfabeto (A→Z)
+        letterIndices[currentButtonIndex] = 
+            (letterIndices[currentButtonIndex] - 1 + ALPHABET.Length) % ALPHABET.Length;
 
+        UpdateSlotTexts(currentButtonIndex);
+        UpdatePlayerName();
+    }
+    public void SwapLetterUpCLick(int i)
+    {
+        // Subir → letra anterior en el alfabeto (A→Z)
+        letterIndices[i] = 
+            (letterIndices[i] - 1 + ALPHABET.Length) % ALPHABET.Length;
+
+        UpdateSlotTexts(i);
+        UpdatePlayerName();
+    }
+
+    private void SwapLetterDown()
+    {
+        // Bajar → letra siguiente en el alfabeto (Z→A)
+        letterIndices[currentButtonIndex] = 
+            (letterIndices[currentButtonIndex] + 1) % ALPHABET.Length;
+
+        UpdateSlotTexts(currentButtonIndex);
+        UpdatePlayerName();
+    }
+    public void SwapLetterDownClick(int i)
+    {
+        // Bajar → letra siguiente en el alfabeto (Z→A)
+        letterIndices[i] = 
+            (letterIndices[i] + 1) % ALPHABET.Length;
+
+        UpdateSlotTexts(i);
+        UpdatePlayerName();
+    }
+
+    private void UpdateSlotTexts(int slotIndex)
+    {
+        int current  = letterIndices[slotIndex];
+        int previous = (current - 1 + ALPHABET.Length) % ALPHABET.Length;
+        int next     = (current + 1) % ALPHABET.Length;
+
+        letterSlots[slotIndex].textUp.text     = ALPHABET[previous].ToString();
+        letterSlots[slotIndex].textCenter.text = ALPHABET[current].ToString();
+        letterSlots[slotIndex].textDown.text   = ALPHABET[next].ToString();
+    }
+
+    private void UpdatePlayerName()
+    {
+        playerName = "";
+        for (int i = 0; i < letterSlots.Length; i++)
+            playerName += ALPHABET[letterIndices[i]];
+
+        Debug.Log($"Player name: {playerName}");
+    }
     // ── Corrutinas ───────────────────────────────────────────────────────────
     private IEnumerator MoveCamWithSpline(CinemachineSplineDolly spline, float target, float duration)
     {
