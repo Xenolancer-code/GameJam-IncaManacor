@@ -54,6 +54,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
 
     [Header("Player Name")]
     [SerializeField] private LetterSlot[] letterSlots; // 5 casillas en el Inspector
+    [SerializeField] private ScoreData scoreData;
     private int[] letterIndices = new int[5];           // índice de letra actual por casilla
     private const string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private string playerName = "";
@@ -520,7 +521,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         playerName = "";
         for (int i = 0; i < letterSlots.Length; i++)
             playerName += ALPHABET[letterIndices[i]];
-
+        
+        scoreData.name = playerName;
         Debug.Log($"Player name: {playerName}");
     }
     // ── Corrutinas ───────────────────────────────────────────────────────────

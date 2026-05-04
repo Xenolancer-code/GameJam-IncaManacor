@@ -130,7 +130,6 @@ public class GameManager : MonoBehaviour
         if(isGameStarted == true)
         {
             currentTime += Time.deltaTime;
-             
         }
     }
 
@@ -273,9 +272,7 @@ public class GameManager : MonoBehaviour
     //Metodos de recopilación de datos
     private void ObtainScoreData()
     {
-        //TODO: Calcular puntuación con diferentes variables
-        
-        reporter.SubmitScore(scoreData.name,enemyCounter,scoreData.api_token);
+        reporter.SubmitScore(scoreData.name,(int)currentTime,scoreData.api_token);
     }
 
     //Metodos sobre el menu de Pausa
