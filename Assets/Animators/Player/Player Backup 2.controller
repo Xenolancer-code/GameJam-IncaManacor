@@ -259,7 +259,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Win
+    m_ConditionEvent: Winner
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1549878450162632630}
@@ -544,8 +544,8 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Win
-    m_Type: 9
+  - m_Name: Winner
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -792,11 +792,11 @@ AnimatorStateMachine:
   - {fileID: -3769355897793087945}
   m_EntryTransitions: []
   m_StateMachineTransitions:
+  - first: {fileID: 7573999824050053549}
+    second: []
   - first: {fileID: 3678412343301239778}
     second:
     - {fileID: -8219347410107948284}
-  - first: {fileID: 7573999824050053549}
-    second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 780, y: 330, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}

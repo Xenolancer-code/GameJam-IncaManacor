@@ -313,6 +313,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforePause);
         AudioManager.I.PlaySound(SoundName.Win);
+        PlayerIsWinner = true;
         MessageCentral.PlayerWins(PlayerIsWinner);
         //Cinemachine en el forward del player
         playerAnimator.SetBool("Winner", true);
