@@ -10917,8 +10917,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 672606742657157590}
   healthImage: {fileID: 5235021809059406997}
   hitImage: {fileID: 4938155634541142399}
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 2000
+  currentHealth: 2000
   barMaxWidth: 100
   hitHoldDuration: 0.3
   hitDrainDuration: 0.4

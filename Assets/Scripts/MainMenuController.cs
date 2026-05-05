@@ -52,11 +52,16 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     [SerializeField] private Image highlightFX;
     [SerializeField] private Button[] settingsButtons;
 
+    [Header("Score")] 
+    [SerializeField] private ScoreData scoreData;
+    [SerializeField] private TMPro.TMP_Text scoreText;
+    private ScoreReporter scoreReporter;
+    
+
     [Header("Player Name")]
     [SerializeField] private LetterSlot[] letterSlots; // 5 casillas en el Inspector
-    [SerializeField] private ScoreData scoreData;
     private int[] letterIndices = new int[5];           // índice de letra actual por casilla
-    private const string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private const string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ #$€%?!&()·~¬-_<>*";
     private string playerName = "";
     [System.Serializable]
     public struct LetterSlot
@@ -91,6 +96,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     {
         controls = new PlayerControls();
         controls.UI.SetCallbacks(this);
+        scoreReporter=GetComponent<ScoreReporter>();
     }
 
     private void OnEnable()
@@ -118,10 +124,12 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         // Inicializar casillas de letras
         for (int i = 0; i < letterSlots.Length; i++)
         {
-            letterIndices[i] = 0; // empieza en 'A'
+            letterIndices[i] = PlayerPrefs.GetInt($"LetterIndex_{i}", 0);  // empieza en 'A'
             UpdateSlotTexts(i);
         }
         UpdatePlayerName();
+
+        FetchClassification(1);
     }
 
     // ── IUIActions ───────────────────────────────────────────────────────────
@@ -520,8 +528,11 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     {
         playerName = "";
         for (int i = 0; i < letterSlots.Length; i++)
+        {
             playerName += ALPHABET[letterIndices[i]];
-        
+            PlayerPrefs.SetInt($"LetterIndex_{i}", letterIndices[i]);
+        }
+        PlayerPrefs.Save();
         scoreData.name = playerName;
         Debug.Log($"Player name: {playerName}");
     }
@@ -565,5 +576,25 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         yield return new WaitForSeconds(duration);
 
         isNavigating = false;
+    }
+    //-SCORE AUXILIAR
+
+    private void FetchClassification(int top)
+    {
+        scoreReporter.GetClassification(scoreData.api_token,top,OnClassificationReceived);
+    }
+
+    private void OnClassificationReceived(ScoreReporter.ScoreEntry[] entries)
+    {
+        if (entries == null || entries.Length == 0)
+        {
+            scoreText.text = "Sin puntuaciones";
+            return;
+        }
+        var entry = entries[0];
+        int minutos  = entry.puntuacion / 60;
+        int segundos = entry.puntuacion % 60;
+
+        scoreText.text = $"{entry.name}  {minutos:00}:{segundos:00}";
     }
 }

@@ -99,4 +99,10 @@ public class MessageCentral : MonoBehaviour
         OnPausedGame?.Invoke(paused);
     }
 
+    public static event Action<bool> OnPlayerWins;
+
+    public static void PlayerWins(bool playerWins)
+    {
+        OnPlayerWins?.Invoke(playerWins);
+    }
 }

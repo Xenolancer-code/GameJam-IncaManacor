@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
     public int sampleAmount = 0;
     public int maxSampleAmount = 100;
     [SerializeField] GameObject player;
+    [SerializeField] private Animator playerAnimator;
     [SerializeField] GameObject dropPrefab;
+    public bool PlayerIsWinner = false;
     
     public static int INITDAMAGE= 10;
     public int INCREMENTDAMAGE = 5; //Cada 10%
@@ -72,8 +74,8 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDieEnemy += IncrementCounter;
         MessageCentral.OnPickupSample += UpdateSample;
         MessageCentral.OnDamagedPlayer += EmptyBar;
-        MessageCentral.OnDiePlayer += ObtainScoreData;
         MessageCentral.OnDieBoss += ObtainScoreData;
+        MessageCentral.OnDiePlayer += ObtainScoreData; //Pruebas
         MessageCentral.OnDieBoss += WinScreen;
         MessageCentral.OnDiePlayer += DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed +=ActivePortalToLight;
@@ -86,8 +88,8 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDieEnemy -= IncrementCounter;
         MessageCentral.OnPickupSample -= UpdateSample;
         MessageCentral.OnDamagedPlayer -= EmptyBar;
-        MessageCentral.OnDiePlayer -= ObtainScoreData;
         MessageCentral.OnDieBoss -= ObtainScoreData;
+        MessageCentral.OnDiePlayer -= ObtainScoreData; //Pruebas
         MessageCentral.OnDieBoss -= WinScreen;
         MessageCentral.OnDiePlayer -= DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed -=ActivePortalToLight;
@@ -123,7 +125,6 @@ public class GameManager : MonoBehaviour
 
         hudManager.ReSizePowerBar();
     }
-
     
     void Update()
     {
@@ -298,8 +299,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(timeBeforePause);
         Time.timeScale = 0;
         animatorDeadLayerUI.SetTrigger("Active");
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(0);
+        yield return new WaitForSecondsRealtime(3f);
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
     }
 
     private void WinScreen()
@@ -310,8 +312,13 @@ public class GameManager : MonoBehaviour
     private IEnumerator PlayerWin()
     {
         yield return new WaitForSeconds(timeBeforePause);
-        Time.timeScale = 0;
-        winLayerUI.SetActive(true);
+        AudioManager.I.PlaySound(SoundName.Win);
+        MessageCentral.PlayerWins(PlayerIsWinner);
+        //Cinemachine en el forward del player
+        playerAnimator.SetBool("Winner", true);
+        yield return new WaitForSeconds(timeBeforePause);
+        //Cinemachine en la frente del player
+        SceneManager.LoadScene("MainMenu");
     }
     
     public void PauseGame()

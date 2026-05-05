@@ -32,18 +32,21 @@ public class PlayerMov : MonoBehaviour
     private bool dashing = false;
     private bool playerIsDead = false;
     private bool pausedGame = false;
+    private bool playerWinsState=false;
     private Vector3 movmentVector = Vector3.zero;
 
     private void OnEnable()
     {
         MessageCentral.OnDiePlayer += PlayerisDead;
         MessageCentral.OnPausedGame += IsGamePaused;
+        MessageCentral.OnPlayerWins += WinState;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnDiePlayer -= PlayerisDead;
         MessageCentral.OnPausedGame -= IsGamePaused;
+        MessageCentral.OnPlayerWins -= WinState;
     }
     private void Awake()
     {
@@ -54,7 +57,7 @@ public class PlayerMov : MonoBehaviour
     
     void Update()
     {
-        if(playerIsDead || movementLocked|| pausedGame) return;
+        if(playerIsDead || movementLocked|| pausedGame||playerWinsState) return;
         gravityValue = Physics.gravity.y * gravityMultiplier; //Calcular gravedad
         
         groundedPlayer = cc.isGrounded; //Revisar si player esta en el suelo
@@ -171,6 +174,11 @@ public class PlayerMov : MonoBehaviour
     private void IsGamePaused(bool paused)
     {
         pausedGame = paused;
+    }
+
+    private void WinState(bool playerWins)
+    {
+        playerWinsState = playerWins;
     }
 
     public void SetGravity(float newGravity)

@@ -27,7 +27,7 @@ public class HealtPlayerController : MonoBehaviour
     }
     public void GetDamage(int hitPlayerHP)
     {
-        if(shieldGatingOn || playerIsDamaged) return;
+        if(playerIsDead ||shieldGatingOn || playerIsDamaged) return;
         hpPoints -= hitPlayerHP;
         
         if(hpPoints >= 1)
@@ -46,7 +46,7 @@ public class HealtPlayerController : MonoBehaviour
         }
     }
 
-    public void Die()
+    private void Die()
     {
         playerIsDead = true;
         MessageCentral.DiePlayer();

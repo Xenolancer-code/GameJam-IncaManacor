@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d6a86936a60fa44add0eb19db63674, type: 3}
   m_Name: ScoreData
   m_EditorClassIdentifier: Assembly-CSharp::ScoreData
-  name: "Peque\xF1o Timi"
+  name: 
   time: 0
   kills: 0
+  api_token: x7bF74UvGCnfoACoQHTXZOkVaPJy6aavaxexzw91B4EZPDZMSbHN70L9IUpT

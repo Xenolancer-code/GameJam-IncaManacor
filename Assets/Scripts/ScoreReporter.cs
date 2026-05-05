@@ -21,6 +21,19 @@ public class ScoreReporter : MonoBehaviour
         public string api_token;
     }
 
+    [Serializable]
+    public class ScoreEntry
+    {
+        public string name;
+        public int puntuacion;
+    }
+
+    [Serializable]
+    private class ScoreList
+    {
+        public ScoreEntry[] data;
+    }
+
     // M?tode p?blic per enviar la puntuaci?
     public void SubmitScore(string playerName, int  puntuaciones, string tokken)
     {
@@ -36,6 +49,31 @@ public class ScoreReporter : MonoBehaviour
         StartCoroutine(PostScoreCoroutine(payload));
     }
 
+    public void GetClassification(string token, int top, System.Action<ScoreEntry[]> onSuccess)
+    {
+        StartCoroutine(GetClassificationCoroutine(token, top, onSuccess));
+    }
+
+    private IEnumerator GetClassificationCoroutine(string token,int top, System.Action<ScoreEntry[]> onSuccess)
+    {
+        string url = apiBaseUrl.TrimEnd('/') + $"/api/classification/{token}/{top}";
+        using (var req = UnityWebRequest.Get(url))
+        {
+            req.timeout = 10;
+            yield return req.SendWebRequest();
+            
+            bool isHttpSuccess = req.responseCode >= 200 && req.responseCode < 300;
+            if (req.result == UnityWebRequest.Result.Success || isHttpSuccess)
+            {
+                ScoreList result = JsonUtility.FromJson<ScoreList>(req.downloadHandler.text);
+                onSuccess?.Invoke(result.data);
+            }
+            else
+            {
+                Debug.LogWarning($"Error GET Clasificación: {req.result} {req.responseCode} {req.error}" );
+            }
+        }
+    }
     // Corutina que construeix i envia la petici? POST
     private IEnumerator PostScoreCoroutine(Score payload)
     {

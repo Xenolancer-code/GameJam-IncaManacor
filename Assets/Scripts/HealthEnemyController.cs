@@ -17,6 +17,14 @@ public class HealthEnemyController : MonoBehaviour,IDamageable
     private void OnEnable()
     {
         currentHealth = maxHealth;
+        MessageCentral.OnAllSpawnersDestroyed += EnemyDead;
+        MessageCentral.OnDieBoss += EnemyDead;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnAllSpawnersDestroyed -= EnemyDead;
+        MessageCentral.OnDieBoss -= EnemyDead;
     }
 
     public void GetDamage(float damageAmount)
@@ -27,10 +35,10 @@ public class HealthEnemyController : MonoBehaviour,IDamageable
         MessageCentral.DamagedEnemy();
         Debug.Log(currentHealth);
         if(gameObject.activeSelf && currentHealth <= 0) {
-            Die();        
+            EnemyDead();        
         }
     }
-    private void Die()
+    private void EnemyDead()
     {
         MessageCentral.DieEnemy();
         PoolManager.ReturnObjectToPool(gameObject);

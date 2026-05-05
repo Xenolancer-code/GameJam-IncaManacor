@@ -51,7 +51,7 @@ public class HUDManager : MonoBehaviour
         textPoints.text = gameManager.enemyCounter.ToString();
        
     }
-    public void UpdateHUD()
+    private void UpdateHUD()
     {
         if (!hudElements.activeSelf)
         {
@@ -114,7 +114,8 @@ public class HUDManager : MonoBehaviour
 
     private IEnumerator PlayerDeath()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4.9f);
+        showHud = false;
         hudElements.SetActive(false);
     }
 

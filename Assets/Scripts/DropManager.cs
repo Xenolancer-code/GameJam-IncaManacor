@@ -1,9 +1,19 @@
+using System;
 using UnityEngine;
 
 public class DropManager : MonoBehaviour
 {
     //[SerializeField] private int quality =1;
-   
+    private void OnEnable()
+    {
+        MessageCentral.OnSwapScene += CleanSceneOfDrops;
+    }
+
+    private void OnDisable()
+    {
+        MessageCentral.OnSwapScene -= CleanSceneOfDrops;
+    }
+
     private void OnTriggerEnter(Collider detect)
     {
         if (detect.CompareTag("Player"))
@@ -13,4 +23,8 @@ public class DropManager : MonoBehaviour
         }
     }
 
+    private void CleanSceneOfDrops()
+    {
+        PoolManager.ReturnObjectToPool(gameObject);
+    }
 }
