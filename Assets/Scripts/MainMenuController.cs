@@ -23,6 +23,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     [SerializeField] private Slider volumeFX;
 
     [Header("Referencia all Cameras")]
+    [SerializeField] private CinemachineBrain brain;
+    [SerializeField] private CinemachineCamera camStart;
     [SerializeField] private CinemachineCamera camMenu;
     [SerializeField] private CinemachineCamera camPlay;
     [SerializeField] private CinemachineCamera camExit;
@@ -116,6 +118,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
 
     private void Start()
     {
+        StartCoroutine(StartCamMove());
         btnMusic.interactable    = false;
         btnFX.interactable       = false;
         volumeMusic.interactable = false;
@@ -131,7 +134,16 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
 
         FetchClassification(1);
     }
+    
 
+    private IEnumerator StartCamMove()
+    {
+        yield return new WaitForSeconds(2f);
+        camStart.Priority = inactiveCam;
+        camMenu.Priority = activeCam;
+        yield return new WaitForSeconds(2f);
+        brain.DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Styles.EaseInOut, 1f);
+    }
     // ── IUIActions ───────────────────────────────────────────────────────────
     public void OnNavigate(InputAction.CallbackContext context)
     {
