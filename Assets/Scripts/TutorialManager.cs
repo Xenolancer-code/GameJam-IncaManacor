@@ -87,6 +87,7 @@ public class TutorialManager : MonoBehaviour
 
         UpdateImages();
         animator.Play(pageIndex.ToString());
+        AudioManager.I.PlaySound(SoundName.EnemyAwarness,1f);
     }
 
     public void PreviousSlide()
@@ -97,6 +98,7 @@ public class TutorialManager : MonoBehaviour
 
         UpdateImages();
         animator.Play(pageIndex.ToString());
+        AudioManager.I.PlaySound(SoundName.EnemyAwarness,1f);
     }
 
     private void UpdateImages()

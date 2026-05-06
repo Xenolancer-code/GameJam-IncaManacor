@@ -107,15 +107,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //SoundManager.Instance.PlayMusic(SoundManager.Instance.tutorialMusic,true);
         currentTime = 0;
         tutorialCam.Priority = 1;
         playerAtk = player.GetComponent<PlayerAtk>();
-       
         playerAtk.finalDamage = INITDAMAGE;
-        
         if (isGameStarted == false)
         {
+            
             //Juego pausado
         }
         else
@@ -148,6 +146,9 @@ public class GameManager : MonoBehaviour
         MessageCentral.Start();
         player.SetActive(true);
         playerCam.Priority = 2;
+        AudioManager.I.PlaySound(SoundName.GameMusic,1f);
+        AudioManager.I.StopBackgroundMusic();
+        //AudioManager.I.StopPlaySound("2D Sound");
     }
 
     private void IncrementCounter()
@@ -316,7 +317,7 @@ public class GameManager : MonoBehaviour
         PlayerIsWinner = true;
         MessageCentral.PlayerWins(PlayerIsWinner);
         //Cinemachine en el forward del player
-        playerAnimator.SetBool("Winner", true);
+        playerAnimator.SetTrigger("Winner");
         yield return new WaitForSeconds(timeBeforePause);
         //Cinemachine en la frente del player
         SceneManager.LoadScene("MainMenu");

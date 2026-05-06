@@ -138,7 +138,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
 
     private IEnumerator StartCamMove()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         camStart.Priority = inactiveCam;
         camMenu.Priority = activeCam;
         yield return new WaitForSeconds(2f);

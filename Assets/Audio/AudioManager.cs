@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager I { get; private set; }
     private void Awake()
     {
+        GlobalVolumeSaved();
         // if (I != null && I != this)
         // {
         //     Destroy(gameObject);
@@ -34,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        GlobalVolumeSaved();
+       
         if (playSceneMusic)
             PlayBackgroundSounds(sceneMusicClip, ref sceneMusicAudioSource);
 
@@ -43,7 +44,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void PlaySound(SoundName soundName, float pitch = 1)
+    public void PlaySound(SoundName soundName, float pitch = 1f)
     {
         SoundClip soundClip = GetAudioClip(soundName);
         if (soundClip == null || !CanPlaySound(soundClip))
@@ -67,6 +68,7 @@ public class AudioManager : MonoBehaviour
             audioSource2d.PlayOneShot(soundClip.audioClip);
             Destroy(soundGameObject, soundClip.audioClip.length);
         }
+        Debug.Log(soundName);
     }
 
     public void PlaySound(SoundName soundName, Vector3 position, float pitch = 1)
@@ -143,8 +145,14 @@ public class AudioManager : MonoBehaviour
 
     private void GlobalVolumeSaved()
     {
-        globalMusicVolume = PlayerPrefs.GetFloat("musicvolume");
-        globalSFXVolume = PlayerPrefs.GetFloat("sfxvolume");
+        globalMusicVolume = PlayerPrefs.GetFloat("musicVolume");
+        globalSFXVolume = PlayerPrefs.GetFloat("sfxVolume");
+    }
+
+    public void StopPlaySound(string s)
+    {
+        GameObject go = GameObject.Find(s);
+        go.GetComponent<AudioSource>().Stop();
     }
     public AudioSource StopBackgroundMusic()
     {

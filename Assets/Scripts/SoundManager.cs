@@ -38,6 +38,8 @@ public class SoundManager : MonoBehaviour
     {
         if (menuMusicList != null && menuMusicList.Length > 0)
             musicCoroutine = StartCoroutine(PlayMusicPlaylist());
+        SaveVolume();
+        Debug.Log(musicVolume);
     }
     private IEnumerator PlayMusicPlaylist()
     {

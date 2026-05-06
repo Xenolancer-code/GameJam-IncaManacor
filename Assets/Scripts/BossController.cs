@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class BossController : MonoBehaviour
@@ -12,6 +13,8 @@ public class BossController : MonoBehaviour
     [SerializeField] private Transform centerRange;
     
     [Header("Manos")]
+    [SerializeField]private Animator animatorHandRight;
+    [SerializeField]private Animator animatorHandLeft;
     [SerializeField] private Transform rightHand;                     // Transform de la mano derecha
     [SerializeField] private Transform leftHand;                      // Transform de la mano izquierda
     [SerializeField] private HandAtk handAtkRight;
@@ -81,11 +84,13 @@ public class BossController : MonoBehaviour
     private void OnEnable()
     {
         MessageCentral.OnHandDestroyed += BossKO;
+        MessageCentral.OnDieBoss += AnimationsHands;
     }
     
     private void OnDisable()
     {
         MessageCentral.OnHandDestroyed -= BossKO;
+        MessageCentral.OnDieBoss -= AnimationsHands;
     }
 
     private void Awake()
@@ -347,6 +352,13 @@ public class BossController : MonoBehaviour
         MessageCentral.HandHeal();
     }
 
+    private void AnimationsHands()
+    {
+        animatorHandLeft.enabled = true;
+        animatorHandRight.enabled = true;
+        animatorHandLeft.SetTrigger("Defeat");
+        animatorHandRight.SetTrigger("Defeat");
+    }
 }
 
 

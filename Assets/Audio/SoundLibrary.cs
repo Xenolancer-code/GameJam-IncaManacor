@@ -35,7 +35,7 @@ public enum SoundName
     AmbientMusic,
     AmbientMusic2,
     AmbientMusic3,
-    HomeMenuMusic,
+    TutorialMusic,
     GameMusic,
     GameMusic2,
     GameMusic3,
