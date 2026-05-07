@@ -23,6 +23,8 @@ public class SoundLibrary : ScriptableObject
 public enum SoundName
 {
     SlashPlayer,
+    SlashPlayer2,
+    SlashPlayer3,
     AoEAtkPlayer,
     DashPlayer,
     PlayerDie,
@@ -44,7 +46,7 @@ public enum SoundName
     Smoke,
     Portal,
     FireBall,
-    EnemyAwarness,
+    ButtonTutorial,
     EnemyAwarness2,
     EnemyAwarness3,
     BossAwarness,

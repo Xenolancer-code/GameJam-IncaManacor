@@ -13,55 +13,31 @@ MonoBehaviour:
   m_Name: SoundLibrary
   m_EditorClassIdentifier: Assembly-CSharp::SoundLibrary
   soundClips:
-  - soundName: 0
-    audioClip: {fileID: 8300000, guid: d9620fdc139809b43b83b21842718278, type: 3}
-    loop: 0
-    volume: 1
+  - soundName: 15
+    audioClip: {fileID: 8300000, guid: 9591440820e32f74eacd191011c1a42c, type: 3}
+    loop: 1
+    volume: 0.5
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+    pitch: 1
+  - soundName: 16
+    audioClip: {fileID: 8300000, guid: 92b622a8296545f48b2d089b8c003a42, type: 3}
+    loop: 1
+    volume: 0.65
     hasPlayTimer: 0
     playTimer: 0
     spacialBlend: 0
     pitch: 1
   - soundName: 17
-    audioClip: {fileID: 8300000, guid: 67583b1df87740e41b2542fe351fd91d, type: 3}
-    loop: 0
-    volume: 1
-    hasPlayTimer: 0
-    playTimer: 0
-    spacialBlend: 0
-    pitch: 1
-  - soundName: 20
-    audioClip: {fileID: 8300000, guid: 42fc8e225b94e294a854fdddf944f401, type: 3}
-    loop: 0
-    volume: 1
-    hasPlayTimer: 0
-    playTimer: 0
-    spacialBlend: 0
-    pitch: 1
-  - soundName: 4
-    audioClip: {fileID: 8300000, guid: 5b1a0297bbfdd9248b4e9fcd4a6796a9, type: 3}
-    loop: 0
-    volume: 1
-    hasPlayTimer: 0
-    playTimer: 0
-    spacialBlend: 0
-    pitch: 1
-  - soundName: 43
-    audioClip: {fileID: 8300000, guid: 5b1a0297bbfdd9248b4e9fcd4a6796a9, type: 3}
-    loop: 0
-    volume: 1
-    hasPlayTimer: 0
-    playTimer: 0
-    spacialBlend: 0
-    pitch: 1
-  - soundName: 14
-    audioClip: {fileID: 8300000, guid: 8eb9c35d54324124a97952bc9570fcd9, type: 3}
+    audioClip: {fileID: 8300000, guid: 24ca33cc5815f8644a874ad41ab865d9, type: 3}
     loop: 1
     volume: 1
     hasPlayTimer: 0
     playTimer: 0
     spacialBlend: 0
     pitch: 1
-  - soundName: 10
+  - soundName: 12
     audioClip: {fileID: 8300000, guid: a9ec0df56515e0b4f943c21292f8fcaa, type: 3}
     loop: 0
     volume: 1
@@ -69,18 +45,66 @@ MonoBehaviour:
     playTimer: 0
     spacialBlend: 0
     pitch: 1
-  - soundName: 13
-    audioClip: {fileID: 8300000, guid: 96395b1ca6402e5b9aef4905965bfa9b, type: 3}
-    loop: 1
+  - soundName: 24
+    audioClip: {fileID: 8300000, guid: 43ccdaf4e06a1324fa8c6defac11f3fe, type: 3}
+    loop: 0
     volume: 0.5
     hasPlayTimer: 0
     playTimer: 0
     spacialBlend: 0
     pitch: 1
-  - soundName: 22
-    audioClip: {fileID: 8300000, guid: 43ccdaf4e06a1324fa8c6defac11f3fe, type: 3}
+  - soundName: 0
+    audioClip: {fileID: 8300000, guid: 7ac4b7e96788e144da0ffa96efa77c84, type: 3}
     loop: 0
-    volume: 0.5
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+    pitch: 1
+  - soundName: 1
+    audioClip: {fileID: 8300000, guid: 8df3e6ecd725bb642b7ad91dc85340cb, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+    pitch: 1
+  - soundName: 2
+    audioClip: {fileID: 8300000, guid: c628f65b26447f54c8bbfb9acb9a4942, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+    pitch: 1
+  - soundName: 6
+    audioClip: {fileID: 8300000, guid: bed515c4e787b5c42a64da74f2f69ad3, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+    pitch: 1
+  - soundName: 5
+    audioClip: {fileID: 8300000, guid: 89f404bf20b92b24ebebd948cc31fc08, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+    pitch: 1
+  - soundName: 22
+    audioClip: {fileID: 8300000, guid: 42fc8e225b94e294a854fdddf944f401, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+    pitch: 1
+  - soundName: 20
+    audioClip: {fileID: 8300000, guid: 67583b1df87740e41b2542fe351fd91d, type: 3}
+    loop: 0
+    volume: 1
     hasPlayTimer: 0
     playTimer: 0
     spacialBlend: 0
