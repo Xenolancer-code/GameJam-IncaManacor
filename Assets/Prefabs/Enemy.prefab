@@ -199,6 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b98d1d9fca95ab40af6a1dd7af47421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovment
+  minEnemySpeed: 3
+  maxEnemySpeed: 15
   tiempoStuned: 2
 --- !u!114 &2801079797081419088
 MonoBehaviour:

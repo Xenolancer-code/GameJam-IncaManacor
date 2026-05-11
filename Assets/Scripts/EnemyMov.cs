@@ -12,12 +12,13 @@ public class EnemyMov : MonoBehaviour
     private Transform player;
     private NavMeshAgent enemyAgent;
     private Animator animator;
-
+    [SerializeField] [Range(1, 3)] private float minEnemySpeed;
+    [SerializeField] [Range(10, 15)] private float maxEnemySpeed;
     private bool takingDamage = false;
-    [SerializeField] private float tiempoStuned =2f;
+    [SerializeField] private float tiempoStuned;
 
-    //private float knockbackDuration = 0.2f; // <<--- velocidad del knockback
-    //[SerializeField] private float StandingDuration = 2f; //Por usar
+    private float randomSpeed;
+
     private void OnEnable()
     {
         MessageCentral.OnDiePlayer += PlayerisDead;
@@ -33,12 +34,14 @@ public class EnemyMov : MonoBehaviour
     private void Awake()
     {
         enemyAgent = GetComponent<NavMeshAgent>();
+        
     }
 
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        RandomVelocity();
     }
 
 
@@ -52,6 +55,11 @@ public class EnemyMov : MonoBehaviour
         animator.SetFloat("velocity", enemyAgent.velocity.magnitude);
     }
 
+    private void RandomVelocity()
+    {
+        randomSpeed = Random.Range(minEnemySpeed, maxEnemySpeed);
+        enemyAgent.speed = randomSpeed;
+    }
     public void SetPlayer(GameObject _player)
     {
         player = _player.transform;

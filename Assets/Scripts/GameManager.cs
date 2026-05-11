@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<ParticleSystem> smokeScreens = new();
     private int currentSmokeIndex = 0;
     //Hacer lista de estos 3 objetos de forma serializada y que cada vez que se llama al metodo se elimina 1 culaquiera
+    [SerializeField] private GameObject portal;
     [SerializeField] private ParticleSystem portalGlow;
     [SerializeField] private GameObject protector;
     [SerializeField] private GameObject protector2;
@@ -148,9 +149,10 @@ public class GameManager : MonoBehaviour
         MessageCentral.Start();
         player.SetActive(true);
         playerCam.Priority = 2;
-        AudioManager.I.PlaySound(SoundName.GameMusic,1f);
-        AudioManager.I.StopBackgroundMusic();
-        AudioManager.I.PlaySound(SoundName.Smoke,protector.transform.position ,1f);
+        // AudioManager.I.PlaySound(SoundName.GameMusic,1f);
+        AudioSource backgroundMusic = AudioManager.I.StopBackgroundMusic();
+        AudioManager.I.PlayBackgroundSounds(SoundName.GameMusic, ref backgroundMusic);
+        AudioManager.I.PlaySound(SoundName.Smoke,portal.transform.position ,1f);
         //AudioManager.I.StopPlaySound("2D Sound");
     }
 
@@ -260,6 +262,7 @@ public class GameManager : MonoBehaviour
         Destroy(protector);
         Destroy(protector2);
         portalGlow.Play();
+        AudioManager.I.PlaySound(SoundName.Portal, portal.transform.position,1f);
         //AudioManager.I.StopPlaySound(); //Parar sonido Viento
     }
 

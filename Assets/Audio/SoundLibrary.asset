@@ -59,7 +59,7 @@ MonoBehaviour:
     volume: 1
     hasPlayTimer: 0
     playTimer: 0
-    spacialBlend: 0
+    spacialBlend: 0.5
     pitch: 1
   - soundName: 1
     audioClip: {fileID: 8300000, guid: 8df3e6ecd725bb642b7ad91dc85340cb, type: 3}
@@ -67,7 +67,7 @@ MonoBehaviour:
     volume: 1
     hasPlayTimer: 0
     playTimer: 0
-    spacialBlend: 0
+    spacialBlend: 0.5
     pitch: 1
   - soundName: 2
     audioClip: {fileID: 8300000, guid: c628f65b26447f54c8bbfb9acb9a4942, type: 3}
@@ -75,7 +75,7 @@ MonoBehaviour:
     volume: 1
     hasPlayTimer: 0
     playTimer: 0
-    spacialBlend: 0
+    spacialBlend: 0.5
     pitch: 1
   - soundName: 6
     audioClip: {fileID: 8300000, guid: fb14890710dc8ea498b62e5cc2c2fb00, type: 3}
@@ -107,7 +107,7 @@ MonoBehaviour:
     volume: 1
     hasPlayTimer: 0
     playTimer: 0
-    spacialBlend: 0
+    spacialBlend: 0.5
     pitch: 1
   - soundName: 3
     audioClip: {fileID: 8300000, guid: 24cfe00edf9560540b0136a609396f37, type: 3}
@@ -115,7 +115,7 @@ MonoBehaviour:
     volume: 1
     hasPlayTimer: 0
     playTimer: 0
-    spacialBlend: 0
+    spacialBlend: 0.5
     pitch: 1
   - soundName: 20
     audioClip: {fileID: 8300000, guid: 92459b8f7a537554aa35f9f257ec600e, type: 3}
@@ -128,10 +128,10 @@ MonoBehaviour:
   - soundName: 22
     audioClip: {fileID: 8300000, guid: a65e44e8c694a3a4891eef0db109e331, type: 3}
     loop: 0
-    volume: 1
+    volume: 0.1
     hasPlayTimer: 0
     playTimer: 0
-    spacialBlend: 0
+    spacialBlend: 1
     pitch: 1
   - soundName: 45
     audioClip: {fileID: 8300000, guid: c3a76417bf1b4b547b2bfbda668fce65, type: 3}
@@ -163,7 +163,7 @@ MonoBehaviour:
     volume: 1
     hasPlayTimer: 0
     playTimer: 0
-    spacialBlend: 0
+    spacialBlend: 1
     pitch: 1
   - soundName: 26
     audioClip: {fileID: 8300000, guid: 0364a3e277a18454e97be4de8dc6e932, type: 3}
