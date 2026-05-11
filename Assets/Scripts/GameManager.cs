@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [Header("SkyBox")]
     [SerializeField] private Material skyboxDay;
     [SerializeField] private Material skyboxNight;
+    [SerializeField] private GameObject zonaOscura;
+    [SerializeField] private GameObject zonaLuz;
     [Header("Score")]
     private ScoreReporter reporter;
     [SerializeField] private ScoreData scoreData;
@@ -139,6 +141,8 @@ public class GameManager : MonoBehaviour
     {
         RenderSettings.skybox = skyboxDay;
         DynamicGI.UpdateEnvironment();
+        zonaOscura.SetActive(false);
+        zonaLuz.SetActive(true);
     }
     
     

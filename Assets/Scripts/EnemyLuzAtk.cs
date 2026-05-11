@@ -10,7 +10,10 @@ public class EnemyLuzAtk : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 1f;  // Tiempo entre ataques
     [SerializeField] private float stopByAtackPlayer = 3f; // Tiempo que el enemigos se queda parado al atacar
-    [SerializeField] private float attackDistance;
+    
+    [SerializeField] private float minAttackDistance = 3f; 
+    [SerializeField] private float maxAttackDistance = 7f;
+    private float attackDistance;
     [SerializeField] private LayerMask playerLayer;
     [Header("CastSettings")]
     [SerializeField] GameObject fireballPrefab;
@@ -21,14 +24,7 @@ public class EnemyLuzAtk : MonoBehaviour
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
     private bool playerIsDead = false;
-        /*
-         * TODO
-         * El enemigo tiene que ir acercandose lentamente al player
-         * y cuando el player este en rango se ejecutara la aniamacion de atk (el enemigo tiene que no volverse una metralleta)
-         * la cual tendra un evento que ara funcionar un metodo que instanciara la fireball
-         * y la propia fireball tiene que tener un script para viajar X distancia antes de romperse
-         * ademas de eso tambien lo propia fireball tiene que tener un collider trigger para hacer daño al player
-         */
+       
     void Awake() 
     {
         enemyAgent = GetComponent<NavMeshAgent>();
@@ -36,6 +32,7 @@ public class EnemyLuzAtk : MonoBehaviour
     }
     private void OnEnable()
     {
+        attackDistance = Random.Range(minAttackDistance, maxAttackDistance);//new
         MessageCentral.OnDiePlayer += PlayerisDead;
         fireEffect.Stop();
     }
@@ -65,8 +62,8 @@ public class EnemyLuzAtk : MonoBehaviour
         if (Time.time - lastAttackTime < attackCooldown) return;
 
         lastAttackTime = Time.time;
-
-        StartCoroutine(AttackSequence());
+        if(Random.value > 0.7f)
+            StartCoroutine(AttackSequence());
     }
     
     private IEnumerator AttackSequence()
@@ -91,15 +88,17 @@ public class EnemyLuzAtk : MonoBehaviour
 
     private void PlayerInRange()
     {
+        // float distance = Vector3.Distance(transform.position, player.transform.position);
+        // if (distance <= attackDistance)
+        // {
+        //     playerInsideAttackRange = true;
+        // }
+        // else
+        // {
+        //     playerInsideAttackRange = false;
+        // }
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance <= attackDistance)
-        {
-            playerInsideAttackRange = true;
-        }
-        else
-        {
-            playerInsideAttackRange = false;
-        }
+        playerInsideAttackRange = distance <= attackDistance;
     }
     public void CastFireball()
     {

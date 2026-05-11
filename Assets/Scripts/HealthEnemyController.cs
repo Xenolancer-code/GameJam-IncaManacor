@@ -1,6 +1,6 @@
-using System;
 using TMPro;
 using UnityEngine;
+using System.Collections;
 
 public class HealthEnemyController : MonoBehaviour,IDamageable
 {
@@ -32,17 +32,22 @@ public class HealthEnemyController : MonoBehaviour,IDamageable
         currentHealth -= damageAmount;
         MessageCentral.DamagedEnemy();
         animator.SetTrigger("TakeHit");
+        
+        if (Random.value < 0.25f)
+            AudioManager.I.PlaySound(SoundName.EnemyInjured,gameObject.transform.position,1f);
+        
         MessageCentral.DamagedEnemy();
-        Debug.Log(currentHealth);
         if(gameObject.activeSelf && currentHealth <= 0) {
             EnemyDead();        
         }
     }
     private void EnemyDead()
     {
+        
         MessageCentral.DieEnemy();
         PoolManager.ReturnObjectToPool(gameObject);
-        DropOrb();
+        if (Random.value < 0.50f)
+            DropOrb();
     }
     
     private void DropOrb()

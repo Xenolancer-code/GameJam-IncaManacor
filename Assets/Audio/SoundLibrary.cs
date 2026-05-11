@@ -33,7 +33,7 @@ public enum SoundName
     FootSteps,
     FootSteps2,
     PlayerAlivio,
-    JumpAir,
+    DropsSounds,
     AmbientMusic,
     AmbientMusic2,
     AmbientMusic3,

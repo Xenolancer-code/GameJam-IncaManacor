@@ -4931,6 +4931,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b98d1d9fca95ab40af6a1dd7af47421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMov
+  minEnemySpeed: 1
+  maxEnemySpeed: 10
+  tiempoStuned: 2
 --- !u!114 &6065007726923912660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4944,9 +4947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthEnemyController
   maxHealth: 100
-  textHealth: {fileID: 0}
   dropPrefab: {fileID: 8639030385552002631, guid: b82768b0a334c42499d0189211ec6c11, type: 3}
-  bloodparticle: {fileID: 4359841417530782731, guid: 8027a6322fcef9a458924ae10f8a7b92, type: 3}
 --- !u!114 &3349975143591116320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4961,7 +4962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLuzAtk
   attackCooldown: 3
   stopByAtackPlayer: 3
-  attackDistance: 10
+  attackDistance: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 128

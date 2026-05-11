@@ -20,6 +20,7 @@ public class DropManager : MonoBehaviour
         {
             MessageCentral.PickupSample(20);
             PoolManager.ReturnObjectToPool(gameObject);
+            AudioManager.I.PlaySound(SoundName.DropsSounds,transform.position,1f);
         }
     }
 

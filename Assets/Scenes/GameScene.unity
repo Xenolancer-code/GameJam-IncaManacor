@@ -17075,11 +17075,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6064768026993680788, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
   m_PrefabInstance: {fileID: 654101858}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &654101860 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3412994045548203, guid: eb6fce10c863e744091a4b42b1a1cf21, type: 3}
-  m_PrefabInstance: {fileID: 654101858}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &661917330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24665,10 +24660,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   collectionScene: {fileID: 904574844}
   player: {fileID: 46049823}
-  bossportal: {fileID: 1768113692}
-  boss: {fileID: 6717507679867282247}
-  bossdoor: {fileID: 654101860}
-  nubes: {fileID: 919132148468143729}
   rotationSpeed: 0.5
   cooldown: 10
 --- !u!1 &904574844
@@ -32828,11 +32819,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4063551847368315605, guid: 00515b6f42111ce4e8af862ed3d87908, type: 3}
   m_PrefabInstance: {fileID: 1757540974}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1768113692 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7529605252254228673, guid: 39c3726887b3db046b3d9664b45deb0b, type: 3}
-  m_PrefabInstance: {fileID: 2122830201}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1781849124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33178,7 +33164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1792592349
 Transform:
   m_ObjectHideFlags: 0
@@ -45726,7 +45712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529605252254228673, guid: 39c3726887b3db046b3d9664b45deb0b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46032,7 +46018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3f06d7fe2d5a4d844a549db1708e18c9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -67137,7 +67123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2722731005948922939, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3412426639539424944, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: maxHealth
@@ -67155,6 +67141,10 @@ PrefabInstance:
       propertyPath: animatorHandLeft
       value: 
       objectReference: {fileID: 1443157838}
+    - target: {fileID: 4117403488206427996, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 8147050273000530064, guid: fbf47f34127e7944e9b8bee23210c663, type: 3}
     - target: {fileID: 4117403488206427996, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: animatorHandRight
       value: 
@@ -67191,11 +67181,6 @@ PrefabInstance:
 --- !u!4 &6717507679867282246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 767136198090201300, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
-  m_PrefabInstance: {fileID: 6717507679867282245}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6717507679867282247 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2722731005948922939, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
   m_PrefabInstance: {fileID: 6717507679867282245}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6717507679867282248 stripped
@@ -72491,6 +72476,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: zonaLuz
+      value: 
+      objectReference: {fileID: 1792592348}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 1092280555}
@@ -72546,6 +72535,10 @@ PrefabInstance:
       propertyPath: winLayerUI
       value: 
       objectReference: {fileID: 855494602}
+    - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
+      propertyPath: zonaOscura
+      value: 
+      objectReference: {fileID: 1800623309}
     - target: {fileID: 220648908778747806, guid: 0b3eebc53d7b1334990d3f4b610e7ed7, type: 3}
       propertyPath: deadLayerUI
       value: 

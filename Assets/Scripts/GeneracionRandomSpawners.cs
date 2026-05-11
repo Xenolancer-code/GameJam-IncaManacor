@@ -49,7 +49,10 @@ public class GeneracionRandomSpawners : MonoBehaviour
             Vector3 spawnPos = GetRandomSpawnPosition();
             if (spawnPos == Vector3.zero) continue;
 
-            GameObject newSpawner = Instantiate(spawnerPrefab, spawnPos, Quaternion.identity);
+            
+            Vector3 direction = (player.transform.position - spawnPos).normalized;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            GameObject newSpawner = Instantiate(spawnerPrefab, spawnPos, rotation);
 
             if (newSpawner.TryGetComponent(out EnemySpawner enemySpawner))
             {
