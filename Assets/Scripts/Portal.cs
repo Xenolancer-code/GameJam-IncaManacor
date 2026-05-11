@@ -46,6 +46,8 @@ public class Portal : MonoBehaviour
         boss.SetActive(true);
         bossdoor.SetActive(true);
         nubes.SetActive(true);
+        AudioManager.I.StopPlaySound("2D Sound");
+        AudioManager.I.PlaySound(SoundName.GameMusic2,1f);
         yield return new WaitForSeconds(cooldown);
         canActivate = true;
         

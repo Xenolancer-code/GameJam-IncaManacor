@@ -15513,6 +15513,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2251663642765610059, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: healParicles
+      value: 
+      objectReference: {fileID: 3717482076684533070, guid: 1c91359cd3996dd47a2f3cff1c47676f, type: 3}
+    - target: {fileID: 2251663642765610059, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
+      propertyPath: healParticles
+      value: 
+      objectReference: {fileID: 3717482076684533070, guid: 1c91359cd3996dd47a2f3cff1c47676f, type: 3}
+    - target: {fileID: 2251663642765610059, guid: ce8f995093b81f44aadf0bb85d57ed23, type: 3}
       propertyPath: bloodParticles
       value: 
       objectReference: {fileID: 6356438961120104147, guid: 89a56443582cc8a4fb4bd75c64f3eb32, type: 3}
@@ -26633,9 +26641,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   playSceneMusic: 1
-  sceneMusicClip: 13
+  sceneMusicClip: 15
   playAmbianceSound: 0
-  ambianceClip: 10
+  ambianceClip: 12
   soundLibrary: {fileID: 11400000, guid: f587a820b8479124b95b50fa79dda7cf, type: 2}
 --- !u!4 &1157905192
 Transform:

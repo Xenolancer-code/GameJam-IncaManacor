@@ -4,6 +4,7 @@ using UnityEngine;
 public class HealtPlayerController : MonoBehaviour
 {
    [SerializeField] private ParticleSystem bloodParticles;
+   [SerializeField]  private ParticleSystem healParticles;
     [Header("Life")]
     private int hpPoints=2;
     private bool playerIsDamaged = false;
@@ -51,15 +52,8 @@ public class HealtPlayerController : MonoBehaviour
     {
         playerIsDead = true;
         MessageCentral.DiePlayer();
-        Debug.Log("Soy el Player y me han matado");
+        AudioManager.I.PlaySound(SoundName.PlayerDie,transform,1f);
         animator.SetBool("Die",true);
-        //Posible Corutina
-       
-        /*TODO
-         * Matar al Player(animacion o destroy)
-         * Sistema de Particulas con la muerte
-         * Avisar GameManager para Resetear el juego y Volver al menu inicial (alomejor hacer cambios de escena)
-         */
     }
 
     public void TrytoShieldRecover()
@@ -71,7 +65,9 @@ public class HealtPlayerController : MonoBehaviour
     private IEnumerator ShieldRecover()
     {
         yield return new WaitForSeconds(shieldRecoverTime);
+        Instantiate(healParticles,transform.position,healParticles.transform.rotation,transform);
         hpPoints = 2;
+        AudioManager.I.PlaySound(SoundName.PlayerRecover,transform,1f);
         MessageCentral.DamagedPlayer(false);
         animator.SetBool("PlayerIsDamaged", false);
     }

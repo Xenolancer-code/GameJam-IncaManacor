@@ -51,7 +51,7 @@ public class MessageCentral : MonoBehaviour
         OnHandHeal?.Invoke();
     }
     
-    public static event Action<bool> OnDamagedPlayer; // Hicier?n da?o al Player
+    public static event Action<bool> OnDamagedPlayer; // Hicierón da?o al Player
     public static void DamagedPlayer(bool playerIsDamaged)
     {
         OnDamagedPlayer?.Invoke(playerIsDamaged);
@@ -63,6 +63,14 @@ public class MessageCentral : MonoBehaviour
     {
         OnPickupSample?.Invoke(sampleQuality);
     }
+
+    public static event Action OnAoePlayer;
+
+    public static void AoePlayer()
+    {
+        OnAoePlayer?.Invoke();
+    }
+    
 
     public static event Action<bool> OnBarFull;
 

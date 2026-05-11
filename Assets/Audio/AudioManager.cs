@@ -154,6 +154,7 @@ public class AudioManager : MonoBehaviour
         GameObject go = GameObject.Find(s);
         go.GetComponent<AudioSource>().Stop();
     }
+    
     public AudioSource StopBackgroundMusic()
     {
         if(sceneMusicAudioSource != null)

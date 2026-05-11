@@ -122,6 +122,16 @@ public class PlayerAtk : MonoBehaviour
             Debug.Log("Movimiento bloqueado " + fase);
             animator.SetBool("canInterrupt", false);
         }
+        if (fase == 1)
+        {
+            AudioManager.I.PlaySound(SoundName.SlashPlayer,transform,1f);
+        }else if (fase == 2)
+        {
+            AudioManager.I.PlaySound(SoundName.SlashPlayer2,transform,1f);
+        }else if (fase == 3)
+        {
+            AudioManager.I.PlaySound(SoundName.SlashPlayer3,transform,1f);
+        }
     }
 
     public void StartVisuals()
@@ -152,13 +162,15 @@ public class PlayerAtk : MonoBehaviour
     // ----------------------
     public void AoEAtk()
     {
-        if(pausedGame)return;
+        if(pausedGame||!canAoe)return;
         animator.SetTrigger("RightClick");
+        MessageCentral.AoePlayer();
         canAoe = false;
     }
 
     private void AoeDamageZone()
     {
+        AudioManager.I.PlaySound(SoundName.AoEAtkPlayer,transform,1f);
         Instantiate(zone, transform.position, Quaternion.identity);
     }
 

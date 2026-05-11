@@ -73,7 +73,8 @@ public class GameManager : MonoBehaviour
     {
         MessageCentral.OnDieEnemy += IncrementCounter;
         MessageCentral.OnPickupSample += UpdateSample;
-        MessageCentral.OnDamagedPlayer += EmptyBar;
+        MessageCentral.OnDamagedPlayer += EmptyBarAndJump;
+        MessageCentral.OnAoePlayer += EmptyBar;
         MessageCentral.OnDieBoss += ObtainScoreData;
         MessageCentral.OnDiePlayer += ObtainScoreData; //Pruebas
         MessageCentral.OnDieBoss += WinScreen;
@@ -87,7 +88,8 @@ public class GameManager : MonoBehaviour
     {
         MessageCentral.OnDieEnemy -= IncrementCounter;
         MessageCentral.OnPickupSample -= UpdateSample;
-        MessageCentral.OnDamagedPlayer -= EmptyBar;
+        MessageCentral.OnDamagedPlayer -= EmptyBarAndJump;
+        MessageCentral.OnAoePlayer -= EmptyBar;
         MessageCentral.OnDieBoss -= ObtainScoreData;
         MessageCentral.OnDiePlayer -= ObtainScoreData; //Pruebas
         MessageCentral.OnDieBoss -= WinScreen;
@@ -148,6 +150,7 @@ public class GameManager : MonoBehaviour
         playerCam.Priority = 2;
         AudioManager.I.PlaySound(SoundName.GameMusic,1f);
         AudioManager.I.StopBackgroundMusic();
+        AudioManager.I.PlaySound(SoundName.Smoke,protector.transform.position ,1f);
         //AudioManager.I.StopPlaySound("2D Sound");
     }
 
@@ -195,10 +198,14 @@ public class GameManager : MonoBehaviour
         playerAtk.canAoe = sampleAmount >= maxSampleAmount;
     }
 
-    private void EmptyBar(bool playerIsDamaged)
+    private void EmptyBar()
     {
-        if (playerIsDamaged)
-        {
+        sampleAmount = 0;
+        hudManager.ReSizePowerBar();
+    }
+    private void EmptyBarAndJump(bool playerIsDamaged)
+    {
+        if (!playerIsDamaged) return;
             int dropAmount = sampleAmount / 20;
             sampleAmount = 0;
             hudManager.ReSizePowerBar();
@@ -214,8 +221,6 @@ public class GameManager : MonoBehaviour
 
                 StartCoroutine(JumpDrop(drop.transform, targetPos));
             }
-
-        }
     }
     private IEnumerator JumpDrop(Transform drop, Vector3 targetPos)
     {
@@ -255,6 +260,7 @@ public class GameManager : MonoBehaviour
         Destroy(protector);
         Destroy(protector2);
         portalGlow.Play();
+        //AudioManager.I.StopPlaySound(); //Parar sonido Viento
     }
 
     public void SmokeOut()
@@ -287,18 +293,20 @@ public class GameManager : MonoBehaviour
     public void ReturnMenu(int index)
     {
         Time.timeScale = 1;
+        AudioManager.I.PlaySound(SoundName.PauseSound,1f);
         SceneManager.LoadScene(index);
-
     }
     private void DeadScreen()
     {
         StartCoroutine(PlayerDeath());
+        AudioManager.I.StopPlaySound("2D Sound");
     }
 
     private IEnumerator PlayerDeath()
     {
         yield return new WaitForSeconds(timeBeforePause);
         Time.timeScale = 0;
+        AudioManager.I.PlaySound(SoundName.GameOver,1f);
         animatorDeadLayerUI.SetTrigger("Active");
         yield return new WaitForSecondsRealtime(3f);
         SceneManager.LoadScene("MainMenu");
@@ -313,7 +321,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator PlayerWin()
     {
         yield return new WaitForSeconds(timeBeforePause);
-        AudioManager.I.PlaySound(SoundName.Win);
+        AudioManager.I.PlaySound(SoundName.Win,1f);
         PlayerIsWinner = true;
         MessageCentral.PlayerWins(PlayerIsWinner);
         //Cinemachine en el forward del player
@@ -327,13 +335,16 @@ public class GameManager : MonoBehaviour
     {
         pauseHUD.SetActive(true);
         animator.Play("Desenrollar");
+        AudioManager.I.PlaySound(SoundName.PauseSound,1f);
         Time.timeScale = 0;
         MessageCentral.PausedGame(true);
     }
     public void ResumeGame()
     {
      //Revisar como hacer para que no ataque al poner Resume   
-         animator.Play("Enrollar");   
+         animator.Play("Enrollar");
+         AudioManager.I.PlaySound(SoundName.PauseSound,1f);
+         AudioManager.I.PlaySound(SoundName.PauseSound,1f);
          Time.timeScale = 1;
         MessageCentral.PausedGame(false);
     }

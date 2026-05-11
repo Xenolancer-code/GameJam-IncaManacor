@@ -29,7 +29,6 @@ public class Combo_ : StateMachineBehaviour
     {
         valor = 0;
     }
-
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

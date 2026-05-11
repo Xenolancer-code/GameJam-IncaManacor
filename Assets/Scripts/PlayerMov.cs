@@ -146,6 +146,7 @@ public class PlayerMov : MonoBehaviour
     {
         afterimagePool.enabled=true;
         dashing = true;
+        AudioManager.I.PlaySound(SoundName.DashPlayer,transform,1f);
         MessageCentral.DashinActivated(true);
         float originalSpeed = playerSpeed;
         playerSpeed = dashSpeed;
