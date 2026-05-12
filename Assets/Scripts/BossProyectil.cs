@@ -1,7 +1,10 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class BossProyectil : MonoBehaviour
 {
+    [SerializeField] private float groundY = 0f;
     [Header("Daño")]
     [SerializeField] private int hitPlayerHP = 1;
 
@@ -14,6 +17,14 @@ public class BossProyectil : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
+    private void Update()
+    {
+        if (transform.position.y <= groundY)
+        {
+            Explode();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -23,10 +34,6 @@ public class BossProyectil : MonoBehaviour
                 healtPlayer.GetDamage(hitPlayerHP);
                 Explode();
             }
-        }
-        else if (other.CompareTag("Ground"))
-        {
-            Explode();
         }
     }
 

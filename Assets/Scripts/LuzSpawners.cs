@@ -12,7 +12,7 @@ public class LuzSpawners : MonoBehaviour
     [SerializeField] private int maxEnemies = 5;    
     [SerializeField] private GameObject enemyLuzPrefab;
     private float timer = 0f;
-    private bool spawnerActivation;
+    private bool spawnerActivation=false;
 
     private void Awake()
     {
@@ -20,7 +20,8 @@ public class LuzSpawners : MonoBehaviour
     }
     private void Start()
     {
-    spawnerActivation=false;
+    spawnerActivation=true;
+    animatorPortalSpawner.SetTrigger("OpenPortal");
     }
     private void OnEnable()
     {

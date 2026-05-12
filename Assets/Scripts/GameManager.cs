@@ -23,8 +23,9 @@ public class GameManager : MonoBehaviour
     [Header("SkyBox")]
     [SerializeField] private Material skyboxDay;
     [SerializeField] private Material skyboxNight;
-    [SerializeField] private GameObject zonaOscura;
-    [SerializeField] private GameObject zonaLuz;
+    [Header("Rotate activate")]
+    [SerializeField] private Animator[] animators;
+    [SerializeField] private MonoBehaviour[] scripts;
     [Header("Score")]
     private ScoreReporter reporter;
     const float BASE_SCORE = 100000f;
@@ -144,15 +145,19 @@ public class GameManager : MonoBehaviour
     {
         RenderSettings.skybox = skyboxDay;
         DynamicGI.UpdateEnvironment();
-        zonaLuz.SetActive(true);
-        StartCoroutine(TiempoExtraZonaOscura());
+        StartCoroutine(TimerScene());
     }
 
-    private IEnumerator TiempoExtraZonaOscura()
+    private IEnumerator TimerScene()
     {
-        yield return new WaitForSeconds(5f);
-        zonaOscura.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        foreach (Animator anim in animators)
+            if (anim != null) anim.enabled = true;
+
+        foreach (MonoBehaviour script in scripts)
+            if (script != null) script.enabled = true;
     }
+
     
     public void StartTimer()
     {

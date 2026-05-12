@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovment
   player: {fileID: 0}
   minEnemySpeed: 3
-  maxEnemySpeed: 12
+  maxEnemySpeed: 10
   tiempoStuned: 2
 --- !u!114 &2801079797081419088
 MonoBehaviour:

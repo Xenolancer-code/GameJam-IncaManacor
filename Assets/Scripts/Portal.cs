@@ -3,11 +3,14 @@ using System.Collections;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] private GameObject collectionScene;
-    [SerializeField] private GameObject player;
-    [Header("GaneObjects a activar")]
     
-    [SerializeField] private float rotationSpeed = 6f;
+    [SerializeField] private GameObject player;
+    [Header("GameObjects a activar")]
+    [SerializeField] private GameObject zonaOscura;
+    [SerializeField] private GameObject zonaLuz;
+    [Header("Rotation")]
+    [SerializeField] private GameObject collectionScene;
+    [SerializeField] private float rotationSpeed = 0.5f;
     [SerializeField] private float cooldown = 10f;
 
     private bool canActivate = true;
@@ -36,13 +39,14 @@ public class Portal : MonoBehaviour
             collectionScene.transform.rotation = Quaternion.Slerp(start, end, t);
             yield return null;
         }
+        zonaLuz.SetActive(true);
+        zonaOscura.SetActive(false);
         player.SetActive(true);
-     
         MessageCentral.SwapScene();
         AudioSource backgroundMusic = AudioManager.I?.StopBackgroundMusic();
         AudioManager.I?.PlayBackgroundSounds(SoundName.GameMusic2, ref backgroundMusic);
-        Debug.Log("Enviando mensaje");
-        yield return new WaitForSeconds(cooldown);
-        canActivate = true;
+        
+        // yield return new WaitForSeconds(cooldown);
+        // canActivate = true;
     }
 }

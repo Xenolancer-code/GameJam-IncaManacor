@@ -11,8 +11,8 @@ public class EnemyLuzAtk : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f;  // Tiempo entre ataques
     [SerializeField] private float stopByAtackPlayer = 3f; // Tiempo que el enemigos se queda parado al atacar
     
-    [SerializeField] private float minAttackDistance = 3f; 
-    [SerializeField] private float maxAttackDistance = 7f;
+    [SerializeField] private float minAttackDistance = 7f; 
+    [SerializeField] private float maxAttackDistance = 12f;
     private float attackDistance;
     [SerializeField] private LayerMask playerLayer;
     [Header("CastSettings")]
@@ -62,8 +62,9 @@ public class EnemyLuzAtk : MonoBehaviour
         if (Time.time - lastAttackTime < attackCooldown) return;
 
         lastAttackTime = Time.time;
-        if(Random.value > 0.7f)
-            StartCoroutine(AttackSequence());
+        //if(Random.value > 1f)
+        Debug.Log("Estoy atacando al player luz");
+        StartCoroutine(AttackSequence());
     }
     
     private IEnumerator AttackSequence()
@@ -77,6 +78,7 @@ public class EnemyLuzAtk : MonoBehaviour
         animator.SetBool("isMoving", false);
         fireEffect.Play();
         animator.SetTrigger("Cast");
+        Debug.Log("Fire ballll");
 
         yield return new WaitForSeconds(stopByAtackPlayer);  // Duracion del ataque
 
@@ -118,6 +120,7 @@ public class EnemyLuzAtk : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.darkRed;
-        Gizmos.DrawWireSphere(transform.position, attackDistance);
+        Gizmos.DrawWireSphere(transform.position, minAttackDistance);
+        Gizmos.DrawWireSphere(transform.position, maxAttackDistance);
     }
 }

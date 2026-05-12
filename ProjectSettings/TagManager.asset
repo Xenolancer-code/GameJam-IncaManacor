@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Health
   - Zone
+  - Ground
   layers:
   - Default
   - TransparentFX
