@@ -18,9 +18,9 @@ public class DropManager : MonoBehaviour
     {
         if (detect.CompareTag("Player"))
         {
+            AudioManager.I?.PlaySound(SoundName.DropsSounds,transform.position,1f);
             MessageCentral.PickupSample(20);
             PoolManager.ReturnObjectToPool(gameObject);
-            AudioManager.I.PlaySound(SoundName.DropsSounds,transform.position,1f);
         }
     }
 

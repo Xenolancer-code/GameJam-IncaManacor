@@ -33,8 +33,8 @@ public class HealthEnemyController : MonoBehaviour,IDamageable
         MessageCentral.DamagedEnemy();
         animator.SetTrigger("TakeHit");
         
-        if (Random.value < 0.25f)
-            AudioManager.I.PlaySound(SoundName.EnemyInjured,gameObject.transform.position,1f);
+        if (Random.value < 0.5f)
+            AudioManager.I?.PlaySound(SoundName.EnemyInjured,gameObject.transform.position,1f);
         
         MessageCentral.DamagedEnemy();
         if(gameObject.activeSelf && currentHealth <= 0) {

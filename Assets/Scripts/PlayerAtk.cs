@@ -72,7 +72,7 @@ public class PlayerAtk : MonoBehaviour
     
     public void DmgBasicAtk() //Llamado por Event en animation
     {
-        //AudioManager.I.PlaySound(SoundName.SlashPlayer,transform);//Sonido de SoundLibrary
+        //AudioManager.I?.PlaySound(SoundName.SlashPlayer,transform);//Sonido de SoundLibrary
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
         //Llista que guarda la distancia del enemics sobre el player
@@ -124,13 +124,13 @@ public class PlayerAtk : MonoBehaviour
         }
         if (fase == 1)
         {
-            AudioManager.I.PlaySound(SoundName.SlashPlayer,transform,1f);
+            AudioManager.I?.PlaySound(SoundName.SlashPlayer,transform,1f);
         }else if (fase == 2)
         {
-            AudioManager.I.PlaySound(SoundName.SlashPlayer2,transform,1f);
+            AudioManager.I?.PlaySound(SoundName.SlashPlayer2,transform,1f);
         }else if (fase == 3)
         {
-            AudioManager.I.PlaySound(SoundName.SlashPlayer3,transform,1f);
+            AudioManager.I?.PlaySound(SoundName.SlashPlayer3,transform,1f);
         }
     }
 
@@ -162,7 +162,8 @@ public class PlayerAtk : MonoBehaviour
     // ----------------------
     public void AoEAtk()
     {
-        if(pausedGame||!canAoe)return;
+        //if(pausedGame||!canAoe)return;
+        if(pausedGame)return;
         animator.SetTrigger("RightClick");
         MessageCentral.AoePlayer();
         canAoe = false;
@@ -170,7 +171,7 @@ public class PlayerAtk : MonoBehaviour
 
     private void AoeDamageZone()
     {
-        AudioManager.I.PlaySound(SoundName.AoEAtkPlayer,transform,1f);
+        AudioManager.I?.PlaySound(SoundName.AoEAtkPlayer,transform,1f);
         Instantiate(zone, transform.position, Quaternion.identity);
     }
 

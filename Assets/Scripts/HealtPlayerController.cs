@@ -35,7 +35,7 @@ public class HealtPlayerController : MonoBehaviour
         {
             animator.SetBool("PlayerIsDamaged", true);
             animator.SetTrigger("TakeHit");
-            AudioManager.I.PlaySound(SoundName.PlayerInjured,transform,1f);
+            AudioManager.I?.PlaySound(SoundName.PlayerInjured,transform,1f);
             Vector3 arriba = new Vector3(0, 0.75f, 0);
             Instantiate(bloodParticles,transform.position+arriba,Quaternion.identity);
             MessageCentral.DamagedPlayer(true);
@@ -52,8 +52,8 @@ public class HealtPlayerController : MonoBehaviour
     {
         playerIsDead = true;
         MessageCentral.DiePlayer();
-        AudioManager.I.PlaySound(SoundName.PlayerDie,transform,1f);
         animator.SetBool("Die",true);
+        AudioManager.I?.PlaySound(SoundName.PlayerDie,transform,1f);
     }
 
     public void TrytoShieldRecover()
@@ -67,7 +67,7 @@ public class HealtPlayerController : MonoBehaviour
         yield return new WaitForSeconds(shieldRecoverTime);
         Instantiate(healParticles,transform.position,healParticles.transform.rotation,transform);
         hpPoints = 2;
-        AudioManager.I.PlaySound(SoundName.PlayerRecover,transform,1f);
+        AudioManager.I?.PlaySound(SoundName.PlayerRecover,transform,1f);
         MessageCentral.DamagedPlayer(false);
         animator.SetBool("PlayerIsDamaged", false);
     }

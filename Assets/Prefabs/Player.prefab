@@ -1261,6 +1261,7 @@ GameObject:
   - component: {fileID: 2251663642765610059}
   - component: {fileID: 2762195831936563495}
   - component: {fileID: 5733088779949590988}
+  - component: {fileID: 1768847321358202549}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1278,7 +1279,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1827312681579402940}
@@ -1357,9 +1358,10 @@ MonoBehaviour:
   jumpHeight: 2
   rotationSpeed: 3000
   gravityMultiplier: 1.5
-  dashSpeed: 100
+  dashSpeed: 60
   dashDuration: 0.2
   dashCooldown: 2
+  afterimagePool: {fileID: 1768847321358202549}
   stepForce: 7
   stepDuration: 0.3
 --- !u!114 &6006670230113638428
@@ -1401,6 +1403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f7bf1005f7b994c81447e6d59cff53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealtPlayerController
+  bloodParticles: {fileID: 6356438961120104147, guid: 89a56443582cc8a4fb4bd75c64f3eb32, type: 3}
+  healParticles: {fileID: 3717482076684533070, guid: 1c91359cd3996dd47a2f3cff1c47676f, type: 3}
   shieldRecoverTime: 4
   shieldGatingTime: 1.5
 --- !u!95 &2762195831936563495
@@ -1441,6 +1445,34 @@ MonoBehaviour:
   materialOscuro: {fileID: 2100000, guid: db37530d563004a419b352019bd82a8f, type: 2}
   altura: 5
   duracionImpulso: 1
+--- !u!114 &1768847321358202549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305994167233530112}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26e20b1d565b2a42bf1f5ae5455c17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeshAfterimagePool
+  sources: []
+  ghostMaterial: {fileID: 2100000, guid: 748d518be9eff4317a3ab7c0ed85475d, type: 2}
+  colorProperty: _BaseColor
+  spawnInterval: 0.025
+  lifeTime: 0.4
+  initialPoolSize: 16
+  canExpandPool: 1
+  startAlpha: 0.75
+  alphaCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  emitWhenMovingOnly: 0
+  minDistanceToEmit: 0.02
 --- !u!1 &3590840585694569342
 GameObject:
   m_ObjectHideFlags: 0

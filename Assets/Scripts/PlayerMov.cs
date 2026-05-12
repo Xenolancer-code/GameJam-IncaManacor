@@ -125,15 +125,16 @@ public class PlayerMov : MonoBehaviour
         movmentVector = new Vector3(inputVector.x, 0, inputVector.y);
     }
 
-    public void TrytoJump()
-    {
-        if(pausedGame) return;
-        if (groundedPlayer)
-        {
-            playerVerticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-            animator.SetTrigger("Jump");
-        }
-    }
+    //QUITAR
+    // public void TrytoJump()
+    // {
+    //     if(pausedGame) return;
+    //     if (groundedPlayer)
+    //     {
+    //         playerVerticalVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+    //         animator.SetTrigger("Jump");
+    //     }
+    // }
 
     public void TryToDash()
     {
@@ -146,7 +147,7 @@ public class PlayerMov : MonoBehaviour
     {
         afterimagePool.enabled=true;
         dashing = true;
-        AudioManager.I.PlaySound(SoundName.DashPlayer,transform,1f);
+        AudioManager.I?.PlaySound(SoundName.DashPlayer,transform,1f);
         MessageCentral.DashinActivated(true);
         float originalSpeed = playerSpeed;
         playerSpeed = dashSpeed;
@@ -164,7 +165,6 @@ public class PlayerMov : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
         MessageCentral.DashinActivated(false);
-        
     }
 
     private void PlayerisDead()

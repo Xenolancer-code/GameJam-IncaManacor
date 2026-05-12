@@ -9,11 +9,11 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMov : MonoBehaviour
 {
-    private Transform player;
+    [SerializeField] private Transform player;
     private NavMeshAgent enemyAgent;
     private Animator animator;
     [SerializeField] [Range(1, 3)] private float minEnemySpeed;
-    [SerializeField] [Range(10, 15)] private float maxEnemySpeed;
+    [SerializeField] [Range(8, 12)] private float maxEnemySpeed;
     private bool takingDamage = false;
     [SerializeField] private float tiempoStuned;
 

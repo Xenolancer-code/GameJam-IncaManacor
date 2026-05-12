@@ -53,7 +53,7 @@ public class GeneracionRandomSpawners : MonoBehaviour
             Vector3 direction = (player.transform.position - spawnPos).normalized;
             Quaternion rotation = Quaternion.LookRotation(direction);
             GameObject newSpawner = Instantiate(spawnerPrefab, spawnPos, rotation);
-
+            newSpawner.transform.SetParent(this.transform);
             if (newSpawner.TryGetComponent(out EnemySpawner enemySpawner))
             {
                 enemySpawner.SetPlayerAtSpawner(player);

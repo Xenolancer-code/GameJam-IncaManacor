@@ -5272,7 +5272,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8417221541691596650}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e1af740f30dfdb14a9cbcc62f6e78120, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 2d6a8b1a51f937d4da9f7289b5ffd296, type: 2}
   m_Controller: {fileID: 9100000, guid: fb1271bb682b8d84da62defaa2dc879a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -5321,7 +5321,7 @@ NavMeshAgent:
   m_Speed: 5
   m_Acceleration: 100
   avoidancePriority: 50
-  m_AngularSpeed: 1000
+  m_AngularSpeed: 10000
   m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -5356,8 +5356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b98d1d9fca95ab40af6a1dd7af47421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovment
+  player: {fileID: 0}
   minEnemySpeed: 1
-  maxEnemySpeed: 11.17
+  maxEnemySpeed: 8
   tiempoStuned: 2
 --- !u!114 &2355244221126212874
 MonoBehaviour:
@@ -5371,7 +5372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f046e1bf393dc05449774592c23557df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAtk
-  attackCooldown: 1
+  attackCooldown: 1.5
   stopByAtackPlayer: 1.1
   attackRadius: 1
   attackPoint: {fileID: 114505682176902936}

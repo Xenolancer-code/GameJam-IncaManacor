@@ -48,6 +48,10 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     [SerializeField] private float outlineWidthSelected = 10f;
     [SerializeField] private float outlineWidthDefault = 3f;
 
+    [Header("Canvas Mesa")] 
+    [SerializeField] private TMPro.TMP_Text playText;
+    [SerializeField] private TMPro.TMP_Text exitText;
+    
     [Header("Settings Navigation")]
     [SerializeField] private float sliderStep = 0.05f;
     [SerializeField] private Image highlightMusic;
@@ -426,18 +430,26 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
             case MenuOption.Play:
                 camPlay.Priority = activeCam;
                 StartCoroutine(MoveCamWithSpline(splinePlay, 1f, timeSpline));
+                playText.enabled = true;
+                exitText.enabled = false;
                 break;
             case MenuOption.About:
                 camAbout.Priority = activeCam;
                 StartCoroutine(MoveCamWithSpline(splineAbout, 1f, timeSpline));
+                playText.enabled = false;
+                exitText.enabled = false;
                 break;
             case MenuOption.Settings:
                 camSettings.Priority = activeCam;
                 StartCoroutine(MoveCamWithSpline(splineSettings, 1f, timeSpline));
+                playText.enabled = false;
+                exitText.enabled = false;
                 break;
             case MenuOption.Exit:
                 camExit.Priority = activeCam;
                 StartCoroutine(MoveCamWithSpline(splineExit, 1f, timeSpline));
+                playText.enabled = false;
+                exitText.enabled = true;
                 break;
         }
     }
@@ -475,6 +487,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
             new CinemachineSplineDolly[] { splinePlay, splineSettings, splineExit, splineAbout },
             timeSpline
         ));
+        playText.enabled = false;
+        exitText.enabled = false;
     }
 
     private void ResetAllCameraPriorities()

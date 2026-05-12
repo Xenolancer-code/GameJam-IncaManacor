@@ -71,7 +71,7 @@ public class EnemyAtk : MonoBehaviour
         isAttacking = true;
 
         // Detener movimiento por completo
-        enemyAgent.isStopped = true;
+        //enemyAgent.isStopped = true;
 
         // Aqu? puedes activar la animaci?n
         animator.SetBool("isMoving", false);
@@ -80,7 +80,7 @@ public class EnemyAtk : MonoBehaviour
         yield return new WaitForSeconds(stopByAtackPlayer);  // Duraci?n del ataque
 
         // Despu?s del ataque
-        enemyAgent.isStopped = false;
+        //enemyAgent.isStopped = false;
         animator.SetBool("isMoving", true);
         isAttacking = false;
     }

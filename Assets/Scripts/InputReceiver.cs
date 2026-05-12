@@ -31,7 +31,7 @@ public class InputReceiver : MonoBehaviour
     private void Jump(InputAction.CallbackContext ctx)
     {
         if (playerMov == null) return;
-        playerMov.TrytoJump();
+        //playerMov.TrytoJump();
     }
 
     private void Move(InputAction.CallbackContext ctx)

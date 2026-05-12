@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject zonaLuz;
     [Header("Score")]
     private ScoreReporter reporter;
+    const float BASE_SCORE = 100000f;
+    const float PESO_TIEMPO     = 1.0f;
+    const float PESO_GOLPES     = 5.0f;   
+    const float MULTIPLICADOR   = 1.0f;
+    private float cumulativeDamage = 0;
     [SerializeField] private ScoreData scoreData;
     public int enemyCounter = 0;
     [Header("Menu Settings")]
@@ -79,7 +84,6 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDamagedPlayer += EmptyBarAndJump;
         MessageCentral.OnAoePlayer += EmptyBar;
         MessageCentral.OnDieBoss += ObtainScoreData;
-        MessageCentral.OnDiePlayer += ObtainScoreData; //Pruebas
         MessageCentral.OnDieBoss += WinScreen;
         MessageCentral.OnDiePlayer += DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed +=ActivePortalToLight;
@@ -94,7 +98,6 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDamagedPlayer -= EmptyBarAndJump;
         MessageCentral.OnAoePlayer -= EmptyBar;
         MessageCentral.OnDieBoss -= ObtainScoreData;
-        MessageCentral.OnDiePlayer -= ObtainScoreData; //Pruebas
         MessageCentral.OnDieBoss -= WinScreen;
         MessageCentral.OnDiePlayer -= DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed -=ActivePortalToLight;
@@ -141,10 +144,15 @@ public class GameManager : MonoBehaviour
     {
         RenderSettings.skybox = skyboxDay;
         DynamicGI.UpdateEnvironment();
-        zonaOscura.SetActive(false);
         zonaLuz.SetActive(true);
+        StartCoroutine(TiempoExtraZonaOscura());
     }
-    
+
+    private IEnumerator TiempoExtraZonaOscura()
+    {
+        yield return new WaitForSeconds(5f);
+        zonaOscura.SetActive(false);
+    }
     
     public void StartTimer()
     {
@@ -153,11 +161,11 @@ public class GameManager : MonoBehaviour
         MessageCentral.Start();
         player.SetActive(true);
         playerCam.Priority = 2;
-        // AudioManager.I.PlaySound(SoundName.GameMusic,1f);
-        AudioSource backgroundMusic = AudioManager.I.StopBackgroundMusic();
-        AudioManager.I.PlayBackgroundSounds(SoundName.GameMusic, ref backgroundMusic);
-        AudioManager.I.PlaySound(SoundName.Smoke,portal.transform.position ,1f);
-        //AudioManager.I.StopPlaySound("2D Sound");
+        // AudioManager.I?.PlaySound(SoundName.GameMusic,1f);
+        AudioSource backgroundMusic = AudioManager.I?.StopBackgroundMusic();
+        AudioManager.I?.PlayBackgroundSounds(SoundName.GameMusic, ref backgroundMusic);
+        AudioManager.I?.PlaySound(SoundName.Smoke,portal.transform.position ,1f);
+        //AudioManager.I?.StopPlaySound("2D Sound");
     }
 
     private void IncrementCounter()
@@ -211,22 +219,26 @@ public class GameManager : MonoBehaviour
     }
     private void EmptyBarAndJump(bool playerIsDamaged)
     {
-        if (!playerIsDamaged) return;
-            int dropAmount = sampleAmount / 20;
-            sampleAmount = 0;
-            hudManager.ReSizePowerBar();
+        if (!playerIsDamaged) 
+            return;
 
-            for (int i = 0; i < dropAmount; i++)
-            {
-                Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * dropRadius;
-                Vector3 randomOffset = new Vector3(randomCircle.x, 0, randomCircle.y);
+        cumulativeDamage++;
+        
+        int dropAmount = sampleAmount / 20;
+        sampleAmount = 0;
+        hudManager.ReSizePowerBar();
 
-                Vector3 targetPos = player.transform.position + randomOffset;
+        for (int i = 0; i < dropAmount; i++)
+        {
+            Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * dropRadius;
+            Vector3 randomOffset = new Vector3(randomCircle.x, 0, randomCircle.y);
 
-                GameObject drop = Instantiate(dropPrefab, player.transform.position, Quaternion.identity);
+            Vector3 targetPos = player.transform.position + randomOffset;
 
-                StartCoroutine(JumpDrop(drop.transform, targetPos));
-            }
+            GameObject drop = Instantiate(dropPrefab, player.transform.position, Quaternion.identity);
+
+            StartCoroutine(JumpDrop(drop.transform, targetPos));
+        }
     }
     private IEnumerator JumpDrop(Transform drop, Vector3 targetPos)
     {
@@ -266,8 +278,8 @@ public class GameManager : MonoBehaviour
         Destroy(protector);
         Destroy(protector2);
         portalGlow.Play();
-        AudioManager.I.PlaySound(SoundName.Portal, portal.transform.position,1f);
-        //AudioManager.I.StopPlaySound(); //Parar sonido Viento
+        AudioManager.I?.PlaySound(SoundName.Portal, portal.transform.position,1f);
+        //AudioManager.I?.StopPlaySound(); //Parar sonido Viento
     }
 
     public void SmokeOut()
@@ -287,7 +299,14 @@ public class GameManager : MonoBehaviour
     //Metodos de recopilación de datos
     private void ObtainScoreData()
     {
-        reporter.SubmitScore(scoreData.name,(int)currentTime,scoreData.api_token);
+        int score = CalculateScore();
+        reporter.SubmitScore(scoreData.name, score, scoreData.api_token);
+    }
+    private int CalculateScore()
+    {
+        float denominador = (currentTime * PESO_TIEMPO) + (cumulativeDamage * PESO_GOLPES);
+        if (denominador <= 0f) denominador = 0.1f;
+        return Mathf.RoundToInt(BASE_SCORE / denominador);
     }
 
     //Metodos sobre el menu de Pausa
@@ -300,20 +319,20 @@ public class GameManager : MonoBehaviour
     public void ReturnMenu(int index)
     {
         Time.timeScale = 1;
-        AudioManager.I.PlaySound(SoundName.PauseSound,1f);
+        AudioManager.I?.PlaySound(SoundName.PauseSound,1f);
         SceneManager.LoadScene(index);
     }
     private void DeadScreen()
     {
         StartCoroutine(PlayerDeath());
-        AudioManager.I.StopPlaySound("2D Sound");
+        AudioManager.I?.StopBackGroundSounds();
     }
 
     private IEnumerator PlayerDeath()
     {
         yield return new WaitForSeconds(timeBeforePause);
         Time.timeScale = 0;
-        AudioManager.I.PlaySound(SoundName.GameOver,1f);
+        AudioManager.I?.PlaySound(SoundName.GameOver,1f);
         animatorDeadLayerUI.SetTrigger("Active");
         yield return new WaitForSecondsRealtime(3f);
         SceneManager.LoadScene("MainMenu");
@@ -328,7 +347,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator PlayerWin()
     {
         yield return new WaitForSeconds(timeBeforePause);
-        AudioManager.I.PlaySound(SoundName.Win,1f);
+        AudioManager.I?.PlaySound(SoundName.Win,1f);
         PlayerIsWinner = true;
         MessageCentral.PlayerWins(PlayerIsWinner);
         //Cinemachine en el forward del player
@@ -342,7 +361,7 @@ public class GameManager : MonoBehaviour
     {
         pauseHUD.SetActive(true);
         animator.Play("Desenrollar");
-        AudioManager.I.PlaySound(SoundName.PauseSound,1f);
+        AudioManager.I?.PlaySound(SoundName.PauseSound,1f);
         Time.timeScale = 0;
         MessageCentral.PausedGame(true);
     }
@@ -350,8 +369,8 @@ public class GameManager : MonoBehaviour
     {
      //Revisar como hacer para que no ataque al poner Resume   
          animator.Play("Enrollar");
-         AudioManager.I.PlaySound(SoundName.PauseSound,1f);
-         AudioManager.I.PlaySound(SoundName.PauseSound,1f);
+         AudioManager.I?.PlaySound(SoundName.PauseSound,1f);
+         AudioManager.I?.PlaySound(SoundName.PauseSound,1f);
          Time.timeScale = 1;
         MessageCentral.PausedGame(false);
     }

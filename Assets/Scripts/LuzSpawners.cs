@@ -93,6 +93,7 @@ public class LuzSpawners : MonoBehaviour
 
     private IEnumerator AwakeSpawners()
     {
+        Debug.Log("AwakeLuz");
         yield return new WaitForSeconds(awakeTime);
         animatorPortalSpawner.SetTrigger("OpenPortal");
         spawnerActivation=true;
