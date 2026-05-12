@@ -51,6 +51,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     [Header("Canvas Mesa")] 
     [SerializeField] private TMPro.TMP_Text playText;
     [SerializeField] private TMPro.TMP_Text exitText;
+    [SerializeField] private GameObject canvasName;
     
     [Header("Settings Navigation")]
     [SerializeField] private float sliderStep = 0.05f;
@@ -417,7 +418,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     // ── Activar opción por índice ────────────────────────────────────────────
     private void ActivateOption(int index)
     {
-        if (isNavigating) return;
+        if (isNavigating||canvasName.activeInHierarchy) return;
 
         if (isInSettingsMode) ExitSettingsMode();
 
@@ -462,7 +463,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         switch (cycleOrder[currentIndex])
         {
             case MenuOption.Play:
-                SceneManager.LoadScene("GameScene");
+                canvasName.SetActive(true);
                 break;
             case MenuOption.Settings:
                 EnterSettingsMode();
@@ -501,6 +502,16 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         cameraReachedEnd     = false;
     }
     // ── Nombre del jugador ───────────────────────────────────────────────────────
+    public void AceptarName()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void CancelarName()
+    {
+        canvasName.SetActive(false);
+    }
+    
     private void SwapLetterUp()
     {
         // Subir → letra anterior en el alfabeto (A→Z)

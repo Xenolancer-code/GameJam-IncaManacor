@@ -136,6 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d025e04c570ab24fa0630f84e69ebc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  hitPlayerHP: 1
+  explosionVFX: {fileID: 100008, guid: ebc980c7feee07b409fb8822fbdcc924, type: 3}
+  lifetime: 8
 --- !u!135 &-2671508923269206870
 SphereCollider:
   m_ObjectHideFlags: 0

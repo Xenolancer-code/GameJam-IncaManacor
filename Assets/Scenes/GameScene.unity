@@ -66998,7 +66998,7 @@ PrefabInstance:
     - target: {fileID: 4117403488206427996, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 8147050273000530064, guid: fbf47f34127e7944e9b8bee23210c663, type: 3}
+      objectReference: {fileID: 100010, guid: 1dff0a89dc0a8ae4195b2ba55be86901, type: 3}
     - target: {fileID: 4117403488206427996, guid: 249a380ee79be0e4b82e4a87b1876e71, type: 3}
       propertyPath: animatorHandRight
       value: 
