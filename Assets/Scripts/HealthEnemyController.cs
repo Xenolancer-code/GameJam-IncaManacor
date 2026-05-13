@@ -43,7 +43,6 @@ public class HealthEnemyController : MonoBehaviour,IDamageable
     }
     private void EnemyDead()
     {
-        
         MessageCentral.DieEnemy();
         PoolManager.ReturnObjectToPool(gameObject);
         if (Random.value < 0.50f)

@@ -13165,6 +13165,85 @@ Transform:
   - {fileID: 883387252}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &412657023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412657024}
+  - component: {fileID: 412657026}
+  - component: {fileID: 412657025}
+  m_Layer: 0
+  m_Name: EventSystemName
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &412657024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412657023}
+  serializedVersion: 2
+  m_LocalRotation: {x: -6.8366647e-15, y: -0, z: 1.9357435e-15, w: 1}
+  m_LocalPosition: {x: -960, y: -540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 883387252}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &412657025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412657023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_PointAction: {fileID: 547763877943124222, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_MoveAction: {fileID: 2135294313722778126, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_SubmitAction: {fileID: 2805551309101383677, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_CancelAction: {fileID: -813799671938484554, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_LeftClickAction: {fileID: -362573585808562314, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_MiddleClickAction: {fileID: 2685325037190239546, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_RightClickAction: {fileID: -2155691696643997404, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_ScrollWheelAction: {fileID: -8845899010500405687, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 2221794864094878626, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -4167581259601114408, guid: 16154f46e769f0249bfe9196d924599e, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
+--- !u!114 &412657026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412657023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
+  m_FirstSelected: {fileID: 1929726202}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &443804766
 GameObject:
   m_ObjectHideFlags: 0
@@ -32419,6 +32498,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 412657024}
   - {fileID: 2045457899}
   - {fileID: 1089013935}
   - {fileID: 1362370120}
@@ -38895,6 +38975,8 @@ MonoBehaviour:
   - {fileID: 1454970}
   - {fileID: 1846871654}
   - {fileID: 296745048}
+  eventSystemGramo: {fileID: 2452547108691398088}
+  eventSystemName: {fileID: 412657023}
   scoreData: {fileID: 11400000, guid: a647100f837ba4d4b856b4f3bfe9575f, type: 2}
   scoreText: {fileID: 1072276084}
   letterSlots:
@@ -38913,6 +38995,7 @@ MonoBehaviour:
   - textUp: {fileID: 598786062}
     textCenter: {fileID: 24445935}
     textDown: {fileID: 526835934}
+  reporter: {fileID: 1071934881}
 --- !u!114 &1071934881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38926,7 +39009,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreReporter
   apiBaseUrl: https://phpstack-1076337-5399863.cloudwaysapps.com
-  submitPath: /api/classification
+  classificationPath: /api/classification
+  ratingPath: /api/rateGame
+  verifyPath: /api/verify
 --- !u!1 &1072276082
 GameObject:
   m_ObjectHideFlags: 0
@@ -44834,7 +44919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1212473827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94097,6 +94182,7 @@ RectTransform:
   m_LocalScale: {x: 0.05232962, y: 0.05232963, z: 0.05232961}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6886498563763712989}
   - {fileID: 1997676941}
   - {fileID: 1599588362}
   - {fileID: 2076769165}
@@ -110015,7 +110101,7 @@ GameObject:
   - component: {fileID: 7487926923052525637}
   - component: {fileID: 7110472724443020086}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: EventSystemGramo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120277,12 +120363,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2452547108691398088}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 4.7337134e-14, y: -0.2811529, z: -2.1371793e-14, w: 0.95966303}
+  m_LocalPosition: {x: -0.677557, y: -0.8599336, z: -1.705191}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1948799455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7110472724443020086
 MonoBehaviour:
@@ -120813,7 +120899,6 @@ SceneRoots:
   - {fileID: 630604606}
   - {fileID: 132931742}
   - {fileID: 571724438}
-  - {fileID: 6886498563763712989}
   - {fileID: 458945833}
   - {fileID: 543450652932966067}
   - {fileID: 8891792827535268630}

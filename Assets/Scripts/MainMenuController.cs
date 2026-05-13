@@ -58,6 +58,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     [SerializeField] private Image highlightMusic;
     [SerializeField] private Image highlightFX;
     [SerializeField] private Button[] settingsButtons;
+    [SerializeField] private GameObject eventSystemGramo;
+    [SerializeField] private GameObject eventSystemName;
 
     [Header("Score")] 
     [SerializeField] private ScoreData scoreData;
@@ -70,6 +72,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     private int[] letterIndices = new int[5];           // índice de letra actual por casilla
     private const string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ #$€%?!&()·~¬-_<>*";
     private string playerName = "";
+    private string playerEmail = "";
+    [SerializeField] private ScoreReporter reporter;
     [System.Serializable]
     public struct LetterSlot
     {
@@ -433,6 +437,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
                 StartCoroutine(MoveCamWithSpline(splinePlay, 1f, timeSpline));
                 playText.enabled = true;
                 exitText.enabled = false;
+                eventSystemName.SetActive(true);
+                eventSystemGramo.SetActive(false);
                 break;
             case MenuOption.About:
                 camAbout.Priority = activeCam;
@@ -445,6 +451,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
                 StartCoroutine(MoveCamWithSpline(splineSettings, 1f, timeSpline));
                 playText.enabled = false;
                 exitText.enabled = false;
+                eventSystemName.SetActive(false);
+                eventSystemGramo.SetActive(true);
                 break;
             case MenuOption.Exit:
                 camExit.Priority = activeCam;
@@ -477,6 +485,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     // ── Volver al menú principal ─────────────────────────────────────────────
     private void GoToMainMenu()
     {
+        if(canvasName.activeInHierarchy) return;
         if (isInSettingsMode) ExitSettingsMode();
 
         currentIndex = -1;
@@ -504,12 +513,16 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     // ── Nombre del jugador ───────────────────────────────────────────────────────
     public void AceptarName()
     {
+        GenerateEmail(playerName);
+        CrearUsuario();
         SceneManager.LoadScene("GameScene");
     }
 
     public void CancelarName()
     {
         canvasName.SetActive(false);
+        eventSystemName.SetActive(false);
+        GoToMainMenu();
     }
     
     private void SwapLetterUp()
@@ -633,5 +646,19 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
         int segundos = entry.puntuacion % 60;
 
         scoreText.text = $"{entry.name}  {minutos:00}:{segundos:00}";
+    }
+    //-------------------CORREO y USUARIO----------------
+    public void GenerateEmail(string name)
+    {
+        int number = UnityEngine.Random.Range(0, 10000);
+        string formattedNumber = number.ToString("D4");
+        playerEmail = $"{playerName}{formattedNumber}@gmail.com";
+        scoreData.email = playerEmail;
+    }
+
+    private void CrearUsuario()
+    {
+        reporter.SubmitUser(scoreData.name, scoreData.email, scoreData.api_token);
+        Debug.Log("User creado con exito con " + scoreData.name +  scoreData.email);
     }
 }

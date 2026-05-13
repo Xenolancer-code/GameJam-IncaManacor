@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LuzSpawners : MonoBehaviour
 {
     private Animator animatorPortalSpawner;
     [SerializeField] private GameObject player;
-    [SerializeField] private float awakeTime = 5f;
+    [SerializeField] private float awakeTime = 4f;
     private List<GameObject> enemiesAlive2 = new List<GameObject>();
-    [SerializeField] private float initialDelay = 5f;     
+    [SerializeField] private float initialDelay = 4f;     
     [SerializeField] private int maxEnemies = 5;    
     [SerializeField] private GameObject enemyLuzPrefab;
     private float timer = 0f;
@@ -20,34 +21,29 @@ public class LuzSpawners : MonoBehaviour
     }
     private void Start()
     {
-    spawnerActivation=true;
-    animatorPortalSpawner.SetTrigger("OpenPortal");
+        spawnerActivation=false;
     }
     private void OnEnable()
     {
+        Debug.Log("OnEnable LuzSpawners");
         MessageCentral.OnSwapScene += CorutinaSpawnerLuz;
         MessageCentral.OnDiePlayer += DesactiveEnemies;
+        MessageCentral.OnDieBoss += DesactiveEnemies;
     }
 
     private void OnDisable()
     {
         MessageCentral.OnSwapScene -= CorutinaSpawnerLuz;
         MessageCentral.OnDiePlayer -= DesactiveEnemies;
+        MessageCentral.OnDieBoss -= DesactiveEnemies;
     }
-        /* TODO
-         -Iniciar spawers X tiempo luego de que el player aparezca en plano de Luz -
-         -Tener la misma función de cantidad maxima de enemigos pero solo aparecen en 1 punto -
-         -Estos no se destruyen sino se apagan al termianr el juego -
-         -Cuando termina el juego tambíen se destruyen todos los enemigos
-         -Y efectos visuales y/o animaciones
-         */
-        void Update()
+    void Update()
+    {
+        if(spawnerActivation)
         {
-            if(spawnerActivation)
-            {
-                ControllerSpawns();
-            }
+            ControllerSpawns();
         }
+    }
     private void ControllerSpawns()
     {
         timer += Time.deltaTime;
@@ -89,12 +85,12 @@ public class LuzSpawners : MonoBehaviour
 
     private void CorutinaSpawnerLuz()
     {
+        Debug.Log("Call coroutine awake spawners");
         StartCoroutine(AwakeSpawners());
     }
 
     private IEnumerator AwakeSpawners()
     {
-        Debug.Log("AwakeLuz");
         yield return new WaitForSeconds(awakeTime);
         animatorPortalSpawner.SetTrigger("OpenPortal");
         spawnerActivation=true;

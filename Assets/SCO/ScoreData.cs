@@ -4,7 +4,6 @@ using UnityEngine;
 public class ScoreData : ScriptableObject
 {
     public string name = "";
-    public float time;
-    public float kills;
+    public string email = "";
     public string api_token = "x7bF74UvGCnfoACoQHTXZOkVaPJy6aavaxexzw91B4EZPDZMSbHN70L9IUpT";
 }

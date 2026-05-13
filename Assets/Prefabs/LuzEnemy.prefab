@@ -4931,6 +4931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b98d1d9fca95ab40af6a1dd7af47421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMov
+  player: {fileID: 0}
   minEnemySpeed: 1
   maxEnemySpeed: 10
   tiempoStuned: 2
@@ -4962,7 +4963,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLuzAtk
   attackCooldown: 3
   stopByAtackPlayer: 3
-  attackDistance: 5
+  minAttackDistance: 10
+  maxAttackDistance: 15
   playerLayer:
     serializedVersion: 2
     m_Bits: 128

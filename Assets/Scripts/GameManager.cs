@@ -145,18 +145,8 @@ public class GameManager : MonoBehaviour
     {
         RenderSettings.skybox = skyboxDay;
         DynamicGI.UpdateEnvironment();
-        StartCoroutine(TimerScene());
     }
 
-    private IEnumerator TimerScene()
-    {
-        yield return new WaitForSeconds(1f);
-        foreach (Animator anim in animators)
-            if (anim != null) anim.enabled = true;
-
-        foreach (MonoBehaviour script in scripts)
-            if (script != null) script.enabled = true;
-    }
 
     
     public void StartTimer()
@@ -314,6 +304,12 @@ public class GameManager : MonoBehaviour
         return Mathf.RoundToInt(BASE_SCORE / denominador);
     }
 
+    public void SendRating()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+    }
+
     //Metodos sobre el menu de Pausa
     public void ResetPlayerStatus()
     {
@@ -339,9 +335,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         AudioManager.I?.PlaySound(SoundName.GameOver,1f);
         animatorDeadLayerUI.SetTrigger("Active");
-        yield return new WaitForSecondsRealtime(3f);
-        SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1;
+        yield return new WaitForSecondsRealtime((5f));
+        animatorDeadLayerUI.SetTrigger("Rating");
     }
 
     private void WinScreen()

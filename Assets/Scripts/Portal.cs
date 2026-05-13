@@ -43,6 +43,7 @@ public class Portal : MonoBehaviour
         zonaOscura.SetActive(false);
         player.SetActive(true);
         MessageCentral.SwapScene();
+        Debug.Log("Missatge enviat");
         AudioSource backgroundMusic = AudioManager.I?.StopBackgroundMusic();
         AudioManager.I?.PlayBackgroundSounds(SoundName.GameMusic2, ref backgroundMusic);
         

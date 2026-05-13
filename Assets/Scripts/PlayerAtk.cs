@@ -119,7 +119,7 @@ public class PlayerAtk : MonoBehaviour
         if (playerMov != null)
         {
             playerMov.SetMovementLocked(true);
-            Debug.Log("Movimiento bloqueado " + fase);
+            // Debug.Log("Movimiento bloqueado " + fase);
             animator.SetBool("canInterrupt", false);
         }
         if (fase == 1)
@@ -154,7 +154,7 @@ public class PlayerAtk : MonoBehaviour
         if (playerMov != null)
         {
             playerMov.SetMovementLocked(false);
-            Debug.Log("Movimiento desbloqueado " + fase);
+            // Debug.Log("Movimiento desbloqueado " + fase);
         }
     }
     // ----------------------
