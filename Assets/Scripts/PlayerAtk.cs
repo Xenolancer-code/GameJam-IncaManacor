@@ -72,7 +72,6 @@ public class PlayerAtk : MonoBehaviour
     
     public void DmgBasicAtk() //Llamado por Event en animation
     {
-        //AudioManager.I?.PlaySound(SoundName.SlashPlayer,transform);//Sonido de SoundLibrary
         var collidedEnemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayer);
         if (collidedEnemies == null) return;
         //Llista que guarda la distancia del enemics sobre el player
@@ -162,8 +161,8 @@ public class PlayerAtk : MonoBehaviour
     // ----------------------
     public void AoEAtk()
     {
-        //if(pausedGame||!canAoe)return;
-        if(pausedGame)return;
+        if(pausedGame||!canAoe)return;
+        //if(pausedGame)return;
         animator.SetTrigger("RightClick");
         MessageCentral.AoePlayer();
         canAoe = false;

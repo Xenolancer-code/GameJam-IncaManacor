@@ -39,14 +39,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD;
     [SerializeField] private Animator animator;
-   
+    [SerializeField] private GameObject eventSystemRating;
+    [SerializeField] private GameObject eventSystemPaused;
+    
     [SerializeField] private Animator animatorDeadLayerUI;
-    [SerializeField] private GameObject winLayerUI;
     [SerializeField] HUDManager hudManager;
     [Header("Timer Settings")]
     public float currentTime;
     private bool isGameStarted = false;
     [SerializeField] private float timeBeforePause = 5f;
+
+    [Header("Rating Values")] 
+    
+    [SerializeField] private Slider sliderGeneral;
+    [SerializeField] private Slider sliderJugabilitat;
+    [SerializeField] private Slider sliderDificultat;
+    [SerializeField] private Slider sliderGrafics;
+    [SerializeField] private Slider sliderConcordancia;
     [Header("Player Settings")]
     public int sampleAmount = 0;
     public int maxSampleAmount = 100;
@@ -291,7 +300,7 @@ public class GameManager : MonoBehaviour
         currentSmokeIndex++;
     }
 
-    //Metodos de recopilación de datos
+    //---------------------------------------------------Metodos de recopilación de datos
     private void ObtainScoreData()
     {
         int score = CalculateScore();
@@ -306,8 +315,19 @@ public class GameManager : MonoBehaviour
 
     public void SendRating()
     {
+        SaveRatings();
+        reporter.SubmitRating(scoreData.name,scoreData.email, scoreData.api_token,scoreData.general,scoreData.jugabilitat,scoreData.dificultat,scoreData.grafics,scoreData.concordancia);
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1;
+    }
+
+    private void SaveRatings()
+    {
+        sliderGeneral.value = scoreData.general;
+        sliderJugabilitat.value = scoreData.jugabilitat;
+        sliderDificultat.value = scoreData.dificultat;
+        sliderGrafics.value = scoreData.grafics;
+        sliderConcordancia.value = scoreData.concordancia;
     }
 
     //Metodos sobre el menu de Pausa
@@ -336,6 +356,9 @@ public class GameManager : MonoBehaviour
         AudioManager.I?.PlaySound(SoundName.GameOver,1f);
         animatorDeadLayerUI.SetTrigger("Active");
         yield return new WaitForSecondsRealtime((5f));
+        AudioManager.I.StopBackGroundSounds();
+        eventSystemPaused.SetActive(false);
+        eventSystemRating.SetActive(true);
         animatorDeadLayerUI.SetTrigger("Rating");
     }
 
@@ -347,6 +370,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator PlayerWin()
     {
         yield return new WaitForSeconds(timeBeforePause);
+        AudioManager.I.StopBackGroundSounds();
         AudioManager.I?.PlaySound(SoundName.Win,1f);
         PlayerIsWinner = true;
         MessageCentral.PlayerWins(PlayerIsWinner);
@@ -354,7 +378,9 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetTrigger("Winner");
         yield return new WaitForSeconds(timeBeforePause);
         //Cinemachine en la frente del player
-        SceneManager.LoadScene("MainMenu");
+        eventSystemPaused.SetActive(false);
+        eventSystemRating.SetActive(true);
+        animatorDeadLayerUI.SetTrigger("WinR");
     }
     
     public void PauseGame()

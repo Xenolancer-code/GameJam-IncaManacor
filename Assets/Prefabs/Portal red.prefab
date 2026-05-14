@@ -9781,7 +9781,7 @@ MonoBehaviour:
   player: {fileID: 0}
   awakeTime: 4
   initialDelay: 4
-  maxEnemies: 5
+  maxEnemies: 2
   enemyLuzPrefab: {fileID: 3827179903306521204, guid: 8cf666fafa8de434da763338994534f3, type: 3}
 --- !u!1 &6842134302800741127
 GameObject:

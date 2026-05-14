@@ -286,10 +286,12 @@ public class BossController : MonoBehaviour
         GameObject proj = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
         //AUDIO DE CARGAR ATK
         // Opcional: el proyectil flota un momento (telegráfico)
+        AudioManager.I.PlaySound(SoundName.BossCharge,transform.position,1f);
         yield return new WaitForSeconds(projectileSpawnWait);
 
         // 2. Capturar posición del player y disparar
         //AUDIO DE LANZAR ATK
+        AudioManager.I.PlaySound(SoundName.BossShot,transform.position,1f);
         Vector3 directionToPlayer = (target.transform.position - proj.transform.position).normalized;
         Rigidbody rb = proj.GetComponent<Rigidbody>();
 

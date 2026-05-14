@@ -189,3 +189,27 @@ MonoBehaviour:
     playTimer: 0
     spacialBlend: 0.2
     pitch: 1
+  - soundName: 38
+    audioClip: {fileID: 8300000, guid: 260c0b63c77098c4b9ca6a4ea1a1535d, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0.2
+    pitch: 1
+  - soundName: 39
+    audioClip: {fileID: 8300000, guid: 328de54f279d4d0489096a3cec6de767, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0.2
+    pitch: 1
+  - soundName: 40
+    audioClip: {fileID: 8300000, guid: 4e7a9fee47ebae24280ad552425bd214, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0.2
+    pitch: 1

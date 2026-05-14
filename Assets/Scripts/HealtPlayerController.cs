@@ -65,6 +65,7 @@ public class HealtPlayerController : MonoBehaviour
     private IEnumerator ShieldRecover()
     {
         yield return new WaitForSeconds(shieldRecoverTime);
+        if (playerIsDead) yield break;
         Instantiate(healParticles,transform.position,healParticles.transform.rotation,transform);
         hpPoints = 2;
         AudioManager.I?.PlaySound(SoundName.PlayerRecover,transform,1f);

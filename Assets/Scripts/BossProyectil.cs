@@ -41,7 +41,7 @@ public class BossProyectil : MonoBehaviour
     {
         if (explosionVFX != null)
             Instantiate(explosionVFX, transform.position, Quaternion.identity);
-
+        AudioManager.I.PlaySound(SoundName.ExplosionBoss, transform.position,1f);
         Destroy(gameObject);
     }
 }

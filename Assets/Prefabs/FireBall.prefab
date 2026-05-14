@@ -4850,7 +4850,7 @@ GameObject:
   - component: {fileID: 1998554094372468926}
   - component: {fileID: 5613702939522792177}
   m_Layer: 0
-  m_Name: FX_Fire_03
+  m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9701,9 +9701,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b6e4318a59dd439523ab333ec60f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireBall
-  speed: 6
+  speed: 11
   rotationSpeed: 180
-  maxDistance: 30
+  maxDistance: 15
 --- !u!135 &5613702939522792177
 SphereCollider:
   m_ObjectHideFlags: 0
