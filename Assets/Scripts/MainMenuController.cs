@@ -62,9 +62,9 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     [SerializeField] private GameObject eventSystemName;
 
     [Header("Score")] 
-    [SerializeField] private ScoreData scoreData;
-    [SerializeField] private TMPro.TMP_Text scoreText;
-    private ScoreReporter scoreReporter;
+    // [SerializeField] private ScoreData scoreData;
+    // [SerializeField] private TMPro.TMP_Text scoreText;
+    // private ScoreReporter scoreReporter;
     
 
     [Header("Player Name")]
@@ -107,7 +107,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     {
         controls = new PlayerControls();
         controls.UI.SetCallbacks(this);
-        scoreReporter=GetComponent<ScoreReporter>();
+        //scoreReporter=GetComponent<ScoreReporter>();
     }
 
     private void OnEnable()
@@ -513,8 +513,8 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
     // ── Nombre del jugador ───────────────────────────────────────────────────────
     public void AceptarName()
     {
-        GenerateEmail(playerName);
-        CrearUsuario();
+        // GenerateEmail(playerName);
+        // CrearUsuario();
         SceneManager.LoadScene("GameScene");
     }
 
@@ -583,7 +583,7 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
             PlayerPrefs.SetInt($"LetterIndex_{i}", letterIndices[i]);
         }
         PlayerPrefs.Save();
-        scoreData.name = playerName;
+        //scoreData.name = playerName;
         Debug.Log($"Player name: {playerName}");
     }
     // ── Corrutinas ───────────────────────────────────────────────────────────
@@ -631,34 +631,34 @@ public class MainMenuController : MonoBehaviour, PlayerControls.IUIActions
 
     private void FetchClassification(int top)
     {
-        scoreReporter.GetClassification(scoreData.api_token,top,OnClassificationReceived);
+        //scoreReporter.GetClassification(scoreData.api_token,top,OnClassificationReceived);
     }
 
     private void OnClassificationReceived(ScoreReporter.ScoreEntry[] entries)
     {
         if (entries == null || entries.Length == 0)
         {
-            scoreText.text = "Sin puntuaciones";
+            //scoreText.text = "Sin puntuaciones";
             return;
         }
         var entry = entries[0];
         int minutos  = entry.puntuacion / 60;
         int segundos = entry.puntuacion % 60;
 
-        scoreText.text = $"{entry.name}  {minutos:00}:{segundos:00}";
+        //scoreText.text = $"{entry.name}  {minutos:00}:{segundos:00}";
     }
     //-------------------CORREO y USUARIO----------------
-    public void GenerateEmail(string name)
-    {
-        int number = UnityEngine.Random.Range(0, 10000);
-        string formattedNumber = number.ToString("D4");
-        playerEmail = $"{playerName}{formattedNumber}@gmail.com";
-        scoreData.email = playerEmail;
-    }
-
-    private void CrearUsuario()
-    {
-        reporter.SubmitUser(scoreData.name, scoreData.email, scoreData.api_token);
-        Debug.Log("User creado con exito con " + scoreData.name +  scoreData.email);
-    }
+    // public void GenerateEmail(string name)
+    // {
+    //     int number = UnityEngine.Random.Range(0, 10000);
+    //     string formattedNumber = number.ToString("D4");
+    //     playerEmail = $"{playerName}{formattedNumber}@gmail.com";
+    //     scoreData.email = playerEmail;
+    // }
+    //
+    // private void CrearUsuario()
+    // {
+    //     reporter.SubmitUser(scoreData.name, scoreData.email, scoreData.api_token);
+    //     Debug.Log("User creado con exito con " + scoreData.name +  scoreData.email);
+    // }
 }

@@ -27,20 +27,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator[] animators;
     [SerializeField] private MonoBehaviour[] scripts;
     [Header("Score")]
-    private ScoreReporter reporter;
     const float BASE_SCORE = 100000f;
     const float PESO_TIEMPO     = 1.0f;
     const float PESO_GOLPES     = 5.0f;   
     const float MULTIPLICADOR   = 1.0f;
     private float cumulativeDamage = 0;
-    [SerializeField] private ScoreData scoreData;
     public int enemyCounter = 0;
     [Header("Menu Settings")]
     [SerializeField] private GameObject tutorialHUD;
     [SerializeField] private GameObject pauseHUD;
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject eventSystemRating;
-    [SerializeField] private GameObject eventSystemPaused;
     
     [SerializeField] private Animator animatorDeadLayerUI;
     [SerializeField] HUDManager hudManager;
@@ -48,14 +44,6 @@ public class GameManager : MonoBehaviour
     public float currentTime;
     private bool isGameStarted = false;
     [SerializeField] private float timeBeforePause = 5f;
-
-    [Header("Rating Values")] 
-    
-    [SerializeField] private Slider sliderGeneral;
-    [SerializeField] private Slider sliderJugabilitat;
-    [SerializeField] private Slider sliderDificultat;
-    [SerializeField] private Slider sliderGrafics;
-    [SerializeField] private Slider sliderConcordancia;
     [Header("Player Settings")]
     public int sampleAmount = 0;
     public int maxSampleAmount = 100;
@@ -92,8 +80,8 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnDieEnemy += IncrementCounter;
         MessageCentral.OnPickupSample += UpdateSample;
         MessageCentral.OnDamagedPlayer += EmptyBarAndJump;
+        MessageCentral.OnDamagedPlayer += ResetPlayerStatus;
         MessageCentral.OnAoePlayer += EmptyBar;
-        MessageCentral.OnDieBoss += ObtainScoreData;
         MessageCentral.OnDieBoss += WinScreen;
         MessageCentral.OnDiePlayer += DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed +=ActivePortalToLight;
@@ -107,7 +95,6 @@ public class GameManager : MonoBehaviour
         MessageCentral.OnPickupSample -= UpdateSample;
         MessageCentral.OnDamagedPlayer -= EmptyBarAndJump;
         MessageCentral.OnAoePlayer -= EmptyBar;
-        MessageCentral.OnDieBoss -= ObtainScoreData;
         MessageCentral.OnDieBoss -= WinScreen;
         MessageCentral.OnDiePlayer -= DeadScreen;
         MessageCentral.OnAllSpawnersDestroyed -=ActivePortalToLight;
@@ -119,8 +106,6 @@ public class GameManager : MonoBehaviour
     {
         RenderSettings.skybox = skyboxNight;
         player.SetActive(false);
-        reporter=GetComponent<ScoreReporter>();
-       
     }
 
     void Start()
@@ -215,7 +200,13 @@ public class GameManager : MonoBehaviour
     {
         playerAtk.canAoe = sampleAmount >= maxSampleAmount;
     }
-
+    public void ResetPlayerStatus(bool playerIsDamaged)
+    {
+        if (!playerIsDamaged) 
+            return;
+        playerAtk.finalDamage = INITDAMAGE;
+        playerAtk.finalRange = INITRANGE;
+    }
     private void EmptyBar()
     {
         sampleAmount = 0;
@@ -301,41 +292,17 @@ public class GameManager : MonoBehaviour
     }
 
     //---------------------------------------------------Metodos de recopilación de datos
-    private void ObtainScoreData()
-    {
-        int score = CalculateScore();
-        reporter.SubmitScore(scoreData.name, score, scoreData.api_token);
-    }
+        //int score = CalculateScore();
+       
     private int CalculateScore()
     {
         float denominador = (currentTime * PESO_TIEMPO) + (cumulativeDamage * PESO_GOLPES);
         if (denominador <= 0f) denominador = 0.1f;
         return Mathf.RoundToInt(BASE_SCORE / denominador);
     }
-
-    public void SendRating()
-    {
-        SaveRatings();
-        reporter.SubmitRating(scoreData.name,scoreData.email, scoreData.api_token,scoreData.general,scoreData.jugabilitat,scoreData.dificultat,scoreData.grafics,scoreData.concordancia);
-        SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1;
-    }
-
-    private void SaveRatings()
-    {
-        sliderGeneral.value = scoreData.general;
-        sliderJugabilitat.value = scoreData.jugabilitat;
-        sliderDificultat.value = scoreData.dificultat;
-        sliderGrafics.value = scoreData.grafics;
-        sliderConcordancia.value = scoreData.concordancia;
-    }
-
+    
     //Metodos sobre el menu de Pausa
-    public void ResetPlayerStatus()
-    {
-       playerAtk.finalDamage = INITDAMAGE;
-       playerAtk.finalRange = INITRANGE;
-    }
+    
 
     public void ReturnMenu(int index)
     {
@@ -357,9 +324,6 @@ public class GameManager : MonoBehaviour
         animatorDeadLayerUI.SetTrigger("Active");
         yield return new WaitForSecondsRealtime((5f));
         AudioManager.I.StopBackGroundSounds();
-        eventSystemPaused.SetActive(false);
-        eventSystemRating.SetActive(true);
-        animatorDeadLayerUI.SetTrigger("Rating");
     }
 
     private void WinScreen()
@@ -378,9 +342,6 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetTrigger("Winner");
         yield return new WaitForSeconds(timeBeforePause);
         //Cinemachine en la frente del player
-        eventSystemPaused.SetActive(false);
-        eventSystemRating.SetActive(true);
-        animatorDeadLayerUI.SetTrigger("WinR");
     }
     
     public void PauseGame()
